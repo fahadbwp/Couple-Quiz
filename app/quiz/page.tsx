@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Homepage from "@/components/quiz-home/Homepage";
 export const metadata: Metadata = {
-  title: "Click & Clique | How well do your friends know you?",
+  title: "Free 10-Question Friendship Quiz & BFF Dare",
   description:
-    "Make a friendship quiz, share your link, and find out who knows you best. Ten questions. One very fun group chat.",
+    "Make a free 10-question friendship quiz, share your link on WhatsApp, and find out who knows you best on your live scoreboard.",
+  alternates: {
+    canonical: "/quiz",
+  },
   icons: { icon: "/quiz/clique-mark.svg" },
   openGraph: {
-    title: "Click & Clique | Your friendship quiz starts here",
+    title: "Click & Clique | Free 10-Question Friendship Quiz & BFF Test",
     description:
-      "Ten questions. One very fun group chat. Find out who knows you best.",
+      "Make a free 10-question friendship quiz, share your link on WhatsApp, and find out who knows you best on your live scoreboard.",
     siteName: "Click & Clique",
     type: "website",
-    images: [],
+    images: ["/api/og/quiz/default"],
   },
 };
 export default function QuizLandingPage() {

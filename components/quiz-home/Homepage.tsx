@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { BrandMark, FriendsArt, StepIcon } from "./Illustrations";
 import { saveCreatorSetup } from "./creatorSetup";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
+import { HOMEPAGE_FAQS, HomepageJsonLd } from "@/components/seo/JsonLd";
 import styles from "./homepage.module.css";
 
 type StartProps = { onStart: () => void };
@@ -45,6 +46,7 @@ export function Navbar({ onStart }: StartProps) {
       <nav aria-label="Main navigation">
         <a href="#challenges">The quizzes</a>
         <a href="#how-it-works">How it works</a>
+        <a href="#faqs">FAQs</a>
       </nav>
       <button className={styles.navCta} onClick={onStart}>
         Create quiz <span aria-hidden="true">↗</span>
@@ -185,6 +187,31 @@ export function CTASection({ onStart }: StartProps) {
   );
 }
 
+export function FAQSection() {
+  return (
+    <section id="faqs" className={styles.faqSection} aria-labelledby="faq-title">
+      <div className={styles.faqHeader}>
+        <p className={styles.eyebrow}>GOT QUESTIONS?</p>
+        <h2 id="faq-title">Frequently Asked Questions</h2>
+        <p className={styles.faqSubtitle}>
+          Everything you need to know about our free 10-question friendship quiz and BFF challenge.
+        </p>
+      </div>
+      <div className={styles.faqGrid}>
+        {HOMEPAGE_FAQS.map((faq, idx) => (
+          <details key={idx} className={styles.faqItem}>
+            <summary className={styles.faqQuestion}>
+              <span>{faq.question}</span>
+              <span className={styles.faqIcon} aria-hidden="true">+</span>
+            </summary>
+            <p className={styles.faqAnswer}>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function Footer() {
   return (
     <footer className={styles.footer}>
@@ -250,6 +277,7 @@ export default function Homepage() {
   }
   return (
     <div className={styles.home}>
+      <HomepageJsonLd />
       <a className={styles.skipLink} href="#main">
         Skip to content
       </a>
@@ -280,6 +308,7 @@ export default function Homepage() {
           </section>
           <HowItWorks />
           <CTASection onStart={openCreator} />
+          <FAQSection />
         </main>
         <AdsterraFooter />
       </div>

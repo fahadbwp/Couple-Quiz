@@ -220,8 +220,7 @@ test("Phase 7: SEO Strategy, Robots Rules & Sitemap Generation", () => {
 
   assert.ok(Array.isArray(rules.disallow));
   assert.ok(rules.disallow.includes("/api/"), "Must disallow general /api/ routes");
-  assert.ok(rules.disallow.includes("/quiz/share/"));
-  assert.ok(rules.disallow.includes("/quiz/result/"));
+  assert.ok(rules.disallow.includes("/design-preview/"), "Must disallow /design-preview/ routes");
   assert.ok(String(robotsConfig.sitemap).endsWith("/sitemap.xml"));
 
   // Path precedence simulation (RFC 9309 longest prefix match)
@@ -242,9 +241,10 @@ test("Phase 7: SEO Strategy, Robots Rules & Sitemap Generation", () => {
   assert.equal(isAllowedByRobots("/api/og/quiz/default"), true, "/api/og/quiz/default must be crawlable");
   assert.equal(isAllowedByRobots("/api/quiz"), false, "/api/quiz must be blocked by robots.txt");
   assert.equal(isAllowedByRobots("/api/quiz/123/scoreboard"), false, "/api/quiz/scoreboard must be blocked");
-  assert.equal(isAllowedByRobots("/quiz/share/123"), false, "/quiz/share must be blocked");
-  assert.equal(isAllowedByRobots("/quiz/result/123"), false, "/quiz/result must be blocked");
+  assert.equal(isAllowedByRobots("/design-preview/question"), false, "/design-preview must be blocked");
   assert.equal(isAllowedByRobots("/quiz/play/123"), true, "/quiz/play must be crawlable for social previews");
+  assert.equal(isAllowedByRobots("/quiz/result/123"), true, "/quiz/result must be crawlable so engines see noindex tag");
+  assert.equal(isAllowedByRobots("/quiz/share/123"), true, "/quiz/share must be crawlable so engines see noindex tag");
 
   // 2. Sitemap generation
   const sitemapConfig = sitemap();
