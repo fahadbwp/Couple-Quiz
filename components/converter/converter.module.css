@@ -1,0 +1,568 @@
+/* ==========================================================================
+   DOCUMENT CONVERTER MODULE
+   Theme: Lavender & Amethyst Glassmorphism (matching Click & Clique)
+   ========================================================================== */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 10% 10%, rgba(243, 232, 255, 0.7) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(224, 231, 255, 0.7) 0%, transparent 45%),
+              #f8fafc;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.brandText {
+  letter-spacing: -0.5px;
+}
+
+.brandAmp {
+  color: #6650b7;
+}
+
+.brandDot {
+  color: #8b5cf6;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navLink {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.navLink:hover {
+  color: #6650b7;
+}
+
+.main {
+  flex: 1;
+  max-width: 900px;
+  margin: 20px auto 60px auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(102, 80, 183, 0.1);
+  color: #6650b7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -1.2px;
+  color: #0f172a;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.titleHighlight {
+  background: linear-gradient(135deg, #6650b7 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 16px;
+  max-width: 480px;
+  margin: 0 auto 32px auto;
+  border: 1px solid #e2e8f0;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tabActive {
+  background: #ffffff;
+  color: #6650b7;
+  box-shadow: 0 4px 12px rgba(102, 80, 183, 0.1);
+}
+
+/* Converter Card */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  padding: 36px 32px;
+  box-shadow: 0 20px 40px rgba(102, 80, 183, 0.08);
+  margin-bottom: 32px;
+}
+
+/* Dropzone */
+.dropzone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 20px;
+  padding: 48px 24px;
+  text-align: center;
+  background: rgba(248, 250, 252, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone:hover,
+.dropzoneActive {
+  border-color: #6650b7;
+  background: rgba(102, 80, 183, 0.04);
+  transform: translateY(-2px);
+}
+
+.dropIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(102, 80, 183, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: #6650b7;
+}
+
+.dropTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.dropSubtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.browseButton {
+  background: #6650b7;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 14px rgba(102, 80, 183, 0.25);
+}
+
+.browseButton:hover {
+  background: #543fa0;
+  transform: scale(1.02);
+}
+
+/* Selected File Box */
+.selectedFile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.fileMeta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.fileIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(102, 80, 183, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6650b7;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.fileName {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileSize {
+  font-size: 12.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.removeFileBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.removeFileBtn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* Action Button */
+.convertBtn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6650b7 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 24px rgba(102, 80, 183, 0.3);
+}
+
+.convertBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(102, 80, 183, 0.4);
+}
+
+.convertBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Progress bar */
+.progressContainer {
+  margin-top: 24px;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.progressBar {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #6650b7, #a855f7);
+  transition: width 0.3s ease;
+  border-radius: 9999px;
+}
+
+/* Result Section */
+.resultBox {
+  background: rgba(240, 253, 244, 0.8);
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.resultTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #15803d;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 20px;
+  font-weight: 900;
+  color: #166534;
+}
+
+.statLabel {
+  font-size: 11.5px;
+  color: #15803d;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #16a34a;
+  color: #ffffff;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.25);
+  transition: all 0.15s ease;
+}
+
+.downloadBtn:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
+
+.resetBtn {
+  display: block;
+  margin: 14px auto 0 auto;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Error message */
+.errorBox {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Privacy Guarantee Banner */
+.privacyBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 40px;
+}
+
+.shieldIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(102, 80, 183, 0.1);
+  color: #6650b7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.privacyTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.privacyText {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* FAQ section */
+.faqSection {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  padding: 32px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+}
+
+.faqSection h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.faqGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faqItem {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.faqQuestion {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1e293b;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqAnswer {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  color: #64748b;
+}
+
+.footer a {
+  color: #6650b7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 28px;
+  }
+  .card {
+    padding: 24px 18px;
+  }
+  .dropzone {
+    padding: 32px 16px;
+  }
+  .statsRow {
+    gap: 16px;
+  }
+  .fileName {
+    max-width: 180px;
+  }
+}

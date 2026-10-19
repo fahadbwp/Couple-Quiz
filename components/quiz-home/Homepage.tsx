@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BrandMark, FriendsArt, StepIcon } from "./Illustrations";
 import { saveCreatorSetup } from "./creatorSetup";
@@ -47,6 +48,7 @@ export function Navbar({ onStart }: StartProps) {
         <a href="#challenges">The quizzes</a>
         <a href="#how-it-works">How it works</a>
         <a href="#faqs">FAQs</a>
+        <Link href="/tools/pdf-converter">PDF Tools</Link>
       </nav>
       <button className={styles.navCta} onClick={onStart}>
         Create quiz <span aria-hidden="true">↗</span>
@@ -227,6 +229,10 @@ export function Footer() {
         <a href="#how-it-works">
           How it works <span aria-hidden="true">↗</span>
         </a>
+        <br />
+        <Link href="/tools/pdf-converter">
+          Free PDF &amp; Word Converter <span aria-hidden="true">↗</span>
+        </Link>
       </div>
       <p className={styles.copyright}>
         © {new Date().getFullYear()} Click & Clique. Made for a little fun.

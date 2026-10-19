@@ -15,6 +15,7 @@ const eslintConfig = [
       "quiz-src-backup/**",
       ".next/**",
       "node_modules/**",
+      "public/**",
       "coverage/**",
       "next-env.d.ts",
     ],

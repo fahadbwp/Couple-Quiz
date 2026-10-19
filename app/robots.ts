@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
           "/quiz/create",
           "/quiz/play/",
           "/quiz/scoreboard/",
+          "/tools/",
           "/api/og/quiz/",
           "/api/og/quiz",
         ],

@@ -47,7 +47,7 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
 /**
  * Safely stringifies JSON-LD schema, escaping `<` characters to prevent script tag injection.
  */
-function safeJsonLdStringify(data: unknown): string {
+export function safeJsonLdStringify(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
