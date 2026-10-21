@@ -261,6 +261,32 @@
   box-shadow: 0 7px 0 #dde9f2;
   overflow: hidden;
 }
+.jellooCard {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.jellooArtwork {
+  display: grid;
+  place-items: center;
+  min-height: 270px;
+  background: radial-gradient(ellipse at center, #fff8ed 0%, #eaf3d9 70%);
+}
+.jellooBunny {
+  display: block;
+  width: 190px;
+  aspect-ratio: 600 / 760;
+  background: url("/jelly-pals/bunny-blink-reference-v1.png") 16.184% 56.693% / 295.6667% 116.7105% no-repeat;
+}
+.jellooCard .categoryContent {
+  align-self: center;
+}
+.jellooCard h3 { margin-top: 10px; }
+@media (max-width: 640px) {
+  .jellooCard { grid-template-columns: 1fr; }
+  .jellooArtwork { min-height: 230px; }
+  .jellooBunny { width: 165px; }
+}
 .categoryTop {
   padding: 21px 28px 0;
   display: flex;

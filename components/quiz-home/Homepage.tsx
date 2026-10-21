@@ -44,7 +44,7 @@ export function Navbar({ onStart }: StartProps) {
     <header className={styles.navbar}>
       <Brand />
       <nav aria-label="Main navigation">
-        <a href="#challenges">The quizzes</a>
+        <a href="#challenges">Quizzes & games</a>
         <a href="#how-it-works">How it works</a>
         <a href="#faqs">FAQs</a>
       </nav>
@@ -292,9 +292,9 @@ export default function Homepage() {
           >
             <div className={styles.sectionHeading}>
               <div>
-                <p className={styles.eyebrow}>PICK YOUR PEOPLE</p>
+                <p className={styles.eyebrow}>PICK YOUR KIND OF FUN</p>
                 <h2 id="challenges-title">
-                  A quiz for your kind of connection.
+                  A little connection. A little adventure.
                 </h2>
               </div>
               <span className={styles.handwritten}>
@@ -304,6 +304,17 @@ export default function Homepage() {
             <div className={styles.categories}>
               <CategoryCard onStart={openCreator} />
               <CategoryCard couple onStart={openCreator} />
+              <article className={`${styles.category} ${styles.jellooCard}`} aria-labelledby="jelloo-title">
+                <div className={styles.jellooArtwork} aria-hidden="true">
+                  <span className={styles.jellooBunny} />
+                </div>
+                <div className={styles.categoryContent}>
+                  <span className={styles.categoryTag}>A LITTLE PUZZLE BREAK</span>
+                  <h3 id="jelloo-title">Jelloo</h3>
+                  <p>Turn the paths, guide Bunny home, and explore an endless meadow of cozy puzzles. Your adventure saves as you play.</p>
+                  <a href="/jelloo" className={`${styles.button} ${styles.secondary}`}>Play Jelloo <span aria-hidden="true">↗</span></a>
+                </div>
+              </article>
             </div>
           </section>
           <HowItWorks />

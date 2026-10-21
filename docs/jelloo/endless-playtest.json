@@ -1,0 +1,102 @@
+{
+  "startedAt": "2026-10-21T17:22:49.588Z",
+  "endedAt": "2026-10-21T17:32:59.769Z",
+  "elapsedSeconds": 610,
+  "method": "AI-operated browser play using rendered board and accessible labels; no solver solutions used for these runs. Elapsed time includes UI observations and tool overhead.",
+  "notes": [
+    {
+      "at": 56672,
+      "level": 11,
+      "note": "One-turn intro completed; visible gate opened. Not a challenging level, as intended."
+    },
+    {
+      "at": 98046,
+      "level": 12,
+      "moves": 13,
+      "limit": 20,
+      "note": "Solved visually without solver; route was clear from occupied tiles, generous seven moves spare."
+    },
+    {
+      "at": 142002,
+      "level": 13,
+      "moves": 1,
+      "note": "Gap crossing clear; same outline as Panda intro feels repetitive, though only one turn."
+    },
+    {
+      "at": 190175,
+      "level": 14,
+      "moves": 19,
+      "limit": 24,
+      "note": "More rotations than 12 but the long single corridor was still visually obvious. No retry."
+    },
+    {
+      "at": 228930,
+      "level": 15,
+      "moves": 18,
+      "limit": 23,
+      "note": "Panda crack must precede gate. Path shape quite exposed; satisfying gate feedback but no branching decision."
+    },
+    {
+      "at": 294437,
+      "level": 16,
+      "moves": 13,
+      "limit": 20,
+      "note": "Initially traced a wrong route mentally; corner constraints forced a detour. More engaging than 12/14. No failed attempt."
+    },
+    {
+      "at": 325332,
+      "level": 17,
+      "moves": 17,
+      "limit": 22,
+      "note": "Jump is necessary and landing alignment mattered. Gap clearly separates the two path segments."
+    },
+    {
+      "at": 388571,
+      "level": 18,
+      "moves": 17,
+      "limit": 24,
+      "note": "Another long corridor with a few decoys; seven spare moves. No retry."
+    },
+    {
+      "at": 415164,
+      "level": 19,
+      "moves": 12,
+      "limit": 17,
+      "note": "Easier than Panda 15: many straight segments. Gate dependency works, but puzzle decisions are still mostly route alignment."
+    },
+    {
+      "at": 460530,
+      "level": 20,
+      "moves": 15,
+      "limit": 22,
+      "note": "Cat unlocked after completion; two nearby corner paths required checking, but no retry."
+    },
+    {
+      "at": 504570,
+      "level": 21,
+      "moves": 1,
+      "note": "Cat unlock flows directly into unlimited intro; wall crossing works. Intro board again uses same outline."
+    },
+    {
+      "at": 545775,
+      "level": 22,
+      "moves": 17,
+      "limit": 24,
+      "note": "Denser board creates more plausible alternatives; star detour required thought. Still completed first attempt."
+    },
+    {
+      "at": 576435,
+      "level": 23,
+      "moves": 15,
+      "limit": 19,
+      "note": "One mandatory jump; tighter margin but exposed corridor still made the route easy to identify."
+    },
+    {
+      "at": 610181,
+      "level": 24,
+      "moves": 17,
+      "limit": 24,
+      "note": "Longer detour reaches both stars. Completed without retry."
+    }
+  ]
+}
