@@ -1,11 +1,12 @@
 import { neighbour, ports, type Character, type Direction, type Level, type PowerState, type Tile, type Trace } from "./engine";
 
-type SearchResult={solvable:boolean;par:number;starPar:number;exhausted:boolean;explored:number;solution:Tile[]|null;choices:Record<string,Direction>;trace:Trace};
+type SearchResult={solvable:boolean;par:number;starPar:number;shortestPath:number[];parPath:number[];exhausted:boolean;explored:number;solution:Tile[]|null;choices:Record<string,Direction>;trace:Trace};
 
 // Search is over path, chosen orientations and power state, not just connected
 // cells. Simple paths are an explicit game rule: returning to a cell is a loop.
 function search(level:Level,tiles:readonly Tile[],character:Character|null,rotate:boolean,budget:number):SearchResult {
   let explored=0,par=Infinity,starPar=Infinity,solution:Tile[]|null=null,choices:Record<string,Direction>={};
+  let shortestPath:number[]=[],parPath:number[]=[];
   let bestTrace:Trace={path:[level.start],outcome:"disconnected",states:[{jumpUsed:false,broken:[],branches:{}}]};
   const visit=(at:number,incoming:Direction|undefined,path:number[],states:PowerState[],oriented:Tile[],moves:number) => {
     if(++explored>budget) return;
@@ -17,6 +18,8 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
     if(level.gate?.tile===at && !power.broken.includes(level.gate.trigger)) return;
     if(at===level.home) {
       if(tile.port!==incoming) return;
+      if(moves<par) parPath=path;
+      if(!shortestPath.length || path.length<shortestPath.length) shortestPath=path;
       par=Math.min(par,moves);
       const allStars=(level.collectibles ?? []).every(i=>path.includes(i));
       if(bestTrace.outcome!=="home" || allStars && moves<starPar) {
@@ -53,7 +56,7 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
   };
   visit(level.start,undefined,[level.start],[{jumpUsed:false,broken:[],branches:{}}],tiles.map(t=>({...t})),0);
   const exhausted=explored>budget;
-  return {solvable:!exhausted && Number.isFinite(par),par:exhausted ? Infinity : par,starPar:exhausted ? Infinity : starPar,exhausted,explored,solution:exhausted ? null : solution,choices,trace:bestTrace};
+  return {solvable:!exhausted && Number.isFinite(par),par:exhausted ? Infinity : par,starPar:exhausted ? Infinity : starPar,shortestPath:exhausted ? [] : shortestPath,parPath:exhausted ? [] : parPath,exhausted,explored,solution:exhausted ? null : solution,choices,trace:bestTrace};
 }
 
 export function solvePowerLevel(level:Level,character:Character|null=level.character ?? null,budget=100000) {

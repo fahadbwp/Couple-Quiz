@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {characterForLevel,generatePowerPuzzle,isPowerIntro} from "../lib/jelloo/power-generator";
-import {auditPowerLevel,walkPowerLevel} from "../lib/jelloo/power-solver";
+import {auditPowerLevel,solvePowerLevel,walkPowerLevel} from "../lib/jelloo/power-solver";
 import {pals} from "../lib/jelloo/pals";
 
 test("1000 generated power levels are solvable, require their own character and reach every collectible",()=>{
@@ -14,6 +14,13 @@ test("1000 generated power levels are solvable, require their own character and 
     const trace=walkPowerLevel({...level,choices:proof.choices},proof.solution!);
     assert.equal(trace.outcome,"home");assert.ok(level.collectibles!.every(i=>trace.path.includes(i)));
     assert.ok(level.intro || proof.starPar<=level.moveLimit!);
+    if(!level.intro) {
+      assert.ok(proof.starPar>=proof.par+1,`star detour ${id}/${seed}`);
+      assert.ok(proof.trace.path.length>proof.shortestPath.length);
+      assert.ok(level.collectibles!.some(i=>!proof.shortestPath.includes(i) && !proof.parPath.includes(i)));
+      assert.equal(level.collectibles!.length,id>=21 ? 2 : 1);
+      assert.equal(level.moveLimit,proof.starPar+Math.max(2,5-Math.min(3,Math.floor((id-11)/10))));
+    }
     assert.ok(pals.find(p=>p.id===level.character)!.unlock<id);
     shapes.add(JSON.stringify(level.tiles));
   }
@@ -25,6 +32,21 @@ test("schedule alternates normal/power, uses unlocked pals and avoids consecutiv
     const character=characterForLevel(id);
     assert.equal(character===null,id%2===0);
     if(character) {assert.notEqual(character,previous);previous=character;assert.ok(pals.find(p=>p.id===character)!.unlock<id);}
+  }
+});
+
+test("power stars are optional detours and tier two onwards offers two reachable collectibles",()=>{
+  for(const id of [15,17,23,25,27,33,39,43,51]) {
+    const {level,proof}=generatePowerPuzzle(id,2026);
+    const withoutStars=solvePowerLevel({...level,collectibles:[]});
+    assert.equal(withoutStars.par,proof.par);
+    const direct=walkPowerLevel({...level,choices:withoutStars.choices},withoutStars.solution!);
+    assert.equal(direct.outcome,"home");
+    assert.ok(level.collectibles!.some(i=>!direct.path.includes(i)));
+    assert.ok(proof.starPar>withoutStars.par);
+    assert.equal(level.collectibles!.length,id<21 ? 1 : 2);
+    const collected=walkPowerLevel({...level,choices:proof.choices},proof.solution!);
+    assert.ok(level.collectibles!.every(i=>collected.path.includes(i)));
   }
 });
 test("each introduction is one editable tile, has no loss limit, and passes necessity",()=>{

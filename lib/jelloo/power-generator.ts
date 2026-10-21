@@ -48,6 +48,28 @@ function applyMechanic(level:Level,route:number[],character:Character,random:()=
   return true;
 }
 
+// A two-cell side path rejoins the main route. The power remains on the
+// shared route; the necessity audit rejects any accidental power bypass.
+function addStarDetour(level:Level,route:number[]) {
+  for(let step=1;step<route.length-2;step++) {
+    const a=route[step],b=route[step+1];
+    if([a,b].some(i=>level.tiles[i].locked || level.tiles[i].terrain || level.gate?.tile===i)) continue;
+    const direction=([0,1,2,3] as Direction[]).find(d=>neighbour(a,d,level.size)===b)!;
+    for(const side of [(direction+1)%4,(direction+3)%4] as Direction[]) {
+      const x=neighbour(a,side,level.size),y=neighbour(b,side,level.size);
+      if(x===null || y===null || [x,y].some(i=>level.tiles[i].kind!=="blank" || level.tiles[i].terrain)) continue;
+      const extended=[...route.slice(0,step+1),x,y,...route.slice(step+1)];
+      const alternative=buildTutorial({id:level.id,size:level.size,route:extended,scramble:{},title:level.title,hint:level.hint},true);
+      const rotations=[a,b].map(i=>[0,1,2,3].find(r=>[...ports(level.tiles[i]),...ports(alternative.tiles[i])].every(d=>ports({kind:"tee",rotation:r}).includes(d))));
+      if(rotations.some(r=>r===undefined)) continue;
+      [a,b].forEach((i,n)=>{level.tiles[i]={...level.tiles[i],kind:"tee",rotation:rotations[n]!};});
+      level.tiles[x]=alternative.tiles[x];level.tiles[y]=alternative.tiles[y];
+      return true;
+    }
+  }
+  return false;
+}
+
 export function generatePowerPuzzle(id:number,seed:number) {
   const character=characterForLevel(id);
   if(!character) throw new Error("Not a power slot");
@@ -71,6 +93,12 @@ export function generatePowerPuzzle(id:number,seed:number) {
     const level=buildTutorial(spec,true);
     level.intro=intro;
     if(!applyMechanic(level,route,character,random)) continue;
+    if(!intro && !addStarDetour(level,route)) continue;
+    if(!intro) for(let i=0;i<level.tiles.length;i++) {
+      if(level.tiles[i].kind==="blank" && !level.tiles[i].terrain && random()<.45) {
+        level.tiles[i]={kind:random()<.5 ? "corner" : "straight",rotation:Math.floor(random()*4)};
+      }
+    }
     const editable=intro ? route.slice(1,-1).findLast(i=>!level.tiles[i].locked && ["straight","corner"].includes(level.tiles[i].kind)) : undefined;
     level.collectibles=[route.at(-2)!];
     level.intro=intro;level.difficulty=intro ? "Meet your pal" : ["Curious","Twisty","Tricky","Expert"][tier];
@@ -80,6 +108,27 @@ export function generatePowerPuzzle(id:number,seed:number) {
         if(intro) {tile.locked=i!==editable;if(i===editable) tile.rotation+=3;}
         else tile.rotation+=random()<.5 ? 1 : 3;
       }
+    }
+    if(!intro) {
+      // First find the cheap/short routes without rewards. A star must tempt
+      // the player away from both, not sit on the unavoidable home corridor.
+      level.collectibles=[];
+      const direct=solvePowerLevel(level);
+      if(!direct.solvable) continue;
+      const candidates=level.tiles.map((_,i)=>i).filter(i=>level.tiles[i].kind!=="blank" && !direct.parPath.includes(i) && !direct.shortestPath.includes(i));
+      let placed=false;
+      for(const star of candidates) {
+        level.collectibles=[star];
+        const detour=solvePowerLevel(level);
+        if(!detour.solvable || !Number.isFinite(detour.starPar) || detour.starPar<=detour.par || detour.trace.path.length<=direct.shortestPath.length) continue;
+        if(tier>=1) {
+          const second=detour.trace.path.slice(1,-2).find(i=>i!==star);
+          if(second===undefined) continue;
+          level.collectibles.push(second);
+        }
+        placed=true;break;
+      }
+      if(!placed) continue;
     }
     const own=solvePowerLevel(level);
     if(!own.solvable || !Number.isFinite(own.starPar) || (!intro && own.par<6+tier*5)) continue;
