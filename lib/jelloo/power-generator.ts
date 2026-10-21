@@ -10,6 +10,13 @@ export function characterForLevel(id:number):Character|null {
 }
 export function isPowerIntro(id:number) {return [11,13,21,31,41].includes(id);}
 
+// Different silhouettes, not just a different colour on the same path.
+const introScaffolds = [
+  [12,8,4,5,6,2,3],
+  [0,4,8,9,10,14,15],
+  [3,2,1,5,9,8,12],
+];
+
 function applyMechanic(level:Level,route:number[],character:Character,random:()=>number) {
   level.powerVersion=4;level.character=character;
   const cells=route.slice(2,-2);
@@ -25,7 +32,7 @@ function applyMechanic(level:Level,route:number[],character:Character,random:()=
     level.tiles[cells[Math.floor(random()*cells.length)]].terrain=character==="cat" ? "wall" : "water";
     if(character==="cat") level.tiles[route.at(-2)!].terrain="slow";
   } else {
-    const options=cells.filter(i=>(!level.intro || i!==6) && level.tiles[i].kind==="corner" && ([0,1,2,3] as Direction[]).some(d=>{const n=neighbour(i,d,level.size);return n!==null && !route.includes(n);}));
+    const options=cells.filter(i=>level.tiles[i].kind==="corner" && ([0,1,2,3] as Direction[]).some(d=>{const n=neighbour(i,d,level.size);return n!==null && !route.includes(n);}));
     if(!options.length) return false;
     const tile=options[Math.floor(random()*options.length)],step=route.indexOf(tile),required=ports(level.tiles[tile]);
     const incoming=([0,1,2,3] as Direction[]).find(d=>neighbour(tile,d,level.size)===route[step-1])!;
@@ -50,7 +57,7 @@ export function generatePowerPuzzle(id:number,seed:number) {
   const intro=isPowerIntro(id);
   for(let attempt=0;attempt<6000;attempt++) {
     let route:number[],size:number;
-    if(intro) {route=[12,8,4,5,6,2,3];size=4;}
+    if(intro) {route=[...introScaffolds[[11,13,21,31,41].indexOf(id)%introScaffolds.length]];size=4;}
     else {
       size=5;route=[Math.floor(random()*25)];
       while(route.length<12+2*tier) {
@@ -63,15 +70,14 @@ export function generatePowerPuzzle(id:number,seed:number) {
     const spec:TutorialSpec={id,size,route,scramble:{},title:`${character[0].toUpperCase()+character.slice(1)} ${intro ? "says hello" : "adventure"}`,hint:"Connect the path and use your pal’s power."};
     const level=buildTutorial(spec,true);
     level.intro=intro;
-    if(intro && character==="bunny") {
-      level.character=character;level.powerVersion=4;level.tiles[8]={kind:"blank",rotation:0,terrain:"gap"};
-    } else if(!applyMechanic(level,route,character,random)) continue;
+    if(!applyMechanic(level,route,character,random)) continue;
+    const editable=intro ? route.slice(1,-1).findLast(i=>!level.tiles[i].locked && ["straight","corner"].includes(level.tiles[i].kind)) : undefined;
     level.collectibles=[route.at(-2)!];
     level.intro=intro;level.difficulty=intro ? "Meet your pal" : ["Curious","Twisty","Tricky","Expert"][tier];
     for(let i=0;i<level.tiles.length;i++) {
       const tile=level.tiles[i];
       if(["straight","corner","tee"].includes(tile.kind) && !tile.locked) {
-        if(intro) {tile.locked=i!==6;if(i===6) tile.rotation+=3;}
+        if(intro) {tile.locked=i!==editable;if(i===editable) tile.rotation+=3;}
         else tile.rotation+=random()<.5 ? 1 : 3;
       }
     }

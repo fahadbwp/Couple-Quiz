@@ -28,10 +28,18 @@ test("schedule alternates normal/power, uses unlocked pals and avoids consecutiv
   }
 });
 test("each introduction is one editable tile, has no loss limit, and passes necessity",()=>{
+  const layouts=new Set<string>();
   for(const id of [11,13,21,31,41]) {
     const {level}=generatePowerPuzzle(id,123);
+    assert.deepEqual(generatePowerPuzzle(id,123).level,level);
     assert.ok(isPowerIntro(id));assert.equal(level.moveLimit,undefined);
     assert.equal(level.tiles.filter(t=>!t.locked && ["straight","corner","tee"].includes(t.kind)).length,1);
-    assert.equal(auditPowerLevel(level).necessary,true);
+    const proof=auditPowerLevel(level);
+    assert.equal(proof.necessary,true);
+    assert.equal(proof.solvable,true);
+    assert.equal(proof.requiredCharacter,level.character);
+    assert.equal(proof.par,1);
+    layouts.add(JSON.stringify([level.start,level.home,level.tiles.map(t=>t.kind!=="blank" || t.terrain==="gap")]));
   }
+  assert.ok(layouts.size>=3);
 });
