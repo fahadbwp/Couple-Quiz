@@ -7,16 +7,17 @@ import { levels } from "@/lib/jelloo/levels";
 import CharacterSprite from "./CharacterSprite";
 import { pals } from "@/lib/jelloo/pals";
 import { worldForLevel, worlds, milestoneRewardFor } from "@/lib/jelloo/worlds";
+import ShareCardView from "./ShareCardView";
 import styles from "./game.module.css";
 
 type Props = {
-  powerMode?:boolean; dailyMode?:boolean; extra?:ReactNode;
+  powerMode?:boolean; dailyMode?:boolean; streak?:number; extra?:ReactNode;
   journey:Journey; animate:boolean; preparing:boolean; generationError:string; saveMessage:string; reducedMotion:boolean;
   act:(action:JourneyAction)=>void;
   board:RefObject<HTMLDivElement|null>; resultDialog:RefObject<HTMLDialogElement|null>; winHeading:RefObject<HTMLHeadingElement|null>;
 };
 const directions=["up","right","down","left"];
-export default function GameView({powerMode=false,dailyMode=false,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
+export default function GameView({powerMode=false,dailyMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
   const connected=(status==="running" || status==="won") && trace ? trace.path : connectedPaths(level,tiles).connected, collected=collectedStars(game), score=scoreRun(game);
@@ -176,6 +177,25 @@ export default function GameView({powerMode=false,dailyMode=false,extra,journey,
         <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, ghar pohanch gayi!"}</h3>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
         <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
+        {status === "won" ? (
+          <ShareCardView
+            input={{
+              mode: dailyMode ? "daily" : "adventure",
+              levelId: level.id,
+              dailyDate: level.dailyDate || (dailyMode ? new Date().toISOString().slice(0, 10) : undefined),
+              moves,
+              moveLimit: level.moveLimit,
+              stars: score.stars,
+              collectedStars: score.collected,
+              totalStars: score.total,
+              character: level.character ?? "bunny",
+              world: worldId,
+              streak: dailyMode ? streak : undefined,
+              size: level.size,
+              path: connected,
+            }}
+          />
+        ) : null}
         {milestoneReward && !dailyMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
         {!powerMode && !dailyMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
         <div className={styles.winActions}>

@@ -296,6 +296,7 @@ export function generateDailyLevel(dateStr: string, version = DAILY_VERSION): Le
     level.par = proof.par;
     level.moveLimit = proof.starPar + (meta.tier === "easy" ? 4 : meta.tier === "medium" ? 3 : 2);
     level.difficulty = meta.tier === "easy" ? "Daily Easy" : meta.tier === "medium" ? "Daily Medium" : "Daily Advanced";
+    level.dailyDate = meta.date;
 
     return level;
   }
@@ -312,6 +313,7 @@ export function generateDailyLevel(dateStr: string, version = DAILY_VERSION): Le
   level.character = fallbackSpec.character;
   level.powerVersion = 4;
   level.world = fallbackSpec.world;
+  level.dailyDate = meta.date;
   fallbackSpec.power(level);
 
   level.collectibles = meta.tier === "easy"

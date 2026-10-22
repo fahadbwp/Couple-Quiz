@@ -203,6 +203,7 @@ export default function DailyGame() {
   return (
     <GameView
       dailyMode
+      streak={store.currentStreak}
       journey={{
         game,
         completed: 100,

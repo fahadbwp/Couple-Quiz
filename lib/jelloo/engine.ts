@@ -11,7 +11,7 @@ export type Level = {
   collectibles?: number[]; moveLimit?: number; difficulty?: string;
   character?: Character; foxRoute?: "shortest" | "stars";
   powerVersion?:4; gate?:{tile:number;trigger:number}; door?:{tile:number;switch:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
-  world?: WorldId;
+  world?: WorldId; dailyDate?: string;
 };
 export type PowerState={jumpUsed:boolean;broken:number[];branches:Record<string,Direction>;switches:number[]};
 export type Trace = { path: number[]; outcome: "home" | "disconnected" | "edge" | "loop"; states?:PowerState[] };
