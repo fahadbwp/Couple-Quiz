@@ -11,13 +11,13 @@ import ShareCardView from "./ShareCardView";
 import styles from "./game.module.css";
 
 type Props = {
-  powerMode?:boolean; dailyMode?:boolean; streak?:number; extra?:ReactNode;
+  powerMode?:boolean; dailyMode?:boolean; zenMode?:boolean; streak?:number; extra?:ReactNode;
   journey:Journey; animate:boolean; preparing:boolean; generationError:string; saveMessage:string; reducedMotion:boolean;
   act:(action:JourneyAction)=>void;
   board:RefObject<HTMLDivElement|null>; resultDialog:RefObject<HTMLDialogElement|null>; winHeading:RefObject<HTMLHeadingElement|null>;
 };
 const directions=["up","right","down","left"];
-export default function GameView({powerMode=false,dailyMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
+export default function GameView({powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
   const connected=(status==="running" || status==="won") && trace ? trace.path : connectedPaths(level,tiles).connected, collected=collectedStars(game), score=scoreRun(game);
@@ -34,22 +34,23 @@ export default function GameView({powerMode=false,dailyMode=false,streak,extra,j
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
     <div className={styles.shell}>
       <header className={styles.header}>
-        <a href={powerMode || dailyMode ? "/jelloo" : "/quiz"} className={styles.back}>← {powerMode || dailyMode ? "Adventure" : "Home"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
+        <a href={powerMode || dailyMode || zenMode ? "/jelloo" : "/quiz"} className={styles.back}>← {powerMode || dailyMode || zenMode ? "Adventure" : "Home"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
         <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>
       </header>
-      <p className={styles.subtitle}>{dailyMode ? `Tiles ghumao, raasta jodo — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Tiles ghumao, raasta jodo — ${pal.name} in ${currentWorld.name}!`}</p>
+      <p className={styles.subtitle}>{zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Tiles ghumao, raasta jodo — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Tiles ghumao, raasta jodo — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
-      {!powerMode && !dailyMode ? (
+      {!powerMode && !dailyMode && !zenMode ? (
         <div className={styles.modeLinks}>
-          <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked · Power challenges</span></a>
-          <a className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>One puzzle every 24h · Streak challenge</span></a>
+          <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></a>
+          <a className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></a>
+          <a className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed infinite play</span></a>
         </div>
       ) : null}
       <section className={styles.gamePanel} aria-label="Jelloo puzzle" aria-busy={preparing}>
         <div className={styles.levelBar}>
           <h2>
             <span className={styles.worldPill} title={currentWorld.tagline}>{currentWorld.badge}</span>
-            {dailyMode ? (level.title || "Daily Puzzle") : powerMode ? pal.name : "Level"} {!dailyMode ? level.id : ""} <small>· {level.difficulty}</small>
+            {zenMode ? (level.title || "Zen Mode") : dailyMode ? (level.title || "Daily Puzzle") : powerMode ? pal.name : "Level"} {!dailyMode && !zenMode ? level.id : ""} <small>· {level.difficulty}</small>
           </h2>
           <span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span>
         </div>
@@ -98,7 +99,7 @@ export default function GameView({powerMode=false,dailyMode=false,streak,extra,j
           {status === "won" ? <button className={styles.secondary} onClick={()=>resultDialog.current?.showModal()}>Result ★</button> : <span className={styles.starCount} aria-label={`${collected.length} of ${level.collectibles?.length ?? 0} stars collected`}>★ {collected.length}/{level.collectibles?.length ?? 0}</span>}
         </div>
       </section>
-      {!powerMode && !dailyMode ? <><nav className={styles.levelDots} aria-label="Tutorial levels">{levels.filter(l=>l.id<=completed+1).map(l=><button key={l.id} aria-label={`Level ${l.id}`} aria-current={l.id===level.id ? "step" : undefined} disabled={preparing || status === "running"} onClick={()=>act({type:"visit",id:l.id})}>{l.id}</button>)}</nav>
+      {!powerMode && !dailyMode && !zenMode ? <><nav className={styles.levelDots} aria-label="Tutorial levels">{levels.filter(l=>l.id<=completed+1).map(l=><button key={l.id} aria-label={`Level ${l.id}`} aria-current={l.id===level.id ? "step" : undefined} disabled={preparing || status === "running"} onClick={()=>act({type:"visit",id:l.id})}>{l.id}</button>)}</nav>
       <details className={styles.options}>
         <summary>Help, levels & settings</summary>
         <div className={styles.worldSection}>
@@ -174,10 +175,10 @@ export default function GameView({powerMode=false,dailyMode=false,streak,extra,j
         else if(!event.shiftKey && document.activeElement===last) {event.preventDefault();first?.focus();}
       }}>
         <button className={styles.closeResult} aria-label="Close result" onClick={()=>resultDialog.current?.close()}>×</button>
-        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, ghar pohanch gayi!"}</h3>
+        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{zenMode ? "🌸 Zen Puzzle Solved!" : dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, ghar pohanch gayi!"}</h3>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
-        <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
-        {status === "won" ? (
+        <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{zenMode ? "A peaceful moment. Take a deep breath." : score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
+        {status === "won" && !zenMode ? (
           <ShareCardView
             input={{
               mode: dailyMode ? "daily" : "adventure",
@@ -196,11 +197,13 @@ export default function GameView({powerMode=false,dailyMode=false,streak,extra,j
             }}
           />
         ) : null}
-        {milestoneReward && !dailyMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
-        {!powerMode && !dailyMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
+        {milestoneReward && !dailyMode && !zenMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
+        {!powerMode && !dailyMode && !zenMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
         <div className={styles.winActions}>
           <button className={styles.secondary} disabled={preparing} onClick={()=>act({type:"reset"})}>Try again</button>
-          {dailyMode ? (
+          {zenMode ? (
+            <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:0})}>Next Zen Puzzle →</button>
+          ) : dailyMode ? (
             <a href="/jelloo" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Back to Adventure →</a>
           ) : (
             <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : "Next Level →"}</button>

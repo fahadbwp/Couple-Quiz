@@ -172,13 +172,16 @@
 .compact[data-motion=false] .pipe { transition: none; }
 @media(prefers-reduced-motion:reduce) { .pipe { transition: none !important; } }
 @media(max-width:360px) { .compact .shell { padding-inline: 10px; }.compact .board { gap: 4px; }.compact .levelBar { font-size: 12px; } }
-.modeLinks {display:flex;gap:10px;margin:10px 0 16px;flex-wrap:wrap}
-.modeLinks .palsLink,.modeLinks .dailyLink {flex:1;min-width:180px;margin:0}
-.palsLink {display:flex;justify-content:space-between;gap:12px;padding:14px 16px;margin:12px 0 18px;background:#eee5ff;border:1px solid #d8c4ee;border-radius:18px;color:#543e77;text-decoration:none;font-size:13px;align-items:center}
-.palsLink span {max-width:160px;text-align:right;font-size:11px;line-height:1.5}
-.dailyLink {display:flex;justify-content:space-between;gap:10px;padding:12px 16px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;border-radius:18px;color:#78350f;text-decoration:none;font-size:13px;align-items:center;transition:transform 120ms ease,box-shadow 120ms ease}
+.modeLinks {display:flex;gap:8px;margin:10px 0 16px;flex-wrap:wrap}
+.modeLinks .palsLink,.modeLinks .dailyLink,.modeLinks .zenLink {flex:1;min-width:140px;margin:0}
+.palsLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:#eee5ff;border:1px solid #d8c4ee;border-radius:18px;color:#543e77;text-decoration:none;font-size:12px;align-items:center}
+.palsLink span {max-width:130px;text-align:right;font-size:11px;line-height:1.4}
+.dailyLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;border-radius:18px;color:#78350f;text-decoration:none;font-size:12px;align-items:center;transition:transform 120ms ease,box-shadow 120ms ease}
 .dailyLink:hover {transform:translateY(-1px);box-shadow:0 3px 8px rgba(245,158,11,.2)}
-.dailyLink span {max-width:150px;text-align:right;font-size:11px;line-height:1.4;color:#92400e}
+.dailyLink span {max-width:130px;text-align:right;font-size:11px;line-height:1.4;color:#92400e}
+.zenLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#f1f5f9,#e2e8f0);border:1px solid #cbd5e1;border-radius:18px;color:#334155;text-decoration:none;font-size:12px;align-items:center;transition:transform 120ms ease,box-shadow 120ms ease}
+.zenLink:hover {transform:translateY(-1px);box-shadow:0 3px 8px rgba(100,116,139,.2)}
+.zenLink span {max-width:130px;text-align:right;font-size:11px;line-height:1.4;color:#475569}
 .palSprite {display:block;width:100%;aspect-ratio:1;background-image:url('/jelly-pals/pals-atlas-reference-v1.png');background-size:200% 200%;background-repeat:no-repeat;transform-origin:50% 90%}
 .palSprite[data-character='panda'] {background-position:0 0}
 .palSprite[data-character='cat'] {background-position:100% 0}
