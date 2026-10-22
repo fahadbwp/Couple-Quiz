@@ -2,15 +2,16 @@ import { walkPowerLevel } from "./power-solver";
 export type Direction = 0 | 1 | 2 | 3; // north, east, south, west
 export type TileKind = "blank" | "straight" | "corner" | "tee" | "start" | "home";
 export type Character = "bunny" | "panda" | "cat" | "octopus" | "fox";
-export type Tile = { kind: TileKind; rotation: number; port?: Direction; locked?:boolean; terrain?: "gap" | "cracked" | "wall" | "slow" | "water" };
+export type TerrainKind = "gap" | "cracked" | "wall" | "slow" | "water" | "switch" | "slippery";
+export type Tile = { kind: TileKind; rotation: number; port?: Direction; locked?:boolean; terrain?: TerrainKind };
 export type Level = {
   id: number; title: string; hint: string; size: number;
   start: number; home: number; tiles: Tile[];
   collectibles?: number[]; moveLimit?: number; difficulty?: string;
   character?: Character; foxRoute?: "shortest" | "stars";
-  powerVersion?:4; gate?:{tile:number;trigger:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
+  powerVersion?:4; gate?:{tile:number;trigger:number}; door?:{tile:number;switch:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
 };
-export type PowerState={jumpUsed:boolean;broken:number[];branches:Record<string,Direction>};
+export type PowerState={jumpUsed:boolean;broken:number[];branches:Record<string,Direction>;switches:number[]};
 export type Trace = { path: number[]; outcome: "home" | "disconnected" | "edge" | "loop"; states?:PowerState[] };
 
 export function ports(tile: Tile): Direction[] {
@@ -29,7 +30,7 @@ export function neighbour(index: number, direction: Direction, size: number): nu
 }
 
 export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
-  if(level.powerVersion===4) return walkPowerLevel(level,tiles);
+  if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) return walkPowerLevel(level,tiles);
   if (level.character) return powerPaths(level,tiles).trace;
   if(tiles.some(t=>t.kind === "tee")) {
     const {parents,connected}=connectedPaths(level,tiles);
@@ -61,7 +62,7 @@ export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
 }
 
 export function connectedPaths(level: Level, tiles: readonly Tile[]) {
-  if(level.powerVersion===4) {
+  if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) {
     const trace=walkPowerLevel(level,tiles),parents:Record<number,number>={};
     trace.path.forEach((at,i)=>{parents[at]=i ? trace.path[i-1] : -1;});
     return {connected:trace.path,parents};

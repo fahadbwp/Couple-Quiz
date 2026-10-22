@@ -7,7 +7,7 @@ type SearchResult={solvable:boolean;par:number;starPar:number;shortestPath:numbe
 function search(level:Level,tiles:readonly Tile[],character:Character|null,rotate:boolean,budget:number):SearchResult {
   let explored=0,par=Infinity,starPar=Infinity,solution:Tile[]|null=null,choices:Record<string,Direction>={};
   let shortestPath:number[]=[],parPath:number[]=[];
-  let bestTrace:Trace={path:[level.start],outcome:"disconnected",states:[{jumpUsed:false,broken:[],branches:{}}]};
+  let bestTrace:Trace={path:[level.start],outcome:"disconnected",states:[{jumpUsed:false,broken:[],branches:{},switches:[]}]};
   const visit=(at:number,incoming:Direction|undefined,path:number[],states:PowerState[],oriented:Tile[],moves:number) => {
     if(++explored>budget) return;
     const power=states.at(-1)!;
@@ -15,7 +15,15 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
     const tile=oriented[at];
     if(tile.kind==="blank" || power.broken.includes(at)) return;
     if(tile.terrain==="water" && character!=="octopus" || tile.terrain==="wall" && character!=="cat") return;
-    if(level.gate?.tile===at && !power.broken.includes(level.gate.trigger)) return;
+    const switches = tile.terrain === "switch" && !power.switches.includes(at)
+      ? [...power.switches, at]
+      : power.switches;
+    if(level.gate?.tile===at) {
+      const isSwitch = oriented[level.gate.trigger]?.terrain === "switch";
+      const open = isSwitch ? switches.includes(level.gate.trigger) : power.broken.includes(level.gate.trigger);
+      if(!open) return;
+    }
+    if(level.door?.tile===at && !switches.includes(level.door.switch)) return;
     if(at===level.home) {
       if(tile.port!==incoming) return;
       if(moves<par) parPath=path;
@@ -37,9 +45,16 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
         if(character!=="fox") continue;
         exits=exits.filter(d=>level.fork!.exits.includes(d) && (rotate || level.choices?.[at]===d));
       }
+      if(tile.terrain==="slippery" && incoming!==undefined) {
+        const straight=((incoming+2)%4) as Direction;
+        exits=exits.filter(d=>d===straight);
+      }
       for(const exit of exits) {
         let next=neighbour(at,exit,level.size),jumpUsed=power.jumpUsed;
-        if(next===null) continue;
+        if(next===null) {
+          if(path.length>=bestTrace.path.length && bestTrace.outcome!=="home") bestTrace={path,outcome:"edge",states};
+          continue;
+        }
         if(oriented[next].terrain==="gap") {
           if(character!=="bunny" || jumpUsed) continue;
           next=neighbour(next,exit,level.size);jumpUsed=true;
@@ -50,11 +65,11 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
         const board=r ? oriented.map((t,i)=>i===at ? turned : t) : oriented;
         const entry=(exit+2)%4 as Direction;
         if(!rotate && !ports(board[next]).includes(entry)) continue;
-        visit(next,entry,[...path,next],[...states,{jumpUsed,broken,branches}],board,moves+r);
+        visit(next,entry,[...path,next],[...states,{jumpUsed,broken,branches,switches}],board,moves+r);
       }
     }
   };
-  visit(level.start,undefined,[level.start],[{jumpUsed:false,broken:[],branches:{}}],tiles.map(t=>({...t})),0);
+  visit(level.start,undefined,[level.start],[{jumpUsed:false,broken:[],branches:{},switches:[]}],tiles.map(t=>({...t})),0);
   const exhausted=explored>budget;
   return {solvable:!exhausted && Number.isFinite(par),par:exhausted ? Infinity : par,starPar:exhausted ? Infinity : starPar,shortestPath:exhausted ? [] : shortestPath,parPath:exhausted ? [] : parPath,exhausted,explored,solution:exhausted ? null : solution,choices,trace:bestTrace};
 }

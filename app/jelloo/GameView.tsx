@@ -22,6 +22,7 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
   const position=trace?.path[cursor] ?? level.start;
   const pal=pals.find(p=>p.id===(level.character ?? "bunny"))!;
   const broken=trace?.states?.[cursor]?.broken ?? [];
+  const switches=trace?.states?.[cursor]?.switches ?? [];
   const recentLevels=Array.from({length:Math.min(20,Math.max(0,completed-9))},(_,i)=>completed+1-i).filter(id=>id>10);
   const nextMilestone=(Math.floor(completed/10)+1)*10;
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate}>
@@ -45,9 +46,20 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
               const label=`Row ${Math.floor(index/level.size)+1}, column ${index%level.size+1}: ${tile.kind} ${tile.terrain ?? ""} path, connects ${ports(tile).map(d=>directions[d]).join(" and ")}. Rotate clockwise${level.collectibles?.includes(index) ? ". Golden star" : ""}`;
               const path=tile.kind === "straight" ? "M0 50H100" : tile.kind === "corner" ? "M50 0V50H100" : tile.kind === "tee" ? "M0 50H100M50 50V0" : "M50 50V0";
               const art=tile.kind!=="blank" ? <svg aria-hidden="true" viewBox="0 0 100 100" className={styles.pipe} style={{transform:`rotate(${(pathTile ? tile.rotation : tile.port ?? 0)*90}deg)`}}><path className={styles.pipeEdge} d={path}/><path className={styles.pipeFill} d={path}/></svg> : null;
-              return <div key={`${level.id}-${index}`} className={styles.cell} data-connected={connected.includes(index)} data-empty={tile.kind === "blank"} data-terrain={tile.terrain} data-broken={broken.includes(index)} data-hint={level.intro && rotatable} data-gate={level.gate?.tile===index ? (broken.includes(level.gate.trigger) ? "open" : "closed") : undefined}>
+              const isGate = level.gate?.tile === index;
+              const isDoor = level.door?.tile === index;
+              const isGateOpen = isGate
+                ? (tiles[level.gate!.trigger]?.terrain === "switch"
+                    ? switches.includes(level.gate!.trigger)
+                    : broken.includes(level.gate!.trigger))
+                : false;
+              const isDoorOpen = isDoor ? switches.includes(level.door!.switch) : false;
+              const barrierOpen = (isGate && isGateOpen) || (isDoor && isDoorOpen);
+              return <div key={`${level.id}-${index}`} className={styles.cell} data-connected={connected.includes(index)} data-empty={tile.kind === "blank"} data-terrain={tile.terrain} data-switch-active={tile.terrain === "switch" ? switches.includes(index) : undefined} data-broken={broken.includes(index)} data-hint={level.intro && rotatable} data-gate={isGate || isDoor ? (barrierOpen ? "open" : "closed") : undefined}>
                 {rotatable ? <button className={styles.tileButton} aria-label={label} disabled={preparing || status === "running" || status === "won" || status === "lost"} onClick={()=>act({type:"rotate",index})}>{art}</button> : art}
-                {level.gate?.tile===index ? <span className={styles.gateIcon} aria-label={broken.includes(level.gate.trigger) ? "Gate opened by Panda" : "Gate waits for Panda’s cracked tile"}>{broken.includes(level.gate.trigger) ? "↗" : "🔒"}</span> : null}
+                {isGate ? <span className={styles.gateIcon} aria-label={isGateOpen ? "Gate opened" : "Gate locked"}>{isGateOpen ? "↗" : "🔒"}</span> : null}
+                {isDoor ? <span className={styles.gateIcon} aria-label={isDoorOpen ? "Door opened by switch" : "Door locked by switch"}>{isDoorOpen ? "🔓" : "🚪"}</span> : null}
+                {tile.terrain === "switch" ? <span className={styles.switchIcon} aria-label={switches.includes(index) ? "Switch activated" : "Switch"}>{switches.includes(index) ? "⚡" : "⏻"}</span> : null}
                 {level.fork?.tile===index ? <span className={styles.forkIcon} aria-hidden="true">⑂</span> : null}
                 {tile.terrain ? <span className={styles.terrainTag}>{tile.terrain}</span> : null}
                 {level.collectibles?.includes(index) ? <span className={styles.collectible} data-collected={collected.includes(index)} aria-hidden="true">★</span> : null}

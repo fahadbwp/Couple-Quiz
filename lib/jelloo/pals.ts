@@ -65,8 +65,44 @@ function samePorts(a:Tile,b:Tile) {const pa=ports(a),pb=ports(b);return pa.lengt
 export function powerStepDuration(game:GameState,animate:boolean) {
   if(!animate) return 100;
   const at=game.trace?.path[game.cursor];
-  if(at!==undefined && game.tiles[at].terrain==="slow") return game.level.character==="cat" ? 210 : 840;
+  if(at!==undefined) {
+    if(game.tiles[at].terrain==="slow") return game.level.character==="cat" ? 210 : 840;
+    if(game.tiles[at].terrain==="slippery") return 210;
+  }
   return 420;
+}
+
+export function switchFixture(): Level {
+  const route = [0, 1, 4, 5, 8];
+  const level = buildTutorial({
+    id: 991,
+    title: "Switch Tutorial",
+    hint: "Step on the switch to unlock the door ahead.",
+    size: 3,
+    route,
+    scramble: { "1": 1, "4": 2, "5": 3 }
+  });
+  level.powerVersion = 4;
+  level.tiles[1].terrain = "switch";
+  level.door = { tile: 5, switch: 1 };
+  level.collectibles = [4];
+  return level;
+}
+
+export function slipperyFixture(): Level {
+  const route = [0, 1, 4, 7, 8];
+  const level = buildTutorial({
+    id: 992,
+    title: "Slippery Tutorial",
+    hint: "Slide straight across the ice — no turning allowed!",
+    size: 3,
+    route,
+    scramble: { "1": 1, "4": 1, "7": 3 }
+  });
+  level.powerVersion = 4;
+  level.tiles[4].terrain = "slippery";
+  level.collectibles = [7];
+  return level;
 }
 
 // Keep the original trial definitions reproducible, but use explicit current

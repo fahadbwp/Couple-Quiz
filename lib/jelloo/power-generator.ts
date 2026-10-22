@@ -171,3 +171,55 @@ export function generatePowerPuzzle(id:number,seed:number) {
   }
   throw new Error("No verified power puzzle within search budget. Retry with another seed.");
 }
+
+
+export function applySwitchMechanic(level:Level,route:number[]) {
+  level.powerVersion=4;
+  const switchIndex = route[Math.floor(route.length / 3)];
+  const doorIndex = route[Math.floor((route.length * 2) / 3)];
+  level.tiles[switchIndex].terrain = "switch";
+  level.door = { tile: doorIndex, switch: switchIndex };
+  return true;
+}
+
+export function applySlipperyMechanic(level:Level,route:number[],random?:()=>number) {
+  level.powerVersion=4;
+  const straightCells = route.slice(1,-1).filter(i=>level.tiles[i].kind==="straight");
+  if(!straightCells.length) return false;
+  const rnd = random ?? Math.random;
+  const cell = straightCells[Math.floor(rnd()*straightCells.length)];
+  level.tiles[cell].terrain = "slippery";
+  return true;
+}
+
+export function generateMechanicPuzzle(id:number,seed:number,mechanic:"switch"|"slippery") {
+  let value=(seed^Math.imul(id,3266489917))>>>0;
+  const random=()=>{value=(Math.imul(value,1664525)+1013904223)>>>0;return value/4294967296;};
+  const size = 4;
+  const route = [0, 1, 2, 6, 10, 14, 15];
+  const spec: TutorialSpec = {
+    id,
+    size,
+    route,
+    scramble: {},
+    title: mechanic === "switch" ? "Switch Challenge" : "Slippery Challenge",
+    hint: mechanic === "switch" ? "Step on the switch to unlock the door ahead!" : "Slide straight across the ice — you cannot turn on ice!"
+  };
+  const level = buildTutorial(spec, true);
+  level.powerVersion = 4;
+  if (mechanic === "switch") {
+    applySwitchMechanic(level, route);
+  } else {
+    applySlipperyMechanic(level, route, random);
+  }
+  for(let i=0;i<level.tiles.length;i++) {
+    const tile=level.tiles[i];
+    if(["straight","corner","tee"].includes(tile.kind) && !tile.locked) {
+      tile.rotation += random() < 0.5 ? 1 : 3;
+    }
+  }
+  const proof = solvePowerLevel(level);
+  level.par = proof.par;
+  level.collectibles = [route.at(-2)!];
+  return { level, proof };
+}
