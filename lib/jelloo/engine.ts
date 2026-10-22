@@ -1,4 +1,5 @@
 import { walkPowerLevel } from "./power-solver";
+import type { WorldId } from "./worlds";
 export type Direction = 0 | 1 | 2 | 3; // north, east, south, west
 export type TileKind = "blank" | "straight" | "corner" | "tee" | "start" | "home";
 export type Character = "bunny" | "panda" | "cat" | "octopus" | "fox";
@@ -10,6 +11,7 @@ export type Level = {
   collectibles?: number[]; moveLimit?: number; difficulty?: string;
   character?: Character; foxRoute?: "shortest" | "stars";
   powerVersion?:4; gate?:{tile:number;trigger:number}; door?:{tile:number;switch:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
+  world?: WorldId;
 };
 export type PowerState={jumpUsed:boolean;broken:number[];branches:Record<string,Direction>;switches:number[]};
 export type Trace = { path: number[]; outcome: "home" | "disconnected" | "edge" | "loop"; states?:PowerState[] };

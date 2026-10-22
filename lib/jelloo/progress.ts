@@ -36,7 +36,7 @@ export function decodeJourney(raw: string): Journey | null {
     const integer = (n: unknown, max: number) => typeof n === "number" && Number.isSafeInteger(n) && n >= 0 && n <= max;
     if (!s || s.version !== 1 || s.generator !== 1 || !integer(s.seed,4294967295) || !integer(s.completed,Number.MAX_SAFE_INTEGER-2) || !integer(s.id,s.completed+1) || s.id < 1 || !integer(s.moves,Number.MAX_SAFE_INTEGER) || typeof s.motion !== "boolean" || typeof s.won !== "boolean") return null;
     const rules = s.rules ?? 1;
-    if((rules !== 1 && rules !== 2 && rules !== 3 && rules !== 4) || (s.muted !== undefined && typeof s.muted !== "boolean")) return null;
+    if((rules !== 1 && rules !== 2 && rules !== 3 && rules !== 4 && rules !== 5) || (s.muted !== undefined && typeof s.muted !== "boolean")) return null;
     const best = s.best ?? {};
     if(typeof best !== "object" || best === null || Array.isArray(best) || Object.keys(best).length>200 || !Object.entries(best).every(([id,stars])=> /^[1-9]\d*$/.test(id) && integer(Number(id),s.completed) && integer(stars,3) && Number(stars)>0)) return null;
     const game = initialGame(levelAt(s.id,s.seed,rules));

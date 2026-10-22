@@ -6,6 +6,7 @@ import type { Journey, JourneyAction } from "@/lib/jelloo/progress";
 import { levels } from "@/lib/jelloo/levels";
 import CharacterSprite from "./CharacterSprite";
 import { pals } from "@/lib/jelloo/pals";
+import { worldForLevel, worlds, milestoneRewardFor } from "@/lib/jelloo/worlds";
 import styles from "./game.module.css";
 
 type Props = {
@@ -23,23 +24,33 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
   const pal=pals.find(p=>p.id===(level.character ?? "bunny"))!;
   const broken=trace?.states?.[cursor]?.broken ?? [];
   const switches=trace?.states?.[cursor]?.switches ?? [];
+  const currentWorld=worldForLevel(level.id);
+  const worldId=level.world ?? currentWorld.id;
+  const milestoneReward=milestoneRewardFor(level.id);
   const recentLevels=Array.from({length:Math.min(20,Math.max(0,completed-9))},(_,i)=>completed+1-i).filter(id=>id>10);
   const nextMilestone=(Math.floor(completed/10)+1)*10;
-  return <main className={`${styles.page} ${styles.compact}`} data-motion={animate}>
+
+  return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
     <div className={styles.shell}>
       <header className={styles.header}>
         <a href={powerMode ? "/jelloo" : "/quiz"} className={styles.back}>← {powerMode ? "Adventure" : "Home"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
         <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>
       </header>
-      <p className={styles.subtitle}>{powerMode ? pal.power : `Tiles ghumao, raasta jodo — ${pal.name} is ready!`}</p>
+      <p className={styles.subtitle}>{powerMode ? pal.power : `Tiles ghumao, raasta jodo — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
       {!powerMode ? <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked · Power challenges</span></a> : null}
       <section className={styles.gamePanel} aria-label="Jelloo puzzle" aria-busy={preparing}>
-        <div className={styles.levelBar}><h2>{powerMode ? pal.name : "Level"} {level.id} <small>· {level.difficulty}</small></h2><span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span></div>
+        <div className={styles.levelBar}>
+          <h2>
+            <span className={styles.worldPill} title={currentWorld.tagline}>{currentWorld.badge}</span>
+            {powerMode ? pal.name : "Level"} {level.id} <small>· {level.difficulty}</small>
+          </h2>
+          <span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span>
+        </div>
         {level.intro ? <div className={styles.introWelcome}><span className={styles.introPortrait}><CharacterSprite character={level.character} animate={animate}/></span><b>Hello, {pal.name}! ♡</b><span aria-label="No move limit">∞</span></div> : null}
         {level.fork ? <fieldset className={styles.branchChoice}><legend>Fox: choose your branch before the last move</legend>{level.fork.exits.map(direction=><button key={direction} disabled={status==="running" || status==="won" || status==="lost"} aria-pressed={level.choices?.[level.fork!.tile]===direction} onClick={()=>act({type:"branch",direction})}>{["↑","→","↓","←"][direction]} {directions[direction]}</button>)}</fieldset> : null}
         <div className={styles.boardFrame}>
-          <div ref={board} tabIndex={-1} className={styles.board} style={{"--size":level.size} as CSSProperties} role="group" aria-label={`Level ${level.id}, ${level.size} by ${level.size} puzzle board`}>
+          <div ref={board} tabIndex={-1} className={styles.board} style={{"--size":level.size} as CSSProperties} role="group" aria-label={`Level ${level.id}, ${level.size} by ${level.size} puzzle board in ${currentWorld.name}`}>
             {tiles.map((tile,index)=>{
               const pathTile=["straight","corner","tee"].includes(tile.kind);
               const rotatable=pathTile && !tile.locked;
@@ -64,7 +75,7 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
                 {tile.terrain ? <span className={styles.terrainTag}>{tile.terrain}</span> : null}
                 {level.collectibles?.includes(index) ? <span className={styles.collectible} data-collected={collected.includes(index)} aria-hidden="true">★</span> : null}
                 {tile.kind === "start" ? <span className={styles.startMarker}>START</span> : null}
-                {tile.kind === "home" ? <><span className={styles.cottage} aria-hidden="true"/><span className={styles.homeMarker}>HOME</span></> : null}
+                {tile.kind === "home" ? <><span className={styles.cottage} aria-hidden="true"/><span className={styles.homeEmoji} aria-hidden="true">{currentWorld.homeEmoji}</span><span className={styles.homeMarker}>HOME</span></> : null}
               </div>;
             })}
             <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
@@ -84,6 +95,31 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
       {!powerMode ? <><nav className={styles.levelDots} aria-label="Tutorial levels">{levels.filter(l=>l.id<=completed+1).map(l=><button key={l.id} aria-label={`Level ${l.id}`} aria-current={l.id===level.id ? "step" : undefined} disabled={preparing || status === "running"} onClick={()=>act({type:"visit",id:l.id})}>{l.id}</button>)}</nav>
       <details className={styles.options}>
         <summary>Help, levels & settings</summary>
+        <div className={styles.worldSection}>
+          <label>Worlds & Progression (Levels 1–100)</label>
+          <div className={styles.worldGrid}>
+            {worlds.map(w => {
+              const unlocked = completed >= w.unlockLevel;
+              const isCurrent = w.id === worldId;
+              return (
+                <button
+                  key={w.id}
+                  type="button"
+                  disabled={!unlocked || preparing || status === "running"}
+                  className={styles.worldCard}
+                  aria-current={isCurrent ? "true" : undefined}
+                  onClick={() => act({ type: "visit", id: Math.min(completed + 1, Math.max(w.startLevel, w.unlockLevel + 1)) })}
+                >
+                  <span className={styles.worldCardIcon}>{w.icon}</span>
+                  <div className={styles.worldCardInfo}>
+                    <b>{w.name}</b>
+                    <small>{unlocked ? `L${w.startLevel}–${w.endLevel}` : `Locked (L${w.unlockLevel})`}</small>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         <p>Connected paths turn green. Your pal follows the connected route home. Fox follows the branch you choose; Panda opens the marked gate by breaking its cracked tile. For three stars, keep every golden star on that route and finish within the move limit when one is shown. Introductions have no move limit.</p>
         <p>T-junctions open three sides. Undo keeps your move count. When moves run out, an incomplete path loses. A path finished on the last move still wins. Restart gives you a fresh attempt.</p>
         <label htmlFor="tutorial-select">Revisit a puzzle</label>
@@ -98,9 +134,12 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
           <fieldset style={{ margin: "0.75rem 0", padding: "0.5rem 0.75rem", border: "1px dashed #d97706", borderRadius: "8px", background: "rgba(254, 243, 199, 0.5)" }}>
             <legend style={{ fontWeight: "bold", fontSize: "0.8rem", color: "#92400e" }}>Dev Level Jump (local only)</legend>
             <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", alignItems: "center" }}>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 31 })}>L31 (Octopus)</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 41 })}>L41 (Fox)</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 51 })}>L51 (Fox Star)</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 1 })}>L1 Meadow</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 21 })}>L21 Beach</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 41 })}>L41 Snow</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 61 })}>L61 Candy</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 81 })}>L81 Space</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 101 })}>L101 Endless</button>
               <input
                 type="number"
                 min="1"
@@ -114,7 +153,7 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
                 }}
               />
             </div>
-            <small style={{ display: "block", marginTop: "0.25rem", color: "#78350f" }}>Tip: You can also open <code>?jump=31</code> in the URL.</small>
+            <small style={{ display: "block", marginTop: "0.25rem", color: "#78350f" }}>Tip: You can also open <code>?jump=41</code> in the URL.</small>
           </fieldset>
         ) : null}
         {reducedMotion ? <p>Reduced motion is on.</p> : null}
@@ -132,6 +171,7 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
         <h3 id="win-heading" ref={winHeading} tabIndex={-1}>Yay, ghar pohanch gayi!</h3>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
         <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
+        {milestoneReward ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
         {!powerMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
         <div className={styles.winActions}><button className={styles.secondary} disabled={preparing} onClick={()=>act({type:"reset"})}>Try again</button><button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : "Next Level →"}</button></div>
         {generationError ? <p role="alert">{generationError}</p> : null}

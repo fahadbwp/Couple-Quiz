@@ -1,6 +1,7 @@
 import { buildTutorial, type TutorialSpec } from "./levels";
 import { neighbour, ports, type Character, type Direction, type Level } from "./engine";
 import { auditPowerLevel, solvePowerLevel } from "./power-solver";
+import { worldForLevel } from "./worlds";
 
 export function characterForLevel(id:number):Character|null {
   if(id<=10 || id%2===0) return null;
@@ -166,6 +167,7 @@ export function generatePowerPuzzle(id:number,seed:number) {
     const proof=auditPowerLevel(level);
     if(!proof.necessary) continue;
     level.par=proof.par;
+    level.world=worldForLevel(id).id;
     if(!intro) level.moveLimit=proof.starPar+Math.max(2,5-tier);
     return {level,proof};
   }

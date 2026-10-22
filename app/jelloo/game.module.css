@@ -218,3 +218,118 @@
 .compact .cell[data-terrain='switch'][data-switch-active='true'] {background:#ecfdf5;border-color:#10b981;box-shadow:inset 0 0 0 2px #34d399, 0 0 8px #10b98144}
 .compact .cell[data-terrain='slippery'] {background:#e0f2fe;border-color:#38bdf8;box-shadow:inset 0 0 8px #7dd3fc55}
 .switchIcon {position:absolute;inset:12% 0 auto;text-align:center;pointer-events:none;font-size:20px;z-index:3}
+
+/* Phase 6: Worlds Theming (Meadow, Beach, Snow, Candy, Space) */
+.worldPill {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #ede6f5;
+  color: #64447d;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.homeEmoji {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 3;
+}
+.milestoneNotice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fbf5e6;
+  border: 1px solid #ebd08c;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 12px 0;
+  text-align: left;
+  color: #634710;
+}
+.milestoneIcon { font-size: 24px; }
+.milestoneNotice strong { display: block; font-size: 13px; color: #7a5406; }
+.milestoneNotice p { margin: 2px 0 0; font-size: 11px; }
+
+.worldSection { margin-top: 16px; margin-bottom: 12px; }
+.worldSection label { font-size: 12px; font-weight: 800; margin-bottom: 8px; display: block; color: #5a3e5e; }
+.worldGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px; }
+.worldCard {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid #e1cad9;
+  border-radius: 12px;
+  background: #fffafd;
+  cursor: pointer;
+  text-align: left;
+}
+.worldCard[aria-current="true"] {
+  border-color: #9258b4;
+  background: #f3e6fb;
+}
+.worldCard:disabled { opacity: 0.5; cursor: default; }
+.worldCardIcon { font-size: 18px; }
+.worldCardInfo b { display: block; font-size: 11px; }
+.worldCardInfo small { display: block; font-size: 9px; color: #7f6682; }
+
+/* Beach World Palette */
+.page[data-world='beach'] { background: #fdfaf4; }
+.page[data-world='beach'] .worldPill { background: #e0f2f1; color: #00695c; }
+.page[data-world='beach'] .boardFrame { background: #1b5e58; border-color: #38b2a3; }
+.page[data-world='beach'] .cell { background: #fffefb; border-color: #e5ede7; }
+.page[data-world='beach'] .pipeEdge { stroke: #e27d60; }
+.page[data-world='beach'] .pipeFill { stroke: #f4a261; }
+.page[data-world='beach'] .cell[data-connected=true] .pipeEdge { stroke: #2ec4b6; }
+.page[data-world='beach'] .cell[data-connected=true] .pipeFill { stroke: #cbf3f0; }
+.page[data-world='beach'] .cell[data-connected=true] { border-color: #2ec4b6; background: #e8faf7; }
+
+/* Snow World Palette */
+.page[data-world='snow'] { background: #f4f9fd; }
+.page[data-world='snow'] .worldPill { background: #e1f5fe; color: #0277bd; }
+.page[data-world='snow'] .boardFrame { background: #1f354d; border-color: #6482ad; }
+.page[data-world='snow'] .cell { background: #f9fbfe; border-color: #dbe4ee; }
+.page[data-world='snow'] .pipeEdge { stroke: #7fa1c3; }
+.page[data-world='snow'] .pipeFill { stroke: #c0d6df; }
+.page[data-world='snow'] .cell[data-connected=true] .pipeEdge { stroke: #00f5d4; }
+.page[data-world='snow'] .cell[data-connected=true] .pipeFill { stroke: #a7ffeb; }
+.page[data-world='snow'] .cell[data-connected=true] { border-color: #00f5d4; background: #e6fcf8; }
+
+/* Candy Land World Palette */
+.page[data-world='candy'] { background: #fff5f8; }
+.page[data-world='candy'] .worldPill { background: #fce4ec; color: #c2185b; }
+.page[data-world='candy'] .boardFrame { background: #702e52; border-color: #f67280; }
+.page[data-world='candy'] .cell { background: #fffafd; border-color: #f7dbe4; }
+.page[data-world='candy'] .pipeEdge { stroke: #ff9a9e; }
+.page[data-world='candy'] .pipeFill { stroke: #fecfef; }
+.page[data-world='candy'] .cell[data-connected=true] .pipeEdge { stroke: #48bfe3; }
+.page[data-world='candy'] .cell[data-connected=true] .pipeFill { stroke: #a7dbd8; }
+.page[data-world='candy'] .cell[data-connected=true] { border-color: #48bfe3; background: #f0fcfe; }
+
+/* Space World Palette */
+.page[data-world='space'] { background: #0f0c20; color: #f1f2f6; }
+.page[data-world='space'] .brand { color: #c3b5fd; }
+.page[data-world='space'] .subtitle { color: #b8b2dc; }
+.page[data-world='space'] .worldPill { background: #2a2050; color: #c3b5fd; }
+.page[data-world='space'] .boardFrame { background: #181236; border-color: #7c5cfc; box-shadow: 0 8px 30px #7c5cfc33; }
+.page[data-world='space'] .cell { background: #1a1638; border-color: #2e265c; }
+.page[data-world='space'] .pipeEdge { stroke: #9d8df1; }
+.page[data-world='space'] .pipeFill { stroke: #dfe6e9; }
+.page[data-world='space'] .cell[data-connected=true] .pipeEdge { stroke: #ffd166; }
+.page[data-world='space'] .cell[data-connected=true] .pipeFill { stroke: #ffeaa7; }
+.page[data-world='space'] .cell[data-connected=true] { border-color: #ffd166; background: #292147; }
+.page[data-world='space'] .compact .cell[data-empty=true] { opacity: 0.35; }
+.page[data-world='space'] .status { color: #c4c1e0; }
+.page[data-world='space'] .levelBar h2 { color: #e4e2f5; }
+.page[data-world='space'] .levelBar small { color: #9c97c7; }
+.page[data-world='space'] .options { border-top-color: #2e265c; color: #b8b2dc; }
+.page[data-world='space'] .worldCard { background: #1a1638; border-color: #2e265c; color: #e4e2f5; }
+.page[data-world='space'] .worldCard[aria-current="true"] { border-color: #7c5cfc; background: #2a2050; }
+.page[data-world='space'] .worldCardInfo small { color: #9c97c7; }
+.page[data-world='space'] .options select { background: #1a1638; border-color: #2e265c; color: #f1f2f6; }

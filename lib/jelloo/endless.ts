@@ -1,9 +1,10 @@
-import { neighbour, tracePath, type Direction } from "./engine";
+import { neighbour, tracePath, type Direction, type Level } from "./engine";
 import { buildTutorial, levels, type TutorialSpec } from "./levels";
 import { analyzePuzzle } from "./scoring";
 import { addJunction } from "./junctions";
 import { tutorialSpecs } from "./levels";
 import { characterForLevel,generatePowerPuzzle } from "./power-generator";
+import { worldForLevel } from "./worlds";
 
 // Version 1: saved seeds must keep producing the same boards.
 export function generateLegacyPuzzle(id: number, seed: number) {
@@ -82,17 +83,21 @@ export function generatePuzzle(id: number, seed: number, searchBudget = 2400) {
 }
 
 export function levelAt(id: number, seed: number, rules = 4) {
-  if(rules>=4 && characterForLevel(id)) return generatePowerPuzzle(id,seed).level;
-  if (levels[id-1]) return rules>=3 && id>=4 ? addJunction(levels[id-1],buildTutorial(tutorialSpecs[id-1],true)) : levels[id-1];
-  if (rules === 1) {
-    const {level,solution} = generateLegacyPuzzle(id,seed);
+  let level: Level;
+  if(rules>=4 && characterForLevel(id)) level = generatePowerPuzzle(id,seed).level;
+  else if (levels[id-1]) level = rules>=3 && id>=4 ? addJunction(levels[id-1],buildTutorial(tutorialSpecs[id-1],true)) : levels[id-1];
+  else if (rules === 1) {
+    const {level: legacyLevel,solution} = generateLegacyPuzzle(id,seed);
     const route = tracePath(solution,solution.tiles).path;
-    level.collectibles = [route[Math.floor(route.length/2)]];
-    level.moveLimit = analyzePuzzle(level).starMoves+4;
-    level.difficulty = "Classic";
-    return level;
+    legacyLevel.collectibles = [route[Math.floor(route.length/2)]];
+    legacyLevel.moveLimit = analyzePuzzle(legacyLevel).starMoves+4;
+    legacyLevel.difficulty = "Classic";
+    level = legacyLevel;
+  } else {
+    const generated=generatePuzzle(id,seed);
+    level = rules>=3 ? addJunction(generated.level,generated.solution,difficultyFor(id),id>=21 && id%3===0) : generated.level;
   }
-  const generated=generatePuzzle(id,seed);
-  return rules>=3 ? addJunction(generated.level,generated.solution,difficultyFor(id),id>=21 && id%3===0) : generated.level;
+  level.world = worldForLevel(id).id;
+  return level;
 }
 
