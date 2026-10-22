@@ -32,12 +32,19 @@ function applyMechanic(level:Level,route:number[],character:Character,random:()=
     level.tiles[cells[Math.floor(random()*cells.length)]].terrain=character==="cat" ? "wall" : "water";
     if(character==="cat") level.tiles[route.at(-2)!].terrain="slow";
   } else {
-    const options=cells.filter(i=>level.tiles[i].kind==="corner" && ([0,1,2,3] as Direction[]).some(d=>{const n=neighbour(i,d,level.size);return n!==null && !route.includes(n);}));
+    const isValidDecoy=(i:number,d:Direction)=>{
+      if(ports(level.tiles[i]).includes(d)) return false;
+      const decoy=neighbour(i,d,level.size);
+      if(decoy===null || route.includes(decoy)) return false;
+      const beyond=neighbour(decoy,d,level.size);
+      return beyond===null || (!route.includes(beyond) && level.tiles[beyond].kind==="blank");
+    };
+    const options=cells.filter(i=>level.tiles[i].kind==="corner" && ([0,1,2,3] as Direction[]).some(d=>isValidDecoy(i,d)));
     if(!options.length) return false;
     const tile=options[Math.floor(random()*options.length)],step=route.indexOf(tile),required=ports(level.tiles[tile]);
     const incoming=([0,1,2,3] as Direction[]).find(d=>neighbour(tile,d,level.size)===route[step-1])!;
     const outgoing=required.find(d=>d!==incoming)!;
-    const extra=([0,1,2,3] as Direction[]).find(d=>!required.includes(d) && neighbour(tile,d,level.size)!==null && !route.includes(neighbour(tile,d,level.size)!))!;
+    const extra=([0,1,2,3] as Direction[]).find(d=>isValidDecoy(tile,d))!;
     const rotation=[0,1,2,3].find(r=>[...required,extra].every(d=>ports({kind:"tee",rotation:r}).includes(d)));
     if(rotation===undefined) return false;
     level.tiles[tile]={kind:"tee",rotation,locked:true};
@@ -94,8 +101,15 @@ export function generatePowerPuzzle(id:number,seed:number) {
     level.intro=intro;
     if(!applyMechanic(level,route,character,random)) continue;
     if(!intro && !addStarDetour(level,route)) continue;
+    const protectedBlank = level.fork && character === "fox" ? (() => {
+      const { tile, exits } = level.fork;
+      const extra = exits.find(d => { const n = neighbour(tile, d, level.size); return n !== null && !route.includes(n); });
+      if (extra === undefined) return null;
+      const decoy = neighbour(tile, extra, level.size);
+      return decoy !== null ? neighbour(decoy, extra, level.size) : null;
+    })() : null;
     if(!intro) for(let i=0;i<level.tiles.length;i++) {
-      if(level.tiles[i].kind==="blank" && !level.tiles[i].terrain && random()<.45) {
+      if(i !== protectedBlank && level.tiles[i].kind==="blank" && !level.tiles[i].terrain && random()<.45) {
         level.tiles[i]={kind:random()<.5 ? "corner" : "straight",rotation:Math.floor(random()*4)};
       }
     }

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {characterForLevel,generatePowerPuzzle,isPowerIntro} from "../lib/jelloo/power-generator";
 import {auditPowerLevel,solvePowerLevel,walkPowerLevel} from "../lib/jelloo/power-solver";
+import {neighbour} from "../lib/jelloo/engine";
 import {pals} from "../lib/jelloo/pals";
 
 test("1000 generated power levels are solvable, require their own character and reach every collectible",()=>{
@@ -64,4 +65,33 @@ test("each introduction is one editable tile, has no loss limit, and passes nece
     layouts.add(JSON.stringify([level.start,level.home,level.tiles.map(t=>t.kind!=="blank" || t.terrain==="gap")]));
   }
   assert.ok(layouts.size>=3);
+});
+
+test("Fox intro decoy branch ends visibly at blank cell or board edge", () => {
+  for (let seed = 0; seed < 50; seed++) {
+    const { level, proof } = generatePowerPuzzle(41, seed);
+    assert.equal(level.character, "fox");
+    assert.ok(level.fork, "Fox intro must have a fork");
+    const { tile, exits } = level.fork;
+    const solutionExit = exits.find(d => {
+      const nextCell = neighbour(tile, d, level.size);
+      const stepIdx = proof.trace.path.indexOf(tile);
+      return stepIdx !== -1 && proof.trace.path[stepIdx + 1] === nextCell;
+    });
+    assert.ok(solutionExit !== undefined, "One exit must follow the solution path");
+    const decoyDirection = exits.find(d => d !== solutionExit)!;
+    assert.ok(decoyDirection !== undefined, "One exit must be the decoy");
+    const decoyCell = neighbour(tile, decoyDirection, level.size)!;
+    assert.ok(decoyCell !== null, "Decoy cell must be on the board");
+    assert.equal(level.tiles[decoyCell].kind, "straight");
+    assert.equal(level.tiles[decoyCell].locked, true);
+
+    const beyondCell = neighbour(decoyCell, decoyDirection, level.size);
+    if (beyondCell === null) {
+      assert.equal(beyondCell, null, "Decoy branch visibly terminates at board edge");
+    } else {
+      assert.equal(level.tiles[beyondCell].kind, "blank", `Decoy cell at ${beyondCell} must visibly be blank`);
+      assert.ok(!proof.trace.path.includes(beyondCell), "Beyond cell must not be on the solution route");
+    }
+  }
 });
