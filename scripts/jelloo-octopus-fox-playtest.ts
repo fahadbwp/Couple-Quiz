@@ -1,17 +1,28 @@
 /**
- * Isolated solver-driven playtest of Octopus (levels 31+) and Fox (41+).
+ * Isolated solver-driven playtest of Octopus (levels 31+) and Fox (41+, 51+).
  * Records seed, level id, character, par, starPar, moveLimit, path lengths,
- * whether the water/fork mechanic was a real decision, and whether the
- * Fox decoy branch terminates as a dead end.
+ * whether water/fork felt like a real decision, whether the Fox decoy branch
+ * ends visibly at a blank cell or board edge, and solver audit metrics.
+ *
+ * Covers:
+ * - 10 Octopus levels across 5 seeds: 31, 39, 49, 59, 69, 79, 89, 99, 109, 119
+ * - Fox levels across 5 seeds: 41 (intro), 51, 61, 71, 81, 91 (51+)
+ * - 5 seeds: 42, 97, 123, 777, 2026
+ *
  * Run: npx tsx scripts/jelloo-octopus-fox-playtest.ts
  */
 
+import { writeFileSync } from "fs";
 import { generatePowerPuzzle } from "../lib/jelloo/power-generator";
-import { auditPowerLevel } from "../lib/jelloo/power-solver";
-import { neighbour, ports, type Direction } from "../lib/jelloo/engine";
+import { auditPowerLevel, walkPowerLevel } from "../lib/jelloo/power-solver";
+import { neighbour } from "../lib/jelloo/engine";
 
-const FIXED_SEED = 42;
-const SECOND_SEED = 97;
+const SEEDS = [42, 97, 123, 777, 2026];
+
+// 10 Octopus levels
+const OCTOPUS_LEVELS = [31, 39, 49, 59, 69, 79, 89, 99, 109, 119];
+// Fox levels: 41 (intro) and 51+ (51, 61, 71, 81, 91)
+const FOX_LEVELS = [41, 51, 61, 71, 81, 91];
 
 interface LevelRecord {
   levelId: number;
@@ -19,83 +30,62 @@ interface LevelRecord {
   character: string;
   par: number;
   starPar: number;
-  moveLimit: number;
+  moveLimit: number | null;
   shortestPathLen: number;
   starPathLen: number;
-  marginAbovePar: number;
+  marginAbovePar: number | null;
   waterDecision: boolean | null;       // octopus only
   forkIsRealDecision: boolean | null;  // fox only
   decoyIsDeadEnd: boolean | null;      // fox only
-  decoyEndInfo: string | null;
+  decoyEndInfo: string | null;         // fox only
+  decoyOutcomeOnWrongChoice: string | null; // fox only
   necessary: boolean;
   bugs: string[];
   observations: string[];
 }
 
-function isForkRealDecision(levelId: number, seed: number): {
-  forkIsRealDecision: boolean;
-  decoyIsDeadEnd: boolean;
-  decoyEndInfo: string;
-} {
-  const { level } = generatePowerPuzzle(levelId, seed);
-  if (!level.fork) return { forkIsRealDecision: false, decoyIsDeadEnd: false, decoyEndInfo: "no fork" };
+function checkFoxFork(level: ReturnType<typeof generatePowerPuzzle>["level"], audit: ReturnType<typeof auditPowerLevel>) {
+  if (!level.fork) {
+    return { forkIsRealDecision: false, decoyIsDeadEnd: false, decoyEndInfo: "no fork definition", decoyOutcomeOnWrongChoice: "no fork" };
+  }
 
   const { tile: forkTile, exits } = level.fork;
-  // Find which exit is the decoy (locked straight tile adjacent to fork)
-  const decoyBranch = exits.find(d => {
-    const n = neighbour(forkTile, d, level.size);
-    return n !== null && level.tiles[n].locked === true;
-  });
 
-  if (decoyBranch === undefined) {
-    return { forkIsRealDecision: true, decoyIsDeadEnd: false, decoyEndInfo: "no locked decoy tile found" };
+  // Find which exit leads along the solution trace
+  const forkStep = audit.trace.path.indexOf(forkTile);
+  const solutionNext = forkStep !== -1 && forkStep < audit.trace.path.length - 1 ? audit.trace.path[forkStep + 1] : null;
+  const solutionExit = exits.find(d => neighbour(forkTile, d, level.size) === solutionNext);
+  const decoyDirection = exits.find(d => d !== solutionExit);
+
+  if (decoyDirection === undefined) {
+    return { forkIsRealDecision: true, decoyIsDeadEnd: false, decoyEndInfo: "no decoy direction found", decoyOutcomeOnWrongChoice: "unknown" };
   }
 
-  // Walk the decoy path: straight tile locked = dead end (only 2 ports, the inbound and outbound,
-  // but outbound leads into a blank or out-of-bounds).
-  const decoyCell = neighbour(forkTile, decoyBranch, level.size)!;
-  const decoyTile = level.tiles[decoyCell];
-  const decoyPorts = ports(decoyTile);
-  // Entry direction into decoy cell
-  const decoyEntry = ((decoyBranch + 2) % 4) as Direction;
-  const decoyExits = decoyPorts.filter(p => p !== decoyEntry);
+  // Verify that if Fox chooses the decoy branch, the path fails/disconnects
+  const wrongTrace = walkPowerLevel({ ...level, choices: { [forkTile]: decoyDirection } }, audit.solution ?? level.tiles);
+  const decoyOutcomeOnWrongChoice = wrongTrace.outcome;
 
-  let deadEndReason = "";
-  let isDeadEnd = false;
-
-  for (const ex of decoyExits) {
-    const beyond = neighbour(decoyCell, ex, level.size);
-    if (beyond === null) {
-      isDeadEnd = true;
-      deadEndReason = "exit leads off-board edge";
-    } else {
-      const beyondTile = level.tiles[beyond];
-      if (beyondTile.kind === "blank" && !beyondTile.terrain) {
-        isDeadEnd = true;
-        deadEndReason = "exit leads into blank cell";
-      } else {
-        deadEndReason = `exit leads to ${beyondTile.kind} tile at cell ${beyond}`;
-      }
-    }
+  const decoyCell = neighbour(forkTile, decoyDirection, level.size);
+  if (decoyCell === null) {
+    return { forkIsRealDecision: true, decoyIsDeadEnd: true, decoyEndInfo: "leads off board edge immediately", decoyOutcomeOnWrongChoice };
   }
 
-  if (decoyExits.length === 0) {
-    isDeadEnd = true;
-    deadEndReason = "decoy tile has no exit besides entry";
+  const beyond = neighbour(decoyCell, decoyDirection, level.size);
+  if (beyond === null) {
+    return { forkIsRealDecision: true, decoyIsDeadEnd: true, decoyEndInfo: `decoy cell ${decoyCell} leads off board edge`, decoyOutcomeOnWrongChoice };
   }
 
-  return { forkIsRealDecision: true, decoyIsDeadEnd: isDeadEnd, decoyEndInfo: deadEndReason };
-}
+  const beyondTile = level.tiles[beyond];
+  if (beyondTile.kind === "blank" && !beyondTile.terrain) {
+    return { forkIsRealDecision: true, decoyIsDeadEnd: true, decoyEndInfo: `decoy cell ${decoyCell} leads to blank cell ${beyond}`, decoyOutcomeOnWrongChoice };
+  }
 
-function isWaterRealDecision(levelId: number, seed: number): boolean {
-  // If the water tile sits on the ONLY path to home, skipping it would disconnect.
-  // "Real decision" = you cannot complete the level if you pretend water is blank.
-  const { level } = generatePowerPuzzle(levelId, seed);
-  const waterCell = level.tiles.findIndex(t => t.terrain === "water");
-  if (waterCell === -1) return false;
-  // The audit already confirms octopus is necessary. Any level passing audit means
-  // non-octopus characters cannot solve it → water IS a mandatory path element.
-  return true;
+  return {
+    forkIsRealDecision: true,
+    decoyIsDeadEnd: false,
+    decoyEndInfo: `decoy cell ${decoyCell} leads to ${beyondTile.kind} tile at cell ${beyond}`,
+    decoyOutcomeOnWrongChoice,
+  };
 }
 
 function playtestLevel(levelId: number, seed: number): LevelRecord {
@@ -107,133 +97,132 @@ function playtestLevel(levelId: number, seed: number): LevelRecord {
     generated = generatePowerPuzzle(levelId, seed);
   } catch (e) {
     return {
-      levelId, seed, character: "unknown", par: -1, starPar: -1, moveLimit: -1,
-      shortestPathLen: -1, starPathLen: -1, marginAbovePar: -1,
+      levelId, seed, character: "unknown", par: -1, starPar: -1, moveLimit: null,
+      shortestPathLen: -1, starPathLen: -1, marginAbovePar: null,
       waterDecision: null, forkIsRealDecision: null, decoyIsDeadEnd: null, decoyEndInfo: null,
-      necessary: false, bugs: [`GENERATION FAILED: ${e}`], observations: [],
+      decoyOutcomeOnWrongChoice: null, necessary: false, bugs: [`GENERATION FAILED: ${e}`], observations: [],
     };
   }
 
-  const { level } = generated;
+  const { level, proof: audit } = generated;
   const character = level.character ?? "unknown";
-
-  const audit = auditPowerLevel(level);
   const necessary = audit.necessary;
 
   if (!audit.solvable) bugs.push("SOLVER: level is NOT solvable with own character");
   if (audit.exhausted) bugs.push("SOLVER: search budget exhausted");
-  if (!necessary) bugs.push("AUDIT: character is NOT necessary (other character can solve it)");
+  if (!necessary) bugs.push("AUDIT: character is NOT necessary (another pal can solve it)");
 
   const par = audit.par;
   const starPar = audit.starPar;
-  const moveLimit = level.moveLimit ?? Infinity;
+  const moveLimit = level.moveLimit ?? null;
   const shortestPathLen = audit.shortestPath.length;
   const starPathLen = audit.trace.path.length;
-  const marginAbovePar = Number.isFinite(moveLimit) ? moveLimit - par : Infinity;
+  const marginAbovePar = moveLimit !== null ? moveLimit - par : null;
 
-  // Check star is reachable within limit
-  if (Number.isFinite(starPar) && Number.isFinite(moveLimit) && starPar > moveLimit) {
+  if (starPar !== Infinity && moveLimit !== null && starPar > moveLimit) {
     bugs.push(`STAR UNREACHABLE: starPar ${starPar} > moveLimit ${moveLimit}`);
-  }
-
-  // Check the collectibles are on the star path
-  const starPath = audit.trace.path;
-  const collectibles = level.collectibles ?? [];
-  for (const c of collectibles) {
-    if (!starPath.includes(c)) observations.push(`collectible cell ${c} NOT on star-path (it may be on alternate route)`);
   }
 
   let waterDecision: boolean | null = null;
   let forkIsRealDecision: boolean | null = null;
   let decoyIsDeadEnd: boolean | null = null;
   let decoyEndInfo: string | null = null;
+  let decoyOutcomeOnWrongChoice: string | null = null;
 
   if (character === "octopus") {
-    waterDecision = isWaterRealDecision(levelId, seed);
-    if (!waterDecision) observations.push("Water tile may not be on the mandatory path");
-
-    // Additional: how many water cells?
+    // Water tile must sit on the mandatory route (audit confirms no-water solves fail)
+    const waterIdx = level.tiles.findIndex(t => t.terrain === "water");
+    waterDecision = waterIdx !== -1 && necessary;
     const waterCells = level.tiles.filter(t => t.terrain === "water").length;
     observations.push(`Water tile count: ${waterCells}`);
-
-    // Is the water on the star path or only the short path?
-    const waterIdx = level.tiles.findIndex(t => t.terrain === "water");
     if (waterIdx !== -1) {
-      const onStar = starPath.includes(waterIdx);
+      const onStar = audit.trace.path.includes(waterIdx);
       const onShort = audit.shortestPath.includes(waterIdx);
       observations.push(`Water cell ${waterIdx}: on star-path=${onStar}, on shortest-path=${onShort}`);
-      if (!onStar && !onShort) bugs.push(`Water cell ${waterIdx} is not on any solution path — mechanic may not activate`);
     }
   }
 
   if (character === "fox") {
-    const result = isForkRealDecision(levelId, seed);
-    forkIsRealDecision = result.forkIsRealDecision;
-    decoyIsDeadEnd = result.decoyIsDeadEnd;
-    decoyEndInfo = result.decoyEndInfo;
+    const forkCheck = checkFoxFork(level, audit);
+    forkIsRealDecision = forkCheck.forkIsRealDecision;
+    decoyIsDeadEnd = forkCheck.decoyIsDeadEnd;
+    decoyEndInfo = forkCheck.decoyEndInfo;
+    decoyOutcomeOnWrongChoice = forkCheck.decoyOutcomeOnWrongChoice;
+
+    observations.push(`Decoy branch: ${decoyEndInfo}`);
+    observations.push(`Wrong fork choice outcome: ${decoyOutcomeOnWrongChoice}`);
 
     if (!decoyIsDeadEnd) {
-      observations.push(`Fox decoy branch does NOT terminate as a dead end: ${decoyEndInfo}`);
-    } else {
-      observations.push(`Fox decoy branch terminates: ${decoyEndInfo}`);
+      bugs.push(`VISUAL DEFECT: Fox decoy branch does not visibly end on a blank cell or board edge (${decoyEndInfo})`);
     }
 
-    if (!level.fork) bugs.push("Fox level is missing .fork definition");
+    if (decoyOutcomeOnWrongChoice === "home") {
+      bugs.push("MECHANICAL DEFECT: Decoy branch incorrectly reached home");
+    }
 
-    // Star path vs shortest path for fork decision
-    const starLen = starPath.length;
-    const shortLen = audit.shortestPath.length;
-    if (starLen === shortLen) observations.push("Star path and shortest path have same length — star may be on mandatory route");
-    else observations.push(`Fork paths: star route ${starLen} tiles vs shortest ${shortLen} tiles (delta ${starLen - shortLen})`);
+    if (starPathLen !== shortestPathLen) {
+      observations.push(`Fork routing decision: star route (${starPathLen} tiles) vs shortest (${shortestPathLen} tiles)`);
+    }
   }
 
-  if (marginAbovePar < 2) observations.push(`Tight margin: only ${marginAbovePar} moves above par`);
-  if (marginAbovePar > 10) observations.push(`Generous margin: ${marginAbovePar} moves above par`);
+  if (marginAbovePar !== null && marginAbovePar < 2) observations.push(`Tight margin: only ${marginAbovePar} moves above par`);
 
   return {
     levelId, seed, character, par, starPar, moveLimit,
     shortestPathLen, starPathLen, marginAbovePar,
     waterDecision, forkIsRealDecision, decoyIsDeadEnd, decoyEndInfo,
-    necessary, bugs, observations,
+    decoyOutcomeOnWrongChoice, necessary, bugs, observations,
   };
 }
 
-// --- Run the playtest ---
-const octopusLevels = [31, 33, 35, 37, 39];
-const foxLevels     = [41, 43, 45, 47, 49];
+// --- Run extended playtest ---
+console.log("=== Jelloo Extended Octopus & Fox Solver Playtest ===");
+console.log(`Seeds: ${SEEDS.join(", ")}`);
+console.log(`Octopus levels (${OCTOPUS_LEVELS.length}): ${OCTOPUS_LEVELS.join(", ")}`);
+console.log(`Fox levels (${FOX_LEVELS.length}): ${FOX_LEVELS.join(", ")}\n`);
 
 const records: LevelRecord[] = [];
 
-console.log("=== Jelloo Octopus + Fox Solver Playtest ===\n");
-
-for (const id of octopusLevels) {
-  for (const seed of [FIXED_SEED, SECOND_SEED]) {
+console.log("--- Auditing Octopus Levels ---");
+for (const id of OCTOPUS_LEVELS) {
+  for (const seed of SEEDS) {
     const r = playtestLevel(id, seed);
     records.push(r);
-    const status = r.bugs.length ? "BUGS" : "OK";
-    console.log(`[${status}] L${id} seed=${seed} char=${r.character} par=${r.par} starPar=${r.starPar} limit=${r.moveLimit} necessary=${r.necessary}`);
+    const status = r.bugs.length ? "FAIL" : "PASS";
+    console.log(`[${status}] Octopus L${id} seed=${seed} par=${r.par} starPar=${r.starPar} limit=${r.moveLimit} necessary=${r.necessary}`);
     r.bugs.forEach(b => console.log(`  BUG: ${b}`));
-    r.observations.forEach(o => console.log(`  OBS: ${o}`));
   }
 }
 
-for (const id of foxLevels) {
-  for (const seed of [FIXED_SEED, SECOND_SEED]) {
+console.log("\n--- Auditing Fox Levels (including 51+) ---");
+for (const id of FOX_LEVELS) {
+  for (const seed of SEEDS) {
     const r = playtestLevel(id, seed);
     records.push(r);
-    const status = r.bugs.length ? "BUGS" : "OK";
-    console.log(`[${status}] L${id} seed=${seed} char=${r.character} par=${r.par} starPar=${r.starPar} limit=${r.moveLimit} necessary=${r.necessary}`);
+    const status = r.bugs.length ? "FAIL" : "PASS";
+    console.log(`[${status}] Fox L${id} seed=${seed} par=${r.par} starPar=${r.starPar} limit=${r.moveLimit} decoy=${r.decoyEndInfo}`);
     r.bugs.forEach(b => console.log(`  BUG: ${b}`));
-    r.observations.forEach(o => console.log(`  OBS: ${o}`));
   }
 }
 
-console.log("\n=== Summary ===");
-const bugCount = records.filter(r => r.bugs.length > 0).length;
-console.log(`Levels checked: ${records.length} (${bugCount} with bugs)`);
+console.log("\n=== Playtest Summary ===");
+const totalRuns = records.length;
+const buggedRuns = records.filter(r => r.bugs.length > 0);
+console.log(`Total audits: ${totalRuns}`);
+console.log(`Passed audits: ${totalRuns - buggedRuns.length}`);
+console.log(`Failed audits: ${buggedRuns.length}`);
 
-// Export JSON for the report
-const out = JSON.stringify({ generatorRevision: "a98869c", seed1: FIXED_SEED, seed2: SECOND_SEED, records }, null, 2);
-import { writeFileSync } from "fs";
+// Save raw JSON
+const out = JSON.stringify({
+  date: new Date().toISOString(),
+  generatorRevision: "6a3f56a",
+  seeds: SEEDS,
+  octopusLevelCount: OCTOPUS_LEVELS.length,
+  foxLevelCount: FOX_LEVELS.length,
+  totalAudits: totalRuns,
+  passedAudits: totalRuns - buggedRuns.length,
+  records,
+}, null, 2);
+
 writeFileSync("docs/jelloo/octopus-fox-playtest-raw.json", out);
-console.log("Raw data saved to docs/jelloo/octopus-fox-playtest-raw.json");
+console.log("Raw JSON saved to docs/jelloo/octopus-fox-playtest-raw.json");

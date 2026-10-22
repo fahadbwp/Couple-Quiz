@@ -58,13 +58,25 @@ function applyMechanic(level:Level,route:number[],character:Character,random:()=
 // A two-cell side path rejoins the main route. The power remains on the
 // shared route; the necessity audit rejects any accidental power bypass.
 function addStarDetour(level:Level,route:number[]) {
+  const forbidden = new Set<number>();
+  if(level.fork) {
+    const {tile,exits}=level.fork;
+    exits.forEach(d=>{
+      const n=neighbour(tile,d,level.size);
+      if(n!==null && level.tiles[n].locked) {
+        forbidden.add(n);
+        const beyond=neighbour(n,d,level.size);
+        if(beyond!==null) forbidden.add(beyond);
+      }
+    });
+  }
   for(let step=1;step<route.length-2;step++) {
     const a=route[step],b=route[step+1];
-    if([a,b].some(i=>level.tiles[i].locked || level.tiles[i].terrain || level.gate?.tile===i)) continue;
+    if([a,b].some(i=>level.tiles[i].locked || level.tiles[i].terrain || level.gate?.tile===i || forbidden.has(i))) continue;
     const direction=([0,1,2,3] as Direction[]).find(d=>neighbour(a,d,level.size)===b)!;
     for(const side of [(direction+1)%4,(direction+3)%4] as Direction[]) {
       const x=neighbour(a,side,level.size),y=neighbour(b,side,level.size);
-      if(x===null || y===null || [x,y].some(i=>level.tiles[i].kind!=="blank" || level.tiles[i].terrain)) continue;
+      if(x===null || y===null || [x,y].some(i=>level.tiles[i].kind!=="blank" || level.tiles[i].terrain || forbidden.has(i))) continue;
       const extended=[...route.slice(0,step+1),x,y,...route.slice(step+1)];
       const alternative=buildTutorial({id:level.id,size:level.size,route:extended,scramble:{},title:level.title,hint:level.hint},true);
       const rotations=[a,b].map(i=>[0,1,2,3].find(r=>[...ports(level.tiles[i]),...ports(alternative.tiles[i])].every(d=>ports({kind:"tee",rotation:r}).includes(d))));
@@ -101,15 +113,20 @@ export function generatePowerPuzzle(id:number,seed:number) {
     level.intro=intro;
     if(!applyMechanic(level,route,character,random)) continue;
     if(!intro && !addStarDetour(level,route)) continue;
-    const protectedBlank = level.fork && character === "fox" ? (() => {
-      const { tile, exits } = level.fork;
-      const extra = exits.find(d => { const n = neighbour(tile, d, level.size); return n !== null && !route.includes(n); });
-      if (extra === undefined) return null;
-      const decoy = neighbour(tile, extra, level.size);
-      return decoy !== null ? neighbour(decoy, extra, level.size) : null;
-    })() : null;
+    const forbidden = new Set<number>();
+    if(level.fork) {
+      const {tile,exits}=level.fork;
+      exits.forEach(d=>{
+        const n=neighbour(tile,d,level.size);
+        if(n!==null && level.tiles[n].locked) {
+          forbidden.add(n);
+          const beyond=neighbour(n,d,level.size);
+          if(beyond!==null) forbidden.add(beyond);
+        }
+      });
+    }
     if(!intro) for(let i=0;i<level.tiles.length;i++) {
-      if(i !== protectedBlank && level.tiles[i].kind==="blank" && !level.tiles[i].terrain && random()<.45) {
+      if(!forbidden.has(i) && level.tiles[i].kind==="blank" && !level.tiles[i].terrain && random()<.45) {
         level.tiles[i]={kind:random()<.5 ? "corner" : "straight",rotation:Math.floor(random()*4)};
       }
     }
