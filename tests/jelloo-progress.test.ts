@@ -59,3 +59,40 @@ test("invalid, oversized, future and inconsistent saves are rejected",()=>{
     {rotations:[]},{rotations:Array(16).fill(9)},{won:true},{motion:"yes"}
   ].map(change=>JSON.stringify({...valid,...change}))]) assert.equal(decodeJourney(raw),null);
 });
+
+test("dev-only jump action navigates directly to levels 31, 41, 51 and unlocks milestones", () => {
+  const env = process.env as Record<string, string | undefined>;
+  const originalEnv = env.NODE_ENV;
+  try {
+    env.NODE_ENV = "development";
+    let journey = newJourney(42);
+    assert.equal(journey.game.level.id, 1);
+    assert.equal(journey.completed, 0);
+
+    // Jump to 31 (Octopus)
+    journey = journeyReducer(journey, { type: "jump", id: 31 });
+    assert.equal(journey.game.level.id, 31);
+    assert.equal(journey.completed, 30);
+    assert.equal(journey.game.level.character, "octopus");
+
+    // Jump to 41 (Fox intro)
+    journey = journeyReducer(journey, { type: "jump", id: 41 });
+    assert.equal(journey.game.level.id, 41);
+    assert.equal(journey.completed, 40);
+    assert.equal(journey.game.level.character, "fox");
+
+    // Jump to 51 (Fox power level)
+    journey = journeyReducer(journey, { type: "jump", id: 51 });
+    assert.equal(journey.game.level.id, 51);
+    assert.equal(journey.completed, 50);
+    assert.equal(journey.game.level.character, "fox");
+
+    // Verify production guard: jump action is disabled in production
+    env.NODE_ENV = "production";
+    const frozen = journeyReducer(journey, { type: "jump", id: 99 });
+    assert.equal(frozen.game.level.id, 51);
+    assert.equal(frozen.completed, 50);
+  } finally {
+    env.NODE_ENV = originalEnv;
+  }
+});

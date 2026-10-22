@@ -82,6 +82,29 @@ export default function GameView({powerMode=false,extra,journey,animate,preparin
         </select>
         {level.id<completed+1 ? <button className={styles.motion} disabled={preparing} onClick={()=>act({type:"visit",id:completed+1})}>Continue level {completed+1} →</button> : null}
         <button className={styles.motion} aria-pressed={motion} onClick={()=>act({type:"motion"})}>Animation: {motion ? "on" : "off"}</button>
+        {process.env.NODE_ENV !== "production" ? (
+          <fieldset style={{ margin: "0.75rem 0", padding: "0.5rem 0.75rem", border: "1px dashed #d97706", borderRadius: "8px", background: "rgba(254, 243, 199, 0.5)" }}>
+            <legend style={{ fontWeight: "bold", fontSize: "0.8rem", color: "#92400e" }}>Dev Level Jump (local only)</legend>
+            <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", alignItems: "center" }}>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 31 })}>L31 (Octopus)</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 41 })}>L41 (Fox)</button>
+              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 51 })}>L51 (Fox Star)</button>
+              <input
+                type="number"
+                min="1"
+                placeholder="Jump #"
+                style={{ width: "65px", padding: "0.2rem 0.4rem", borderRadius: "4px", border: "1px solid #ccc" }}
+                onKeyDown={e => {
+                  if (e.key === "Enter") {
+                    const val = Number((e.target as HTMLInputElement).value);
+                    if (val >= 1) act({ type: "jump", id: val });
+                  }
+                }}
+              />
+            </div>
+            <small style={{ display: "block", marginTop: "0.25rem", color: "#78350f" }}>Tip: You can also open <code>?jump=31</code> in the URL.</small>
+          </fieldset>
+        ) : null}
         {reducedMotion ? <p>Reduced motion is on.</p> : null}
         <p>{completed} completed · {nextMilestone-completed} to milestone {nextMilestone}{best[level.id] ? ` · Best: ${best[level.id]}/3 ★` : ""}</p>
         <small>{saveMessage} Clearing browser data removes saves.</small><a href="/jelloo/art">Approved art room →</a>

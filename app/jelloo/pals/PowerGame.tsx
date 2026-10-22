@@ -75,7 +75,7 @@ export default function PowerGame() {
     if(action.type==="mute") {setMuted(!muted);audio.current.stop();return;}
     if(action.type==="motion") {setMotion(!motion);return;}
     if(action.type==="visit") {load(character,action.id>3 ? 1 : action.id);return;}
-    if(action.type==="restore") return;
+    if(action.type==="restore" || action.type==="jump") return;
     if(action.type==="reset") audio.current.stop();
     if(action.type==="rotate" && !muted && game.status==="editing") audio.current.play("rotate");
     dispatch(action);

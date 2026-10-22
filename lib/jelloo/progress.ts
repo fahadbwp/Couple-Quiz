@@ -5,11 +5,17 @@ import { scoreRun } from "./scoring";
 export const SAVE_KEY = "jelloo.progress.v1";
 export type Journey = { game: GameState; seed: number; completed: number; motion: boolean; muted: boolean; rules: number; best: Record<string,number> };
 export function newJourney(seed = 1): Journey { return {game:initialGame(levelAt(1,seed)),seed,completed:0,motion:true,muted:false,rules:4,best:{}}; }
-export type JourneyAction = Action | {type:"restore";journey:Journey} | {type:"visit";id:number;prepared?:Level} | {type:"motion"} | {type:"mute"};
+export type JourneyAction = Action | {type:"restore";journey:Journey} | {type:"visit";id:number;prepared?:Level} | {type:"jump";id:number} | {type:"motion"} | {type:"mute"};
 export function journeyReducer(state: Journey, action: JourneyAction): Journey {
   if (action.type === "restore") return action.journey;
   if (action.type === "motion") return {...state,motion:!state.motion};
   if (action.type === "mute") return {...state,muted:!state.muted};
+  if (action.type === "jump") {
+    if (process.env.NODE_ENV === "production") return state;
+    if (!Number.isSafeInteger(action.id) || action.id < 1) return state;
+    const completed = Math.max(state.completed, action.id - 1);
+    return {...state,completed,rules:4,game:initialGame(levelAt(action.id,state.seed),state.game.runId+1)};
+  }
   if (action.type === "visit") {
     if (!Number.isSafeInteger(action.id) || action.id < 1 || action.id > state.completed+1 || action.id === state.game.level.id) return state;
     return {...state,rules:4,game:initialGame(action.prepared?.id === action.id ? action.prepared : levelAt(action.id,state.seed),state.game.runId+1)};

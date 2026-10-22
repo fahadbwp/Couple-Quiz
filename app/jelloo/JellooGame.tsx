@@ -37,7 +37,7 @@ export default function JellooGame() {
     if(action.type !== "mute" && action.type !== "motion") setGenerationError("");
     if(!audio.current) audio.current = new GameAudio();
     if(!muted || action.type === "mute") audio.current.unlock();
-    if(action.type === "reset" || action.type === "visit" || action.type === "mute") audio.current.stop();
+    if(action.type === "reset" || action.type === "visit" || action.type === "jump" || action.type === "mute") audio.current.stop();
     if(action.type === "rotate" && !muted && status !== "running" && status !== "won" && status !== "lost") audio.current.play("rotate");
     if(action.type === "visit" && action.id>10 && action.id<=completed+1 && generator.current) {
       pending.current=true;setPreparing(true);setGenerationError("");
@@ -87,6 +87,13 @@ export default function JellooGame() {
       setSaveMessage("Saving is unavailable in this browser. You can still play this visit.");
     }
     dispatch({type:"restore",journey:restored});
+    if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const jumpId = Number(params.get("jump") ?? params.get("level"));
+      if (Number.isSafeInteger(jumpId) && jumpId >= 1) {
+        dispatch({type:"jump",id:jumpId});
+      }
+    }
     setReady(true);
   }, []);
 
