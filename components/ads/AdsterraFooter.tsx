@@ -56,10 +56,10 @@ export default function AdsterraFooter() {
       )}
 
       <p className="text-xs font-semibold text-slate-500">
-        Click &amp; Clique • Fun, Safe Friendship &amp; Couple Quizzes
+        PlayNudge • Friendship Quiz
       </p>
       <p className="text-[10px] text-slate-400 mt-0.5">
-        Share with friends • Keep it light • Free forever
+        Share with friends • Keep it light • Free to play
       </p>
     </footer>
   );

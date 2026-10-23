@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { QuizPublicData } from "./types";
+import { sitePolicy } from "../platform/site";
 
 /**
  * Returns the canonical base URL for the application.
@@ -7,16 +8,7 @@ import type { QuizPublicData } from "./types";
  * avoiding protected preview domains so social crawlers and search engines always target production.
  */
 export function getBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL.replace(/\/+$/, "");
-  }
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.replace(/\/+$/, "")}`;
-  }
-  if (process.env.VERCEL_ENV === "production" && process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/\/+$/, "")}`;
-  }
-  return "https://friend-quiz-game.vercel.app";
+  return sitePolicy().origin;
 }
 
 /**

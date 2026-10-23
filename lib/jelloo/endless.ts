@@ -4,6 +4,12 @@ import { analyzePuzzle } from "./scoring";
 import { addJunction } from "./junctions";
 import { tutorialSpecs } from "./levels";
 import { characterForLevel,generatePowerPuzzle } from "./power-generator";
+import {
+  generateTwoJellyPuzzle,
+  generateThreeJellyPuzzle,
+  isMultiJellyLevel,
+  multiJellyCountFor,
+} from "./multi-jelly";
 import { worldForLevel } from "./worlds";
 
 // Version 1: saved seeds must keep producing the same boards.
@@ -82,9 +88,12 @@ export function generatePuzzle(id: number, seed: number, searchBudget = 2400) {
   return {level,solution};
 }
 
-export function levelAt(id: number, seed: number, rules = 4) {
+export function levelAt(id: number, seed: number, rules = 4, multiRevision = 1) {
   let level: Level;
-  if(rules>=4 && characterForLevel(id)) level = generatePowerPuzzle(id,seed).level;
+  if (multiRevision >= 1 && rules >= 4 && isMultiJellyLevel(id)) {
+    const count = multiJellyCountFor(id);
+    level = count === 3 ? generateThreeJellyPuzzle(id, seed).level : generateTwoJellyPuzzle(id, seed).level;
+  } else if(rules>=4 && characterForLevel(id)) level = generatePowerPuzzle(id,seed).level;
   else if (levels[id-1]) level = rules>=3 && id>=4 ? addJunction(levels[id-1],buildTutorial(tutorialSpecs[id-1],true)) : levels[id-1];
   else if (rules === 1) {
     const {level: legacyLevel,solution} = generateLegacyPuzzle(id,seed);

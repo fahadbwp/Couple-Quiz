@@ -1,0 +1,29 @@
+✔ homepage hands off a trimmed nickname and both wording choices to the creator contract (8.2987ms)
+✔ blank and oversized names do not write session data (1.5942ms)
+✔ storage rejection on either field prevents a successful handoff and rolls back partial state (1.2006ms)
+✔ platform registry has two unique available games with existing routes and approved art (3.345ms)
+✔ home and library share equal card markup without invented inventory (1.7703ms)
+✔ canonical configuration preserves old domain and rejects unsafe origins (0.9331ms)
+✔ known staging and preview deployments stay noindex even with production origin (0.6271ms)
+✔ metadata has unique absolute canonical and complete social tags; private remains noindex (5.6432ms)
+✔ sitemap contains public games but never player results, invite or test routes (1.5916ms)
+✔ structured data is truthful parseable and escapes script termination (1.2186ms)
+✔ existing quiz and Jelloo routes remain; platform does not write game storage (3.5651ms)
+✔ Phase 7: getBaseUrl, getChallengeUrl, and sanitizeCreatorName (4.6303ms)
+✔ Phase 7: WhatsApp and Social Share Message Formatting (2.3505ms)
+✔ Phase 7: Dynamic Open Graph Metadata Generation (133.769ms)
+✔ Phase 7: Branded Open Graph Image Route (/api/og/quiz/[id]) (4129.771ms)
+✔ Phase 7: SEO Strategy, Robots Rules & Sitemap Generation (21.5886ms)
+✔ Phase 7.2: detectEnvironment identifies local, preview, and production environments accurately (5.4131ms)
+✔ Phase 7.2: Preview-created quizzes are NEVER silently redirected to unverified Production URLs (4.0458ms)
+✔ Phase 7.2: Localhost and Production URL preservation (3.6505ms)
+✔ Phase 7.2: WhatsApp formatting adapts safely between preview and production (17.4397ms)
+✔ Phase 7.3: Custom-domain Preview deployments are NEVER silently classified as public Production (7.6333ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10660.1209

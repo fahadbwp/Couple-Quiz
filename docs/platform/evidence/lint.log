@@ -1,0 +1,5 @@
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\app\quiz\play\[id]\page.tsx
+  116:29  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)

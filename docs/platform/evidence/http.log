@@ -1,0 +1,16 @@
+{"path":"/","status":200,"title":"Free Online Games — Play Puzzle &amp; Friend Games | PlayNudge","canonical":"https://friend-quiz-game.vercel.app","schemas":1,"previewHeader":"noindex, nofollow"}
+{"path":"/games","status":200,"title":"Free Browser Games — Play Online | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/games","schemas":1,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz","status":200,"title":"Friendship Quiz — How Well Do Your Friends Know You? | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/quiz","schemas":1,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz/create","status":200,"title":"Create Your Friendship Quiz | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/quiz/create","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/jelloo","status":200,"title":"Jelloo — Free Online Path Puzzle Game | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/jelloo","schemas":1,"previewHeader":"noindex, nofollow"}
+{"path":"/jelloo/daily","status":200,"title":"Jelloo Daily Puzzle | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/jelloo/daily","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/jelloo/zen","status":200,"title":"Jelloo Zen Mode | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/jelloo/zen","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/jelloo/invite","status":200,"title":"Jelloo — Invite Friends &amp; Earn | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/jelloo/invite","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz/play/q_missing","status":200,"title":"Friendship Challenge | PlayNudge","canonical":"https://friend-quiz-game.vercel.app/quiz/play/q_missing","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz/share/q_missing","status":200,"title":"Your Quiz Is Ready! | PlayNudge","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz/result/q_missing","status":200,"title":"Quiz Results | PlayNudge","schemas":0,"previewHeader":"noindex, nofollow"}
+{"path":"/quiz/scoreboard/q_missing","status":200,"title":"Friendship Challenge Scoreboard | PlayNudge","schemas":0,"previewHeader":"noindex, nofollow"}
+sitemap exclusions and local robots: PASS
+asset /playnudge.svg: 200, image/svg+xml
+asset /jelly-pals/bunny-blink-reference-v1.png: 200, image/png
+asset /opengraph-image: 200, image/png

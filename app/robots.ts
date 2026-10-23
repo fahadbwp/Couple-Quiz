@@ -1,27 +1,28 @@
 import type { MetadataRoute } from "next";
-import { getBaseUrl } from "@/lib/quiz/sharing";
-
+import { sitePolicy } from "@/lib/platform/site";
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = getBaseUrl();
+  const { origin, indexable } = sitePolicy();
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: [
-          "/",
-          "/quiz",
-          "/quiz/create",
-          "/quiz/play/",
-          "/quiz/scoreboard/",
-          "/api/og/quiz/",
-          "/api/og/quiz",
-        ],
-        disallow: [
-          "/api/",
-          "/design-preview/",
-        ],
-      },
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: indexable
+      ? [
+          {
+            userAgent: "*",
+            allow: [
+              "/",
+              "/quiz",
+              "/quiz/create",
+              "/api/og/quiz/",
+              "/api/og/quiz",
+            ],
+            disallow: [
+              "/api/",
+              "/design-preview/",
+              "/jelloo/qa",
+              "/jelloo/art",
+            ],
+          },
+        ]
+      : [{ userAgent: "*", disallow: "/" }],
+    sitemap: origin + "/sitemap.xml",
   };
 }

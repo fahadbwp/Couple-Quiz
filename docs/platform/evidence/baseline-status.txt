@@ -1,0 +1,31 @@
+ M app/jelloo/GameView.tsx
+ M lib/jelloo/endless.ts
+ M lib/jelloo/engine.ts
+ M lib/jelloo/feedback.ts
+ M lib/jelloo/progress.ts
+ M lib/jelloo/scoring.ts
+ M lib/jelloo/worlds.ts
+ M lib/jelloo/zen.ts
+ M package-lock.json
+ M package.json
+?? app/api/jelloo/
+?? app/jelloo/invite/
+?? app/jelloo/qa/
+?? data/jelloo/referrals/
+?? docs/jelloo/integration-evidence/
+?? docs/jelloo/phase-7-task-4-fixes.md
+?? docs/jelloo/phase-7-task-5-invite-friends.md
+?? docs/jelloo/phase-7-task-5-production-integration.md
+?? docs/jelloo/quality-audit.md
+?? docs/jelloo/task4-browser-win.png
+?? docs/jelloo/task5-evidence/
+?? docs/jelloo/task5-invite-unavailable.png
+?? docs/platform/
+?? lib/jelloo/multi-jelly.ts
+?? lib/jelloo/referrals/
+?? scripts/jelloo-local-qa.ts
+?? supabase/migrations/20261023000001_jelloo_referrals.sql
+?? tests/jelloo-multi.test.ts
+?? tests/jelloo-referrals.test.ts
+?? tests/jelloo-release.test.ts
+?? tests/jelloo-task4.test.ts

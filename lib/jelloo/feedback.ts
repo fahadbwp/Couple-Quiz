@@ -6,7 +6,16 @@ export function feedbackFor(previous: GameState, next: GameState): Cue[] {
   if(previous.status !== "running") return [];
   if(next.status === "won") return ["win"];
   if(next.status === "blocked") return ["confused"];
-  if(next.status === "running" && next.cursor > previous.cursor) return next.level.collectibles?.includes(next.trace!.path[next.cursor]) ? ["hop","collect"] : ["hop"];
+  if(next.status === "running" && next.cursor > previous.cursor) {
+    const trace = next.trace;
+    const hasCollected = next.level.collectibles?.some(c => {
+      if (trace && "jellies" in trace) {
+        return (trace as { jellies: { path: number[] }[] }).jellies.some(j => j.path[Math.min(next.cursor, j.path.length - 1)] === c);
+      }
+      return trace?.path[next.cursor] === c;
+    });
+    return hasCollected ? ["hop","collect"] : ["hop"];
+  }
   return [];
 }
 export const STEP_MS = 420;

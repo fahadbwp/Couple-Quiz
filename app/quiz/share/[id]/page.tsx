@@ -105,7 +105,7 @@ export default function QuizSharePage({
       try {
         await navigator.share({
           title: `How well do you know ${creatorName}? 💖`,
-          text: `Take ${creatorName}'s 10-question friendship dare on Click & Clique!`,
+          text: `Take ${creatorName}'s 10-question friendship dare on PlayNudge!`,
           url: shareUrl,
         });
       } catch (err) {
@@ -155,11 +155,11 @@ export default function QuizSharePage({
         <Link
           href="/quiz"
           className="inline-flex items-center gap-2.5 no-underline group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6650b7]"
-          aria-label="Click & Clique homepage"
+          aria-label="Friendship Quiz home"
         >
           <BrandMark />
           <span className="text-xl font-black tracking-tight text-[#29324c]">
-            click <span className="text-[#6650b7] font-medium">&amp;</span> clique
+            Friendship Quiz
             <span className="text-[#bd4a66]">.</span>
           </span>
         </Link>
@@ -186,7 +186,7 @@ export default function QuizSharePage({
             {creatorName}&apos;s Challenge is live! ✨
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 mt-2 font-medium">
-            Apne doston ko challenge bhejein aur dekhein kon aapko sab se behtar janta hai!
+            Share your challenge with friends and find out who knows you best!
           </p>
 
           {/* Preview Testing Environment Notice */}
@@ -242,7 +242,7 @@ export default function QuizSharePage({
                   How well do you know {creatorName}? 💖
                 </div>
                 <div className="text-[11px] text-slate-600 truncate mt-0.5 font-medium">
-                  10-question friendship dare • Click &amp; Clique
+                  10-question friendship dare • PlayNudge
                 </div>
                 <div className="text-[10px] text-sky-700 font-mono truncate mt-0.5">
                   {shareUrl || `.../quiz/play/${quizId}`}
@@ -380,7 +380,7 @@ export default function QuizSharePage({
             </>
           ) : (
             <>
-              💡 <strong>Pro Tip:</strong> WhatsApp Status ya Instagram Story par yeh link lagayein taake sabhi dost test de sakein!
+              💡 <strong>Pro Tip:</strong> Add your challenge link to your WhatsApp Status or Instagram Story so friends can join.
             </>
           )}
         </div>

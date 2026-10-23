@@ -61,16 +61,16 @@ export function HomepageJsonLd() {
         "@type": "WebSite",
         "@id": `${baseUrl}/#website`,
         url: baseUrl,
-        name: "Click & Clique",
+        name: "PlayNudge",
         description:
           "Free 10-question friendship quiz, BFF test, and how well do you know me dare.",
         inLanguage: "en",
       },
       {
         "@type": "WebApplication",
-        "@id": `${baseUrl}/#webapp`,
-        name: "Click & Clique Friendship Quiz",
-        url: baseUrl,
+        "@id": `${baseUrl}/quiz#game`,
+        name: "Friendship Quiz",
+        url: `${baseUrl}/quiz`,
         applicationCategory: "GameApplication",
         operatingSystem: "All",
         browserRequirements: "Requires any modern web browser with JavaScript enabled",
@@ -82,7 +82,7 @@ export function HomepageJsonLd() {
       },
       {
         "@type": "FAQPage",
-        "@id": `${baseUrl}/#faq`,
+        "@id": `${baseUrl}/quiz#faq`,
         mainEntity: HOMEPAGE_FAQS.map((faq) => ({
           "@type": "Question",
           name: faq.question,

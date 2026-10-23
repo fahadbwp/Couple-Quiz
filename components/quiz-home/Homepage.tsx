@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BrandMark, FriendsArt, StepIcon } from "./Illustrations";
 import { saveCreatorSetup } from "./creatorSetup";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
-import { HOMEPAGE_FAQS, HomepageJsonLd } from "@/components/seo/JsonLd";
+import { HOMEPAGE_FAQS } from "@/components/seo/JsonLd";
 import styles from "./homepage.module.css";
 
 type StartProps = { onStart: () => void };
@@ -29,10 +29,10 @@ function StartButton({
 
 function Brand() {
   return (
-    <a href="/quiz" className={styles.brand} aria-label="Click and Clique home">
+    <a href="/quiz" className={styles.brand} aria-label="Friendship Quiz home">
       <BrandMark />
       <span>
-        click <span className={styles.amp}>&</span> clique
+        Friendship Quiz
         <span className={styles.brandDot}>.</span>
       </span>
     </a>
@@ -277,7 +277,6 @@ export default function Homepage() {
   }
   return (
     <div className={styles.home}>
-      <HomepageJsonLd />
       <a className={styles.skipLink} href="#main">
         Skip to content
       </a>
@@ -303,7 +302,6 @@ export default function Homepage() {
             </div>
             <div className={styles.categories}>
               <CategoryCard onStart={openCreator} />
-              <CategoryCard couple onStart={openCreator} />
               <article className={`${styles.category} ${styles.jellooCard}`} aria-labelledby="jelloo-title">
                 <div className={styles.jellooArtwork} aria-hidden="true">
                   <span className={styles.jellooBunny} />

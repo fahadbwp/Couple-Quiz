@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import DailyGame from "./DailyGame";
-
-export const metadata: Metadata = {
-  title: "Jelloo — Daily Puzzle",
-  description: "One fresh, deterministic puzzle every 24 hours. Keep your daily streak alive!",
-  robots: { index: false, follow: false },
-};
-
+import { pageMetadata } from "@/lib/platform/site";
+export const metadata = pageMetadata(
+  "Jelloo Daily Puzzle",
+  "Play today's Jelloo puzzle and keep your daily streak. One shared puzzle each UTC day.",
+  "/jelloo/daily",
+  true,
+);
 export default function DailyPage() {
   return <DailyGame />;
 }

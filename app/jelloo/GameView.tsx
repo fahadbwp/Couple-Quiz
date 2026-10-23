@@ -1,4 +1,5 @@
 "use client";
+import type { MultiJellyTrace } from "@/lib/jelloo/multi-jelly";
 import type { CSSProperties, RefObject, ReactNode } from "react";
 import { connectedPaths, ports } from "@/lib/jelloo/engine";
 import { collectedStars, scoreRun } from "@/lib/jelloo/scoring";
@@ -11,13 +12,13 @@ import ShareCardView from "./ShareCardView";
 import styles from "./game.module.css";
 
 type Props = {
-  powerMode?:boolean; dailyMode?:boolean; zenMode?:boolean; streak?:number; extra?:ReactNode;
+  verificationMode?:boolean; powerMode?:boolean; dailyMode?:boolean; zenMode?:boolean; streak?:number; extra?:ReactNode;
   journey:Journey; animate:boolean; preparing:boolean; generationError:string; saveMessage:string; reducedMotion:boolean;
   act:(action:JourneyAction)=>void;
   board:RefObject<HTMLDivElement|null>; resultDialog:RefObject<HTMLDialogElement|null>; winHeading:RefObject<HTMLHeadingElement|null>;
 };
 const directions=["up","right","down","left"];
-export default function GameView({powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
+export default function GameView({verificationMode=false,powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
   const connected=(status==="running" || status==="won") && trace ? trace.path : connectedPaths(level,tiles).connected, collected=collectedStars(game), score=scoreRun(game);
@@ -28,19 +29,21 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
   const currentWorld=worldForLevel(level.id);
   const worldId=level.world ?? currentWorld.id;
   const milestoneReward=milestoneRewardFor(level.id);
+  const isMulti = Boolean(level.jellies && level.jellies.length > 1);
   const recentLevels=Array.from({length:Math.min(20,Math.max(0,completed-9))},(_,i)=>completed+1-i).filter(id=>id>10);
   const nextMilestone=(Math.floor(completed/10)+1)*10;
 
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
     <div className={styles.shell}>
       <header className={styles.header}>
-        <a href={powerMode || dailyMode || zenMode ? "/jelloo" : "/quiz"} className={styles.back}>← {powerMode || dailyMode || zenMode ? "Adventure" : "Home"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
-        <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>
+        <a href={verificationMode ? "/jelloo/invite" : powerMode || dailyMode || zenMode ? "/jelloo" : "/"} className={styles.back}>← {powerMode || dailyMode || zenMode ? "Adventure" : "Home"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
+        {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
       </header>
-      <p className={styles.subtitle}>{zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Tiles ghumao, raasta jodo — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Tiles ghumao, raasta jodo — ${pal.name} in ${currentWorld.name}!`}</p>
+      <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
-      {!powerMode && !dailyMode && !zenMode ? (
+      {!powerMode && !dailyMode && !zenMode && !verificationMode ? (
         <div className={styles.modeLinks}>
+          <a className={styles.palsLink} href="/jelloo/invite"><b>Invite friends & earn →</b><span>Cosmetic rewards</span></a>
           <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></a>
           <a className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></a>
           <a className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed infinite play</span></a>
@@ -81,17 +84,58 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
                 {level.fork?.tile===index ? <span className={styles.forkIcon} aria-hidden="true">⑂</span> : null}
                 {tile.terrain ? <span className={styles.terrainTag}>{tile.terrain}</span> : null}
                 {level.collectibles?.includes(index) ? <span className={styles.collectible} data-collected={collected.includes(index)} aria-hidden="true">★</span> : null}
-                {tile.kind === "start" ? <span className={styles.startMarker}>START</span> : null}
-                {tile.kind === "home" ? <><span className={styles.cottage} aria-hidden="true"/><span className={styles.homeEmoji} aria-hidden="true">{currentWorld.homeEmoji}</span><span className={styles.homeMarker}>HOME</span></> : null}
+                {tile.kind === "start" ? <span className={styles.startMarker}>{level.jellies?.find(j=>j.start===index)?.character.toUpperCase() ?? "START"}</span> : null}
+                {tile.kind === "home" ? <><span className={styles.cottage} aria-hidden="true"/><span className={styles.homeEmoji} aria-hidden="true">{currentWorld.homeEmoji}</span><span className={styles.homeMarker}>{level.jellies?.find(j=>j.home===index) ? `${level.jellies.find(j=>j.home===index)!.character.toUpperCase()} HOME` : "HOME"}</span></> : null}
               </div>;
             })}
-            <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
-              <span className={styles.shadow}/><CharacterSprite character={level.character} status={status} animate={animate}/>
-              {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
-            </div>
+            {isMulti ? (
+              level.jellies!.map((jelly, jIdx) => {
+                const multiTrace = trace as MultiJellyTrace;
+                const jPath = multiTrace?.jellies?.[jIdx]?.path;
+                const pos = jPath ? jPath[Math.min(cursor, jPath.length - 1)] : jelly.start;
+                const reached = jPath ? cursor >= jPath.length - 1 && multiTrace?.multiOutcome === "home" : false;
+                const collided = multiTrace && (multiTrace.multiOutcome === "collision" || multiTrace.multiOutcome === "swap") && cursor >= (multiTrace.steps || 0);
+                const jStatus = collided ? "lost" : reached ? "won" : status;
+                return (
+                  <div
+                    key={`${jIdx}-${jelly.character}`}
+                    className={styles.traveller}
+                    data-animate={animate}
+                    style={{
+                      left: `${(pos % level.size + 0.5) / level.size * 100}%`,
+                      top: `${(Math.floor(pos / level.size) + 0.9) / level.size * 100}%`,
+                      width: `${94 / level.size}%`,
+                      zIndex: 10 + jIdx,
+                    }}
+                  >
+                    <span className={styles.shadow} />
+                    <CharacterSprite character={jelly.character} status={jStatus} animate={animate} />
+                    {reached ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
+                  </div>
+                );
+              })
+            ) : (
+              <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
+                <span className={styles.shadow}/><CharacterSprite character={level.character} status={status} animate={animate}/>
+                {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
+              </div>
+            )}
           </div>
         </div>
-        <div className={styles.status} role="status" aria-live="polite">{preparing ? "Preparing your next puzzle…" : generationError || (status === "running" ? `Here comes ${pal.name}…` : status === "won" ? "Yay, ghar pohanch gayi!" : status === "lost" ? "Out of moves! Restart to try again." : "Green paths are connected. Join them to home!")}</div>
+        <div className={styles.status} role="status" aria-live="polite">
+          {preparing
+            ? "Preparing your next puzzle…"
+            : generationError ||
+              (status === "running"
+                ? (isMulti ? "Here come the pals! Watch out for collisions…" : `Here comes ${pal.name}…`)
+                : status === "won"
+                ? (isMulti ? "All pals arrived safely at home!" : "Yay, you made it home!")
+                : status === "lost"
+                ? "Out of moves! Restart to try again."
+                : status === "blocked"
+                ? (trace && (trace as MultiJellyTrace).multiOutcome === "swap" ? "Oops! Pals collided head-on!" : trace && (trace as MultiJellyTrace).multiOutcome === "collision" ? "Oops! Pals collided in the same cell!" : "Path blocked! Restart or undo to fix it.")
+                : "Green paths are connected. Join them to home!")}
+        </div>
         {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><button className={styles.go} onClick={()=>act({type:"reset"})}>Try again</button></div> : null}
         <div className={styles.controls}>
           <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} onClick={()=>act({type:"undo"})}>↶ Undo</button>
@@ -99,7 +143,7 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
           {status === "won" ? <button className={styles.secondary} onClick={()=>resultDialog.current?.showModal()}>Result ★</button> : <span className={styles.starCount} aria-label={`${collected.length} of ${level.collectibles?.length ?? 0} stars collected`}>★ {collected.length}/{level.collectibles?.length ?? 0}</span>}
         </div>
       </section>
-      {!powerMode && !dailyMode && !zenMode ? <><nav className={styles.levelDots} aria-label="Tutorial levels">{levels.filter(l=>l.id<=completed+1).map(l=><button key={l.id} aria-label={`Level ${l.id}`} aria-current={l.id===level.id ? "step" : undefined} disabled={preparing || status === "running"} onClick={()=>act({type:"visit",id:l.id})}>{l.id}</button>)}</nav>
+      {!powerMode && !dailyMode && !zenMode && !verificationMode ? <><nav className={styles.levelDots} aria-label="Tutorial levels">{levels.filter(l=>l.id<=completed+1).map(l=><button key={l.id} aria-label={`Level ${l.id}`} aria-current={l.id===level.id ? "step" : undefined} disabled={preparing || status === "running"} onClick={()=>act({type:"visit",id:l.id})}>{l.id}</button>)}</nav>
       <details className={styles.options}>
         <summary>Help, levels & settings</summary>
         <div className={styles.worldSection}>
@@ -175,10 +219,10 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
         else if(!event.shiftKey && document.activeElement===last) {event.preventDefault();first?.focus();}
       }}>
         <button className={styles.closeResult} aria-label="Close result" onClick={()=>resultDialog.current?.close()}>×</button>
-        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{zenMode ? "🌸 Zen Puzzle Solved!" : dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, ghar pohanch gayi!"}</h3>
+        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{zenMode ? "🌸 Zen Puzzle Solved!" : dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, you made it home!"}</h3>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
         <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{zenMode ? "A peaceful moment. Take a deep breath." : score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
-        {status === "won" && !zenMode ? (
+        {status === "won" && !zenMode && !verificationMode ? (
           <ShareCardView
             input={{
               mode: dailyMode ? "daily" : "adventure",
@@ -197,8 +241,9 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
             }}
           />
         ) : null}
-        {milestoneReward && !dailyMode && !zenMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
-        {!powerMode && !dailyMode && !zenMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
+        {verificationMode ? <p>No referral is awarded until server verification succeeds.</p> : null}
+        {milestoneReward && !dailyMode && !zenMode && !verificationMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
+        {!powerMode && !dailyMode && !zenMode && !verificationMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
         <div className={styles.winActions}>
           <button className={styles.secondary} disabled={preparing} onClick={()=>act({type:"reset"})}>Try again</button>
           {zenMode ? (
@@ -206,7 +251,7 @@ export default function GameView({powerMode=false,dailyMode=false,zenMode=false,
           ) : dailyMode ? (
             <a href="/jelloo" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Back to Adventure →</a>
           ) : (
-            <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : "Next Level →"}</button>
+            <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Level →"}</button>
           )}
         </div>
         {generationError ? <p role="alert">{generationError}</p> : null}

@@ -1,0 +1,31 @@
+{
+  "cards": [
+    {
+      "game": "jelloo",
+      "height": 552.4583740234375,
+      "width": 539
+    },
+    {
+      "game": "friendship-quiz",
+      "height": 552.4583740234375,
+      "width": 539
+    }
+  ],
+  "height": 720,
+  "navigation": [
+    {
+      "height": 45,
+      "label": "All Games"
+    },
+    {
+      "height": 45,
+      "label": "Jelloo"
+    },
+    {
+      "height": 45,
+      "label": "Friendship Quiz"
+    }
+  ],
+  "scrollWidth": 1265,
+  "width": 1280
+}

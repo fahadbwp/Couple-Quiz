@@ -36,6 +36,14 @@ export function analyzePuzzle(level: Level, budget = 50000) {
 }
 
 export function collectedStars(game: GameState) {
+  if (game.trace && "jellies" in game.trace) {
+    const visited = new Set<number>();
+    const multiTrace = game.trace as { jellies: { path: number[] }[] };
+    multiTrace.jellies.forEach(j => {
+      j.path.slice(0, game.cursor + 1).forEach(cell => visited.add(cell));
+    });
+    return (game.level.collectibles ?? []).filter(i => visited.has(i));
+  }
   const visited = new Set(game.trace?.path.slice(0,game.cursor+1) ?? []);
   return (game.level.collectibles ?? []).filter(i=>visited.has(i));
 }

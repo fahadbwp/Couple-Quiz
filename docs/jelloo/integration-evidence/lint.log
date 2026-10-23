@@ -1,0 +1,16 @@
+
+> couple-quiz@0.1.0 lint
+> eslint .
+
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\app\quiz\play\[id]\page.tsx
+  116:29  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-mechanics.mjs
+   5:10  warning  'ports' is defined but never used                @typescript-eslint/no-unused-vars
+  11:9   warning  'directions' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-zen.mjs
+  4:28  warning  'ZEN_SIZE_LABELS' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 4 problems (0 errors, 4 warnings)

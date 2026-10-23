@@ -321,13 +321,13 @@ export default function QuizPlayPage({
         <Link
           href="/quiz"
           className="inline-flex items-center gap-1.5 group focus-visible:outline-2 focus-visible:outline-purple-500 rounded-lg"
-          aria-label="Click & Clique homepage"
+          aria-label="Friendship Quiz home"
         >
           <div className="w-5 h-5 flex items-center justify-center">
             <BrandMark />
           </div>
           <span className="text-sm sm:text-base font-black tracking-tight text-slate-900">
-            click <span className="text-purple-600 font-medium">&amp;</span> clique
+            Friendship Quiz
             <span className="text-pink-500">.</span>
           </span>
         </Link>
@@ -579,4 +579,3 @@ export default function QuizPlayPage({
     </div>
   );
 }
-

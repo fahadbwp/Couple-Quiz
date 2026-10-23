@@ -64,10 +64,11 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async headers() {
+    const preview = (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production") || (process.env.CONTEXT && process.env.CONTEXT !== "production") || ["preview", "staging"].includes(process.env.SITE_ENV) || isDev;
     return [
       {
         source: "/(.*)",
-        headers: securityHeaders,
+        headers: [...securityHeaders, ...(preview ? [{key:"X-Robots-Tag",value:"noindex, nofollow"}] : [])],
       },
     ];
   },

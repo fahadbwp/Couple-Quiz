@@ -1,0 +1,22 @@
+Disposable local QA: http://127.0.0.1:3012/jelloo/qa — in-memory PostgreSQL, no Supabase
+ ○ Compiling /jelloo/invite ...
+ ✓ Compiled /jelloo/invite in 9.4s (616 modules)
+ ✓ Compiled in 1347ms (253 modules)
+ GET /jelloo/invite 200 in 10882ms
+ GET /jelloo/invite?ref=1271f614792754749ca7658fc20ee9e6 200 in 179ms
+ GET /jelloo/invite?ref=1271f614792754749ca7658fc20ee9e6 200 in 149ms
+ ○ Compiling /jelloo/qa ...
+ ✓ Compiled /jelloo/qa in 3.5s (610 modules)
+ GET /jelloo/qa?width=390 200 in 5361ms
+ GET /jelloo/invite 200 in 851ms
+ ✓ Compiled in 1214ms (624 modules)
+ GET /jelloo/invite?ref=1271f614792754749ca7658fc20ee9e6 200 in 698ms
+ GET /jelloo/invite 200 in 715ms
+ GET /jelloo/qa?width=390 200 in 702ms
+ GET /jelloo/invite 200 in 278ms
+ GET /jelloo/qa?level=71 200 in 589ms
+ GET /jelloo/qa?level=91 200 in 367ms
+ GET /jelloo/invite 200 in 189ms
+ GET /jelloo/invite?ref=1271f614792754749ca7658fc20ee9e6 200 in 227ms
+ GET /jelloo/qa?width=320 200 in 218ms
+ GET /jelloo/invite 200 in 381ms

@@ -1,4 +1,5 @@
 import { walkPowerLevel } from "./power-solver";
+import { simulateMultiJelly, type MultiJellyTrace } from "./multi-jelly";
 import type { WorldId } from "./worlds";
 export type Direction = 0 | 1 | 2 | 3; // north, east, south, west
 export type TileKind = "blank" | "straight" | "corner" | "tee" | "start" | "home";
@@ -12,6 +13,7 @@ export type Level = {
   character?: Character; foxRoute?: "shortest" | "stars";
   powerVersion?:4; gate?:{tile:number;trigger:number}; door?:{tile:number;switch:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
   world?: WorldId; dailyDate?: string;
+  jellies?: { character: Character; start: number; home: number; color?: string }[];
 };
 export type PowerState={jumpUsed:boolean;broken:number[];branches:Record<string,Direction>;switches:number[]};
 export type Trace = { path: number[]; outcome: "home" | "disconnected" | "edge" | "loop"; states?:PowerState[] };
@@ -32,6 +34,7 @@ export function neighbour(index: number, direction: Direction, size: number): nu
 }
 
 export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
+  if (level.jellies && level.jellies.length > 1) return simulateMultiJelly(level, tiles);
   if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) return walkPowerLevel(level,tiles);
   if (level.character) return powerPaths(level,tiles).trace;
   if(tiles.some(t=>t.kind === "tee")) {
@@ -64,6 +67,15 @@ export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
 }
 
 export function connectedPaths(level: Level, tiles: readonly Tile[]) {
+  if (level.jellies && level.jellies.length > 1) {
+    const trace = simulateMultiJelly(level, tiles);
+    const connected = Array.from(new Set(trace.jellies.flatMap(j => j.path)));
+    const parents: Record<number, number> = {};
+    trace.jellies.forEach(j => {
+      j.path.forEach((at, i) => { parents[at] = i ? j.path[i - 1] : -1; });
+    });
+    return { connected, parents };
+  }
   if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) {
     const trace=walkPowerLevel(level,tiles),parents:Record<number,number>={};
     trace.path.forEach((at,i)=>{parents[at]=i ? trace.path[i-1] : -1;});
@@ -154,8 +166,20 @@ export function gameReducer(state: GameState, action: Action): GameState {
     if (state.status !== "running" || action.runId !== state.runId || !state.trace) return state;
     if (state.cursor < state.trace.path.length - 1) {
       const departed=state.trace.path[state.cursor];
-      const tiles=state.level.powerVersion!==4 && state.level.character==="panda" && state.tiles[departed].terrain==="cracked"
-        ? state.tiles.map((t,i)=>i===departed ? {kind:"blank" as const,rotation:0} : t) : state.tiles;
+      let tiles = state.tiles;
+      if (state.level.jellies && state.level.jellies.length > 1) {
+        const multiTrace = state.trace as MultiJellyTrace;
+        multiTrace.jellies?.forEach(j => {
+          if (j.character === "panda" && state.cursor < j.path.length - 1) {
+            const cell = j.path[state.cursor];
+            if (state.tiles[cell]?.terrain === "cracked") {
+              tiles = tiles.map((t, i) => i === cell ? { kind: "blank" as const, rotation: 0 } : t);
+            }
+          }
+        });
+      } else if (state.level.powerVersion!==4 && state.level.character==="panda" && state.tiles[departed]?.terrain==="cracked") {
+        tiles = state.tiles.map((t,i)=>i===departed ? {kind:"blank" as const,rotation:0} : t);
+      }
       return {...state,tiles,cursor:state.cursor+1};
     }
     return {...state, status: state.trace.outcome === "home" ? "won" : "blocked"};

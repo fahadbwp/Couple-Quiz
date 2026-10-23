@@ -271,11 +271,11 @@ export default function QuizResultPage({
         <Link
           href="/quiz"
           className="inline-flex items-center gap-2.5 no-underline group focus-visible:outline-3 focus-visible:outline-[#6650b7]"
-          aria-label="Click & Clique homepage"
+          aria-label="Friendship Quiz home"
         >
           <BrandMark />
           <span className="text-xl font-black tracking-tight text-[#29324c]">
-            click <span className="text-[#6650b7] font-medium">&amp;</span> clique
+            Friendship Quiz
             <span className="text-[#bd4a66]">.</span>
           </span>
         </Link>

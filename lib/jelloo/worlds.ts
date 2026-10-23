@@ -168,7 +168,9 @@ export function milestoneRewardFor(completedLevel: number): string | null {
   if (completedLevel === 30) return "Octopus Unlocked! (Swims across water paths)";
   if (completedLevel === 40) return "Snow World & Fox Unlocked! (Picks branching routes)";
   if (completedLevel === 60) return "Candy Land World & Winter Medal Unlocked!";
+  if (completedLevel === 70) return "👯 Two-Jelly Mode Unlocked! Coordinate two pals simultaneously!";
   if (completedLevel === 80) return "Space World & Sugar Star Badge Unlocked!";
+  if (completedLevel === 90) return "🌟 Three-Jelly Mode Unlocked! Coordinate three pals at once in Space!";
   if (completedLevel === 100) return "👑 Jelloo Grand Master Crown Unlocked! You mastered all 100 levels!";
   return null;
 }

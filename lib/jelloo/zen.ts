@@ -32,9 +32,9 @@ export function newZenStore(): ZenStore {
   };
 }
 
-export function decodeZenStore(raw: string, completedAdventureLevels: number = 0): ZenStore {
+export function decodeZenStore(raw: unknown, completedAdventureLevels: number = 0): ZenStore {
   try {
-    if (!raw || raw.length > 8192) return newZenStore();
+    if (typeof raw !== "string" || !raw || raw.length > 8192) return newZenStore();
     const s = JSON.parse(raw);
     if (!s || s.version !== 1) return newZenStore();
 

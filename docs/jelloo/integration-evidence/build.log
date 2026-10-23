@@ -1,0 +1,59 @@
+
+> couple-quiz@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.28
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 51s
+   Linting and checking validity of types ...
+
+./app/quiz/play/[id]/page.tsx
+116:29  Warning: 'event' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/16) ...
+   Generating static pages (4/16)
+   Generating static pages (8/16)
+   Generating static pages (12/16)
+ ✓ Generating static pages (16/16)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      128 B         113 kB
+├ ○ /_not-found                             1 kB         104 kB
+├ ƒ /api/jelloo/referrals                  169 B         103 kB
+├ ƒ /api/og/quiz/[id]                      169 B         103 kB
+├ ƒ /api/quiz                              169 B         103 kB
+├ ƒ /api/quiz/[id]                         169 B         103 kB
+├ ƒ /api/quiz/[id]/attempt                 169 B         103 kB
+├ ƒ /api/quiz/[id]/player-result           169 B         103 kB
+├ ƒ /api/quiz/[id]/scoreboard              169 B         103 kB
+├ ○ /design-preview/question             11.6 kB         122 kB
+├ ○ /jelloo                              3.83 kB         132 kB
+├ ○ /jelloo/art                          2.29 kB         105 kB
+├ ○ /jelloo/daily                        5.67 kB         130 kB
+├ ○ /jelloo/invite                       5.56 kB         130 kB
+├ ○ /jelloo/pals                         4.16 kB         133 kB
+├ ƒ /jelloo/qa                             696 B         125 kB
+├ ○ /jelloo/zen                          5.73 kB         134 kB
+├ ○ /jelly-pals                            169 B         103 kB
+├ ○ /quiz                                  128 B         113 kB
+├ ○ /quiz/create                         27.3 kB         138 kB
+├ ƒ /quiz/play/[id]                      6.37 kB         120 kB
+├ ƒ /quiz/result/[id]                    4.14 kB         118 kB
+├ ƒ /quiz/scoreboard/[id]                8.41 kB         119 kB
+├ ƒ /quiz/share/[id]                     4.48 kB         119 kB
+├ ○ /robots.txt                            169 B         103 kB
+└ ○ /sitemap.xml                           169 B         103 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1255-dc3ddf72a1dc71a7.js      46.6 kB
+  ├ chunks/4bd1b696-f785427dddbba9fb.js  54.2 kB
+  └ other shared chunks (total)          2.07 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Your Quiz Is Ready! | Click & Clique",
+  title: "Your Quiz Is Ready! | PlayNudge",
   robots: {
     index: false,
     follow: false,

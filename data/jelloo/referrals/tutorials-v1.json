@@ -1,0 +1,1038 @@
+[
+  {
+    "id": 1,
+    "title": "A little hello",
+    "hint": "Tap the middle path once to turn it. Then press Go!",
+    "size": 4,
+    "start": 12,
+    "home": 15,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 1
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      }
+    ],
+    "collectibles": [
+      14
+    ],
+    "moveLimit": 3,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 2,
+    "title": "Around the corner",
+    "hint": "Corner tiles connect two neighbouring sides. Turn the bend toward home.",
+    "size": 4,
+    "start": 12,
+    "home": 11,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      9
+    ],
+    "moveLimit": 4,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 3,
+    "title": "A path to the sky",
+    "hint": "Match both sides of every connection, all the way to the cottage.",
+    "size": 4,
+    "start": 12,
+    "home": 3,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      5
+    ],
+    "moveLimit": 9,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 4,
+    "title": "The scenic route",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 4,
+    "start": 12,
+    "home": 3,
+    "tiles": [
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 1
+      },
+      {
+        "kind": "tee",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      5
+    ],
+    "moveLimit": 16,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 5,
+    "title": "A bigger meadow",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "tee",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      12
+    ],
+    "moveLimit": 14,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 6,
+    "title": "A few distractions",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 1
+      },
+      {
+        "kind": "tee",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      12
+    ],
+    "moveLimit": 14,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 7,
+    "title": "Across the garden",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "tee",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "collectibles": [
+      7
+    ],
+    "moveLimit": 18,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 8,
+    "title": "The winding way",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 1
+      },
+      {
+        "kind": "tee",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      10
+    ],
+    "moveLimit": 21,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 9,
+    "title": "A loop around",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "tee",
+        "rotation": 2
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 6
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "collectibles": [
+      11
+    ],
+    "moveLimit": 19,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  },
+  {
+    "id": 10,
+    "title": "Home, sweet home",
+    "hint": "Green paths are connected to Bunny. T-junctions branch; Bunny takes the shortest connected route home. Keep the stars on that route.",
+    "size": 5,
+    "start": 20,
+    "home": 4,
+    "tiles": [
+      {
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "home",
+        "rotation": 0,
+        "port": 3
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 5
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "kind": "corner",
+        "rotation": 4
+      },
+      {
+        "kind": "start",
+        "rotation": 0,
+        "port": 1
+      },
+      {
+        "kind": "tee",
+        "rotation": 1
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "blank",
+        "rotation": 0
+      },
+      {
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "collectibles": [
+      18
+    ],
+    "moveLimit": 30,
+    "difficulty": "Tutorial",
+    "world": "meadow"
+  }
+]

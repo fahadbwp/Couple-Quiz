@@ -1,0 +1,29 @@
+Jelloo referral request failed: configuration/storage unavailable
+Jelloo referral request failed: configuration/storage unavailable
+Jelloo referral request failed: configuration/storage unavailable
+✔ referral frozen tutorials match originals; all ten legal replays win in server and game (14473.4109ms)
+✔ SQL migration repeatable, RLS enabled; anonymous users cannot read or call private RPC (54.3597ms)
+✔ valid journey credits only Level 10; exact concurrent retries issue one durable reward (770.2237ms)
+✔ five different guests qualifying together grant thresholds 1,3,5 once each (1084.7207ms)
+✔ same identity cannot refer itself and attribution cannot be replaced or duplicated (398.5007ms)
+✔ no skipping levels, cross-identity sessions, unknown nonces, wrong revisions or replay mutation (237.7817ms)
+✔ expired link and session rejected; restarting expires old nonce and preserves attribution (202.8128ms)
+✔ private recovery restores reward identity, secure cookie; public code/hash cannot restore (223.1565ms)
+✔ renew link invalidates previous link without losing rewards or accepted sessions (111.6392ms)
+✔ fabricated flags, illegal actions, over-budget turns, undo refunds and unfinished paths rejected (138.0609ms)
+✔ reset is a new legal attempt; legal undo never refunds moves (52.8686ms)
+✔ request origin, body, content type and prototype operation input guards (83.587ms)
+✔ database rate limits bound identities and IP even with forged forwarding headers (884.382ms)
+✔ storage outage and commit-response loss fail safely and retry without duplicate credit (282.8413ms)
+✔ reward transaction failure rolls back qualification and nonce; retry safely awards once (362.3798ms)
+✔ streamed body limits ignore forged Content-Length; service role can execute only private RPC (86.8391ms)
+✔ corrupt persistence output fails closed; SQL constraints protect counter and reward integrity (95.0894ms)
+✔ missing or invalid server configuration fails closed without contacting database (61.7522ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22132.3645
