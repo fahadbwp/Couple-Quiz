@@ -111,9 +111,21 @@ export default function JellooGame() {
         }
       }
 
-      const onPopState = () => {
+      let activeLevel = restored.game.level.id;
+      if (levelParam) {
+        const t = Number(levelParam);
+        if (Number.isSafeInteger(t) && t >= 1 && t <= restored.completed + 1) activeLevel = t;
+      }
+
+      if (!window.history.state || window.history.state.level === undefined) {
+        window.history.replaceState({ level: activeLevel }, "", window.location.href);
+      }
+
+      const onPopState = (event: PopStateEvent) => {
         const currentParams = new URLSearchParams(window.location.search);
-        const popLevel = Number(currentParams.get("level"));
+        const stateLevel = typeof event.state?.level === "number" ? event.state.level : null;
+        const queryLevel = currentParams.get("level") ? Number(currentParams.get("level")) : null;
+        const popLevel = stateLevel ?? queryLevel ?? activeLevel;
         const rawSave = localStorage.getItem(SAVE_KEY);
         const curJourney = rawSave ? decodeJourney(rawSave) : null;
         const maxAllowed = (curJourney ? curJourney.completed : restored.completed) + 1;
@@ -122,6 +134,7 @@ export default function JellooGame() {
         }
       };
       window.addEventListener("popstate", onPopState);
+      setReady(true);
       return () => window.removeEventListener("popstate", onPopState);
     }
     setReady(true);
