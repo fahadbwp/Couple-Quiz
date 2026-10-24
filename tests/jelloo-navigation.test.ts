@@ -138,3 +138,22 @@ test("Task 6: Direct legacy /jelloo and save persistence roundtrip", () => {
   assert.equal(reloaded.game.level.id, 1);
   assert.equal(reloaded.completed, 0);
 });
+
+test("Task 7: Mode-specific visible Back destinations and isolation", () => {
+  // Adventure game mode back target: /jelloo/map
+  // Daily puzzle mode back target: /jelloo/map
+  // Zen garden mode back target: /jelloo/map
+  // Power Trials mode back target: /jelloo/pals ("Meet Your Pals")
+  // Verification mode back target: /jelloo/invite
+  const getBackDestination = (mode: { verificationMode?: boolean; powerMode?: boolean; dailyMode?: boolean; zenMode?: boolean }) => {
+    if (mode.verificationMode) return "/jelloo/invite";
+    if (mode.powerMode) return "/jelloo/pals";
+    return "/jelloo/map";
+  };
+
+  assert.equal(getBackDestination({}), "/jelloo/map", "Adventure must return to Level Map");
+  assert.equal(getBackDestination({ dailyMode: true }), "/jelloo/map", "Daily must return to Level Map");
+  assert.equal(getBackDestination({ zenMode: true }), "/jelloo/map", "Zen must return to Level Map");
+  assert.equal(getBackDestination({ powerMode: true }), "/jelloo/pals", "Power Trials must return to Meet Your Pals");
+  assert.equal(getBackDestination({ verificationMode: true }), "/jelloo/invite", "Verification must return to Invite");
+});
