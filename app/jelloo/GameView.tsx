@@ -1,5 +1,5 @@
-import Link from "next/link";
 "use client";
+import Link from "next/link";
 import type { MultiJellyTrace } from "@/lib/jelloo/multi-jelly";
 import type { CSSProperties, RefObject, ReactNode } from "react";
 import { connectedPaths, ports } from "@/lib/jelloo/engine";
