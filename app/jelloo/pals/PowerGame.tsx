@@ -83,8 +83,8 @@ export default function PowerGame() {
   if(!ready) return <main className={styles.page}><p role="status">Opening your pals…</p></main>;
   return <GameView powerMode journey={{game,completed,seed:0,motion,muted,rules:3,best:{}}} animate={animate} preparing={false} generationError="" saveMessage={message} reducedMotion={reduced} act={act} board={board} resultDialog={dialog} winHeading={heading} extra={<>
     <section className={styles.collection} aria-label="Character collection">
-      <h2>Little pals. Big powers.</h2>
-      <p>Master special abilities in dedicated Power Trials. Adventure levels feature specific pals automatically.</p>
+      <h2>Power Trials — practice with your pals</h2>
+      <p>Power Trials are optional practice puzzles that teach each pal’s special ability. Pick a pal to train here. Adventure chooses its own pal for each level; your selection here does not change it.</p>
       <div className={styles.palCards}>{pals.map(p=>{
         const unlocked=canPlayPal(p.id,completed);
         return <button key={p.id} aria-pressed={character===p.id} disabled={!unlocked || busy} onClick={()=>load(p.id,1)} title={p.power}>
@@ -94,6 +94,7 @@ export default function PowerGame() {
       })}</div>
       <p className={styles.unlockProgress}>{completed} adventure levels complete · {pals.filter(p=>canPlayPal(p.id,completed)).length}/5 pals unlocked</p>
     </section>
+    <p>Now training: <strong>{pals.find(p=>p.id===character)!.name} · Trial {trial} of 3</strong>. Trials save their own stars and are never required to advance in Adventure.</p>
     <nav className={styles.trialTabs} aria-label="Power trials">{[1,2,3].map(n=><button key={n} disabled={busy} aria-current={trial===n ? "step" : undefined} onClick={()=>load(character,n)}>Trial {n}<small>{stars[`${character}-${n}`] ? "★".repeat(stars[`${character}-${n}`]) : "○ ○ ○"}</small></button>)}</nav>
     <button className={styles.motion} aria-pressed={motion} onClick={()=>act({type:"motion"})}>Animation: {motion ? "on" : "off"}</button>
   </>}/>;
