@@ -14,11 +14,13 @@ export function journeyReducer(state: Journey, action: JourneyAction): Journey {
     if (process.env.NODE_ENV === "production") return state;
     if (!Number.isSafeInteger(action.id) || action.id < 1) return state;
     const completed = Math.max(state.completed, action.id - 1);
-    return {...state,completed,rules:4,multiRevision:2,game:initialGame(levelAt(action.id,state.seed,4,2),state.game.runId+1)};
+    const multiRevision = state.multiRevision === 0 ? 1 : (state.multiRevision ?? 2);
+    return {...state,completed,rules:4,multiRevision,game:initialGame(levelAt(action.id,state.seed,4,multiRevision),state.game.runId+1)};
   }
   if (action.type === "visit") {
     if (!Number.isSafeInteger(action.id) || action.id < 1 || action.id > state.completed+1 || action.id === state.game.level.id) return state;
-    return {...state,rules:4,multiRevision:2,game:initialGame(action.prepared?.id === action.id ? action.prepared : levelAt(action.id,state.seed,4,2),state.game.runId+1)};
+    const multiRevision = state.multiRevision === 0 ? 1 : (state.multiRevision ?? 2);
+    return {...state,rules:4,multiRevision,game:initialGame(action.prepared?.id === action.id ? action.prepared : levelAt(action.id,state.seed,4,multiRevision),state.game.runId+1)};
   }
   const game = gameReducer(state.game,action);
   const best = {...state.best};
