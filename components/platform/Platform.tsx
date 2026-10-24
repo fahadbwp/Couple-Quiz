@@ -126,6 +126,7 @@ export function PlatformFooter() {
         <p>A little play goes a long way.</p>
       </div>
       <nav aria-label="Footer navigation">
+        <Link href="/privacy">Privacy</Link>
         <Link
           href="/games"
         >
