@@ -180,3 +180,71 @@ test("Integration Guard: Revision-1 puzzles never silently become Revision-2 mid
   assert.equal(reDecoded.multiRevision, 1, "Must remain revision 1 across saves during active attempt");
   assert.equal(reDecoded.game.level.par, 2, "Par must remain 2");
 });
+
+test("Integration Guard: Revision-0 active puzzle retains original layout, rotations, moves, and par across reload, undo, restart, and map navigation", () => {
+  const { levelAt } = require("../lib/jelloo/endless");
+  const l71_0 = levelAt(71, 42, 4, 0);
+  assert.equal(l71_0.jellies, undefined, "Rev 0 board has no multi-jellies");
+  assert.equal(l71_0.tiles.length, 25, "Rev 0 Level 71 is 5x5 (25 tiles)");
+
+  const rev0Saved = {
+    version: 1,
+    generator: 1,
+    multiRevision: 0,
+    rules: 4,
+    best: { "70": 3 },
+    seed: 42,
+    completed: 70,
+    id: 71,
+    moves: 1,
+    motion: true,
+    won: false,
+    rotations: l71_0.tiles.map((t: any) => ((t.rotation % 4) + 4) % 4),
+  };
+
+  const decoded = decodeJourney(JSON.stringify(rev0Saved))!;
+  assert.ok(decoded);
+  assert.equal(decoded.multiRevision, 0);
+  assert.equal(decoded.game.level.id, 71);
+  assert.equal(decoded.game.moves, 1);
+  assert.equal(decoded.game.level.tiles.length, 25);
+  assert.equal(decoded.game.level.jellies, undefined);
+  assert.deepEqual(decoded.game.level.tiles, l71_0.tiles);
+
+  // 1. Map navigation to current active level (e.g. clicking Level 71 on map)
+  const clickedMapCurrent = journeyReducer(decoded, { type: "visit", id: 71 });
+  assert.equal(clickedMapCurrent, decoded, "Map click on current active level must return state without re-generating");
+  assert.equal(clickedMapCurrent.multiRevision, 0);
+  assert.equal(clickedMapCurrent.game.level.tiles.length, 25);
+  assert.equal(clickedMapCurrent.game.moves, 1);
+
+  // 2. Tile rotation and Undo
+  const rotIdx = decoded.game.tiles.findIndex(t => !t.locked && ["straight", "corner"].includes(t.kind));
+  assert(rotIdx >= 0);
+  const origRot = decoded.game.tiles[rotIdx].rotation;
+
+  const rotated = journeyReducer(decoded, { type: "rotate", index: rotIdx });
+  assert.equal(rotated.multiRevision, 0);
+  assert.equal(rotated.game.moves, 2);
+  assert.equal(rotated.game.tiles[rotIdx].rotation, origRot + 1);
+
+  const undone = journeyReducer(rotated, { type: "undo" });
+  assert.equal(undone.multiRevision, 0);
+  assert.equal(undone.game.tiles[rotIdx].rotation, origRot);
+
+  // 3. Restart
+  const restarted = journeyReducer(undone, { type: "reset" });
+  assert.equal(restarted.multiRevision, 0);
+  assert.equal(restarted.game.moves, 0);
+  assert.deepEqual(restarted.game.tiles, l71_0.tiles);
+
+  // 4. Persistence roundtrip
+  const reEncoded = encodeJourney(restarted);
+  const reDecoded = decodeJourney(reEncoded)!;
+  assert.ok(reDecoded);
+  assert.equal(reDecoded.multiRevision, 0);
+  assert.equal(reDecoded.game.level.tiles.length, 25);
+  assert.equal(reDecoded.game.level.jellies, undefined);
+  assert.equal(reDecoded.completed, 70);
+  assert.equal(reDecoded.best["70"], 3);
+});
