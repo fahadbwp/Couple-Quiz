@@ -59,6 +59,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         </div>
         {level.intro ? <div className={styles.introWelcome}><span className={styles.introPortrait}><CharacterSprite character={level.character} animate={animate}/></span><b>Hello, {pal.name}! ♡</b><span aria-label="No move limit">∞</span></div> : null}
         {level.fork ? <fieldset className={styles.branchChoice}><legend>Fox: choose your branch before the last move</legend>{level.fork.exits.map(direction=><button key={direction} disabled={status==="running" || status==="won" || status==="lost"} aria-pressed={level.choices?.[level.fork!.tile]===direction} onClick={()=>act({type:"branch",direction})}>{["↑","→","↓","←"][direction]} {directions[direction]}</button>)}</fieldset> : null}
+        {level.door ? <p role="status">Pressure plate A opens door A. Door A: {switches.includes(level.door.switch) ? "open" : "locked — visit the plate first"}.</p> : null}
         <div className={styles.boardFrame}>
           <div ref={board} tabIndex={-1} className={styles.board} style={{"--size":level.size} as CSSProperties} role="group" aria-label={`Level ${level.id}, ${level.size} by ${level.size} puzzle board in ${currentWorld.name}`}>
             {tiles.map((tile,index)=>{

@@ -9,6 +9,10 @@ export default async function LocalQA({searchParams}:{searchParams:Promise<Recor
     return <main><h1>Local QA · {width}px viewport</h1><iframe title="QA viewport" src={target} style={{width,height:844,border:0,maxWidth:"100%"}}/></main>;
   }
   const {default:LocalQAGame}=await import("./LocalQAGame");
+  if(q.fixture==="switch") {
+    const {switchFixture}=await import("@/lib/jelloo/pals");
+    return <><h1>Existing pressure-plate fixture — real engine, no saves</h1><LocalQAGame level={switchFixture()}/></>;
+  }
   const {levelAt}=await import("@/lib/jelloo/endless");
   const {solveMultiJelly}=await import("@/lib/jelloo/multi-jelly");
   const level=levelAt(q.level==="91"?91:71,42);

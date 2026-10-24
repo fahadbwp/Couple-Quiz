@@ -18,6 +18,9 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
     const switches = tile.terrain === "switch" && !power.switches.includes(at)
       ? [...power.switches, at]
       : power.switches;
+    // Arrival presses the plate immediately; render and replay this same state,
+    // rather than waiting until the character has left for the next tile.
+    if(switches!==power.switches) states[states.length-1]={...power,switches};
     if(level.gate?.tile===at) {
       const isSwitch = oriented[level.gate.trigger]?.terrain === "switch";
       const open = isSwitch ? switches.includes(level.gate.trigger) : power.broken.includes(level.gate.trigger);

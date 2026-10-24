@@ -1,0 +1,16 @@
+✔ Task 1 & 7: New player and saved player at Level 27 progress structure (31.9272ms)
+✔ Task 3: Out-of-moves modal triggers on limit exhaustion, last-move win succeeds, and retry works (1.1297ms)
+✔ Task 4: Next Level unlock, preservation of stars/best, and world/endless transitions (0.3557ms)
+✔ Task 5: Character unlock thresholds and pal trials vs adventure level requirements (1.947ms)
+✔ Task 6: Pressure plate switch and door/gate activation (0.6797ms)
+✔ pressure plate is active on arrival and only its linked door opens (4.5214ms)
+✔ real reducer resets pressure and door state on undo, restart and retry (3.5656ms)
+✔ all actual Panda trials retain cracked-tile gates distinct from pressure plates (8.2286ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 379.0728
