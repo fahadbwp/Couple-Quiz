@@ -1,0 +1,21 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {recordDailyWin} from "../lib/jelloo/daily-results";
+import {generateDailyLevel,newDailyStore,encodeDailyStore,decodeDailyStore} from "../lib/jelloo/daily";
+import {gameReducer,initialGame} from "../lib/jelloo/engine";
+import {solvePowerLevel} from "../lib/jelloo/power-solver";
+test("Daily real-engine win settles to the same store identity on repeated effects; streak grants once",()=>{
+ const date="2026-10-24",level=generateDailyLevel(date),solution=solvePowerLevel(level).solution;
+ assert.ok(solution);let game=initialGame(level);
+ const empty=newDailyStore(date);assert.equal(recordDailyWin(empty,game,date),empty);
+ for(let i=0;i<level.tiles.length;i++)for(let t=0;t<(solution[i].rotation-level.tiles[i].rotation+4)%4;t++)game=gameReducer(game,{type:"rotate",index:i});
+ game=gameReducer(game,{type:"go"});
+ for(let i=0;i<100&&game.status==="running";i++)game=gameReducer(game,{type:"tick",runId:game.runId});
+ assert.equal(game.status,"won");
+ const first=recordDailyWin(empty,game,date,"2026-10-24T12:00:00.000Z");
+ assert.equal(first.currentStreak,1);assert.equal(first.history[date].moves,game.moves);
+ for(let i=0;i<10;i++)assert.equal(recordDailyWin(first,game,date,"2026-10-24T13:00:00.000Z"),first);
+ const restored=decodeDailyStore(encodeDailyStore(first),date);
+ assert.equal(recordDailyWin(restored,game,date),restored);
+ assert.equal(first.history[date].completedAt,"2026-10-24T12:00:00.000Z");
+});

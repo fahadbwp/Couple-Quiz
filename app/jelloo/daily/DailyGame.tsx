@@ -7,7 +7,6 @@ import {
   currentUtcDateString,
   generateDailyLevel,
   getDailyMeta,
-  calculateNewStreak,
   decodeDailyStore,
   encodeDailyStore,
   newDailyStore,
@@ -16,7 +15,7 @@ import {
 } from "@/lib/jelloo/daily";
 import { powerStepDuration } from "@/lib/jelloo/pals";
 import { feedbackFor, GameAudio } from "@/lib/jelloo/feedback";
-import { scoreRun } from "@/lib/jelloo/scoring";
+import { recordDailyWin } from "@/lib/jelloo/daily-results";
 import GameView from "../GameView";
 import styles from "../game.module.css";
 
@@ -39,11 +38,16 @@ export default function DailyGame() {
   const heading = useRef<HTMLHeadingElement>(null);
   const audio = useRef<GameAudio | null>(null);
   const previous = useRef(game);
+  const restored = useRef(false);
   const animate = motion && !reduced;
   const busy = game.status === "running";
 
   // Load daily store and restore in-progress state if exists
   useEffect(() => {
+    // Restore once per mounted Daily. Rehydrating after each reducer action
+    // overwrites the new rotation with the previous persisted board.
+    if (restored.current) return;
+    restored.current = true;
     try {
       const raw = localStorage.getItem(DAILY_SAVE_KEY);
       const loaded = decodeDailyStore(raw ?? "", todayUtc);
@@ -112,36 +116,10 @@ export default function DailyGame() {
       return;
     }
 
-    const { currentStreak } = calculateNewStreak(
-      store.currentStreak,
-      store.lastCompletedDate,
-      todayUtc
-    );
-    const newMax = Math.max(store.maxStreak, currentStreak);
-    const stars = scoreRun(game).stars;
+    const updatedStore = recordDailyWin(store, game, todayUtc);
+    if (updatedStore !== store) setStore(updatedStore);
 
-    const updatedStore: DailyStore = {
-      ...store,
-      currentStreak,
-      maxStreak: newMax,
-      lastCompletedDate: todayUtc,
-      history: {
-        ...store.history,
-        [todayUtc]: {
-          date: todayUtc,
-          won: true,
-          moves: game.moves,
-          stars,
-          rotations: game.tiles.map(t => t.rotation % 4),
-          choices: game.level.choices,
-          completedAt: new Date().toISOString(),
-        },
-      },
-    };
-
-    setStore(updatedStore);
-
-    if (saveAllowed) {
+    if (saveAllowed && updatedStore !== store) {
       try {
         localStorage.setItem(DAILY_SAVE_KEY, encodeDailyStore(updatedStore));
       } catch {
