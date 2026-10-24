@@ -88,11 +88,11 @@ export function generatePuzzle(id: number, seed: number, searchBudget = 2400) {
   return {level,solution};
 }
 
-export function levelAt(id: number, seed: number, rules = 4, multiRevision = 1) {
+export function levelAt(id: number, seed: number, rules = 4, multiRevision = 2) {
   let level: Level;
   if (multiRevision >= 1 && rules >= 4 && isMultiJellyLevel(id)) {
     const count = multiJellyCountFor(id);
-    level = count === 3 ? generateThreeJellyPuzzle(id, seed).level : generateTwoJellyPuzzle(id, seed).level;
+    level = count === 3 ? generateThreeJellyPuzzle(id, seed, multiRevision).level : generateTwoJellyPuzzle(id, seed, multiRevision).level;
   } else if(rules>=4 && characterForLevel(id)) level = generatePowerPuzzle(id,seed).level;
   else if (levels[id-1]) level = rules>=3 && id>=4 ? addJunction(levels[id-1],buildTutorial(tutorialSpecs[id-1],true)) : levels[id-1];
   else if (rules === 1) {
