@@ -1,5 +1,9 @@
 "use client";
 import Link from "next/link";
+import {useCosmetics} from "@/components/jelloo/useCosmetics";
+import {CrownedPal,LegendaryCelebration} from "@/components/jelloo/PremiumEffects";
+import {useGameAnalytics} from "@/components/analytics/useGameAnalytics";
+import {trackEvent} from "@/lib/analytics/client";
 import type { MultiJellyTrace } from "@/lib/jelloo/multi-jelly";
 import type { CSSProperties, RefObject, ReactNode } from "react";
 import { connectedPaths, ports, type Character } from "@/lib/jelloo/engine";
@@ -39,10 +43,17 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
   const worldId=level.world ?? currentWorld.id;
   const milestoneReward=milestoneRewardFor(level.id);
   const isMulti = Boolean(level.jellies && level.jellies.length > 1);
+  useGameAnalytics(game,powerMode?"trial":dailyMode?"daily":zenMode?"zen":"adventure",journey.seed,!verificationMode);
+  const cosmetics=useCosmetics(powerMode||dailyMode||zenMode||verificationMode?undefined:journey);
+  const activeCosmetics=verificationMode?{crown:false,dream:false,legendary:false}:cosmetics.active;
   const recentLevels=Array.from({length:Math.min(20,Math.max(0,completed-9))},(_,i)=>completed+1-i).filter(id=>id>10);
   const nextMilestone=(Math.floor(completed/10)+1)*10;
 
-  return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
+  function perform(action:JourneyAction){
+    if(action.type==="reset"&&!powerMode&&!dailyMode&&!zenMode&&!verificationMode)trackEvent("adventure_level_retry",{game:"jelloo",mode:"adventure",level:level.id,outcome:"retry"},`retry:${journey.seed}:${level.id}:${game.runId}:${Date.now()}`);
+    act(action);
+  }
+  return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId} data-dream={activeCosmetics.dream}>
     <div className={styles.shell}>
       <header className={styles.header}>
         <Link
@@ -53,7 +64,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         >
           ← {powerMode ? "Meet Your Pals" : "Level Map"}
         </Link><h1 className={styles.brand}>Jelloo<span>.</span></h1>
-        {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
+        {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>perform({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
       </header>
       <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : effective.requiredCharacter ? `Rotate the tiles, connect the path — ${pal.name} required in ${currentWorld.name}!` : effective.isCosmetic ? `Rotate the tiles, connect the path — ${displayPal.name} (Favourite) in ${currentWorld.name}!` : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
@@ -79,7 +90,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
           <span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span>
         </div>
         {level.intro ? <div className={styles.introWelcome}><span className={styles.introPortrait}><CharacterSprite character={effective.displayCharacter} animate={animate}/></span><b>Hello, {displayPal.name}! ♡</b><span aria-label="No move limit">∞</span></div> : null}
-        {level.fork ? <fieldset className={styles.branchChoice}><legend>Fox: choose your branch before the last move</legend>{level.fork.exits.map(direction=><button key={direction} disabled={status==="running" || status==="won" || status==="lost"} aria-pressed={level.choices?.[level.fork!.tile]===direction} onClick={()=>act({type:"branch",direction})}>{["↑","→","↓","←"][direction]} {directions[direction]}</button>)}</fieldset> : null}
+        {level.fork ? <fieldset className={styles.branchChoice}><legend>Fox: choose your branch before the last move</legend>{level.fork.exits.map(direction=><button key={direction} disabled={status==="running" || status==="won" || status==="lost"} aria-pressed={level.choices?.[level.fork!.tile]===direction} onClick={()=>perform({type:"branch",direction})}>{["↑","→","↓","←"][direction]} {directions[direction]}</button>)}</fieldset> : null}
         {level.door ? <p role="status">Pressure plate A opens door A. Door A: {switches.includes(level.door.switch) ? "open" : "locked — visit the plate first"}.</p> : null}
         <div className={styles.boardFrame}>
           <div ref={board} tabIndex={-1} className={styles.board} style={{"--size":level.size} as CSSProperties} role="group" aria-label={`Level ${level.id}, ${level.size} by ${level.size} puzzle board in ${currentWorld.name}`}>
@@ -99,7 +110,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
               const isDoorOpen = isDoor ? switches.includes(level.door!.switch) : false;
               const barrierOpen = (isGate && isGateOpen) || (isDoor && isDoorOpen);
               return <div key={`${level.id}-${index}`} className={styles.cell} data-connected={connected.includes(index)} data-empty={tile.kind === "blank"} data-terrain={tile.terrain} data-switch-active={tile.terrain === "switch" ? switches.includes(index) : undefined} data-broken={broken.includes(index)} data-hint={level.intro && rotatable} data-gate={isGate || isDoor ? (barrierOpen ? "open" : "closed") : undefined}>
-                {rotatable ? <button className={styles.tileButton} aria-label={label} disabled={preparing || status === "running" || status === "won" || status === "lost"} onClick={()=>act({type:"rotate",index})}>{art}</button> : art}
+                {rotatable ? <button className={styles.tileButton} aria-label={label} disabled={preparing || status === "running" || status === "won" || status === "lost"} onClick={()=>perform({type:"rotate",index})}>{art}</button> : art}
                 {isGate ? <span className={styles.gateIcon} aria-label={isGateOpen ? "Gate opened" : "Gate locked"}>{isGateOpen ? "🔓" : "🔒"}</span> : null}
                 {isDoor ? <span className={styles.gateIcon} aria-label={isDoorOpen ? "Door opened by switch" : "Door locked by switch"}>{isDoorOpen ? "🚪" : "🚪🔒"}</span> : null}
                 {tile.terrain === "switch" ? <span className={styles.switchIcon} data-active={switches.includes(index)} aria-label={switches.includes(index) ? "Pressure plate pressed" : "Pressure plate"}>🔘</span> : null}
@@ -143,7 +154,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                   >
                     <span className={styles.shadow} />
                     <span className={styles.jellyTag} data-color={jellyColor}>{jelly.character}</span>
-                    <CharacterSprite character={jelly.character} status={jStatus} animate={animate} powerActive={isPower} />
+                    <CrownedPal active={activeCosmetics.crown}><CharacterSprite character={jelly.character} status={jStatus} animate={animate} powerActive={isPower} /></CrownedPal>
                     {reached ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
                     {collided ? <span className={styles.collisionMarker} aria-hidden="true">💥</span> : null}
                   </div>
@@ -165,7 +176,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                   <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
                     <span className={styles.shadow}/>
                     {effective.isCosmetic ? <span className={styles.jellyTag} data-color="purple">{displayPal.name} ★</span> : null}
-                    <CharacterSprite character={activeChar} status={activeStatus} animate={animate} powerActive={isPower}/>
+                    <CrownedPal active={activeCosmetics.crown}><CharacterSprite character={activeChar} status={activeStatus} animate={animate} powerActive={isPower}/></CrownedPal>
                     {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
                     {status === "lost" ? <span className={styles.collisionMarker} aria-hidden="true">❌</span> : null}
                   </div>
@@ -188,14 +199,15 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 ? (trace && (trace as MultiJellyTrace).multiOutcome === "swap" ? "Oops! Pals collided head-on!" : trace && (trace as MultiJellyTrace).multiOutcome === "collision" ? "Oops! Pals collided in the same cell!" : "Path blocked! Restart or undo to fix it.")
                 : "Green paths are connected. Join them to home!")}
         </div>
-        {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>act({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
+        {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>perform({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
         <div className={styles.controls}>
-          <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} onClick={()=>act({type:"undo"})}>↶ Undo</button>
-          <button className={styles.go} disabled={preparing} onClick={()=>act({type:"reset"})}>Restart</button>
+          <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} onClick={()=>perform({type:"undo"})}>↶ Undo</button>
+          <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"reset"})}>Restart</button>
           {status === "won" ? <button className={styles.secondary} onClick={()=>resultDialog.current?.showModal()}>Result ★</button> : <span className={styles.starCount} aria-label={`${collected.length} of ${level.collectibles?.length ?? 0} stars collected`}>★ {collected.length}/{level.collectibles?.length ?? 0}</span>}
         </div>
       </section>
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? <>
+      {!verificationMode ? <p><Link href="/jelloo/cosmetics">Your cosmetics →</Link></p> : null}
       <div className={styles.mapBanner}>
         <Link href="/jelloo/map" className={styles.mapBannerLink}>
           <b>🗺️ View Full Adventure Map</b>
@@ -217,7 +229,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                   disabled={!unlocked || preparing || status === "running"}
                   className={styles.worldCard}
                   aria-current={isCurrent ? "true" : undefined}
-                  onClick={() => act({ type: "visit", id: Math.min(completed + 1, Math.max(w.startLevel, w.unlockLevel + 1)) })}
+                  onClick={() => perform({ type: "visit", id: Math.min(completed + 1, Math.max(w.startLevel, w.unlockLevel + 1)) })}
                 >
                   <span className={styles.worldCardIcon}>{w.icon}</span>
                   <div className={styles.worldCardInfo}>
@@ -232,23 +244,23 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         <p>Connected paths turn green. Your pal follows the connected route home. Fox follows the branch you choose; Panda opens the marked gate by breaking its cracked tile. For three stars, keep every golden star on that route and finish within the move limit when one is shown. Introductions have no move limit.</p>
         <p>T-junctions open three sides. Undo keeps your move count. When moves run out, an incomplete path loses. A path finished on the last move still wins. Restart gives you a fresh attempt.</p>
         <label htmlFor="tutorial-select">Revisit a puzzle</label>
-        <select id="tutorial-select" disabled={preparing || status === "running"} value={level.id} onChange={e=>act({type:"visit",id:Number(e.target.value)})}>
+        <select id="tutorial-select" disabled={preparing || status === "running"} value={level.id} onChange={e=>perform({type:"visit",id:Number(e.target.value)})}>
           {levels.filter(l=>l.id<=completed+1).map(l=><option key={l.id} value={l.id}>{l.id}. {l.title}</option>)}
           {level.id>10 && !recentLevels.includes(level.id) ? <option value={level.id}>{level.id}. Replay puzzle</option> : null}
           {recentLevels.map(id=><option key={id} value={id}>{id}. {id===completed+1 ? "Continue adventure" : "Replay puzzle"}</option>)}
         </select>
-        {level.id<completed+1 ? <button className={styles.motion} disabled={preparing} onClick={()=>act({type:"visit",id:completed+1})}>Continue level {completed+1} →</button> : null}
-        <button className={styles.motion} aria-pressed={motion} onClick={()=>act({type:"motion"})}>Animation: {motion ? "on" : "off"}</button>
+        {level.id<completed+1 ? <button className={styles.motion} disabled={preparing} onClick={()=>perform({type:"visit",id:completed+1})}>Continue level {completed+1} →</button> : null}
+        <button className={styles.motion} aria-pressed={motion} onClick={()=>perform({type:"motion"})}>Animation: {motion ? "on" : "off"}</button>
         {process.env.NODE_ENV !== "production" ? (
           <fieldset style={{ margin: "0.75rem 0", padding: "0.5rem 0.75rem", border: "1px dashed #d97706", borderRadius: "8px", background: "rgba(254, 243, 199, 0.5)" }}>
             <legend style={{ fontWeight: "bold", fontSize: "0.8rem", color: "#92400e" }}>Dev Level Jump (local only)</legend>
             <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", alignItems: "center" }}>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 1 })}>L1 Meadow</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 21 })}>L21 Beach</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 41 })}>L41 Snow</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 61 })}>L61 Candy</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 81 })}>L81 Space</button>
-              <button type="button" className={styles.secondary} onClick={() => act({ type: "jump", id: 101 })}>L101 Endless</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 1 })}>L1 Meadow</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 21 })}>L21 Beach</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 41 })}>L41 Snow</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 61 })}>L61 Candy</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 81 })}>L81 Space</button>
+              <button type="button" className={styles.secondary} onClick={() => perform({ type: "jump", id: 101 })}>L101 Endless</button>
               <input
                 type="number"
                 min="1"
@@ -257,7 +269,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 onKeyDown={e => {
                   if (e.key === "Enter") {
                     const val = Number((e.target as HTMLInputElement).value);
-                    if (val >= 1) act({ type: "jump", id: val });
+                    if (val >= 1) perform({ type: "jump", id: val });
                   }
                 }}
               />
@@ -278,6 +290,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
       }}>
         <button className={styles.closeResult} aria-label="Close result" onClick={()=>resultDialog.current?.close()}>×</button>
         <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{zenMode ? "🌸 Zen Puzzle Solved!" : dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, you made it home!"}</h3>
+        <LegendaryCelebration active={status==="won"&&activeCosmetics.legendary} animate={animate&&!reducedMotion}/>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
         <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{zenMode ? "A peaceful moment. Take a deep breath." : score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
         {status === "won" && !zenMode && !verificationMode ? (
@@ -310,16 +323,16 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         {milestoneReward && !dailyMode && !zenMode && !verificationMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
         {!powerMode && !dailyMode && !zenMode && !verificationMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
         <div className={styles.winActions}>
-          <button className={styles.secondary} disabled={preparing} onClick={()=>act({type:"reset"})}>Try again</button>
+          <button className={styles.secondary} disabled={preparing} onClick={()=>perform({type:"reset"})}>Try again</button>
           {!dailyMode && !zenMode && !powerMode && !verificationMode ? (
             <Link href="/jelloo/map" className={styles.secondary} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Level Map</Link>
           ) : null}
           {zenMode ? (
-            <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:0})}>Next Zen Puzzle →</button>
+            <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"visit",id:0})}>Next Zen Puzzle →</button>
           ) : dailyMode ? (
             <Link href="/jelloo/map" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Level Map →</Link>
           ) : (
-            <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Level →"}</button>
+            <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Level →"}</button>
           )}
         </div>
         {generationError ? <p role="alert">{generationError}</p> : null}
@@ -338,7 +351,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
               className={styles.go}
               onClick={() => {
                 outOfMovesDialog.current?.close();
-                act({ type: "reset" });
+                perform({ type: "reset" });
               }}
             >
               Try Again

@@ -593,3 +593,8 @@
 .page[data-motion=false] .modeLinks a { transition: none; transform: none; }
 @media (prefers-reduced-motion: reduce) { .modeLinks a { transition: none; transform: none; } }
 .modeLinks a { min-height: 48px; }
+
+/* Dream palette leaves paths, terrain, locks and collision indicators intact. */
+.page[data-dream="true"] {background:linear-gradient(145deg,#f2eaff,#e9f6ff 55%,#fff0f6)}
+.page[data-dream="true"] .gamePanel {background:#fcf9ff;border-color:#8974b1;box-shadow:0 8px 0 #ded2ef}
+.page[data-dream="true"] .board {box-shadow:0 0 0 3px #a996cf,0 8px 24px #65508b28}

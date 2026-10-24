@@ -13,9 +13,9 @@ export type ReferralStatus = {
   challenge: Challenge | null;
 };
 export const rewardCatalog = [
-  { threshold: 1, name: "Golden Clover", available: false },
-  { threshold: 3, name: "Rainbow Trail", available: false },
-  { threshold: 5, name: "Ambassador badge", available: true },
+  { threshold: 1, name: "Royal Pal Crown", available: true },
+  { threshold: 3, name: "Secret Dream Theme", available: true },
+  { threshold: 5, name: "Legendary Victory Celebration", available: true },
 ] as const;
 export const opaque = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{64}$/.test(v);
 export const codeValid = (v: unknown): v is string => typeof v === "string" && /^[0-9a-f]{32}$/.test(v);

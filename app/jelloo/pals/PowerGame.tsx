@@ -16,6 +16,7 @@ import { decodeJourney, SAVE_KEY, type JourneyAction } from "@/lib/jelloo/progre
 import { feedbackFor, GameAudio } from "@/lib/jelloo/feedback";
 import { scoreRun } from "@/lib/jelloo/scoring";
 import GameView from "../GameView";
+import {trackEvent} from "@/lib/analytics/client";
 import { trialSelection, trialUrl } from "@/lib/jelloo/trial-navigation";
 import CharacterSprite from "../CharacterSprite";
 import styles from "../game.module.css";
@@ -200,6 +201,7 @@ export default function PowerGame() {
     const next = favourite === id ? null : id;
     setFavouritePal(next);
     setFavourite(next);
+    if(next)trackEvent("favourite_pal_equipped",{game:"jelloo",pal:next},`equip:${Date.now()}`);
   }
 
   function act(action: JourneyAction) {
