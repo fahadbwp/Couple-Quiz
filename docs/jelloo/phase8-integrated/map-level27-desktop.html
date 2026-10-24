@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.page {
+  min-height: 100vh;
+  background: #fffaf3;
+  color: #342946;
+  font-family: "Trebuchet MS", system-ui, sans-serif;
+  padding-bottom: 40px;
+}
+.shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px clamp(12px, 4vw, 20px);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ebd9e5;
+}
+.brand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: #7652a2;
+  margin: 0;
+}
+.brand span {
+  color: #df689b;
+}
+.back, .homeLink {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6a4c84;
+  text-decoration: none;
+  padding: 10px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 12px;
+  background: #f4e8f2;
+}
+.back:hover, .homeLink:hover {
+  background: #e9d7e6;
+}
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.title {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0;
+  color: #483359;
+}
+.progress {
+  font-size: 13px;
+  font-weight: 800;
+  background: #e9f5e3;
+  color: #3f6e2f;
+  padding: 4px 10px;
+  border-radius: 16px;
+  border: 1px solid #c9e6bf;
+}
+.loading {
+  text-align: center;
+  color: #7e6383;
+  margin: 40px 0;
+}
+.worldSection {
+  background: #fff;
+  border: 1px solid #ebdbe5;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(90, 62, 94, 0.04);
+}
+.worldSection[data-world="meadow"] { border-top: 4px solid #87ac62; }
+.worldSection[data-world="beach"] { border-top: 4px solid #3aafa9; }
+.worldSection[data-world="snow"] { border-top: 4px solid #6482ad; }
+.worldSection[data-world="candy"] { border-top: 4px solid #f67280; }
+.worldSection[data-world="space"] { border-top: 4px solid #7c5cfc; }
+
+.worldHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.worldIcon {
+  font-size: 26px;
+  line-height: 1;
+}
+.worldMeta {
+  min-width: 0;
+  flex: 1;
+}
+.worldName {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  color: #4b3658;
+}
+.worldRange {
+  font-size: 12px;
+  color: #7e6783;
+  display: block;
+}
+.worldComplete {
+  font-size: 20px;
+}
+.levelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+  gap: 8px;
+}
+.cell {
+  min-width: 0;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 800;
+  position: relative;
+  border: 1.5px solid transparent;
+  padding: 2px;
+  cursor: default;
+}
+button.cell {
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+button.cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+button.cell:active {
+  transform: translateY(0);
+}
+.cell[data-status="completed"] {
+  background: #f7edfc;
+  border-color: #d6b4e6;
+  color: #5d3674;
+}
+.cell[data-status="current"] {
+  background: #ffecb3;
+  border-color: #ffa000;
+  color: #8c5300;
+  box-shadow: 0 0 0 2px #ffc107;
+  animation: pulseCurrent 2s infinite ease-in-out;
+}
+.cell[data-status="locked"] {
+  background: #f0ebf0;
+  border-color: #e2dae2;
+  color: #a89ba8;
+}
+@keyframes pulseCurrent {
+  0%, 100% { box-shadow: 0 0 0 2px #ffc107; }
+  50% { box-shadow: 0 0 0 4px #ffa000; }
+}
+.levelNum {
+  font-size: 16px;
+  line-height: 1;
+}
+.stars {
+  font-size: 10px;
+  display: flex;
+  gap: 1px;
+  margin-top: 2px;
+}
+.stars span {
+  color: #d4c8d8;
+}
+.stars span[data-earned="true"] {
+  color: #f59e0b;
+}
+.lockIcon {
+  font-size: 10px;
+  margin-top: 2px;
+  opacity: 0.6;
+}
+.currentBadge {
+  font-size: 9px;
+  margin-top: 1px;
+  color: #e65100;
+}
+.endlessRow {
+  margin-top: 10px;
+  text-align: center;
+}
+.endlessButton {
+  background: #7352a5;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #4c346d;
+}
+.endlessButton:hover {
+  background: #634394;
+}
+.modeNav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.modeLink {
+  background: #fff;
+  border: 1px solid #ebd9e5;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #624b6e;
+  text-decoration: none;
+}
+.modeLink:hover {
+  background: #fcf4fa;
+}
+
+.cell:focus-visible, .header a:focus-visible, .modeLink:focus-visible { outline: 3px solid #62408c; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .cell[data-status="current"] { animation: none; } button.cell { transition: none; } }
+
+body { margin: 0; background: #fffaf3; font-family: "Trebuchet MS", system-ui, sans-serif; }
+</style>
+</head>
+<body class="page">
+  <div class="shell">
+    <header class="header">
+      <span class="back">← Adventure</span>
+      <h1 class="brand">Jelloo<span>.</span></h1>
+      <span class="homeLink">PlayNudge Home</span>
+    </header>
+    <div class="titleRow">
+      <h2 class="title">🗺️ Adventure Map</h2>
+      <span class="progress">26/100 completed</span>
+    </div>
+    
+      <section class="worldSection" data-world="meadow">
+        <div class="worldHeader">
+          <span class="worldIcon">🌱</span>
+          <div class="worldMeta">
+            <h3 class="worldName">Meadow</h3>
+            <span class="worldRange">Levels 1–20</span>
+          </div>
+        </div>
+        <div class="levelGrid"><div class="cell" data-status="completed"><span class="levelNum">1</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">2</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">3</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">4</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">5</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">6</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">7</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">8</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">9</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">10</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">11</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">12</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">13</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">14</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">15</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">16</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">17</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">18</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">19</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">20</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div></div>
+      </section>
+    
+
+      <section class="worldSection" data-world="beach">
+        <div class="worldHeader">
+          <span class="worldIcon">🌊</span>
+          <div class="worldMeta">
+            <h3 class="worldName">Beach</h3>
+            <span class="worldRange">Levels 21–40</span>
+          </div>
+        </div>
+        <div class="levelGrid"><div class="cell" data-status="completed"><span class="levelNum">21</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">22</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">23</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">24</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">25</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="completed"><span class="levelNum">26</span><span class="stars"><span data-earned="true">★</span><span data-earned="true">★</span><span data-earned="true">★</span></span></div>
+<div class="cell" data-status="current"><span class="levelNum">27</span><span class="currentBadge">▶</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">28</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">29</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">30</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">31</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">32</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">33</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">34</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">35</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">36</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">37</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">38</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">39</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">40</span><span class="lockIcon">🔒</span></div></div>
+      </section>
+    
+
+      <section class="worldSection" data-world="snow">
+        <div class="worldHeader">
+          <span class="worldIcon">⛄</span>
+          <div class="worldMeta">
+            <h3 class="worldName">Snow</h3>
+            <span class="worldRange">Levels 41–60</span>
+          </div>
+        </div>
+        <div class="levelGrid"><div class="cell" data-status="locked"><span class="levelNum">41</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">42</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">43</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">44</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">45</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">46</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">47</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">48</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">49</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">50</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">51</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">52</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">53</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">54</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">55</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">56</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">57</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">58</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">59</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">60</span><span class="lockIcon">🔒</span></div></div>
+      </section>
+    
+
+      <section class="worldSection" data-world="candy">
+        <div class="worldHeader">
+          <span class="worldIcon">🍬</span>
+          <div class="worldMeta">
+            <h3 class="worldName">Candy Land</h3>
+            <span class="worldRange">Levels 61–80</span>
+          </div>
+        </div>
+        <div class="levelGrid"><div class="cell" data-status="locked"><span class="levelNum">61</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">62</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">63</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">64</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">65</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">66</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">67</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">68</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">69</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">70</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">71</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">72</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">73</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">74</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">75</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">76</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">77</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">78</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">79</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">80</span><span class="lockIcon">🔒</span></div></div>
+      </section>
+    
+
+      <section class="worldSection" data-world="space">
+        <div class="worldHeader">
+          <span class="worldIcon">✨</span>
+          <div class="worldMeta">
+            <h3 class="worldName">Space</h3>
+            <span class="worldRange">Levels 81–100</span>
+          </div>
+        </div>
+        <div class="levelGrid"><div class="cell" data-status="locked"><span class="levelNum">81</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">82</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">83</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">84</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">85</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">86</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">87</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">88</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">89</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">90</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">91</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">92</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">93</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">94</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">95</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">96</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">97</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">98</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">99</span><span class="lockIcon">🔒</span></div>
+<div class="cell" data-status="locked"><span class="levelNum">100</span><span class="lockIcon">🔒</span></div></div>
+      </section>
+    
+  </div>
+</body>
+</html>
