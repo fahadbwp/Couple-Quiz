@@ -1,0 +1,5 @@
+Target: local feature/playnudge-phase-8-4; origin fahadbwp/Couple-Quiz.
+Expected release ancestor preserved: 4d28eb33e22db3edb788199c711b9579a799767c
+Changed-file credential-pattern scan: 0 matches (heuristic, not a complete history/security audit).
+Protected source/config paths changed: none
+Production UI/QA routes: verified locally; no deployment or remote DB operations.

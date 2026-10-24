@@ -74,6 +74,22 @@ test("same identity cannot refer itself and attribution cannot be replaced or du
  const repeated=await call({op:"start",code:a.status.code},g.token);assert.deepEqual(repeated.status.challenge,g.challenge);
  assert.equal((await call({op:"status"},a.token)).status.pending,1);
 });
+
+test("phase84 repeated registration and copied recovery stay one identity, not extra referrals",async()=>{
+ const owner=await person(),guest=await invited(owner.status.code);
+ const registered=await call({op:"register"},guest.token);
+ assert.equal(registered.recovery,undefined);
+ assert.equal(registered.status.code,guest.status.code);
+ const restored=await call({op:"restore",recovery:guest.token});
+ assert.equal(restored.status.code,guest.status.code);
+ assert.deepEqual(restored.status.challenge,guest.challenge);
+ const repeated=await call({op:"start",code:owner.status.code},guest.token);
+ assert.deepEqual(repeated.status.challenge,guest.challenge);
+ assert.equal((await call({op:"status"},owner.token)).status.pending,1);
+ // Stolen bearer recovery remains a documented risk, not a new verified person.
+ const count=(await db.query<{n:number}>("select count(*)::int as n from public.jelloo_referral_people")).rows[0].n;
+ assert.equal(count,2);
+});
 test("no skipping levels, cross-identity sessions, unknown nonces, wrong revisions or replay mutation",async()=>{
  const a=await person(),g=await invited(a.status.code),other=await person();
  for(const body of [submission({...g.challenge,level:10}),submission({...g.challenge,nonce:randomUUID()}),submission({...g.challenge,revision:"0".repeat(64)})])assert.equal((await request(body,g.token)).status,409);

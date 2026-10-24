@@ -1,0 +1,16 @@
+
+Route               Status NoIndex
+-----               ------ -------
+/                      200   False
+/games                 200   False
+/jelloo                200   False
+/jelloo/cosmetics      200    True
+/jelloo/invite         200    True
+/privacy               200   False
+/quiz                  200   False
+/internal/growth       404    True
+/jelloo/qa?level=71    404    True
+
+
+Referral POST status: 503; Cache-Control: no-store
+Invite unavailable text: True
