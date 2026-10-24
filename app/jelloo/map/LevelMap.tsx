@@ -119,7 +119,7 @@ export default function LevelMap() {
               <div
                 className={styles.levelGrid}
                 aria-label={`${world.name} levels`}
-                role="list"
+                role="group"
               >
                 {levels.map((lv) => (
                   <LevelCell
@@ -184,7 +184,7 @@ function LevelCell({
   if (!isPlayable) {
     return (
       <div
-        role="listitem"
+        role="group"
         className={styles.cell}
         data-status="locked"
         aria-label={`Level ${lv.id} — locked`}
@@ -198,7 +198,6 @@ function LevelCell({
 
   return (
     <button
-      role="listitem"
       className={styles.cell}
       data-status={lv.status}
       aria-label={`Level ${lv.id}${lv.status === "completed" ? `, ${lv.stars} star${lv.stars !== 1 ? "s" : ""}` : lv.status === "current" ? " — your current level" : ""}`}

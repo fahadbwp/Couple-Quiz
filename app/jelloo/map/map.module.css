@@ -8,13 +8,14 @@
 .shell {
   max-width: 640px;
   margin: 0 auto;
-  padding: 16px 20px;
+  padding: 16px clamp(12px, 4vw, 20px);
 }
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
   padding-bottom: 16px;
   border-bottom: 1px solid #ebd9e5;
 }
@@ -33,7 +34,10 @@
   font-weight: 700;
   color: #6a4c84;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 10px 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border-radius: 12px;
   background: #f4e8f2;
 }
@@ -45,6 +49,8 @@
   align-items: center;
   justify-content: space-between;
   margin: 20px 0 16px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .title {
   font-size: 22px;
@@ -91,6 +97,7 @@
   line-height: 1;
 }
 .worldMeta {
+  min-width: 0;
   flex: 1;
 }
 .worldName {
@@ -109,17 +116,12 @@
 }
 .levelGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
   gap: 8px;
 }
-@media (min-width: 480px) {
-  .levelGrid {
-    grid-template-columns: repeat(10, 1fr);
-    gap: 6px;
-  }
-}
 .cell {
-  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 56px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,11 +168,11 @@ button.cell:active {
   50% { box-shadow: 0 0 0 4px #ffa000; }
 }
 .levelNum {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1;
 }
 .stars {
-  font-size: 8px;
+  font-size: 10px;
   display: flex;
   gap: 1px;
   margin-top: 2px;
@@ -229,3 +231,6 @@ button.cell:active {
 .modeLink:hover {
   background: #fcf4fa;
 }
+
+.cell:focus-visible, .header a:focus-visible, .modeLink:focus-visible { outline: 3px solid #62408c; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .cell[data-status="current"] { animation: none; } button.cell { transition: none; } }
