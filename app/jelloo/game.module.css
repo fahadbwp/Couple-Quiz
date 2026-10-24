@@ -173,7 +173,16 @@
 @media(prefers-reduced-motion:reduce) { .pipe { transition: none !important; } }
 @media(max-width:360px) { .compact .shell { padding-inline: 10px; }.compact .board { gap: 4px; }.compact .levelBar { font-size: 12px; } }
 .modeLinks {display:flex;gap:8px;margin:10px 0 16px;flex-wrap:wrap}
-.modeLinks .palsLink,.modeLinks .dailyLink,.modeLinks .zenLink {flex:1;min-width:140px;margin:0}
+.modeLinks .mapLink,.modeLinks .palsLink,.modeLinks .dailyLink,.modeLinks .zenLink {flex:1;min-width:140px;margin:0}
+.mapLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:1px solid #81c784;border-radius:18px;color:#2e7d32;text-decoration:none;font-size:12px;align-items:center;transition:transform 120ms ease,box-shadow 120ms ease}
+.mapLink:hover {transform:translateY(-1px);box-shadow:0 3px 8px rgba(46,125,50,.2)}
+.mapLink span {max-width:130px;text-align:right;font-size:11px;line-height:1.4;color:#1b5e20}
+.mapBanner {margin:14px 0 12px;text-align:center}
+.mapBannerLink {display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#f5eef8;border:1.5px solid #d2b4de;border-radius:16px;color:#5b2c6f;text-decoration:none;font-size:13px;transition:all 120ms ease}
+.mapBannerLink:hover {background:#ebd9f1;border-color:#bb8fce}
+.mapBannerLink span {font-size:11px;color:#7d3c98}
+.lossActions {display:flex;gap:10px;justify-content:center;margin-top:12px}
+.lossActions button,.lossActions a {flex:1;min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:12px;font-weight:800;font-size:13px}
 .palsLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:#eee5ff;border:1px solid #d8c4ee;border-radius:18px;color:#543e77;text-decoration:none;font-size:12px;align-items:center}
 .palsLink span {max-width:130px;text-align:right;font-size:11px;line-height:1.4}
 .dailyLink {display:flex;justify-content:space-between;gap:10px;padding:12px 14px;background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid #f59e0b;border-radius:18px;color:#78350f;text-decoration:none;font-size:12px;align-items:center;transition:transform 120ms ease,box-shadow 120ms ease}

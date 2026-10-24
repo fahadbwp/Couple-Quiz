@@ -18,6 +18,7 @@ export default function JellooGame() {
   const previous = useRef(game);
   const winHeading = useRef<HTMLHeadingElement>(null);
   const resultDialog = useRef<HTMLDialogElement>(null);
+  const outOfMovesDialog = useRef<HTMLDialogElement>(null);
   const board = useRef<HTMLDivElement>(null);
   const generator = useRef<Worker | null>(null);
   const request = useRef(0);
@@ -87,11 +88,20 @@ export default function JellooGame() {
       setSaveMessage("Saving is unavailable in this browser. You can still play this visit.");
     }
     dispatch({type:"restore",journey:restored});
-    if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
-      const jumpId = Number(params.get("jump") ?? params.get("level"));
-      if (Number.isSafeInteger(jumpId) && jumpId >= 1) {
-        dispatch({type:"jump",id:jumpId});
+      const jumpParam = params.get("jump");
+      const levelParam = params.get("level");
+      if (process.env.NODE_ENV !== "production" && jumpParam) {
+        const jumpId = Number(jumpParam);
+        if (Number.isSafeInteger(jumpId) && jumpId >= 1) {
+          dispatch({type:"jump",id:jumpId});
+        }
+      } else if (levelParam) {
+        const targetId = Number(levelParam);
+        if (Number.isSafeInteger(targetId) && targetId >= 1 && targetId <= restored.completed + 1) {
+          dispatch({type:"visit",id:targetId});
+        }
       }
     }
     setReady(true);
@@ -143,6 +153,16 @@ export default function JellooGame() {
     }
     else if(status !== "won" && dialog.open) dialog.close();
   }, [status,ready]);
+  useEffect(() => {
+    const oomDialog = outOfMovesDialog.current;
+    if (!oomDialog || !ready) return;
+    if (status === "lost" && !oomDialog.open) {
+      const timer = window.setTimeout(() => { if (!oomDialog.open) oomDialog.showModal(); }, 150);
+      return () => window.clearTimeout(timer);
+    } else if (status !== "lost" && oomDialog.open) {
+      oomDialog.close();
+    }
+  }, [status, ready]);
   if (!ready) return <main className={styles.page}><p role="status">Loading Jelloo…</p></main>;
-  return <GameView journey={journey} animate={animate} preparing={preparing} generationError={generationError} saveMessage={saveMessage} reducedMotion={reducedMotion} act={act} board={board} resultDialog={resultDialog} winHeading={winHeading}/>;
+  return <GameView journey={journey} animate={animate} preparing={preparing} generationError={generationError} saveMessage={saveMessage} reducedMotion={reducedMotion} act={act} board={board} resultDialog={resultDialog} outOfMovesDialog={outOfMovesDialog} winHeading={winHeading}/>;
 }
