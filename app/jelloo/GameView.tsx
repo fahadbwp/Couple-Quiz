@@ -37,7 +37,13 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
     <div className={styles.shell}>
       <header className={styles.header}>
-        <Link href={verificationMode ? "/jelloo/invite" : "/jelloo/map"} className={styles.back}>← Level Map</Link><h1 className={styles.brand}>Jelloo<span>.</span></h1>
+        <Link
+          href={verificationMode ? "/jelloo/invite" : powerMode ? "/jelloo/pals" : "/jelloo/map"}
+          className={styles.back}
+          aria-label={powerMode ? "Return to Meet Your Pals" : dailyMode ? "Return to Level Map from Daily" : zenMode ? "Return to Level Map from Zen" : "Back to Level Map"}
+        >
+          ← {powerMode ? "Meet Your Pals" : "Level Map"}
+        </Link><h1 className={styles.brand}>Jelloo<span>.</span></h1>
         {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
       </header>
       <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
