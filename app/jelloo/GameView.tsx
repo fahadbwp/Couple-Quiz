@@ -1,3 +1,4 @@
+import Link from "next/link";
 "use client";
 import type { MultiJellyTrace } from "@/lib/jelloo/multi-jelly";
 import type { CSSProperties, RefObject, ReactNode } from "react";
@@ -36,14 +37,13 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId}>
     <div className={styles.shell}>
       <header className={styles.header}>
-        <a href={verificationMode ? "/jelloo/invite" : powerMode || dailyMode || zenMode ? "/jelloo" : "/jelloo/map"} className={styles.back}>← {powerMode || dailyMode || zenMode ? "Adventure" : "Map"}</a><h1 className={styles.brand}>Jelloo<span>.</span></h1>
+        <Link href={verificationMode ? "/jelloo/invite" : "/jelloo/map"} className={styles.back}>← Level Map</Link><h1 className={styles.brand}>Jelloo<span>.</span></h1>
         {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
       </header>
       <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? (
         <div className={styles.modeLinks}>
-          <a className={styles.mapLink} href="/jelloo/map"><b>🗺️ Level Map →</b><span>All 100 levels</span></a>
           <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></a>
           <a className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></a>
           <a className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed play</span></a>
@@ -137,7 +137,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 ? (trace && (trace as MultiJellyTrace).multiOutcome === "swap" ? "Oops! Pals collided head-on!" : trace && (trace as MultiJellyTrace).multiOutcome === "collision" ? "Oops! Pals collided in the same cell!" : "Path blocked! Restart or undo to fix it.")
                 : "Green paths are connected. Join them to home!")}
         </div>
-        {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>act({type:"reset"})}>Try again</button><a href="/jelloo/map" className={styles.secondary}>Level Map</a></div></div> : null}
+        {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>act({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
         <div className={styles.controls}>
           <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} onClick={()=>act({type:"undo"})}>↶ Undo</button>
           <button className={styles.go} disabled={preparing} onClick={()=>act({type:"reset"})}>Restart</button>
@@ -146,10 +146,10 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
       </section>
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? <>
       <div className={styles.mapBanner}>
-        <a href="/jelloo/map" className={styles.mapBannerLink}>
+        <Link href="/jelloo/map" className={styles.mapBannerLink}>
           <b>🗺️ View Full Adventure Map</b>
           <span>All 100 levels · {completed}/100 completed</span>
-        </a>
+        </Link>
       </div>
       <details className={styles.options}>
         <summary>Help, levels & settings</summary>
@@ -254,12 +254,12 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         <div className={styles.winActions}>
           <button className={styles.secondary} disabled={preparing} onClick={()=>act({type:"reset"})}>Try again</button>
           {!dailyMode && !zenMode && !powerMode && !verificationMode ? (
-            <a href="/jelloo/map" className={styles.secondary} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Level Map</a>
+            <Link href="/jelloo/map" className={styles.secondary} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Level Map</Link>
           ) : null}
           {zenMode ? (
             <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:0})}>Next Zen Puzzle →</button>
           ) : dailyMode ? (
-            <a href="/jelloo" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Back to Adventure →</a>
+            <Link href="/jelloo/map" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Level Map →</Link>
           ) : (
             <button className={styles.go} disabled={preparing} onClick={()=>act({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Level →"}</button>
           )}
@@ -285,13 +285,13 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
             >
               Try Again
             </button>
-            <a
+            <Link
               href="/jelloo/map"
               className={styles.secondary}
               style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}
             >
               Level Map
-            </a>
+            </Link>
           </div>
         </dialog>
       ) : null}

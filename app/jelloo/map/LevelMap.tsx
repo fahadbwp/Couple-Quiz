@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { worlds, worldForLevel } from "@/lib/jelloo/worlds";
 import { decodeJourney, SAVE_KEY } from "@/lib/jelloo/progress";
 import styles from "./map.module.css";
@@ -33,6 +34,7 @@ function levelStatus(id: number, completed: number): LevelStatus {
 }
 
 export default function LevelMap() {
+  const router = useRouter();
   const [completed, setCompleted] = useState(0);
   const [best, setBest] = useState<Record<string, number>>({});
   const [ready, setReady] = useState(false);
@@ -61,30 +63,65 @@ export default function LevelMap() {
   const endlessUnlocked = ready && completed >= 100;
   const endlessNext = Math.max(101, completed + 1);
 
+  // Current level info
+  const currentLevelId = Math.min(100, completed + 1);
+  const currentWorld = worldForLevel(currentLevelId);
+
   function navigateToLevel(id: number, status: LevelStatus) {
     if (status === "locked") return;
-    // Navigate to main jelloo page with a level param.
-    // JellooGame reads ?level=N on mount and dispatches visit (or jump in dev).
-    window.location.href = `/jelloo?level=${id}`;
+    router.push(`/jelloo?level=${id}`);
   }
 
   return (
     <main className={styles.page}>
       <div className={styles.shell}>
         <header className={styles.header}>
-          <a href="/jelloo" className={styles.back}>← Adventure</a>
+          <Link href="/games" className={styles.back}>
+            ← All Games
+          </Link>
           <h1 className={styles.brand}>Jelloo<span>.</span></h1>
-          <Link href="/" className={styles.homeLink}>PlayNudge Home</Link>
+          <Link href="/" className={styles.homeLink}>
+            PlayNudge Home
+          </Link>
         </header>
 
         <div className={styles.titleRow}>
-          <h2 className={styles.title}>🗺️ Adventure Map</h2>
+          <div>
+            <h2 className={styles.title}>🗺️ Adventure Map</h2>
+            <p className={styles.subtitle}>
+              Choose any unlocked level to play or replay.
+            </p>
+          </div>
           {ready && (
-            <span className={styles.progress}>
-              {completed}/100 completed
-            </span>
+            <div className={styles.progressBadge}>
+              <strong>{completed}/100</strong>
+              <span>completed</span>
+            </div>
           )}
         </div>
+
+        {ready && (
+          <div className={styles.continueCard}>
+            <div className={styles.continueMeta}>
+              <span className={styles.continueWorld}>{currentWorld.badge} {currentWorld.name}</span>
+              <strong className={styles.continueTitle}>
+                {completed >= 100 ? "Adventure Completed!" : `Level ${currentLevelId}`}
+              </strong>
+              <span className={styles.continueSub}>
+                {completed >= 100
+                  ? "Explore Endless mode or replay any past level for 3 stars."
+                  : `Your next unsolved puzzle · ${currentWorld.tagline}`}
+              </span>
+            </div>
+            <button
+              type="button"
+              className={styles.continueButton}
+              onClick={() => navigateToLevel(completed >= 100 ? 100 : currentLevelId, "current")}
+            >
+              {completed >= 100 ? "Replay Level 100 →" : `Continue Level ${currentLevelId} →`}
+            </button>
+          </div>
+        )}
 
         {!ready && (
           <p className={styles.loading} role="status">Loading your progress…</p>
@@ -149,8 +186,9 @@ export default function LevelMap() {
             {endlessUnlocked && (
               <div className={styles.endlessRow}>
                 <button
+                  type="button"
                   className={styles.endlessButton}
-                  onClick={() => { window.location.href = `/jelloo?level=${endlessNext}`; }}
+                  onClick={() => router.push(`/jelloo?level=${endlessNext}`)}
                 >
                   Continue from Level {endlessNext} →
                 </button>
@@ -159,10 +197,10 @@ export default function LevelMap() {
           </section>
         )}
 
-        <nav className={styles.modeNav} aria-label="Other modes">
-          <a href="/jelloo/daily" className={styles.modeLink}>📅 Daily Puzzle</a>
-          <a href="/jelloo/zen" className={styles.modeLink}>🌸 Zen Garden</a>
-          <a href="/jelloo/pals" className={styles.modeLink}>🐾 Meet Pals</a>
+        <nav className={styles.modeNav} aria-label="Other game modes">
+          <Link href="/jelloo/daily" className={styles.modeLink}>📅 Daily Puzzle</Link>
+          <Link href="/jelloo/zen" className={styles.modeLink}>🌸 Zen Garden</Link>
+          <Link href="/jelloo/pals" className={styles.modeLink}>🐾 Meet Pals</Link>
         </nav>
       </div>
     </main>
@@ -198,6 +236,7 @@ function LevelCell({
 
   return (
     <button
+      type="button"
       className={styles.cell}
       data-status={lv.status}
       aria-label={`Level ${lv.id}${lv.status === "completed" ? `, ${lv.stars} star${lv.stars !== 1 ? "s" : ""}` : lv.status === "current" ? " — your current level" : ""}`}
