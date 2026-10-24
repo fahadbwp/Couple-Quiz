@@ -40,6 +40,13 @@ export default function JellooGame() {
     if(!muted || action.type === "mute") audio.current.unlock();
     if(action.type === "reset" || action.type === "visit" || action.type === "jump" || action.type === "mute") audio.current.stop();
     if(action.type === "rotate" && !muted && status !== "running" && status !== "won" && status !== "lost") audio.current.play("rotate");
+    if (action.type === "visit") {
+      if (typeof window !== "undefined" && action.id !== level.id) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("level", String(action.id));
+        window.history.pushState({ level: action.id }, "", url.toString());
+      }
+    }
     if(action.type === "visit" && action.id>10 && action.id<=completed+1 && generator.current) {
       pending.current=true;setPreparing(true);setGenerationError("");
       generator.current.postMessage({id:action.id,seed:journey.seed,request:++request.current});
@@ -103,6 +110,19 @@ export default function JellooGame() {
           dispatch({type:"visit",id:targetId});
         }
       }
+
+      const onPopState = () => {
+        const currentParams = new URLSearchParams(window.location.search);
+        const popLevel = Number(currentParams.get("level"));
+        const rawSave = localStorage.getItem(SAVE_KEY);
+        const curJourney = rawSave ? decodeJourney(rawSave) : null;
+        const maxAllowed = (curJourney ? curJourney.completed : restored.completed) + 1;
+        if (Number.isSafeInteger(popLevel) && popLevel >= 1 && popLevel <= maxAllowed) {
+          dispatch({type: "visit", id: popLevel});
+        }
+      };
+      window.addEventListener("popstate", onPopState);
+      return () => window.removeEventListener("popstate", onPopState);
     }
     setReady(true);
   }, []);
