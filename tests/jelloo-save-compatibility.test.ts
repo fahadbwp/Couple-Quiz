@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { decodeJourney, encodeJourney, newJourney, journeyReducer } from "../lib/jelloo/progress";
 import { generateTwoJellyPuzzle } from "../lib/jelloo/multi-jelly";
+import { levelAt } from "../lib/jelloo/endless";
 
 test("Integration Scenario A: Historical save without multiRevision (implicit rev 0/1)", () => {
   const legacySaved = {
@@ -182,7 +183,6 @@ test("Integration Guard: Revision-1 puzzles never silently become Revision-2 mid
 });
 
 test("Integration Guard: Revision-0 active puzzle retains original layout, rotations, moves, and par across reload, undo, restart, and map navigation", () => {
-  const { levelAt } = require("../lib/jelloo/endless");
   const l71_0 = levelAt(71, 42, 4, 0);
   assert.equal(l71_0.jellies, undefined, "Rev 0 board has no multi-jellies");
   assert.equal(l71_0.tiles.length, 25, "Rev 0 Level 71 is 5x5 (25 tiles)");
@@ -199,7 +199,7 @@ test("Integration Guard: Revision-0 active puzzle retains original layout, rotat
     moves: 1,
     motion: true,
     won: false,
-    rotations: l71_0.tiles.map((t: any) => ((t.rotation % 4) + 4) % 4),
+    rotations: l71_0.tiles.map((t: { rotation: number }) => ((t.rotation % 4) + 4) % 4),
   };
 
   const decoded = decodeJourney(JSON.stringify(rev0Saved))!;
