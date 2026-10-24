@@ -120,3 +120,80 @@ export function playablePowerTrial(character:Character,trial:number) {
   }
   return level;
 }
+
+export const FAVOURITE_PAL_KEY = "jelloo.favouritePal.v1";
+
+export function getFavouritePal(): Character | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(FAVOURITE_PAL_KEY);
+    if (!raw) return null;
+    const valid: Character[] = ["bunny", "panda", "cat", "octopus", "fox"];
+    return valid.includes(raw as Character) ? (raw as Character) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setFavouritePal(id: Character | null): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (id === null) {
+      localStorage.removeItem(FAVOURITE_PAL_KEY);
+    } else {
+      localStorage.setItem(FAVOURITE_PAL_KEY, id);
+    }
+  } catch {}
+}
+
+export function isMechanicallyCompatible(level: Level): boolean {
+  if (level.jellies && level.jellies.length > 1) return false;
+  if (level.fork) return false;
+  return !level.tiles.some(
+    (t) =>
+      t.terrain === "gap" ||
+      t.terrain === "cracked" ||
+      t.terrain === "wall" ||
+      t.terrain === "water" ||
+      t.terrain === "slow"
+  );
+}
+
+export function getEffectiveDisplayCharacter(
+  level: Level,
+  favourite: Character | null,
+  completed: number
+): {
+  displayCharacter: Character;
+  isCosmetic: boolean;
+  requiredCharacter?: Character;
+} {
+  const isMulti = Boolean(level.jellies && level.jellies.length > 1);
+  if (isMulti) {
+    return {
+      displayCharacter: level.character ?? "bunny",
+      isCosmetic: false,
+    };
+  }
+
+  const compatible = isMechanicallyCompatible(level);
+  if (!compatible && level.character) {
+    return {
+      displayCharacter: level.character,
+      isCosmetic: false,
+      requiredCharacter: level.character,
+    };
+  }
+
+  if (compatible && favourite && canPlayPal(favourite, completed)) {
+    return {
+      displayCharacter: favourite,
+      isCosmetic: true,
+    };
+  }
+
+  return {
+    displayCharacter: level.character ?? "bunny",
+    isCosmetic: false,
+  };
+}

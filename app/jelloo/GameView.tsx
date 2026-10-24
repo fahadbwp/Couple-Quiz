@@ -2,12 +2,13 @@
 import Link from "next/link";
 import type { MultiJellyTrace } from "@/lib/jelloo/multi-jelly";
 import type { CSSProperties, RefObject, ReactNode } from "react";
-import { connectedPaths, ports } from "@/lib/jelloo/engine";
+import { connectedPaths, ports, type Character } from "@/lib/jelloo/engine";
 import { collectedStars, scoreRun } from "@/lib/jelloo/scoring";
 import type { Journey, JourneyAction } from "@/lib/jelloo/progress";
 import { levels } from "@/lib/jelloo/levels";
 import CharacterSprite from "./CharacterSprite";
-import { pals } from "@/lib/jelloo/pals";
+import { pals, getFavouritePal, getEffectiveDisplayCharacter } from "@/lib/jelloo/pals";
+import { useState, useEffect } from "react";
 import { worldForLevel, worlds, milestoneRewardFor } from "@/lib/jelloo/worlds";
 import ShareCardView from "./ShareCardView";
 import styles from "./game.module.css";
@@ -22,6 +23,12 @@ const directions=["up","right","down","left"];
 export default function GameView({verificationMode=false,powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,outOfMovesDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
+  const [favourite, setFavourite] = useState<Character | null>(null);
+  useEffect(() => {
+    setFavourite(getFavouritePal());
+  }, []);
+  const effective = getEffectiveDisplayCharacter(level, favourite, completed);
+  const displayPal = pals.find(p => p.id === (effective.displayCharacter || "bunny"))!;
   const connected=(status==="running" || status==="won") && trace ? trace.path : connectedPaths(level,tiles).connected, collected=collectedStars(game), score=scoreRun(game);
   const position=trace?.path[cursor] ?? level.start;
   const pal=pals.find(p=>p.id===(level.character ?? "bunny"))!;
@@ -46,7 +53,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         </Link><h1 className={styles.brand}>Jelloo<span>.</span></h1>
         {verificationMode ? <span>Sound off</span> : <button className={styles.sound} aria-pressed={muted} onClick={()=>act({type:"mute"})}>Sound: {muted ? "off" : "on"}</button>}
       </header>
-      <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
+      <p className={styles.subtitle}>{isMulti ? `${level.jellies!.length} Pals Coordinate — Guide them home simultaneously!` : zenMode ? "No move limits, no rush — enjoy your peaceful journey home. ♡" : dailyMode ? `Rotate the tiles, connect the path — ${pal.name} in today's ${currentWorld.name} Daily!` : powerMode ? pal.power : effective.requiredCharacter ? `Rotate the tiles, connect the path — ${pal.name} required in ${currentWorld.name}!` : effective.isCosmetic ? `Rotate the tiles, connect the path — ${displayPal.name} (Favourite) in ${currentWorld.name}!` : `Rotate the tiles, connect the path — ${pal.name} in ${currentWorld.name}!`}</p>
       {extra}
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? (
         <div className={styles.modeLinks}>
@@ -60,6 +67,12 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
           <h2>
             <span className={styles.worldPill} title={currentWorld.tagline}>{currentWorld.badge}</span>
             {zenMode ? (level.title || "Zen Mode") : dailyMode ? (level.title || "Daily Puzzle") : powerMode ? pal.name : `Level ${level.id}`} <small>· {level.difficulty}</small>
+            {effective.requiredCharacter && !powerMode && !dailyMode && !zenMode && !isMulti ? (
+              <span className={styles.requiredPalBadge}>Required: {pal.name}</span>
+            ) : null}
+            {effective.isCosmetic && !powerMode && !dailyMode && !zenMode && !isMulti ? (
+              <span className={styles.cosmeticBadge}>Favourite: {displayPal.name} ★</span>
+            ) : null}
           </h2>
           <span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span>
         </div>
@@ -136,19 +149,21 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
               })
             ) : (
               (() => {
+                const activeChar = effective.displayCharacter;
                 const isCollecting = Boolean(level.collectibles?.includes(position) && (status === "running" || status === "won"));
                 const curTile = tiles[position];
                 const isPower = status === "running" && Boolean(
-                  (level.character === "bunny" && curTile?.terrain === "gap") ||
-                  (level.character === "panda" && curTile?.terrain === "cracked") ||
-                  (level.character === "cat" && curTile?.terrain === "wall") ||
-                  (level.character === "octopus" && curTile?.terrain === "water")
+                  (activeChar === "bunny" && curTile?.terrain === "gap") ||
+                  (activeChar === "panda" && curTile?.terrain === "cracked") ||
+                  (activeChar === "cat" && curTile?.terrain === "wall") ||
+                  (activeChar === "octopus" && curTile?.terrain === "water")
                 );
                 const activeStatus = isCollecting && status !== "won" && status !== "lost" ? "collecting" : status;
                 return (
                   <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
                     <span className={styles.shadow}/>
-                    <CharacterSprite character={level.character} status={activeStatus} animate={animate} powerActive={isPower}/>
+                    {effective.isCosmetic ? <span className={styles.jellyTag} data-color="purple">{displayPal.name} ★</span> : null}
+                    <CharacterSprite character={activeChar} status={activeStatus} animate={animate} powerActive={isPower}/>
                     {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
                     {status === "lost" ? <span className={styles.collisionMarker} aria-hidden="true">❌</span> : null}
                   </div>
