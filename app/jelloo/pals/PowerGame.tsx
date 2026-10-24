@@ -16,6 +16,7 @@ import { decodeJourney, SAVE_KEY, type JourneyAction } from "@/lib/jelloo/progre
 import { feedbackFor, GameAudio } from "@/lib/jelloo/feedback";
 import { scoreRun } from "@/lib/jelloo/scoring";
 import GameView from "../GameView";
+import { trialSelection, trialUrl } from "@/lib/jelloo/trial-navigation";
 import CharacterSprite from "../CharacterSprite";
 import styles from "../game.module.css";
 
@@ -72,13 +73,10 @@ export default function PowerGame() {
 
       // Parse query params for active pal and trial
       if (typeof window !== "undefined") {
-        const params = new URLSearchParams(window.location.search);
-        const palParam = params.get("pal") as Character | null;
-        const trialParam = parseInt(params.get("trial") || "1", 10);
-        if (palParam && pals.some((p) => p.id === palParam) && canPlayPal(palParam, comp)) {
-          const t = trialParam >= 1 && trialParam <= 3 ? trialParam : 1;
-          setActivePal(palParam);
-          dispatch({ type: "load", level: playablePowerTrial(palParam, t) });
+        const selection = trialSelection(window.location.search, comp);
+        if (selection) {
+          setActivePal(selection.pal);
+          dispatch({ type: "load", level: playablePowerTrial(selection.pal, selection.trial) });
         }
       }
     } catch {
@@ -92,14 +90,11 @@ export default function PowerGame() {
   useEffect(() => {
     const onPopState = () => {
       if (typeof window === "undefined") return;
-      const params = new URLSearchParams(window.location.search);
-      const palParam = params.get("pal") as Character | null;
-      const trialParam = parseInt(params.get("trial") || "1", 10);
-      if (palParam && pals.some((p) => p.id === palParam) && canPlayPal(palParam, completed)) {
-        const t = trialParam >= 1 && trialParam <= 3 ? trialParam : 1;
-        setActivePal(palParam);
+      const selection = trialSelection(window.location.search, completed);
+      if (selection) {
+        setActivePal(selection.pal);
         audio.current?.stop();
-        dispatch({ type: "load", level: playablePowerTrial(palParam, t) });
+        dispatch({ type: "load", level: playablePowerTrial(selection.pal, selection.trial) });
       } else {
         audio.current?.stop();
         setActivePal(null);
@@ -177,6 +172,7 @@ export default function PowerGame() {
     if (busy || !canPlayPal(id, completed)) return;
     audio.current?.stop();
     dispatch({ type: "load", level: playablePowerTrial(id, number) });
+    window.history.replaceState({ pal: id, trial: number }, "", trialUrl(id, number));
     board.current?.focus({ preventScroll: true });
   }
 
@@ -186,7 +182,7 @@ export default function PowerGame() {
     setActivePal(id);
     dispatch({ type: "load", level: playablePowerTrial(id, number) });
     if (typeof window !== "undefined") {
-      window.history.pushState({ pal: id, trial: number }, "", `/jelloo/pals?pal=${id}&trial=${number}`);
+      window.history.pushState({ pal: id, trial: number }, "", trialUrl(id, number));
     }
     board.current?.focus({ preventScroll: true });
   }
@@ -195,7 +191,7 @@ export default function PowerGame() {
     audio.current?.stop();
     setActivePal(null);
     if (typeof window !== "undefined") {
-      window.history.pushState(null, "", "/jelloo/pals");
+      window.history.pushState(null, "", trialUrl(null));
     }
   }
 
@@ -420,12 +416,7 @@ export default function PowerGame() {
                 key={n}
                 disabled={busy}
                 aria-current={trial === n ? "step" : undefined}
-                onClick={() => {
-                  load(character, n);
-                  if (typeof window !== "undefined") {
-                    window.history.replaceState({ pal: character, trial: n }, "", `/jelloo/pals?pal=${character}&trial=${n}`);
-                  }
-                }}
+                onClick={() => load(character, n)}
               >
                 Trial {n}
                 <small>{stars[`${character}-${n}`] ? "★".repeat(stars[`${character}-${n}`]) : "○ ○ ○"}</small>

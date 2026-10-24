@@ -1,0 +1,25 @@
+✔ Task 1: Platform and library primary Jelloo action routes to Level Map (8.5503ms)
+✔ Task 2: First-time player progression initialization (13.4512ms)
+✔ Task 3: Existing Level 27 saved player progression preservation (207.7589ms)
+✔ Task 4: Existing Level 93 saved player progression preservation (36.2684ms)
+✔ Task 5: Victory -> Next Level saves completion and advances level (6.9329ms)
+✔ Task 6: Direct legacy /jelloo and save persistence roundtrip (6.2552ms)
+✔ Task 7: Mode-specific visible Back destinations and isolation (1.181ms)
+✔ Phase 8.3 Task 1: Character animation states and pal unlocking (15.4127ms)
+✔ Phase 8.3 Task 2: Favourite Pal mechanical compatibility & required pal isolation (61.5565ms)
+✔ Phase 8.3 Task 3: Multi-Jelly result share cards accuracy (Single, Two-Jelly, Three-Jelly) (6.1576ms)
+✔ Phase 8.3 Task 4: Sound cue generation and power feedback (7.5849ms)
+✔ Phase 8.3 Task 5: Save compatibility and progression preservation (7.014ms)
+✔ Phase 8.3 Task 6: Share card route truthfulness vs celebration graphic (10.4866ms)
+✔ Phase 8.3 Task 7: Top game-mode cards contract and character selection routing (202.7721ms)
+✔ visible Trial Back resolves to selection; stored Trial URLs restore the exact unlocked Pal and trial (10.9536ms)
+✔ incomplete or invalid team paths use a decorative graphic, never partial route records (7.3485ms)
+✔ real two- and three-Jelly cards preserve identity, stars, moves and supplied paths (1.9964ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2827.8417

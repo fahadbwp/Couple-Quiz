@@ -75,12 +75,17 @@ export function generateSpoilerFreeGrid(size: number, path: number[]): string {
   return rows.join("\n");
 }
 
+function hasCompleteTeamPaths(size: number, jellies: { path?: number[] }[]): boolean {
+  return Number.isSafeInteger(size) && size >= 2 && size <= 16 && jellies.length > 1 &&
+    jellies.every(j => Array.isArray(j.path) && j.path.length > 0 &&
+      j.path.every(cell => Number.isSafeInteger(cell) && cell >= 0 && cell < size * size));
+}
+
 export function generateMultiJellyGrid(
   size: number,
   jellies: { path?: number[] }[]
 ): string {
-  if (!size || size < 2) return "🟩🟦🟪";
-  const hasValidPaths = jellies.some((j) => Array.isArray(j.path) && j.path.length > 0);
+  const hasValidPaths = hasCompleteTeamPaths(size, jellies);
   if (!hasValidPaths) {
     return "✨ 🐾 🎉 🐾 ✨";
   }
@@ -165,11 +170,7 @@ export function formatShareCard(input: JellooShareInput): ShareCardResult {
     lines.push(`Stars: ${input.collectedStars}/${input.totalStars} collected`);
 
     if (isMulti) {
-      const hasActualPaths = Boolean(
-        input.jellies &&
-        input.jellies.length > 0 &&
-        input.jellies.every((j) => Array.isArray(j.path) && j.path.length > 0)
-      );
+      const hasActualPaths = hasCompleteTeamPaths(input.size, input.jellies!);
       if (hasActualPaths) {
         const EMOJIS = ["🟩", "🟦", "🟪", "🟧", "🟨"];
         const legend = input.jellies!.map(
