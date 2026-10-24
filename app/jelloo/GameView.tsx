@@ -102,7 +102,18 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 const pos = jPath ? jPath[Math.min(cursor, jPath.length - 1)] : jelly.start;
                 const reached = jPath ? cursor >= jPath.length - 1 && multiTrace?.multiOutcome === "home" : false;
                 const collided = multiTrace && (multiTrace.multiOutcome === "collision" || multiTrace.multiOutcome === "swap") && cursor >= (multiTrace.steps || 0);
-                const jStatus = collided ? "lost" : reached ? "won" : status;
+                const isCollecting = Boolean(level.collectibles?.includes(pos) && (status === "running" || status === "won"));
+                const curTile = tiles[pos];
+                const isPower = status === "running" && Boolean(
+                  (jelly.character === "bunny" && curTile?.terrain === "gap") ||
+                  (jelly.character === "panda" && curTile?.terrain === "cracked") ||
+                  (jelly.character === "cat" && curTile?.terrain === "wall") ||
+                  (jelly.character === "octopus" && curTile?.terrain === "water")
+                );
+                const jStatus = collided ? "lost" : reached ? "won" : isCollecting ? "collecting" : status;
+                const defaultColors = ["pink", "green", "blue", "purple", "amber"];
+                const jellyColor = jelly.color || defaultColors[jIdx % defaultColors.length];
+
                 return (
                   <div
                     key={`${jIdx}-${jelly.character}`}
@@ -116,16 +127,33 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                     }}
                   >
                     <span className={styles.shadow} />
-                    <CharacterSprite character={jelly.character} status={jStatus} animate={animate} />
+                    <span className={styles.jellyTag} data-color={jellyColor}>{jelly.character}</span>
+                    <CharacterSprite character={jelly.character} status={jStatus} animate={animate} powerActive={isPower} />
                     {reached ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
+                    {collided ? <span className={styles.collisionMarker} aria-hidden="true">💥</span> : null}
                   </div>
                 );
               })
             ) : (
-              <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
-                <span className={styles.shadow}/><CharacterSprite character={level.character} status={status} animate={animate}/>
-                {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
-              </div>
+              (() => {
+                const isCollecting = Boolean(level.collectibles?.includes(position) && (status === "running" || status === "won"));
+                const curTile = tiles[position];
+                const isPower = status === "running" && Boolean(
+                  (level.character === "bunny" && curTile?.terrain === "gap") ||
+                  (level.character === "panda" && curTile?.terrain === "cracked") ||
+                  (level.character === "cat" && curTile?.terrain === "wall") ||
+                  (level.character === "octopus" && curTile?.terrain === "water")
+                );
+                const activeStatus = isCollecting && status !== "won" && status !== "lost" ? "collecting" : status;
+                return (
+                  <div className={styles.traveller} data-animate={animate} style={{left:`${(position%level.size+.5)/level.size*100}%`,top:`${(Math.floor(position/level.size)+.9)/level.size*100}%`,width:`${94/level.size}%`}}>
+                    <span className={styles.shadow}/>
+                    <CharacterSprite character={level.character} status={activeStatus} animate={animate} powerActive={isPower}/>
+                    {status === "won" ? <span className={styles.heart} aria-hidden="true">♥</span> : null}
+                    {status === "lost" ? <span className={styles.collisionMarker} aria-hidden="true">❌</span> : null}
+                  </div>
+                );
+              })()
             )}
           </div>
         </div>

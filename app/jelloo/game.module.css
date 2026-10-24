@@ -367,3 +367,42 @@
 .page[data-world='space'] .worldCard[aria-current="true"] { border-color: #7c5cfc; background: #2a2050; }
 .page[data-world='space'] .worldCardInfo small { color: #9c97c7; }
 .page[data-world='space'] .options select { background: #1a1638; border-color: #2e265c; color: #f1f2f6; }
+
+.jellyTag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: capitalize;
+  padding: 1px 4px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: #4b5563;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+.jellyTag[data-color='pink'] { background: #fdf2f8; color: #db2777; border: 1px solid #fbcfe8; }
+.jellyTag[data-color='green'] { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.jellyTag[data-color='blue'] { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.jellyTag[data-color='purple'] { background: #faf5ff; color: #9333ea; border: 1px solid #e9d5ff; }
+.jellyTag[data-color='amber'] { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+
+.collisionMarker {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  font-size: 16px;
+  animation: collisionPop 400ms ease-out both;
+  pointer-events: none;
+}
+@keyframes collisionPop {
+  0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+  50% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collisionMarker { animation: none !important; }
+}
