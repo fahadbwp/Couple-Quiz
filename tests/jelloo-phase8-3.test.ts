@@ -190,3 +190,64 @@ test("Phase 8.3 Task 5: Save compatibility and progression preservation", () => 
   assert.equal(journey.game.level.id, 1);
   assert.equal(journey.best["27"], 3);
 });
+
+test("Phase 8.3 Task 6: Share card route truthfulness vs celebration graphic", () => {
+  // When real paths are present: must show Routes legend and colored cells
+  const truthfulCard = formatShareCard({
+    mode: "adventure",
+    levelId: 71,
+    moves: 6,
+    stars: 3,
+    collectedStars: 3,
+    totalStars: 3,
+    character: "bunny",
+    jellies: [
+      { character: "bunny", path: [0, 1, 2, 3] },
+      { character: "panda", path: [12, 13, 14, 15] },
+    ],
+    world: "candy",
+    size: 4,
+    path: [0, 1, 2, 3, 12, 13, 14, 15],
+  });
+  assert.ok(truthfulCard.fullMessage.includes("Routes: 🟩 🐰 Bunny · 🟦 🐼 Panda"), "Contains accurate pal route legend");
+  assert.ok(!truthfulCard.fullMessage.includes("[Team Celebration Graphic]"), "Does not label real paths as celebration graphic");
+
+  // When paths are empty or absent: must NOT claim fabricated routes; must display celebration graphic tag
+  const celebrationCard = formatShareCard({
+    mode: "adventure",
+    levelId: 71,
+    moves: 6,
+    stars: 3,
+    collectedStars: 3,
+    totalStars: 3,
+    character: "bunny",
+    jellies: [
+      { character: "bunny" },
+      { character: "panda" },
+    ],
+    world: "candy",
+    size: 4,
+    path: [],
+  });
+  assert.ok(celebrationCard.fullMessage.includes("[Team Celebration Graphic]"), "Truthfully marks missing paths as celebration graphic");
+  assert.ok(!celebrationCard.fullMessage.includes("Routes:"), "Never invents fabricated routes");
+  assert.ok(celebrationCard.fullMessage.includes("✨ 🐾 🎉 🐾 ✨"), "Displays celebratory banner rather than fabricated path");
+});
+
+test("Phase 8.3 Task 7: Top game-mode cards contract and character selection routing", () => {
+  // Pals selection and power trials contract
+  assert.equal(canPlayPal("bunny", 0), true);
+  assert.equal(canPlayPal("panda", 10), true);
+  assert.equal(canPlayPal("panda", 9), false);
+
+  // Favourite pal equip logic
+  const favCompatible = getEffectiveDisplayCharacter(levelAt(1, 42, 4, 2), "panda", 40);
+  assert.equal(favCompatible.displayCharacter, "panda");
+  assert.equal(favCompatible.isCosmetic, true);
+
+  // Favourite pal disabled on required levels (e.g. Level 27 requiring Cat)
+  const l27 = levelAt(27, 42, 5, 2);
+  const favReq = getEffectiveDisplayCharacter(l27, "panda", 40);
+  assert.equal(favReq.displayCharacter, l27.character ?? "cat");
+  assert.equal(favReq.isCosmetic, false);
+});

@@ -5,8 +5,6 @@ import {
   formatShareCard,
   copyShareText,
   triggerNativeShare,
-  generateSpoilerFreeGrid,
-  generateMultiJellyGrid,
   type JellooShareInput,
 } from "@/lib/jelloo/share";
 
@@ -43,8 +41,6 @@ export default function ShareCardView({ input }: Props) {
       await handleCopy();
     }
   }
-
-  const isMulti = Boolean(input.jellies && input.jellies.length > 1);
 
   return (
     <div
@@ -85,11 +81,7 @@ export default function ShareCardView({ input }: Props) {
           maxWidth: "280px",
         }}
       >
-        {card.fullMessage.split("\n\n")[0]}
-        {"\n"}
-        {isMulti
-          ? generateMultiJellyGrid(input.size, input.jellies!)
-          : generateSpoilerFreeGrid(input.size, input.path)}
+        {card.text}
       </pre>
 
       <div

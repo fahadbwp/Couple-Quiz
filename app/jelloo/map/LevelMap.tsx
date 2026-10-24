@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { worlds, worldForLevel } from "@/lib/jelloo/worlds";
 import { decodeJourney, SAVE_KEY } from "@/lib/jelloo/progress";
+import { pals } from "@/lib/jelloo/pals";
 import styles from "./map.module.css";
 
 type LevelStatus = "completed" | "current" | "locked";
@@ -123,6 +124,30 @@ export default function LevelMap() {
           </div>
         )}
 
+        <nav className={styles.modeNav} aria-label="Other game modes">
+          <Link href="/jelloo/daily" className={styles.modeLink} data-mode="daily">
+            <span className={styles.modeIcon}>📅</span>
+            <div className={styles.modeInfo}>
+              <b>Daily Puzzle →</b>
+              <span>Daily challenge</span>
+            </div>
+          </Link>
+          <Link href="/jelloo/zen" className={styles.modeLink} data-mode="zen">
+            <span className={styles.modeIcon}>🌸</span>
+            <div className={styles.modeInfo}>
+              <b>Zen Garden →</b>
+              <span>Relaxed play</span>
+            </div>
+          </Link>
+          <Link href="/jelloo/pals" className={styles.modeLink} data-mode="pals">
+            <span className={styles.modeIcon}>🐾</span>
+            <div className={styles.modeInfo}>
+              <b>Meet Pals →</b>
+              <span>{ready ? `${pals.filter(p => p.unlock <= completed).length}/5 unlocked` : "Pal powers"}</span>
+            </div>
+          </Link>
+        </nav>
+
         {!ready && (
           <p className={styles.loading} role="status">Loading your progress…</p>
         )}
@@ -197,11 +222,6 @@ export default function LevelMap() {
           </section>
         )}
 
-        <nav className={styles.modeNav} aria-label="Other game modes">
-          <Link href="/jelloo/daily" className={styles.modeLink}>📅 Daily Puzzle</Link>
-          <Link href="/jelloo/zen" className={styles.modeLink}>🌸 Zen Garden</Link>
-          <Link href="/jelloo/pals" className={styles.modeLink}>🐾 Meet Pals</Link>
-        </nav>
       </div>
     </main>
   );

@@ -80,6 +80,10 @@ export function generateMultiJellyGrid(
   jellies: { path?: number[] }[]
 ): string {
   if (!size || size < 2) return "🟩🟦🟪";
+  const hasValidPaths = jellies.some((j) => Array.isArray(j.path) && j.path.length > 0);
+  if (!hasValidPaths) {
+    return "✨ 🐾 🎉 🐾 ✨";
+  }
   const jellyPaths = jellies.map((j) => new Set(j.path || []));
   const EMOJIS = ["🟩", "🟦", "🟪", "🟧", "🟨"];
   const rows: string[] = [];
@@ -159,6 +163,23 @@ export function formatShareCard(input: JellooShareInput): ShareCardResult {
         : `${input.moves} moves`;
     lines.push(`${starDisplay} · ${moveStr} · ${charDisplay}`);
     lines.push(`Stars: ${input.collectedStars}/${input.totalStars} collected`);
+
+    if (isMulti) {
+      const hasActualPaths = Boolean(
+        input.jellies &&
+        input.jellies.length > 0 &&
+        input.jellies.every((j) => Array.isArray(j.path) && j.path.length > 0)
+      );
+      if (hasActualPaths) {
+        const EMOJIS = ["🟩", "🟦", "🟪", "🟧", "🟨"];
+        const legend = input.jellies!.map(
+          (j, idx) => `${EMOJIS[idx % EMOJIS.length]} ${CHARACTER_NAMES[j.character] || j.character}`
+        ).join(" · ");
+        lines.push(`Routes: ${legend}`);
+      } else {
+        lines.push("[Team Celebration Graphic]");
+      }
+    }
   }
 
   lines.push("");

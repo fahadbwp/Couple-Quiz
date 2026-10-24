@@ -17,10 +17,11 @@ type Props = {
   verificationMode?:boolean; powerMode?:boolean; dailyMode?:boolean; zenMode?:boolean; streak?:number; extra?:ReactNode;
   journey:Journey; animate:boolean; preparing:boolean; generationError:string; saveMessage:string; reducedMotion:boolean;
   act:(action:JourneyAction)=>void;
+  onBack?:()=>void;
   board:RefObject<HTMLDivElement|null>; resultDialog:RefObject<HTMLDialogElement|null>; outOfMovesDialog?:RefObject<HTMLDialogElement|null>; winHeading:RefObject<HTMLHeadingElement|null>;
 };
 const directions=["up","right","down","left"];
-export default function GameView({verificationMode=false,powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,board,resultDialog,outOfMovesDialog,winHeading}:Props) {
+export default function GameView({verificationMode=false,powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,onBack,board,resultDialog,outOfMovesDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
   const [favourite, setFavourite] = useState<Character | null>(null);
@@ -47,6 +48,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         <Link
           href={verificationMode ? "/jelloo/invite" : powerMode ? "/jelloo/pals" : "/jelloo/map"}
           className={styles.back}
+          onClick={onBack ? (e) => { e.preventDefault(); onBack(); } : undefined}
           aria-label={powerMode ? "Return to Meet Your Pals" : dailyMode ? "Return to Level Map from Daily" : zenMode ? "Return to Level Map from Zen" : "Back to Level Map"}
         >
           ← {powerMode ? "Meet Your Pals" : "Level Map"}
@@ -57,9 +59,9 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
       {extra}
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? (
         <div className={styles.modeLinks}>
-          <a className={styles.palsLink} href="/jelloo/pals"><b>Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></a>
-          <a className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></a>
-          <a className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed play</span></a>
+          <Link className={styles.palsLink} href="/jelloo/pals"><b>🐾 Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></Link>
+          <Link className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></Link>
+          <Link className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed play</span></Link>
         </div>
       ) : null}
       <section className={styles.gamePanel} aria-label="Jelloo puzzle" aria-busy={preparing}>
@@ -76,7 +78,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
           </h2>
           <span><b>{moves}</b> moves {level.moveLimit===undefined ? <small>· Take your time ♡</small> : <small>/ limit {level.moveLimit} · {Math.max(0,level.moveLimit-moves)} left</small>}</span>
         </div>
-        {level.intro ? <div className={styles.introWelcome}><span className={styles.introPortrait}><CharacterSprite character={level.character} animate={animate}/></span><b>Hello, {pal.name}! ♡</b><span aria-label="No move limit">∞</span></div> : null}
+        {level.intro ? <div className={styles.introWelcome}><span className={styles.introPortrait}><CharacterSprite character={effective.displayCharacter} animate={animate}/></span><b>Hello, {displayPal.name}! ♡</b><span aria-label="No move limit">∞</span></div> : null}
         {level.fork ? <fieldset className={styles.branchChoice}><legend>Fox: choose your branch before the last move</legend>{level.fork.exits.map(direction=><button key={direction} disabled={status==="running" || status==="won" || status==="lost"} aria-pressed={level.choices?.[level.fork!.tile]===direction} onClick={()=>act({type:"branch",direction})}>{["↑","→","↓","←"][direction]} {directions[direction]}</button>)}</fieldset> : null}
         {level.door ? <p role="status">Pressure plate A opens door A. Door A: {switches.includes(level.door.switch) ? "open" : "locked — visit the plate first"}.</p> : null}
         <div className={styles.boardFrame}>
