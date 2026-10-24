@@ -471,7 +471,7 @@ export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveRe
 /**
  * Procedural Two-Jelly Puzzle Generator for Levels 71–80 and endless continuation.
  */
-export function generateTwoJellyPuzzle(id: number, seed: number) {
+export function generateTwoJellyPuzzle(id: number, seed: number, revision = 2) {
   let value = (seed ^ Math.imul(id, 2654435761)) >>> 0;
   const random = () => {
     value = (Math.imul(value, 1664525) + 1013904223) >>> 0;
@@ -531,13 +531,20 @@ export function generateTwoJellyPuzzle(id: number, seed: number) {
       tiles,
     };
 
-    // Scramble exactly 2 tiles (1 rotation each forward to solve)
-    tiles[route1[1]].rotation = (tiles[route1[1]].rotation + 3) % 4;
-    tiles[route2[1]].rotation = (tiles[route2[1]].rotation + 3) % 4;
+    // Scramble tiles (revision 1 scrambled 2 tiles; revision 2 scrambles 4 tiles for par 3-5)
+    if (revision <= 1) {
+      tiles[route1[1]].rotation = (tiles[route1[1]].rotation + 3) % 4;
+      tiles[route2[1]].rotation = (tiles[route2[1]].rotation + 3) % 4;
+    } else {
+      tiles[route1[1]].rotation = (tiles[route1[1]].rotation + 3) % 4;
+      tiles[route1[2]].rotation = (tiles[route1[2]].rotation + 3) % 4;
+      tiles[route2[1]].rotation = (tiles[route2[1]].rotation + 3) % 4;
+      tiles[route2[3]].rotation = (tiles[route2[3]].rotation + 3) % 4;
+    }
 
     const proof = solveMultiJelly(level, 5000);
-    level.par = proof.solvable ? proof.par : 2;
-    level.moveLimit = (proof.solvable ? proof.par : 2) + 3;
+    level.par = proof.solvable ? proof.par : (revision <= 1 ? 2 : 4);
+    level.moveLimit = (proof.solvable ? proof.par : (revision <= 1 ? 2 : 4)) + 3;
     level.difficulty = "Intro Duo";
     return { level, proof };
   }
@@ -640,7 +647,7 @@ export function generateTwoJellyPuzzle(id: number, seed: number) {
 /**
  * Procedural Three-Jelly Puzzle Generator for Levels 91–100 and endless continuation.
  */
-export function generateThreeJellyPuzzle(id: number, seed: number) {
+export function generateThreeJellyPuzzle(id: number, seed: number, revision = 2) {
   let value = (seed ^ Math.imul(id, 3266489917)) >>> 0;
   const random = () => {
     value = (Math.imul(value, 1664525) + 1013904223) >>> 0;
@@ -711,18 +718,27 @@ export function generateThreeJellyPuzzle(id: number, seed: number) {
   level.world = "space";
   level.collectibles = [r1[2], r2[2], r3[2]];
 
-  // Scramble 2 or 3 tiles
+  // Scramble tiles (revision 1 scrambled 2 tiles; revision 2 scrambles 6 tiles for par 5-8)
   if (isIntro) {
-    level.tiles[r1[2]].rotation = (level.tiles[r1[2]].rotation + 1) % 4;
-    level.tiles[r2[2]].rotation = (level.tiles[r2[2]].rotation + 1) % 4;
+    if (revision <= 1) {
+      level.tiles[r1[2]].rotation = (level.tiles[r1[2]].rotation + 1) % 4;
+      level.tiles[r2[2]].rotation = (level.tiles[r2[2]].rotation + 1) % 4;
+    } else {
+      level.tiles[r1[1]].rotation = (level.tiles[r1[1]].rotation + 3) % 4;
+      level.tiles[r1[2]].rotation = (level.tiles[r1[2]].rotation + 3) % 4;
+      level.tiles[r2[1]].rotation = (level.tiles[r2[1]].rotation + 3) % 4;
+      level.tiles[r2[2]].rotation = (level.tiles[r2[2]].rotation + 3) % 4;
+      level.tiles[r3[1]].rotation = (level.tiles[r3[1]].rotation + 3) % 4;
+      level.tiles[r3[2]].rotation = (level.tiles[r3[2]].rotation + 3) % 4;
+    }
   } else {
     level.tiles[r1[2]].rotation = (level.tiles[r1[2]].rotation + (random() < 0.5 ? 1 : 3)) % 4;
     level.tiles[r2[2]].rotation = (level.tiles[r2[2]].rotation + (random() < 0.5 ? 1 : 3)) % 4;
     level.tiles[r3[2]].rotation = (level.tiles[r3[2]].rotation + (random() < 0.5 ? 1 : 3)) % 4;
   }
 
-  const proof = solveMultiJelly(level);
-  level.par = proof.solvable ? proof.par : 4;
+  const proof = solveMultiJelly(level, 15000);
+  level.par = proof.solvable ? proof.par : (isIntro && revision >= 2 ? 6 : 4);
   level.moveLimit = proof.solvable ? proof.par + 3 : 8;
   level.difficulty = isIntro ? "Intro Trio" : "Three Jellies";
 
@@ -734,7 +750,7 @@ export function generateThreeJellyPuzzle(id: number, seed: number) {
 // -------------------------------------------------------------
 
 export function twoJellyIntroFixture(): Level {
-  return generateTwoJellyPuzzle(71, 42).level;
+  return generateTwoJellyPuzzle(71, 42, 1).level;
 }
 
 export function twoJellyCollisionFixture(): Level {
@@ -838,7 +854,7 @@ export function twoJellySharedPathFixture(): Level {
 }
 
 export function threeJellyIntroFixture(): Level {
-  return generateThreeJellyPuzzle(91, 100).level;
+  return generateThreeJellyPuzzle(91, 100, 1).level;
 }
 
 export function isMultiJellyLevel(id: number): boolean {
