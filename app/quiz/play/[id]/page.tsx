@@ -14,6 +14,7 @@ import {
   getGlassOptionGridClasses,
 } from "@/components/quiz/VisualOptionCard";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
+import {trackEvent,trackSessionEvent} from "@/lib/analytics/client";
 
 export default function QuizPlayPage({
   params,
@@ -46,6 +47,7 @@ export default function QuizPlayPage({
     gender?: "male" | "female";
   } | null>(null);
   const [isPlayAgain, setIsPlayAgain] = useState(false);
+  useEffect(()=>{if(quiz&&isStarted){trackSessionEvent("quiz_participant_start",{game:"friendship-quiz",mode:"quiz"},quizId);trackSessionEvent("game_start",{game:"friendship-quiz",mode:"quiz"},"participant");}},[quiz,isStarted,quizId]);
 
   const loadQuiz = React.useCallback(() => {
     setLoading(true);
@@ -224,6 +226,7 @@ export default function QuizPlayPage({
 
       const data = await res.json();
       if (data.success) {
+        trackEvent("quiz_participant_complete",{game:"friendship-quiz",mode:"quiz",outcome:"success"},`attempt:${quizId}:${attemptId}`);
         // Scoped key prevents collision with other quizzes
         sessionStorage.setItem(`quiz_result_${quizId}`, JSON.stringify(data));
         try {

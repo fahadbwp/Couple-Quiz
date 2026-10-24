@@ -28,6 +28,7 @@ import {
   EnvironmentInfo,
 } from "@/lib/quiz/sharing";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
+import {trackEvent} from "@/lib/analytics/client";
 
 export default function QuizSharePage({
   params,
@@ -79,6 +80,7 @@ export default function QuizSharePage({
     quizAudio.playPop();
     const success = await copyToClipboard(shareUrl);
     if (success) {
+      trackEvent("quiz_share_action",{game:"friendship-quiz",mode:"quiz",outcome:"success"},`share:${Date.now()}`);
       setCopyStatus("copied");
       setTimeout(() => setCopyStatus("idle"), 2500);
     } else {
@@ -88,6 +90,7 @@ export default function QuizSharePage({
   };
 
   const handleWhatsAppShare = () => {
+    trackEvent("quiz_share_action",{game:"friendship-quiz",mode:"quiz"},`share:${Date.now()}`);
     quizAudio.playPop();
     const origin = typeof window !== "undefined" ? window.location.origin : undefined;
     const text = formatWhatsAppQuizShare(creatorName, quizId, origin);
@@ -95,6 +98,7 @@ export default function QuizSharePage({
   };
 
   const handleFacebookShare = () => {
+    trackEvent("quiz_share_action",{game:"friendship-quiz",mode:"quiz"},`share:${Date.now()}`);
     quizAudio.playPop();
     window.open(getFacebookShareUrl(shareUrl), "_blank", "noopener,noreferrer");
   };
@@ -108,6 +112,7 @@ export default function QuizSharePage({
           text: `Take ${creatorName}'s 10-question friendship dare on PlayNudge!`,
           url: shareUrl,
         });
+        trackEvent("quiz_share_action",{game:"friendship-quiz",mode:"quiz",outcome:"success"},`share:${Date.now()}`);
       } catch (err) {
         // User cancelled or aborted sharing; safe to ignore
         if ((err as Error)?.name !== "AbortError") {

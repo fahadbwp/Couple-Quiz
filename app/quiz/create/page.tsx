@@ -17,6 +17,7 @@ import {
   CURATED_QUIZ_QUESTIONS,
 } from "@/lib/quiz/questions";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
+import {trackEvent,trackSessionEvent} from "@/lib/analytics/client";
 import { quizAudio } from "@/lib/quiz/audio";
 import {
   initQuizDeck,
@@ -39,6 +40,7 @@ const TOTAL_QUESTIONS_TARGET = 10;
 
 function QuizCreateContent() {
   const router = useRouter();
+  useEffect(()=>{trackSessionEvent("quiz_create_start",{game:"friendship-quiz",mode:"quiz"},"create");trackSessionEvent("game_start",{game:"friendship-quiz",mode:"quiz"},"create");},[]);
 
   const [creatorName, setCreatorName] = useState("");
   const [gender, setGender] = useState<"male" | "female">("male");
@@ -243,6 +245,7 @@ function QuizCreateContent() {
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && data.success && data.quizId) {
+        trackEvent("quiz_create_complete",{game:"friendship-quiz",mode:"quiz",outcome:"success"},`created:${data.quizId}`);
         quizAudio.playCelebration();
         if (data.creatorToken) {
           try {

@@ -16,6 +16,7 @@ import {
   EnvironmentInfo,
 } from "@/lib/quiz/sharing";
 import AdsterraFooter from "@/components/ads/AdsterraFooter";
+import {trackSessionEvent} from "@/lib/analytics/client";
 
 export default function QuizResultPage({
   params,
@@ -32,6 +33,7 @@ export default function QuizResultPage({
     gender: "male" | "female";
   } | null>(null);
 
+  useEffect(()=>{if(result)trackSessionEvent("quiz_results_view",{game:"friendship-quiz",mode:"quiz"},quizId);},[result,quizId]);
   const [dialogueStep, setDialogueStep] = useState(0);
   const [hasCheckedSession, setHasCheckedSession] = useState(false);
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "error">("idle");

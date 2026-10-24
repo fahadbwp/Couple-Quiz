@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { sitePolicy } from "@/lib/platform/site";
+import AnalyticsBridge from "@/components/analytics/AnalyticsBridge";
 export const metadata: Metadata = {
   metadataBase: new URL(sitePolicy().origin),
   title: {
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased min-h-screen bg-slate-50 text-slate-900">
+        <AnalyticsBridge />
         {children}
       </body>
     </html>
