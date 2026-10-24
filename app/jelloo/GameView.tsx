@@ -275,6 +275,13 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
               collectedStars: score.collected,
               totalStars: score.total,
               character: level.character ?? "bunny",
+              jellies: isMulti
+                ? level.jellies!.map((j, idx) => ({
+                    character: j.character,
+                    color: j.color,
+                    path: (trace as MultiJellyTrace)?.jellies?.[idx]?.path,
+                  }))
+                : undefined,
               world: worldId,
               streak: dailyMode ? streak : undefined,
               size: level.size,

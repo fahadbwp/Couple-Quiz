@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { formatShareCard, copyShareText, triggerNativeShare, type JellooShareInput } from "@/lib/jelloo/share";
+import {
+  formatShareCard,
+  copyShareText,
+  triggerNativeShare,
+  generateSpoilerFreeGrid,
+  generateMultiJellyGrid,
+  type JellooShareInput,
+} from "@/lib/jelloo/share";
 
 interface Props {
   input: JellooShareInput;
@@ -37,38 +44,62 @@ export default function ShareCardView({ input }: Props) {
     }
   }
 
+  const isMulti = Boolean(input.jellies && input.jellies.length > 1);
+
   return (
-    <div style={{
-      margin: "14px 0 10px",
-      padding: "12px 14px",
-      background: "rgba(255, 255, 255, 0.85)",
-      border: "1px dashed #c084fc",
-      borderRadius: "16px",
-      textAlign: "center",
-    }}>
-      <div style={{ fontSize: "11px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", color: "#7c3aed", marginBottom: "4px" }}>
+    <div
+      style={{
+        margin: "14px 0 10px",
+        padding: "12px 14px",
+        background: "rgba(255, 255, 255, 0.85)",
+        border: "1px dashed #c084fc",
+        borderRadius: "16px",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: "11px",
+          fontWeight: "bold",
+          textTransform: "uppercase",
+          letterSpacing: "1px",
+          color: "#7c3aed",
+          marginBottom: "4px",
+        }}
+      >
         Share Your Result
       </div>
 
-      <pre style={{
-        margin: "6px auto 10px",
-        padding: "8px 10px",
-        background: "rgba(243, 232, 255, 0.6)",
-        border: "1px solid #e9d5ff",
-        borderRadius: "10px",
-        fontSize: "12px",
-        lineHeight: "1.3",
-        color: "#4c1d95",
-        fontFamily: "monospace",
-        whiteSpace: "pre-wrap",
-        maxWidth: "280px",
-      }}>
+      <pre
+        style={{
+          margin: "6px auto 10px",
+          padding: "8px 10px",
+          background: "rgba(243, 232, 255, 0.6)",
+          border: "1px solid #e9d5ff",
+          borderRadius: "10px",
+          fontSize: "12px",
+          lineHeight: "1.3",
+          color: "#4c1d95",
+          fontFamily: "monospace",
+          whiteSpace: "pre-wrap",
+          maxWidth: "280px",
+        }}
+      >
         {card.fullMessage.split("\n\n")[0]}
         {"\n"}
-        {generatePreviewGrid(input.size, input.path)}
+        {isMulti
+          ? generateMultiJellyGrid(input.size, input.jellies!)
+          : generateSpoilerFreeGrid(input.size, input.path)}
       </pre>
 
-      <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "8px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         <button
           type="button"
           onClick={handleCopy}
@@ -128,24 +159,21 @@ export default function ShareCardView({ input }: Props) {
       </div>
 
       {feedback ? (
-        <div role="status" style={{ marginTop: "8px", fontSize: "11px", fontWeight: "bold", color: feedback.includes("Copied") || feedback.includes("Shared") ? "#16a34a" : "#dc2626" }}>
+        <div
+          role="status"
+          style={{
+            marginTop: "8px",
+            fontSize: "11px",
+            fontWeight: "bold",
+            color:
+              feedback.includes("Copied") || feedback.includes("Shared")
+                ? "#16a34a"
+                : "#dc2626",
+          }}
+        >
           {feedback}
         </div>
       ) : null}
     </div>
   );
-}
-
-function generatePreviewGrid(size: number, path: number[]): string {
-  if (!size || size < 2 || !Array.isArray(path) || !path.length) return "🟩🟩🟩";
-  const pathSet = new Set(path);
-  const rows: string[] = [];
-  for (let r = 0; r < size; r++) {
-    let row = "";
-    for (let c = 0; c < size; c++) {
-      row += pathSet.has(r * size + c) ? "🟩" : "⬜";
-    }
-    rows.push(row);
-  }
-  return rows.join("\n");
 }
