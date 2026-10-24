@@ -1,5 +1,6 @@
 import type { GameState } from "./engine";
-export type Cue = "rotate" | "hop" | "collect" | "win" | "confused";
+export type Cue = "rotate" | "hop" | "collect" | "win" | "confused" | "power";
+
 export function feedbackFor(previous: GameState, next: GameState): Cue[] {
   if(previous.level.id !== next.level.id || previous.runId !== next.runId) return [];
   if(next.status==="lost" && previous.status!=="lost") return ["confused"];
@@ -14,7 +15,17 @@ export function feedbackFor(previous: GameState, next: GameState): Cue[] {
       }
       return trace?.path[next.cursor] === c;
     });
-    return hasCollected ? ["hop","collect"] : ["hop"];
+
+    const atPos = trace && "path" in trace ? trace.path[next.cursor] : undefined;
+    const curTile = typeof atPos === "number" ? next.tiles[atPos] : undefined;
+    const isSpecialTerrain = Boolean(
+      curTile && (curTile.terrain === "gap" || curTile.terrain === "cracked" || curTile.terrain === "wall" || curTile.terrain === "water")
+    );
+
+    const cues: Cue[] = ["hop"];
+    if (hasCollected) cues.push("collect");
+    if (isSpecialTerrain) cues.push("power");
+    return cues;
   }
   return [];
 }
@@ -37,8 +48,15 @@ export class GameAudio {
     if(!ctx || ctx.state !== "running") return;
     if(cue === "rotate" && ctx.currentTime-this.last < 0.045) return;
     if(cue === "rotate") this.last = ctx.currentTime;
-    const notes = {rotate:[440],hop:[280],collect:[880,1175],win:[523,659,784,1047],confused:[330,294]}[cue];
-    notes.forEach((frequency,i)=>{
+    const notes: Record<Cue, number[]> = {
+      rotate: [440],
+      hop: [280],
+      collect: [880, 1175],
+      win: [523, 659, 784, 1047],
+      confused: [330, 294],
+      power: [659, 880, 1318],
+    };
+    notes[cue].forEach((frequency,i)=>{
       if(this.voices.size>=12) return;
       const oscillator = ctx.createOscillator(), gain = ctx.createGain();
       const start = ctx.currentTime+i*0.09;

@@ -90,6 +90,12 @@ export default function PowerGame() {
   }
   if(!ready) return <main className={styles.page}><p role="status">Opening your pals…</p></main>;
   return <GameView powerMode journey={{game,completed,seed:0,motion,muted,rules:3,best:{}}} animate={animate} preparing={false} generationError="" saveMessage={message} reducedMotion={reduced} act={act} board={board} resultDialog={dialog} winHeading={heading} extra={<>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "10px 0 6px" }}>
+      <a href="/jelloo/map" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", padding: "6px 12px", background: "#fdf4ff", border: "1px solid #e879f9", color: "#86198f", borderRadius: "10px", fontSize: "12px", fontWeight: "bold" }}>
+        ← Adventure Map
+      </a>
+      <span style={{ fontSize: "11px", color: "#86198f", fontWeight: "600" }}>{completed}/100 Adventure</span>
+    </div>
     <section className={styles.collection} aria-label="Character collection">
       <h2>Power Trials — practice with your pals</h2>
       <p>Power Trials teach each pal’s special ability. Pick a pal to train here or equip your Favourite to join you in compatible Adventure puzzles!</p>
