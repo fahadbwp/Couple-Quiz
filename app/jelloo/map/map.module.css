@@ -1,0 +1,231 @@
+.page {
+  min-height: 100vh;
+  background: #fffaf3;
+  color: #342946;
+  font-family: "Trebuchet MS", system-ui, sans-serif;
+  padding-bottom: 40px;
+}
+.shell {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ebd9e5;
+}
+.brand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: #7652a2;
+  margin: 0;
+}
+.brand span {
+  color: #df689b;
+}
+.back, .homeLink {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6a4c84;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: #f4e8f2;
+}
+.back:hover, .homeLink:hover {
+  background: #e9d7e6;
+}
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0 16px;
+}
+.title {
+  font-size: 22px;
+  font-weight: 900;
+  margin: 0;
+  color: #483359;
+}
+.progress {
+  font-size: 13px;
+  font-weight: 800;
+  background: #e9f5e3;
+  color: #3f6e2f;
+  padding: 4px 10px;
+  border-radius: 16px;
+  border: 1px solid #c9e6bf;
+}
+.loading {
+  text-align: center;
+  color: #7e6383;
+  margin: 40px 0;
+}
+.worldSection {
+  background: #fff;
+  border: 1px solid #ebdbe5;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(90, 62, 94, 0.04);
+}
+.worldSection[data-world="meadow"] { border-top: 4px solid #87ac62; }
+.worldSection[data-world="beach"] { border-top: 4px solid #3aafa9; }
+.worldSection[data-world="snow"] { border-top: 4px solid #6482ad; }
+.worldSection[data-world="candy"] { border-top: 4px solid #f67280; }
+.worldSection[data-world="space"] { border-top: 4px solid #7c5cfc; }
+
+.worldHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.worldIcon {
+  font-size: 26px;
+  line-height: 1;
+}
+.worldMeta {
+  flex: 1;
+}
+.worldName {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+  color: #4b3658;
+}
+.worldRange {
+  font-size: 12px;
+  color: #7e6783;
+  display: block;
+}
+.worldComplete {
+  font-size: 20px;
+}
+.levelGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+@media (min-width: 480px) {
+  .levelGrid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+  }
+}
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 800;
+  position: relative;
+  border: 1.5px solid transparent;
+  padding: 2px;
+  cursor: default;
+}
+button.cell {
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+button.cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+button.cell:active {
+  transform: translateY(0);
+}
+.cell[data-status="completed"] {
+  background: #f7edfc;
+  border-color: #d6b4e6;
+  color: #5d3674;
+}
+.cell[data-status="current"] {
+  background: #ffecb3;
+  border-color: #ffa000;
+  color: #8c5300;
+  box-shadow: 0 0 0 2px #ffc107;
+  animation: pulseCurrent 2s infinite ease-in-out;
+}
+.cell[data-status="locked"] {
+  background: #f0ebf0;
+  border-color: #e2dae2;
+  color: #a89ba8;
+}
+@keyframes pulseCurrent {
+  0%, 100% { box-shadow: 0 0 0 2px #ffc107; }
+  50% { box-shadow: 0 0 0 4px #ffa000; }
+}
+.levelNum {
+  font-size: 13px;
+  line-height: 1;
+}
+.stars {
+  font-size: 8px;
+  display: flex;
+  gap: 1px;
+  margin-top: 2px;
+}
+.stars span {
+  color: #d4c8d8;
+}
+.stars span[data-earned="true"] {
+  color: #f59e0b;
+}
+.lockIcon {
+  font-size: 10px;
+  margin-top: 2px;
+  opacity: 0.6;
+}
+.currentBadge {
+  font-size: 9px;
+  margin-top: 1px;
+  color: #e65100;
+}
+.endlessRow {
+  margin-top: 10px;
+  text-align: center;
+}
+.endlessButton {
+  background: #7352a5;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #4c346d;
+}
+.endlessButton:hover {
+  background: #634394;
+}
+.modeNav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.modeLink {
+  background: #fff;
+  border: 1px solid #ebd9e5;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #624b6e;
+  text-decoration: none;
+}
+.modeLink:hover {
+  background: #fcf4fa;
+}
