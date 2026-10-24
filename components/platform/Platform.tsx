@@ -46,7 +46,7 @@ export function PlatformHeader({
         <Link
           target={preserveSession ? "_blank" : undefined}
           rel={preserveSession ? "noopener" : undefined}
-          href="/jelloo"
+          href="/jelloo/map"
         >
           Jelloo
         </Link>
@@ -137,7 +137,7 @@ export function PlatformFooter() {
           Friendship Quiz
         </Link>
         <Link
-          href="/jelloo"
+          href="/jelloo/map"
         >
           Jelloo
         </Link>
