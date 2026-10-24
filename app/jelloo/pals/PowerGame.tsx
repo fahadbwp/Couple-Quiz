@@ -83,15 +83,16 @@ export default function PowerGame() {
   if(!ready) return <main className={styles.page}><p role="status">Opening your pals…</p></main>;
   return <GameView powerMode journey={{game,completed,seed:0,motion,muted,rules:3,best:{}}} animate={animate} preparing={false} generationError="" saveMessage={message} reducedMotion={reduced} act={act} board={board} resultDialog={dialog} winHeading={heading} extra={<>
     <section className={styles.collection} aria-label="Character collection">
-      <h2>Little pals. Big powers.</h2><p>Complete adventure levels to unlock your next friend.</p>
+      <h2>Little pals. Big powers.</h2>
+      <p>Master special abilities in dedicated Power Trials. Adventure levels feature specific pals automatically.</p>
       <div className={styles.palCards}>{pals.map(p=>{
         const unlocked=canPlayPal(p.id,completed);
         return <button key={p.id} aria-pressed={character===p.id} disabled={!unlocked || busy} onClick={()=>load(p.id,1)} title={p.power}>
           <span className={styles.portrait}><CharacterSprite character={p.id}/></span>
-          <b>{p.name}</b><small>{unlocked ? "Unlocked" : `Level ${p.unlock}`}</small>
+          <b>{p.name}</b><small>{unlocked ? "Play Trials" : `Level ${p.unlock}`}</small>
         </button>;
       })}</div>
-      <p className={styles.unlockProgress}>{completed} adventure levels complete · {pals.filter(p=>canPlayPal(p.id,completed)).length}/5 pals</p>
+      <p className={styles.unlockProgress}>{completed} adventure levels complete · {pals.filter(p=>canPlayPal(p.id,completed)).length}/5 pals unlocked</p>
     </section>
     <nav className={styles.trialTabs} aria-label="Power trials">{[1,2,3].map(n=><button key={n} disabled={busy} aria-current={trial===n ? "step" : undefined} onClick={()=>load(character,n)}>Trial {n}<small>{stars[`${character}-${n}`] ? "★".repeat(stars[`${character}-${n}`]) : "○ ○ ○"}</small></button>)}</nav>
     <button className={styles.motion} aria-pressed={motion} onClick={()=>act({type:"motion"})}>Animation: {motion ? "on" : "off"}</button>
