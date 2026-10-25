@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { worlds, worldForLevel } from "@/lib/jelloo/worlds";
-import { decodeJourney, SAVE_KEY } from "@/lib/jelloo/progress";
+import { SAVE_KEY } from "@/lib/jelloo/progress";
+import { readAdventureProgress } from "@/lib/jelloo/saved-progress";
 import { pals } from "@/lib/jelloo/pals";
 import styles from "./map.module.css";
 
@@ -16,18 +17,6 @@ interface LevelInfo {
   id: number;
   status: LevelStatus;
   stars: number; // 0-3
-}
-
-function readProgress(): { completed: number; best: Record<string, number> } {
-  try {
-    const raw = typeof window !== "undefined" ? localStorage.getItem(SAVE_KEY) : null;
-    if (!raw) return { completed: 0, best: {} };
-    const journey = decodeJourney(raw);
-    if (!journey) return { completed: 0, best: {} };
-    return { completed: journey.completed, best: journey.best };
-  } catch {
-    return { completed: 0, best: {} };
-  }
 }
 
 function levelStatus(id: number, completed: number): LevelStatus {
@@ -42,12 +31,14 @@ export default function LevelMap() {
   const [best, setBest] = useState<Record<string, number>>({});
   const [ready, setReady] = useState(false);
 
-  useEffect(() => {
-    const p = readProgress();
-    setCompleted(p.completed);
-    setBest(p.best);
-    setReady(true);
-  }, []);
+  const [error, setError] = useState<string | null>(null);
+  function refreshProgress() {
+    const p = readAdventureProgress(() => localStorage.getItem(SAVE_KEY));
+    setError(p.status === "ready" ? null : p.message);
+    setReady(p.status === "ready");
+    if (p.status === "ready") { setCompleted(p.completed); setBest(p.best); }
+  }
+  useEffect(() => { refreshProgress(); }, []);
 
   // Build all 100 adventure levels
   const levelsByWorld = worlds.map((world) => {
@@ -150,7 +141,15 @@ export default function LevelMap() {
           </Link>
         </nav>
 
-        {!ready && (
+        {error && (
+          <section className={styles.continueCard} role="alert">
+            <div><h3>Progress unavailable</h3><p>{error}</p>
+              <p>Your saved data has not been changed. Check again after restoring a valid save or allowing browser storage.</p>
+              <button type="button" className={styles.continueButton} onClick={refreshProgress}>Check again</button>
+            </div>
+          </section>
+        )}
+        {!ready && !error && (
           <p className={styles.loading} role="status">Loading your progress…</p>
         )}
 

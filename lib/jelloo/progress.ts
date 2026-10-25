@@ -25,7 +25,13 @@ export function journeyReducer(state: Journey, action: JourneyAction): Journey {
   const game = gameReducer(state.game,action);
   const best = {...state.best};
   if(game.status === "won" && state.game.status !== "won") best[game.level.id] = Math.max(best[game.level.id] ?? 0,scoreRun(game).stars);
-  const boundedBest = Object.fromEntries(Object.entries(best).sort((a,b)=>Number(b[0])-Number(a[0])).slice(0,200));
+  // Adventure achievements are permanent. Bound only Endless history; old saves
+  // contain at most 200 entries, so migrating never drops an existing record.
+  const entries = Object.entries(best);
+  const boundedBest = Object.fromEntries([
+    ...entries.filter(([id]) => Number(id) <= 100),
+    ...entries.filter(([id]) => Number(id) > 100).sort((a,b)=>Number(b[0])-Number(a[0])).slice(0,200),
+  ]);
   return {...state,game,best:boundedBest,completed:game.status === "won" && game.level.id === state.completed+1 ? state.completed+1 : state.completed};
 }
 export function encodeJourney(state: Journey) {
@@ -56,7 +62,7 @@ export function decodeJourney(raw: string): Journey | null {
     const rules = s.rules ?? 1;
     if((rules !== 1 && rules !== 2 && rules !== 3 && rules !== 4 && rules !== 5) || (s.muted !== undefined && typeof s.muted !== "boolean")) return null;
     const best = s.best ?? {};
-    if(typeof best !== "object" || best === null || Array.isArray(best) || Object.keys(best).length>200 || !Object.entries(best).every(([id,stars])=> /^[1-9]\d*$/.test(id) && integer(Number(id),s.completed) && integer(stars,3) && Number(stars)>0)) return null;
+    if(typeof best !== "object" || best === null || Array.isArray(best) || Object.keys(best).length>300 || Object.keys(best).filter(id=>Number(id)>100).length>200 || !Object.entries(best).every(([id,stars])=> /^[1-9]\d*$/.test(id) && integer(Number(id),s.completed) && integer(stars,3) && Number(stars)>0)) return null;
     const multiRevision = s.multiRevision ?? (s.jellies === undefined ? 0 : 1);
     if(multiRevision !== 0 && multiRevision !== 1 && multiRevision !== 2) return null;
     const game = initialGame(levelAt(s.id,s.seed,rules,multiRevision));

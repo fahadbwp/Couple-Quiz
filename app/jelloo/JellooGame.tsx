@@ -197,5 +197,5 @@ export default function JellooGame() {
     }
   }, [status, ready]);
   if (!ready) return <main className={styles.page}><p role="status">Loading Jelloo…</p></main>;
-  return <GameView journey={journey} animate={animate} preparing={preparing} generationError={generationError} saveMessage={saveMessage} reducedMotion={reducedMotion} act={act} board={board} resultDialog={resultDialog} outOfMovesDialog={outOfMovesDialog} winHeading={winHeading}/>;
+  return <>{!saveAllowed && <aside role="alert" className={styles.trialNote}>{saveMessage}</aside>}<GameView journey={journey} animate={animate} preparing={preparing} generationError={generationError} saveMessage={saveMessage} reducedMotion={reducedMotion} act={act} board={board} resultDialog={resultDialog} outOfMovesDialog={outOfMovesDialog} winHeading={winHeading}/></>;
 }
