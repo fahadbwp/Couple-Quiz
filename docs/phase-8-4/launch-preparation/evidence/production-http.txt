@@ -1,0 +1,10 @@
+PASS /jelloo/qa 404
+PASS /jelloo/qa?fixture=daily-date 404
+PASS /internal/growth 404
+PASS /jelloo/transfer 200
+PASS /quiz 200
+PASS /jelloo/map 200
+PASS /sitemap.xml 200
+PASS /robots.txt 200
+PASS /jelly-pals 307 /jelloo
+PASS referral gate 503 no-store

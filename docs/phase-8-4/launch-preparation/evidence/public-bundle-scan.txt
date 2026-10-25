@@ -1,0 +1,1 @@
+PASS: public JavaScript heuristic has zero secret-name/key-pattern matches.
