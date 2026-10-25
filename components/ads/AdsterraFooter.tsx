@@ -61,6 +61,7 @@ export default function AdsterraFooter() {
       <p className="text-[10px] text-slate-400 mt-0.5">
         Share with friends • Keep it light • Free to play
       </p>
+      <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-xs text-slate-500 underline mt-2">Privacy (opens in a new tab)</a>
     </footer>
   );
 }

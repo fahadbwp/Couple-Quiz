@@ -201,10 +201,11 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         </div>
         {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>perform({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
         <div className={styles.controls}>
-          <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} onClick={()=>perform({type:"undo"})}>↶ Undo</button>
+          <button className={styles.secondary} disabled={preparing || !game.history.length || status === "running" || status === "won" || status === "lost"} aria-describedby="undo-help" onClick={()=>perform({type:"undo"})}>↶ Undo</button>
           <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"reset"})}>Restart</button>
           {status === "won" ? <button className={styles.secondary} onClick={()=>resultDialog.current?.showModal()}>Result ★</button> : <span className={styles.starCount} aria-label={`${collected.length} of ${level.collectibles?.length ?? 0} stars collected`}>★ {collected.length}/{level.collectibles?.length ?? 0}</span>}
         </div>
+        <p id="undo-help" className={styles.trialNote}>Undo restores the last tile turn; used moves are not refunded.</p>
       </section>
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? <>
       {!verificationMode ? <p><Link href="/jelloo/cosmetics">Your cosmetics →</Link> · <Link href="/jelloo/transfer">Transfer progress →</Link></p> : null}
@@ -280,7 +281,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         {reducedMotion ? <p>Reduced motion is on.</p> : null}
         <p>{completed} completed · {nextMilestone-completed} to milestone {nextMilestone}{best[level.id] ? ` · Best: ${best[level.id]}/3 ★` : ""}</p>
         <small>{saveMessage} Clearing browser data removes saves.</small><a href="/jelloo/art">Approved art room →</a>
-      </details></> : <p className={styles.trialNote}>{level.hint} · Finish before moves run out. The last move can still win. ★★★ = all stars within the move target. {saveMessage}</p>}
+      </details></> : <p className={styles.trialNote}>{level.hint} · {zenMode ? "Take your time—there is no move limit." : "Finish before moves run out. The last move can still win. ★★★ = all stars within the move target."} {saveMessage}</p>}
       <dialog ref={resultDialog} className={styles.resultDialog} aria-labelledby="win-heading" onClose={()=>board.current?.focus({preventScroll:true})} onKeyDown={event=>{
         if(event.key!=="Tab") return;
         const controls=event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
