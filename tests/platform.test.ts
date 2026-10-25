@@ -7,6 +7,7 @@ import {
   pageMetadata,
   PUBLIC_PATHS,
   jsonLd,
+  PRIMARY_ORIGIN,
   LEGACY_ORIGIN,
 } from "../lib/platform/site";
 import {
@@ -43,8 +44,8 @@ test("home and library share equal card markup without invented inventory", () =
   assert.match(c, /GAMES.map/);
   assert.match(c, /href=\{game.playUrl\}/);
 });
-test("canonical configuration preserves old domain and rejects unsafe origins", () => {
-  assert.equal(sitePolicy({}).origin, LEGACY_ORIGIN);
+test("canonical configuration prioritizes Netlify primary domain, preserves legacy and rejects unsafe origins", () => {
+  assert.equal(sitePolicy({}).origin, PRIMARY_ORIGIN);
   for (const v of [
     "javascript:alert(1)",
     "https://bad.test/path",
@@ -54,7 +55,7 @@ test("canonical configuration preserves old domain and rejects unsafe origins", 
   ]) {
     assert.equal(
       sitePolicy({ SITE_CANONICAL_ORIGIN: v }).origin,
-      LEGACY_ORIGIN,
+      PRIMARY_ORIGIN,
     );
   }
   assert.equal(
@@ -69,11 +70,15 @@ test("canonical configuration preserves old domain and rejects unsafe origins", 
       URL: "https://playnudge.netlify.app",
       DEPLOY_PRIME_URL: "https://preview.netlify.app",
     }).origin,
-    LEGACY_ORIGIN,
+    PRIMARY_ORIGIN,
   );
   assert.equal(
     sitePolicy({ VERCEL_ENV: "preview", VERCEL_URL: "preview.vercel.app" })
       .origin,
+    PRIMARY_ORIGIN,
+  );
+  assert.equal(
+    sitePolicy({ SITE_CANONICAL_ORIGIN: LEGACY_ORIGIN }).origin,
     LEGACY_ORIGIN,
   );
 });
@@ -126,9 +131,9 @@ test("sitemap contains public games but never player results, invite or test rou
 });
 test("structured data is truthful parseable and escapes script termination", () => {
   for (const g of GAMES) {
-    const s = gameSchema(g, LEGACY_ORIGIN);
+    const s = gameSchema(g, PRIMARY_ORIGIN);
     assert.equal(s.name, g.name);
-    assert.equal(s.url, LEGACY_ORIGIN + g.playUrl);
+    assert.equal(s.url, PRIMARY_ORIGIN + g.playUrl);
     assert.equal(s.applicationCategory, "GameApplication");
     assert.equal(s.offers.price, "0");
     assert.equal(Object.hasOwn(s, "aggregateRating"), false);

@@ -15,6 +15,7 @@ import { pals, getFavouritePal, getEffectiveDisplayCharacter } from "@/lib/jello
 import { useState, useEffect } from "react";
 import { worldForLevel, worlds, milestoneRewardFor } from "@/lib/jelloo/worlds";
 import ShareCardView from "./ShareCardView";
+import JellooAdsterraBanner from "@/components/ads/JellooAdsterraBanner";
 import styles from "./game.module.css";
 
 type Props = {
@@ -336,6 +337,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
           )}
         </div>
         {generationError ? <p role="alert">{generationError}</p> : null}
+        <JellooAdsterraBanner placement="jelloo-after-result" phase="result" />
       </dialog>
       {outOfMovesDialog ? (
         <dialog

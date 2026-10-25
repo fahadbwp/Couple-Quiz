@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+
 type SiteEnv = Record<string, string | undefined>;
+
+export const PRIMARY_ORIGIN = "https://playnudge.netlify.app";
 export const LEGACY_ORIGIN = "https://friend-quiz-game.vercel.app";
+
 function publicOrigin(value: string | undefined): string | undefined {
   if (!value) return;
   try {
@@ -20,30 +24,24 @@ function publicOrigin(value: string | undefined): string | undefined {
     return;
   }
 }
-/** Never use request Host, preview URL or Netlify URL as a canonical. */
+
+/** Never use request Host, preview URL or Netlify preview URL as a canonical. */
 export function sitePolicy(env: SiteEnv = process.env) {
   const origin =
     publicOrigin(env.SITE_CANONICAL_ORIGIN) ??
     publicOrigin(env.NEXT_PUBLIC_APP_URL) ??
-    publicOrigin(
-      env.VERCEL_PROJECT_PRODUCTION_URL
-        ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`
-        : undefined,
-    ) ??
-    publicOrigin(
-      env.VERCEL_ENV === "production" && env.VERCEL_URL
-        ? `https://${env.VERCEL_URL}`
-        : undefined,
-    ) ??
-    LEGACY_ORIGIN;
+    PRIMARY_ORIGIN;
+
   const preview =
     (env.VERCEL_ENV !== undefined && env.VERCEL_ENV !== "production") ||
     (env.CONTEXT !== undefined && env.CONTEXT !== "production") ||
     env.SITE_ENV === "staging" ||
     env.SITE_ENV === "preview" ||
     env.NODE_ENV === "development";
+
   return { origin, indexable: !preview };
 }
+
 export function pageMetadata(
   title: string,
   description: string,
@@ -79,6 +77,7 @@ export function pageMetadata(
     },
   };
 }
+
 export const PUBLIC_PATHS = [
   "/",
   "/games",
@@ -86,6 +85,7 @@ export const PUBLIC_PATHS = [
   "/quiz/create",
   "/jelloo",
 ] as const;
+
 export function jsonLd(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import JellooAdsterraBanner from "@/components/ads/JellooAdsterraBanner";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -222,6 +224,7 @@ export default function LevelMap() {
           </section>
         )}
 
+        <JellooAdsterraBanner placement="jelloo-after-result" phase="idle" />
       </div>
     </main>
   );

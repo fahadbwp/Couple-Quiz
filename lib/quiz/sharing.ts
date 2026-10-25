@@ -71,7 +71,7 @@ export function detectEnvironment(originOrHost?: string): EnvironmentInfo {
   }
 
   // 2. Canonical production hostname check
-  let prodHost = "friend-quiz-game.vercel.app";
+  let prodHost = "playnudge.netlify.app";
   try {
     prodHost = new URL(getBaseUrl()).hostname.toLowerCase();
   } catch {
@@ -82,13 +82,20 @@ export function detectEnvironment(originOrHost?: string): EnvironmentInfo {
   const isPreviewEnvVar =
     process.env.VERCEL_ENV === "preview" ||
     process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" ||
-    process.env.NEXT_PUBLIC_APP_ENV === "preview";
+    process.env.NEXT_PUBLIC_APP_ENV === "preview" ||
+    (process.env.CONTEXT !== undefined && process.env.CONTEXT !== "production");
 
-  // 4. Custom domain or Vercel preview host pattern check
-  const isVercelPreviewHost = host.endsWith(".vercel.app") && host !== prodHost;
+  const isCanonicalOrLegacyProd =
+    host === prodHost ||
+    host === "playnudge.netlify.app" ||
+    host === "friend-quiz-game.vercel.app";
+
+  // 4. Custom domain, Vercel preview or Netlify preview host pattern check
+  const isVercelPreviewHost = host.endsWith(".vercel.app") && !isCanonicalOrLegacyProd;
+  const isNetlifyPreviewHost = host.endsWith(".netlify.app") && !isCanonicalOrLegacyProd;
   const isCustomDomainPreviewHost = Boolean(
     host &&
-      host !== prodHost &&
+      !isCanonicalOrLegacyProd &&
       (host.startsWith("preview.") ||
         host.startsWith("staging.") ||
         host.startsWith("dev.") ||
@@ -99,15 +106,21 @@ export function detectEnvironment(originOrHost?: string): EnvironmentInfo {
   );
 
   // If running in preview or using an unrecognized non-canonical host, NEVER classify as Production
-  const isNonProdHost = Boolean(host && host !== prodHost);
+  const isNonProdHost = Boolean(host && !isCanonicalOrLegacyProd);
 
-  if (isPreviewEnvVar || isVercelPreviewHost || isCustomDomainPreviewHost || (isNonProdHost && !process.env.VERCEL_ENV)) {
+  if (
+    isPreviewEnvVar ||
+    isVercelPreviewHost ||
+    isNetlifyPreviewHost ||
+    isCustomDomainPreviewHost ||
+    (isNonProdHost && !process.env.VERCEL_ENV && !process.env.CONTEXT)
+  ) {
     return {
       environment: "preview",
       isLocal: false,
       isPreview: true,
       isProduction: false,
-      host: host || (process.env.VERCEL_URL?.toLowerCase() ?? "preview.vercel.app"),
+      host: host || (process.env.VERCEL_URL?.toLowerCase() ?? "preview.netlify.app"),
     };
   }
 

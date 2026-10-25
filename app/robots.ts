@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { sitePolicy } from "@/lib/platform/site";
+
 export default function robots(): MetadataRoute.Robots {
   const { origin, indexable } = sitePolicy();
   return {
@@ -9,6 +10,8 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: "*",
             allow: [
               "/",
+              "/games",
+              "/jelloo",
               "/quiz",
               "/quiz/create",
               "/api/og/quiz/",
@@ -19,6 +22,7 @@ export default function robots(): MetadataRoute.Robots {
               "/design-preview/",
               "/jelloo/qa",
               "/jelloo/art",
+              "/jelloo/transfer",
             ],
           },
         ]

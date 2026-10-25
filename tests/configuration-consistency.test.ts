@@ -73,31 +73,35 @@ test("Configuration Consistency: creator token format, session TTL and clock-ske
 
   // Future token within 60s clock skew is allowed, beyond 60s is rejected
   const future50s = `adm_cts_${Date.now() + 50_000}_abc`;
-  // Bad signature fails, but format check works
+  // Malformed or wrong length tokens reject safely
+  assert.equal(verifyCreatorSessionToken("invalid_token", quizId, pinHash), false);
   assert.equal(verifyCreatorSessionToken(future50s, quizId, pinHash), false);
-  const future70s = `adm_cts_${Date.now() + 70_000}_abc`;
-  assert.equal(verifyCreatorSessionToken(future70s, quizId, pinHash), false);
 });
 
 test("Configuration Consistency: sharing.ts domain defaults and environment detection", () => {
   // When NEXT_PUBLIC_APP_URL, VERCEL_PROJECT_PRODUCTION_URL and VERCEL_URL are unset,
-  // getBaseUrl() returns the historical fallback domain
+  // getBaseUrl() returns the Netlify primary launch domain
   const originalEnv = { ...process.env };
   delete process.env.NEXT_PUBLIC_APP_URL;
   delete process.env.VERCEL_PROJECT_PRODUCTION_URL;
   delete process.env.VERCEL_URL;
   delete process.env.VERCEL_ENV;
+  delete process.env.CONTEXT;
 
   const defaultUrl = getBaseUrl();
   assert.equal(
     defaultUrl,
-    "https://friend-quiz-game.vercel.app",
-    "Source code fallback domain must be friend-quiz-game.vercel.app"
+    "https://playnudge.netlify.app",
+    "Source code fallback domain must be playnudge.netlify.app"
   );
 
-  const prodEnv = detectEnvironment("https://friend-quiz-game.vercel.app");
+  const prodEnv = detectEnvironment("https://playnudge.netlify.app");
   assert.equal(prodEnv.isProduction, true);
   assert.equal(prodEnv.isPreview, false);
+
+  const legacyEnv = detectEnvironment("https://friend-quiz-game.vercel.app");
+  assert.equal(legacyEnv.isProduction, true);
+  assert.equal(legacyEnv.isPreview, false);
 
   // Restore env
   process.env = originalEnv;

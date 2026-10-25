@@ -298,7 +298,7 @@ test("Phase 7.2: Preview-created quizzes are NEVER silently redirected to unveri
   );
   assert.notEqual(
     challengeFromPreview,
-    "https://friend-quiz-game.vercel.app/quiz/play/q_preview_test",
+    "https://playnudge.netlify.app/quiz/play/q_preview_test",
     "Must NEVER silently redirect a preview quiz to unverified production"
   );
 
@@ -308,7 +308,7 @@ test("Phase 7.2: Preview-created quizzes are NEVER silently redirected to unveri
   });
   assert.equal(
     verifiedProductionUrl,
-    "https://friend-quiz-game.vercel.app/quiz/play/q_preview_test",
+    "https://playnudge.netlify.app/quiz/play/q_preview_test",
     "Target production ONLY when verifiedOnProduction is explicitly true"
   );
 });
@@ -323,20 +323,29 @@ test("Phase 7.2: Localhost and Production URL preservation", () => {
     "Localhost origin preserved for local automation"
   );
 
-  // Production URL preservation
-  const prodOrigin = "https://friend-quiz-game.vercel.app";
+  // Production URL preservation (Primary Netlify Origin)
+  const prodOrigin = "https://playnudge.netlify.app";
   const challengeFromProd = getChallengeUrl("q_prod_test", prodOrigin);
   assert.equal(
     challengeFromProd,
-    "https://friend-quiz-game.vercel.app/quiz/play/q_prod_test",
+    "https://playnudge.netlify.app/quiz/play/q_prod_test",
     "Production origin uses canonical public domain"
+  );
+
+  // Legacy Production URL preservation (Vercel Origin)
+  const legacyProdOrigin = "https://friend-quiz-game.vercel.app";
+  const challengeFromLegacy = getChallengeUrl("q_legacy_test", legacyProdOrigin);
+  assert.equal(
+    challengeFromLegacy,
+    "https://friend-quiz-game.vercel.app/quiz/play/q_legacy_test",
+    "Legacy production origin preserved without breaking old links"
   );
 
   // Default fallback (no origin provided)
   const defaultChallenge = getChallengeUrl("q_default_test");
   assert.equal(
     defaultChallenge,
-    "https://friend-quiz-game.vercel.app/quiz/play/q_default_test",
+    "https://playnudge.netlify.app/quiz/play/q_default_test",
     "Fallback without origin uses canonical base domain"
   );
 });
@@ -405,7 +414,7 @@ test("Phase 7.3: Custom-domain Preview deployments are NEVER silently classified
   );
   assert.notEqual(
     customPreviewChallenge,
-    "https://friend-quiz-game.vercel.app/quiz/play/q_cust_prev",
+    "https://playnudge.netlify.app/quiz/play/q_cust_prev",
     "Must NEVER leak production domain for custom preview"
   );
 
