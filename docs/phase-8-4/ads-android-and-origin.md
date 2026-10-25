@@ -33,7 +33,9 @@ Official [Android TWA overview](https://developer.android.com/develop/ui/views/l
 
 Offline must bundle approved atlases, sounds, level logic and version compatibility; Daily UTC rules, referral/server verification and quiz API cannot simply become offline authority. Test interrupted updates, stale assets and storage quotas. Uninstall/browser clearing may erase saves; restoration requires an approved export/import or authenticated sync, not a promise. Establish package name, owner-controlled signing/release keys, Android App Bundle and app/site certificate association. Prepare approved screenshots/icon/store description and privacy URL. Device matrix: low-memory Android, rotation, lifecycle suspend/resume, offline/reconnect, back navigation, touch/audio/haptics, accessibility. Crash reporting needs separate privacy/provider approval. **No Android build or submission in this phase.**
 
-## Vercel → Netlify: proposed save migration, not implemented
+## Vercel → Netlify: original proposal, now implemented locally
+
+Update, 25 October 2026: the file-based transfer is now implemented and tested locally. See [the final acceptance transfer guide](final-acceptance/progress-transfer.md). It has not been deployed on either production origin. The sequence below records the original proposal; no automatic cross-origin/cookie transfer was introduced.
 
 Current canonical origin remains `https://friend-quiz-game.vercel.app/`. `https://playnudge.netlify.app/` is a different origin: localStorage, cookies and service workers do not automatically transfer. Nothing here changes production domains, Netlify stopped-build settings, canonicals, existing saves or referral cookies.
 

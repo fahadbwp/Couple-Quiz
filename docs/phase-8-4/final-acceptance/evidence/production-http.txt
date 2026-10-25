@@ -1,0 +1,9 @@
+{"path":"/jelloo/qa","status":404,"location":null,"noindex":true,"canonicalVercel":true}
+{"path":"/jelloo/qa?fixture=daily-date","status":404,"location":null,"noindex":true,"canonicalVercel":true}
+{"path":"/internal/growth","status":404,"location":null,"noindex":true,"canonicalVercel":true}
+{"path":"/jelloo/transfer","status":200,"location":null,"noindex":true,"canonicalVercel":true}
+{"path":"/jelly-pals","status":307,"location":"/jelloo","noindex":false,"canonicalVercel":true}
+{"path":"/quiz","status":200,"location":null,"noindex":false,"canonicalVercel":true}
+{"path":"/sitemap.xml","status":200,"location":null,"noindex":false,"canonicalVercel":true}
+{"path":"/robots.txt","status":200,"location":null,"noindex":false,"canonicalVercel":true}
+{"path":"/api/jelloo/referrals","status":503,"cache":"no-store","body":"{\"error\":\"unavailable\"}"}

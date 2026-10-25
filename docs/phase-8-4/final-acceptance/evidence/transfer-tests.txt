@@ -1,0 +1,22 @@
+✔ Level94 transfer preserves exact board/revisions, 93 completions, stars and optional saves (59.0355ms)
+✔ export allowlist excludes private quiz data, PINs, referral recovery and analytics (13.9292ms)
+✔ legacy Adventure generator revision bytes are never rewritten during transfer (12.209ms)
+✔ different or higher destination progress blocks import without any writes (55.1427ms)
+✔ pristine first-level destination can import with a verified pre-change backup (20.9077ms)
+✔ changed board with zero completed levels is not treated as pristine (16.6162ms)
+✔ changed state after preview rejects before backup or writes (17.4022ms)
+✔ backup/quota failure prevents primary changes (25.5721ms)
+✔ mid-import failure rolls back introduced keys and retains pre-import backup (23.8167ms)
+✔ interrupted import restores old state, and refuses to overwrite another tab's edits (14.2461ms)
+✔ previous backup is never overwritten by a second different transfer (28.1995ms)
+✔ strict transfer rejects oversized, unknown, malformed and credential-bearing fields (17.5786ms)
+✔ corrupt Daily/Zen/preferences are rejected instead of silently resetting (32.443ms)
+✔ empty optional source slots never delete destination saves or copy cookies (0.7293ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1175.1051

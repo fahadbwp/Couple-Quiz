@@ -1,0 +1,36 @@
+
+> couple-quiz@0.1.0 lint
+> eslint .
+
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\app\quiz\play\[id]\page.tsx
+  118:29  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-mechanics.mjs
+   5:10  warning  'ports' is defined but never used                @typescript-eslint/no-unused-vars
+  11:9   warning  'directions' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-phase8-integrated.mjs
+  5:10  warning  'generateTwoJellyPuzzle' is defined but never used    @typescript-eslint/no-unused-vars
+  5:34  warning  'generateThreeJellyPuzzle' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-phase8.mjs
+    4:18  warning  'worldForLevel' is defined but never used   @typescript-eslint/no-unused-vars
+    5:10  warning  'switchFixture' is defined but never used   @typescript-eslint/no-unused-vars
+    6:10  warning  'walkPowerLevel' is defined but never used  @typescript-eslint/no-unused-vars
+   21:9   warning  'stars' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  182:9   warning  'trial' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\scripts\capture-zen.mjs
+  4:28  warning  'ZEN_SIZE_LABELS' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\tests\jelloo-navigation.test.ts
+  5:23  warning  'gameReducer' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Fahad Saleem\Downloads\Couple quiz\tests\jelloo-phase8.test.ts
+    3:53  warning  'encodeJourney' is defined but never used      @typescript-eslint/no-unused-vars
+    6:25  warning  'worlds' is defined but never used             @typescript-eslint/no-unused-vars
+  102:9   warning  'updatedJ' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 15 problems (0 errors, 15 warnings)
+
