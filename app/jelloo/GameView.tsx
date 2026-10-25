@@ -70,7 +70,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
       {extra}
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? (
         <div className={styles.modeLinks}>
-          <Link className={styles.palsLink} href="/jelloo/pals"><b>🐾 Meet your pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></Link>
+          <Link className={styles.palsLink} href="/jelloo/pals"><b>🐾 Meet Pals →</b><span>{pals.filter(p=>p.unlock<=completed).length}/5 unlocked</span></Link>
           <Link className={styles.dailyLink} href="/jelloo/daily"><b>📅 Daily Puzzle →</b><span>Streak challenge</span></Link>
           <Link className={styles.zenLink} href="/jelloo/zen"><b>🌸 Zen Garden →</b><span>Relaxed play</span></Link>
         </div>
@@ -197,7 +197,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 ? "Out of moves! Restart to try again."
                 : status === "blocked"
                 ? (trace && (trace as MultiJellyTrace).multiOutcome === "swap" ? "Oops! Pals collided head-on!" : trace && (trace as MultiJellyTrace).multiOutcome === "collision" ? "Oops! Pals collided in the same cell!" : "Path blocked! Restart or undo to fix it.")
-                : "Green paths are connected. Join them to home!")}
+                : isMulti ? `Connect all ${level.jellies!.length} pals to their matching homes. Avoid shared cells and head-on collisions.` : "Green paths are connected. Join them to home!")}
         </div>
         {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>perform({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
         <div className={styles.controls}>
@@ -207,7 +207,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         </div>
       </section>
       {!powerMode && !dailyMode && !zenMode && !verificationMode ? <>
-      {!verificationMode ? <p><Link href="/jelloo/cosmetics">Your cosmetics →</Link></p> : null}
+      {!verificationMode ? <p><Link href="/jelloo/cosmetics">Your cosmetics →</Link> · <Link href="/jelloo/transfer">Transfer progress →</Link></p> : null}
       <div className={styles.mapBanner}>
         <Link href="/jelloo/map" className={styles.mapBannerLink}>
           <b>🗺️ View Full Adventure Map</b>
