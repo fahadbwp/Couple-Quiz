@@ -16,11 +16,16 @@ import {
 import { powerStepDuration } from "@/lib/jelloo/pals";
 import { feedbackFor, GameAudio } from "@/lib/jelloo/feedback";
 import { recordDailyWin } from "@/lib/jelloo/daily-results";
+import { watchUtcDay } from "@/lib/jelloo/utc-day";
 import GameView from "../GameView";
 import styles from "../game.module.css";
 
 export default function DailyGame() {
-  const [todayUtc] = useState(() => currentUtcDateString());
+  const [todayUtc,setTodayUtc] = useState(() => currentUtcDateString());
+  useEffect(()=>watchUtcDay(setTodayUtc),[]);
+  return <DailySession key={todayUtc} todayUtc={todayUtc}/>;
+}
+export function DailySession({todayUtc}:{todayUtc:string}) {
   const [dailyMeta] = useState(() => getDailyMeta(todayUtc));
   const [dailyLevel] = useState(() => generateDailyLevel(todayUtc));
   const [store, setStore] = useState<DailyStore>(() => newDailyStore(todayUtc));
@@ -61,7 +66,7 @@ export default function DailyGame() {
         }));
         game.tiles = restoredTiles;
         if (typeof loaded.activeMoves === "number") game.moves = loaded.activeMoves;
-        if (loaded.activeChoices) game.level.choices = loaded.activeChoices as Record<string, Direction>;
+        if (loaded.activeChoices) game.level = {...game.level, choices: loaded.activeChoices as Record<string, Direction>};
       }
     } catch {
       setSaveAllowed(false);

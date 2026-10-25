@@ -3,6 +3,7 @@ export const dynamic="force-dynamic";
 export default async function LocalQA({searchParams}:{searchParams:Promise<Record<string,string|undefined>>}) {
   if(process.env.NODE_ENV!=="development" || process.env.JELLOO_LOCAL_QA!=="1")notFound();
   const q=await searchParams;
+  if(q.fixture==="daily-date"){const {default:DailyFixture}=await import("./DailyFixture");return <DailyFixture/>;}
   if(q.width){
     const width=[320,390,768,1280].includes(Number(q.width))?Number(q.width):390;
     const target=q.level?`/jelloo/qa?level=${q.level==="91"?91:71}`:"/jelloo/invite";

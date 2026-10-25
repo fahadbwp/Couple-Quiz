@@ -14,6 +14,7 @@ test("Daily real-engine win settles to the same store identity on repeated effec
  assert.equal(game.status,"won");
  const first=recordDailyWin(empty,game,date,"2026-10-24T12:00:00.000Z");
  assert.equal(first.currentStreak,1);assert.equal(first.history[date].moves,game.moves);
+ assert.equal(first.activeMoves,game.moves);assert.deepEqual(first.activeRotations,game.tiles.map(t=>t.rotation%4));assert.equal(first.activeDate,date);
  for(let i=0;i<10;i++)assert.equal(recordDailyWin(first,game,date,"2026-10-24T13:00:00.000Z"),first);
  const restored=decodeDailyStore(encodeDailyStore(first),date);
  assert.equal(recordDailyWin(restored,game,date),restored);
