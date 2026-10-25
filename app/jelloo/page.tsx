@@ -3,7 +3,6 @@ import { pageMetadata, sitePolicy, jsonLd } from "@/lib/platform/site";
 import { GAMES, gameSchema } from "@/lib/platform/games";
 import Link from "next/link";
 import styles from "@/components/platform/platform.module.css";
-import JellooAdsterraBanner from "@/components/ads/JellooAdsterraBanner";
 
 export const metadata = pageMetadata(
   "Jelloo — Free Online Path Puzzle Game",
@@ -19,7 +18,6 @@ export default function JellooPage() {
         <p>Jelloo is a free online path puzzle game. Rotate tiles to connect a route from your Jelly to its home. Each quarter-turn uses one move. Collect golden stars along the way and finish before your moves run out.</p>
         <p>Start with Bunny and discover new pals and worlds as your adventure grows. Your progress stays in this browser. For a different pace, try the <Link href="/jelloo/daily">Daily Puzzle</Link> or relax without a move limit in <Link href="/jelloo/zen">Zen Mode</Link>.</p>
       </section>
-      <JellooAdsterraBanner placement="jelloo-after-result" phase="idle" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -224,8 +224,8 @@ export default function LevelMap() {
           </section>
         )}
 
-        <JellooAdsterraBanner placement="jelloo-after-result" phase="idle" />
       </div>
+      <JellooAdsterraBanner placement="jelloo-after-result" phase="idle" />
     </main>
   );
 }

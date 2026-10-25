@@ -45,10 +45,9 @@ export function mayShowJellooBanner(context?: {
   internal?: boolean;
   phase?: "idle" | "active" | "pin" | "submitting" | "result";
 }): boolean {
-  const envEnabled =
-    typeof process !== "undefined" &&
-    process.env.NEXT_PUBLIC_ADSTERRA_JELLOO_BANNER_ENABLED === "true";
-  const enabled = context?.enabled ?? (JELLOO_BANNER_ENABLED || envEnabled);
+  // Explicit overrides support pure policy tests; the component also enforces
+  // the source release gate. Environment variables cannot activate this release.
+  const enabled = context?.enabled ?? JELLOO_BANNER_ENABLED;
   if (!enabled) return false;
 
   // Must not show in internal QA / dev harnesses
@@ -65,7 +64,7 @@ export function mayShowJellooBanner(context?: {
   if (phase !== "result" && phase !== "idle") return false;
 
   // Explicit consent & family approval required
-  if (context?.consent === false || context?.familyApproved === false) {
+  if (context?.consent !== true || context?.familyApproved !== true) {
     return false;
   }
 

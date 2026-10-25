@@ -1,3 +1,5 @@
+> Historical implementation record: the focused [release review](release-review.md) supersedes this document's banner activation, consent, sandbox and placement descriptions.
+
 # PlayNudge Jelloo Monetization & Public Growth Release
 
 ## Executive Summary

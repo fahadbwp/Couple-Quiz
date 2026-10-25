@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   JELLOO_ADSTERRA_300X250,
+  JELLOO_BANNER_ENABLED,
   mayShowJellooBanner,
   type AdPlacement,
 } from "@/lib/platform/ads";
@@ -10,7 +11,6 @@ import {
 export interface JellooAdsterraBannerProps {
   placement?: AdPlacement;
   className?: string;
-  forceEnabled?: boolean;
   consent?: boolean;
   familyApproved?: boolean;
   internal?: boolean;
@@ -32,9 +32,8 @@ export interface JellooAdsterraBannerProps {
 export default function JellooAdsterraBanner({
   placement = "jelloo-after-result",
   className = "",
-  forceEnabled,
-  consent = true,
-  familyApproved = true,
+  consent = false,
+  familyApproved = false,
   internal = false,
   phase = "result",
   reserveSpaceWhenDisabled = false,
@@ -42,8 +41,7 @@ export default function JellooAdsterraBanner({
   const [mounted, setMounted] = useState(false);
   const iframeContainerRef = useRef<HTMLDivElement>(null);
 
-  const shouldShow = mayShowJellooBanner({
-    enabled: forceEnabled,
+  const shouldShow = JELLOO_BANNER_ENABLED && process.env.NODE_ENV === "production" && mayShowJellooBanner({
     consent,
     familyApproved,
     internal,
@@ -73,7 +71,9 @@ export default function JellooAdsterraBanner({
       iframe.style.height = `${JELLOO_ADSTERRA_300X250.height}px`;
       iframe.title = "Advertisement";
       iframe.loading = "lazy";
-      iframe.sandbox.add("allow-scripts", "allow-same-origin", "allow-popups");
+      // Opaque origin: third-party code cannot access parent DOM or escape the sandbox.
+      // Popups/top navigation stay blocked until separately reviewed provider testing.
+      iframe.sandbox.add("allow-scripts");
 
       // Build isolated iframe srcdoc with exact owner-provided Adsterra parameters
       const srcDocContent = `<!DOCTYPE html>
@@ -144,14 +144,14 @@ export default function JellooAdsterraBanner({
       aria-label="Advertisement"
       data-testid="jelloo-ad-slot-active"
       data-placement={placement}
-      className={`w-full max-w-[320px] mx-auto my-3 flex flex-col items-center justify-center ${className}`}
+      className={`w-full max-w-[320px] mx-auto my-8 flex flex-col items-center justify-center ${className}`}
     >
       <div className="w-full flex justify-between items-center px-2 mb-1 text-[10px] font-bold tracking-wider text-slate-400 uppercase select-none">
         <span>Sponsored</span>
         <span>Adsterra 300×250</span>
       </div>
       <div
-        className="w-[300px] h-[250px] relative rounded-xl border border-slate-200/80 bg-slate-50/50 flex items-center justify-center overflow-hidden shadow-xs"
+        className="w-[300px] h-[250px] relative bg-slate-50/50 flex items-center justify-center overflow-hidden shadow-xs"
         style={{ minWidth: 300, minHeight: 250 }}
       >
         <div
