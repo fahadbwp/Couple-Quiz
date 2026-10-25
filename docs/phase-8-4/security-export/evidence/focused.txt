@@ -1,0 +1,34 @@
+✔ export and preview never mutate source bytes or create backup/journal saves (51.8835ms)
+✔ Level94 transfer preserves exact board/revisions, 93 completions, stars and optional saves (33.7431ms)
+✔ export allowlist excludes private quiz data, PINs, referral recovery and analytics (11.9425ms)
+✔ legacy Adventure generator revision bytes are never rewritten during transfer (12.2896ms)
+✔ different or higher destination progress blocks import without any writes (39.9561ms)
+✔ pristine first-level destination can import with a verified pre-change backup (20.6447ms)
+✔ changed board with zero completed levels is not treated as pristine (17.9489ms)
+✔ changed state after preview rejects before backup or writes (16.1056ms)
+✔ backup/quota failure prevents primary changes (32.1887ms)
+✔ mid-import failure rolls back introduced keys and retains pre-import backup (30.9202ms)
+✔ interrupted import restores old state, and refuses to overwrite another tab's edits (21.5985ms)
+✔ previous backup is never overwritten by a second different transfer (29.6592ms)
+✔ strict transfer rejects oversized, unknown, malformed and credential-bearing fields (16.0227ms)
+✔ corrupt Daily/Zen/preferences are rejected instead of silently resetting (33.4644ms)
+✔ empty optional source slots never delete destination saves or copy cookies (0.8924ms)
+✔ unattested direct requests fail closed without a client-IP identity (67.8726ms)
+✔ Netlify flag alone never authenticates forwarded or spoofed platform headers (4.635ms)
+✔ Netlify clients without platform context still share the conservative bucket (3.716ms)
+✔ Netlify SDK context separates clients despite spoofed forwarding chains (3.339ms)
+✔ Netlify missing or malformed runtime metadata never falls back to headers (15.8938ms)
+✔ Netlify platform IPv6 normalizes without reading forwarded headers (0.9443ms)
+✔ SDK context is ignored outside Netlify and preserves Vercel precedence (1.4747ms)
+✔ concurrent Netlify SDK request contexts stay isolated across async work (19.9015ms)
+✔ spoofed IP headers cannot evade five local PIN failures for a platform client (4.4486ms)
+✔ existing Vercel boundary separates clients and ignores attacker forwarding values (1.9092ms)
+✔ IP normalization rejects lists and ports, preserving the existing limit key contract (1.3798ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1162.6583

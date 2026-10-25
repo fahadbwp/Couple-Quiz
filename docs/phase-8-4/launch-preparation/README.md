@@ -1,5 +1,7 @@
 # Final Netlify launch preparation — 25 October 2026
 
+Update: the owner subsequently verified project/build/credit settings, and a context-only SDK IP bridge is now implemented locally. See [current security/export preparation](../security-export/README.md). Earlier unavailable-dashboard and no-SDK statements below record the previous investigation, not the current code. Live adapter acceptance remains blocked.
+
 **NO-GO for deployment. GO for owner review of the prepared local release.** No push, merge, Vercel/Netlify deployment, automatic-build activation, project creation/relink, DNS/canonical change, production SQL/write, referral activation or ad change occurred.
 
 ## 1. Git / integration readiness

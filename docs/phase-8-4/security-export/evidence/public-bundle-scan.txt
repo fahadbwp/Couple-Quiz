@@ -1,0 +1,1 @@
+PASS public client chunks: no Netlify context store, service-secret names or common private-key/token patterns.

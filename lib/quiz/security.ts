@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { isIP } from "node:net";
+import { getContext } from "@netlify/functions";
 import type { QuizData } from "./types";
 import { dbRpc, isSupabaseConfigured, isProductionServerlessEnvironment } from "./supabase";
 
@@ -266,6 +267,17 @@ export function normalizeClientIp(value: string): string | null {
 }
 
 export function extractClientIp(req: Request): string {
+  // Netlify's request-local platform context, never a client-supplied IP header.
+  // Older/unsupported adapters may not expose it: retain the conservative bucket.
+  // Keep Vercel precedence unchanged if its platform marker is present.
+  if (process.env.VERCEL !== "1" && process.env.NETLIFY === "true") {
+    try {
+      const ip: unknown = getContext().ip;
+      return (typeof ip === "string" && normalizeClientIp(ip)) || "unknown";
+    } catch {
+      return "unknown";
+    }
+  }
   const header = process.env.VERCEL === "1" ? "x-vercel-forwarded-for"
     : process.env.QUIZ_TRUSTED_PROXY === "cloudflare" ? "cf-connecting-ip" : null;
   // Unknown callers deliberately share a conservative bucket, never a spoofable
