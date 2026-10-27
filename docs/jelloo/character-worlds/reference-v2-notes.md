@@ -1,0 +1,7 @@
+# Jelloo reference v2
+
+Generated with the built-in image_gen tool on 27 October 2026, using the owner's original character reference image. This is an environment/art-direction concept, not production sprites or implemented levels. Original approved sprite artwork remains authoritative for character identity.
+
+Prompt specification: Update the reference sheet to the JELLOO name, retain the five original glossy jelly mascots and colors, show five matching worlds with fifty levels each: pink Bunny / Pink Candy Land / 1–50; Panda / Bamboo Jungle / 51–100; golden Cat / Cozy Rooftops / 101–150; purple Octopus / Ocean Paradise / 151–200; orange Fox / Enchanted Forest / 201–250. Use a cream landscape developer reference board with large world dioramas, palette swatches, Bunny Idle/Squash/Hop/Land/Confused/Celebrate poses, themed tile/home kits and a compact Bunny arrival celebration. Clearly label visual reference only and build/review one fifty-level world at a time. Exclude old twenty-level worlds, obsolete Meadow/Beach/Snow/Space progression, new powers, star-gate numbers and ads.
+
+Visual check: all five character-world labels and level ranges are correct. Mascots retain recognizable identities and colors; generated poses/environments are concept art rather than pixel-identical copies of source assets. The tile miniatures illustrate theme/materials, not authoritative path geometry or new mechanics.

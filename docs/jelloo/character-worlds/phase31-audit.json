@@ -1,0 +1,20 @@
+{
+  "boards": 50,
+  "pairs": 1225,
+  "duplicates": [],
+  "nearDuplicates": [],
+  "levelChanges": [
+    3,
+    9,
+    43,
+    45
+  ],
+  "generatorVersion": "1.0.1",
+  "timing": {
+    "metric": "cold resolver including proof and replay, milliseconds",
+    "median": 0.48359999999996717,
+    "p95": 6.915499999999952,
+    "worst": 39.46950000000004
+  },
+  "seedPolicy": "fixed authored geometry; uint32 seed ignored for compatibility, not procedural variety"
+}

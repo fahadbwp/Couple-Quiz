@@ -1,0 +1,41 @@
+✔ Defect 1 Fix: Production metadata marks all unbuilt worlds as planned; Level 1 access is rejected without content (8.2931ms)
+✔ World Boundaries: exact 50-level chunks and mascots across all 250 levels (2.1074ms)
+✔ Defect 2 Fix: validateCampaignV2Schema rejects forward awards, unknown fields, and malformed timestamps (3.9166ms)
+✔ Defect 3 Fix: Mismatched in-progress boards are rejected; valid boards report unsupported_in_progress_board (1.6871ms)
+✔ Defect 4 Fix: recordLevelResult strictly enforces gates, availability, sequential access, and valid inputs (5.9824ms)
+✔ Defect 5 Fix: initializeCampaignV2 writes only to absent keys; rejects empty string, corrupt data, and occupied keys (6.1836ms)
+✔ Defect 5 Fix: writeCampaignV2Save enforces expectedPreviousRaw, detects conflicts, verifies read-back, and respects limits (1.721ms)
+✔ Legacy Preservation: jelloo.progress.v1 bytes remain unchanged through all rejected and valid operations (3.4776ms)
+✔ Star Gates: exact, one below, and above threshold for all world-local gates (3.3379ms)
+✔ Replay access remains available for earlier completed levels when a later gate is locked (2.9957ms)
+✔ World Unlock: requires BOTH Level 50 completion AND >= 120 stars in World 1 (5.42ms)
+✔ Phase 2.2 Task 1: writeCampaignV2Save rejects corrupt, empty, unsupported and absent destinations even with exact matching snapshots (1.7925ms)
+✔ Phase 2.2 Task 2: initializeCampaignV2 validates complete save before write; rejects malformed and impossible dates with zero writes (1.1229ms)
+✔ comparator detects rotated and mirrored complete boards using actual solver routes (19.8595ms)
+✔ comparator normalizes translation and flags the same core route with irrelevant moved decoys (8.8873ms)
+✔ comparator retains stars, locked connections and genuinely different routing (6.7568ms)
+✔ resolver definitions and two game instances cannot contaminate later resolutions (4.8803ms)
+✔ resolver rejects unreachable stars, unknown versions, unsafe seeds and unproven budgets (4.6338ms)
+✔ all 50 solver boards win through the real reducer and collect every star at the certified cost (925.6606ms)
+✔ Suite 1: Provider Identity, Boundaries, and Determinism (507.2051ms)
+✔ Suite 2: Solvability, Engine Walk, and Mascot Bunny Rules (382.7508ms)
+✔ Suite 3: Progression Difficulty Bands Across All 50 Levels (4.164ms)
+✔ Suite 4: Bunny Power Levels (at least 10 gap levels, strictly unsolvable without Bunny) (339.3608ms)
+✔ Suite 5: Detour Challenges & Move Budgets (at least 10 optional star detours) (119.7075ms)
+✔ Suite 6: Level 50 Strawberry Cottage Finale Capstone Audit (25.9744ms)
+✔ Suite 7: 8-Way Symmetry Structural Uniqueness (0 Duplicates) (1101.0211ms)
+✔ Suite 8: Performance Benchmark (Fast Evaluation) (4.9768ms)
+✔ Phase 4 preview applies sequential and star gates without unlocking planned worlds (8.2407ms)
+✔ Phase 4 real wins persist all 50 completions and restore stars without writing legacy bytes (902.7833ms)
+✔ Phase 4 replay cannot reduce a best score, duplicate completion or overwrite a stale snapshot (4.2892ms)
+✔ Phase 4 unfinished, mismatched and fabricated wins cannot award progress (1.4642ms)
+✔ Phase 4 corrupt and unsupported destinations are preserved when recording results (3.1632ms)
+✔ Phase 4 preview route fails closed in production and original Adventure entry is untouched (2.3547ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3092.5545

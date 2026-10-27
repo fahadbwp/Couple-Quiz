@@ -1,0 +1,31 @@
+✔ comparator detects rotated and mirrored complete boards using actual solver routes (30.5434ms)
+✔ comparator normalizes translation and flags the same core route with irrelevant moved decoys (7.0627ms)
+✔ comparator retains stars, locked connections and genuinely different routing (19.6885ms)
+✔ resolver definitions and two game instances cannot contaminate later resolutions (6.9244ms)
+✔ resolver rejects unreachable stars, unknown versions, unsafe seeds and unproven budgets (1.9611ms)
+✔ all 50 solver boards win through the real reducer and collect every star at the certified cost (818.1325ms)
+✔ Suite 1: Provider Identity, Boundaries, and Determinism (402.9264ms)
+✔ Suite 2: Solvability, Engine Walk, and Mascot Bunny Rules (300.3027ms)
+✔ Suite 3: Progression Difficulty Bands Across All 50 Levels (3.6155ms)
+✔ Suite 4: Bunny Power Levels (at least 10 gap levels, strictly unsolvable without Bunny) (294.3209ms)
+✔ Suite 5: Detour Challenges & Move Budgets (at least 10 optional star detours) (94.759ms)
+✔ Suite 6: Level 50 Strawberry Cottage Finale Capstone Audit (20.1198ms)
+✔ Suite 7: 8-Way Symmetry Structural Uniqueness (0 Duplicates) (907.3168ms)
+✔ Suite 8: Performance Benchmark (Fast Evaluation) (2.5969ms)
+✔ Phase 4 preview applies sequential and star gates without unlocking planned worlds (8.9704ms)
+✔ Phase 4 real wins persist all 50 completions and restore stars without writing legacy bytes (785.4834ms)
+✔ Phase 4 replay cannot reduce a best score, duplicate completion or overwrite a stale snapshot (1.0179ms)
+✔ Phase 4 unfinished, mismatched and fabricated wins cannot award progress (1.2205ms)
+✔ Phase 4 corrupt and unsupported destinations are preserved when recording results (3.0509ms)
+✔ Phase 4 preview route fails closed in production and original Adventure entry is untouched (9.2256ms)
+✔ Candy auto-start ignores stale callbacks and never launches an incomplete path (0.6577ms)
+✔ Candy all 50 levels finish with automatic start, correct stars and locked running input (234.3588ms)
+✔ Candy UI exposes auto-start without manual Go, Undo or Restart controls (4.1646ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3740.2646
