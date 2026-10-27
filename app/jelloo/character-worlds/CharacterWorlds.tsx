@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import {useRouter, useSearchParams} from "next/navigation";
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {CHARACTER_WORLDS, getEarnedStarsForWorld, LOCAL_STAR_GATES} from "@/lib/jelloo/campaign";
 import {initializeCampaignV2, readCampaignV2Save, type CharacterWorldsSave} from "@/lib/jelloo/campaign-save";
 import {previewAccess, persistPreviewWin} from "@/lib/jelloo/campaign-v2/preview-session";
 import type {ResolvedWorld1Level} from "@/lib/jelloo/campaign-v2/world1-provider";
 import {gameReducer, initialGame, ports, tracePath, type Action, type GameState} from "@/lib/jelloo/engine";
+import {dimensions} from "@/lib/jelloo/grid";
+import {bunnyScore} from "@/lib/jelloo/campaign-v2/bunny-provider";
 import {collectedStars, scoreRun} from "@/lib/jelloo/scoring";
 import CharacterSprite from "../CharacterSprite";
 import css from "./worlds.module.css";
@@ -51,6 +53,7 @@ export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]
   const stars = snapshot ? getEarnedStarsForWorld(CHARACTER_WORLDS[0], snapshot.save.best) : 0;
   return <main className={css.page}><div className={css.shell}>
     <header className={css.header}><Link href="/jelloo">← Jelloo</Link><b>Jelloo<span> worlds.</span></b><span className={css.preview}>LOCAL PREVIEW</span></header>
+    <p className={css.note}><Link href="/jelloo/character-worlds/bunny">New 4×4 Bunny adventure →</Link> · Previous progress stays safe.</p>
     {error ? <section role="alert" className={css.notice}><h1>Progress needs attention</h1><p>{error}</p><button onClick={() => location.reload()}>Reload saved progress</button></section> : !loaded ? <p role="status">Opening your adventure…</p> : !snapshot ? <section className={css.welcome}>
       <div className={css.portrait}><CharacterSprite character="bunny" animate={!reduced}/></div>
       <p className={css.eyebrow}>A NEW LITTLE ADVENTURE</p><h1>A sweeter path home.</h1>
@@ -90,36 +93,40 @@ export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]
   </div></main>;
 }
 
-function CandyPuzzle({level, snapshot, reduced, onWin, next}: {level: ResolvedWorld1Level; snapshot: Snapshot; reduced: boolean; onWin: (game: GameState) => boolean; next: () => void}) {
-  const [game, setGame] = useState(() => initialGame(level));
+export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/jelloo/character-worlds", restore, persistAttempt, modern=false}: {level: Omit<ResolvedWorld1Level,"generatorVersion"> & {generatorVersion:string}; snapshot: Snapshot; reduced: boolean; onWin: (game: GameState) => boolean; next: () => void; basePath?:string;restore?:GameState;persistAttempt?:(game:GameState)=>Promise<boolean>;modern?:boolean}) {
+  const [game, setGame] = useState(() => restore ?? initialGame(level));
   const live = useRef(game), heading = useRef<HTMLHeadingElement>(null);
   const resultDialog = useRef<HTMLDialogElement>(null);
   const [resultDismissed, setResultDismissed] = useState(false);
-  const [resultSaved, setResultSaved] = useState(false);
+  const [resultSaved, setResultSaved] = useState(restore?.status === "won");
+  const publish = useCallback((previous:GameState,result:GameState) => {
+    live.current=result;setGame(result);
+    if(persistAttempt) {void persistAttempt(result).then(saved=>{if(result.status==="won")setResultSaved(saved)});}
+    else if(result.status==="won"&&previous.status!=="won")setResultSaved(onWin(result));
+  },[onWin,persistAttempt]);
   function act(action: Action) {
     if (action.type === "reset") {setResultDismissed(false); setResultSaved(false);}
     const previous = live.current, result = gameReducer(previous, action);
-    live.current = result; setGame(result);
-    if (result.status === "won" && previous.status !== "won") setResultSaved(onWin(result));
+    publish(previous,result);
   }
   // Match Adventure: a connected path starts after a short, cancellable pause.
   useEffect(() => {
     if (game.status !== "editing" || tracePath(game.level, game.tiles).outcome !== "home") return;
     const timer = setTimeout(() => {
       const result = gameReducer(live.current, {type: "auto", runId: game.runId, moves: game.moves});
-      live.current = result; setGame(result);
+      publish(live.current,result);
     }, 250);
     return () => clearTimeout(timer);
-  }, [game]);
+  }, [game,publish]);
   useEffect(() => {
     if (game.status !== "running") return;
     const timer = setTimeout(() => {
       const previous = live.current, result = gameReducer(previous, {type: "tick", runId: game.runId});
-      live.current = result; setGame(result);
-      if (result.status === "won" && previous.status !== "won") setResultSaved(onWin(result));
+      publish(live.current,result);
+
     }, reduced ? 40 : 340);
     return () => clearTimeout(timer);
-  }, [game, reduced, onWin]);
+  }, [game, reduced, publish]);
   const showResult = !resultDismissed && (game.status === "lost" || (game.status === "won" && resultSaved));
   useEffect(() => {
     const dialog = resultDialog.current;
@@ -131,23 +138,24 @@ function CandyPuzzle({level, snapshot, reduced, onWin, next}: {level: ResolvedWo
     document.body.style.overflow = "hidden";
     return () => {document.body.style.overflow = previousOverflow;};
   }, [showResult]);
-  const {status, tiles, trace, cursor} = game, score = scoreRun(game);
+  const {status, tiles, trace, cursor} = game, score = modern ? bunnyScore(game) : scoreRun(game);
+  const grid=dimensions(level);
   const pos = trace?.path[cursor] ?? level.start, collected = collectedStars(game);
   const canEdit = status === "editing" || status === "blocked";
   const nextAccess = level.id < 50 ? previewAccess(level.id + 1, snapshot.save) : null;
   const world = CHARACTER_WORLDS.find(item => item.id === level.characterWorldId);
   const activeCharacter = world?.mascot ?? level.character ?? "bunny";
   return <>
-    <nav className={css.gameNav}><Link href="/jelloo/character-worlds">← Candy Land map</Link><span>🐰 Bunny · Level {level.id} / 50</span></nav>
+    <nav className={css.gameNav}><Link href={basePath}>← Candy Land map</Link><span>🐰 Bunny · Level {level.id} / 50</span></nav>
     <section className={css.puzzle}><div className={css.puzzleHeading}><div><p className={css.eyebrow}>PINK CANDY LAND</p><h1>{level.title}</h1></div><div className={css.moves}><b>{game.moves} / {level.moveLimit}</b><span>moves</span></div></div>
       <p className={css.hint}>{level.hint}</p>
-      <div className={css.garden}><div className={css.board} style={{gridTemplateColumns: `repeat(${level.size}, minmax(0, 1fr))`}} role="group" aria-label={`Level ${level.id} puzzle, ${level.size} by ${level.size}`}>
+      <div className={css.garden}><div className={css.board} style={{gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`}} role="group" aria-label={`Level ${level.id} puzzle, ${grid.rows} rows by ${grid.columns} columns`}>
         {tiles.map((tile, index) => {
           const editable = ["straight", "corner", "tee"].includes(tile.kind) && !tile.locked;
           const path = tile.kind === "straight" ? "M0 50H100" : tile.kind === "corner" ? "M50 0V36Q50 50 64 50H100" : tile.kind === "tee" ? "M0 50H100M50 50V0" : "M50 50V0";
           const art = tile.kind !== "blank" && <svg viewBox="0 0 100 100" aria-hidden="true" style={{transform: `rotate(${(editable || tile.locked ? tile.rotation : tile.port ?? 0) * 90}deg)`}}><path className={css.roadRim} d={path}/><path className={css.roadEdge} d={path}/><path d={path}/></svg>;
           return <div key={index} className={css.cell} data-gap={tile.terrain === "gap"} data-visited={trace?.path.slice(0, cursor + 1).includes(index)}>
-            {editable ? <button disabled={!canEdit} onClick={() => act({type: "rotate", index})} aria-label={`Row ${Math.floor(index / level.size) + 1}, column ${index % level.size + 1}, ${tile.kind}, connects ${ports(tile).map(d => ["up", "right", "down", "left"][d]).join(" and ")}. Rotate clockwise${level.collectibles?.includes(index) ? ". Golden star" : ""}`}>{art}</button> : art}
+            {editable ? <button disabled={!canEdit} onClick={() => act({type: "rotate", index})} aria-label={`Row ${Math.floor(index / grid.columns) + 1}, column ${index % grid.columns + 1}, ${tile.kind}, connects ${ports(tile).map(d => ["up", "right", "down", "left"][d]).join(" and ")}. Rotate clockwise${level.collectibles?.includes(index) ? ". Golden star" : ""}`}>{art}</button> : art}
             {tile.terrain !== "gap" && tile.kind !== "home" && tile.kind !== "start" && <span className={css.tileDecor} aria-hidden="true">{index % 3 === 0 ? <svg viewBox="0 0 40 40"><ellipse cx="12" cy="23" rx="6" ry="12" fill="#72ba32" transform="rotate(-35 12 23)"/><ellipse cx="22" cy="16" rx="6" ry="12" fill="#a2d742" transform="rotate(15 22 16)"/><ellipse cx="27" cy="25" rx="6" ry="11" fill="#5da02c" transform="rotate(45 27 25)"/><path d="M18 32L23 11" stroke="#d7ef77" strokeWidth="1.5"/></svg> : <svg viewBox="0 0 40 40"><g fill="#fff9ed" stroke="#f4d3cc" strokeWidth=".6"><ellipse cx="20" cy="11" rx="6" ry="8"/><ellipse cx="29" cy="18" rx="8" ry="6"/><ellipse cx="25" cy="28" rx="6" ry="8" transform="rotate(-30 25 28)"/><ellipse cx="14" cy="28" rx="6" ry="8" transform="rotate(30 14 28)"/><ellipse cx="10" cy="18" rx="8" ry="6"/></g><circle cx="20" cy="20" r="5.5" fill="#ffc64c"/><circle cx="19" cy="18" r="2" fill="#ffe89d"/></svg>}</span>}
             {tile.terrain === "gap" && <span className={css.gap}>GAP</span>}
             {level.collectibles?.includes(index) && <span className={css.star} data-collected={collected.includes(index)} role="img" aria-label={collected.includes(index) ? "Star collected" : "Golden star collectible"}>
@@ -170,7 +178,7 @@ function CandyPuzzle({level, snapshot, reduced, onWin, next}: {level: ResolvedWo
             {tile.kind === "home" && <><span className={css.cottage} role="img" aria-label="Strawberry Cottage"></span><span className={css.marker}>HOME</span></>}
           </div>;
         })}
-        <div className={css.traveller} data-motion={!reduced} style={{left: `${(pos % level.size + .5) / level.size * 100}%`, top: `${(Math.floor(pos / level.size) + .5) / level.size * 100}%`, width: `${78 / level.size}%`}}><CharacterSprite character="bunny" status={status} animate={!reduced} powerActive={status === "running" && cursor > 0 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) > 1 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) !== level.size}/></div>
+        <div className={css.traveller} data-motion={!reduced} style={{left: `${(pos % grid.columns + .5) / grid.columns * 100}%`, top: `${(Math.floor(pos / grid.columns) + .5) / grid.rows * 100}%`, width: `${78 / grid.columns}%`}}><CharacterSprite character="bunny" status={status} animate={!reduced} powerActive={status === "running" && cursor > 0 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) > 1 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) !== grid.columns}/></div>
       </div></div>
       <p role="status" className={css.feedback}>{status === "blocked" ? "A little gap in the path! Rotate a tile and try again." : status === "running" ? "Hop, hop… almost home!" : status === "lost" ? "Out of moves. A fresh start is waiting." : status === "won" ? "Home sweet home!" : "Connect the path — Bunny hops home automatically! Each turn uses one move."}</p>
       {(status === "won" || status === "lost") && resultDismissed && <button className={css.primary} onClick={() => setResultDismissed(false)}>Show result</button>}
@@ -180,15 +188,15 @@ function CandyPuzzle({level, snapshot, reduced, onWin, next}: {level: ResolvedWo
           <div className={css.resultPal}><CharacterSprite character={activeCharacter} status={status === "won" ? "won" : "lost"} animate={!reduced}/></div>
           <p className={css.eyebrow}>{status === "won" ? "HOME SWEET HOME" : "ONE MORE LITTLE ADVENTURE"}</p>
           <h2 ref={heading} tabIndex={-1} id="result-title">{status === "won" ? "Sweet! You made it home." : "Out of moves? Try a fresh path."}</h2>
-          {status === "won" ? <><p className={css.resultStars} aria-label={`${score.stars} out of 3 stars`}>{"★".repeat(score.stars)}{"☆".repeat(3 - score.stars)}</p><p id="result-description">{game.moves} moves · {score.collected}/{score.total} golden stars collected</p>{resultSaved && <p>Your best result has been saved.</p>}</> : <p id="result-description">Almost there! Bunny’s ready to try again.<br/>{game.moves} / {level.moveLimit} moves used.</p>}
+          {status === "won" ? <><p className={css.resultStars} aria-label={`${score.stars} out of 3 stars`}>{"★".repeat(score.stars)}{"☆".repeat(3 - score.stars)}</p><p id="result-description">{game.moves} moves · {score.collected}/{score.total} golden stars collected</p>{resultSaved && <p>Your best result has been saved.</p>}</> : <p id="result-description">Almost there! Your pal is ready to try again.<br/>{game.moves} / {level.moveLimit} moves used.</p>}
           <div className={css.modalActions}>
             {status === "won" && nextAccess?.accessible ? <button className={css.primary} onClick={next}>Next Level →</button> : <button className={css.primary} onClick={() => act({type: "reset"})}>Try again</button>}
-            <div className={css.controls}>{status === "won" && nextAccess?.accessible && <button onClick={() => act({type: "reset"})}>Replay</button>}<Link href="/jelloo/character-worlds">Level map</Link></div>
+            <div className={css.controls}>{status === "won" && nextAccess?.accessible && <button onClick={() => act({type: "reset"})}>Replay</button>}<Link href={basePath}>Level map</Link></div>
           </div>
           {status === "won" && !nextAccess?.accessible && <p>{level.id === 50 ? "Candy Land complete! Panda’s world is coming in the next batch." : "The next star gate needs more stars. Replay earlier levels from the map."}</p>}
         </div>
       </dialog>
-      <p className={css.note}>Completed levels and stars are saved. Refreshing an unfinished puzzle restarts that board.</p>
+      <p className={css.note}>{modern ? "Your puzzle and stars are saved. You can continue after a refresh." : "Completed levels and stars are saved. Refreshing an unfinished puzzle restarts that board."}</p>
     </section>
   </>;
 }

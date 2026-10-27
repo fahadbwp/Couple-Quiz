@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {bunnyLevel,allBunnyLevels,bunnyScore} from "../lib/jelloo/campaign-v2/bunny-provider";
 import {BUNNY_PLANS,BUNNY_SPECS} from "../lib/jelloo/campaign-v2/bunny-specs";
-import {initialGame,gameReducer,tracePath,type GameState} from "../lib/jelloo/engine";
+import {initialGame,gameReducer,tracePath} from "../lib/jelloo/engine";
 import {solvePowerLevel} from "../lib/jelloo/power-solver";
 import {auditBatchUniqueness} from "../lib/jelloo/campaign-v2/structural-comparator";
 function play(id:number,kind:"short"|"stars") {
@@ -37,9 +37,29 @@ test("all 1225 Bunny pairs reject repeated topology, core routes and high-overla
 test("new campaign rewards are actual reached pickups and cannot award failed attempts",()=>{
  const game=play(6,"stars");assert.equal(bunnyScore(game).stars,3);
  const short=play(6,"short");assert.equal(bunnyScore(short).stars,1);
- const partial:GameState={...game,trace:{...game.trace!,path:game.trace!.path.filter(i=>i!==game.level.collectibles![1])}};
- assert.equal(bunnyScore(partial).stars,2);
+ let two=initialGame(bunnyLevel(23));
+ for(const index of [0,0,1,3,3,3,5,5,6,8,8,9,9,10,11]) {
+  two=gameReducer(two,{type:"rotate",index});
+  two=gameReducer(two,{type:"auto",runId:two.runId,moves:two.moves});
+ }
+ while(two.status==="running")two=gameReducer(two,{type:"tick",runId:two.runId});
+ assert.equal(two.status,"won");assert.equal(bunnyScore(two).collected,1);assert.equal(bunnyScore(two).stars,2);
  assert.equal(bunnyScore({...game,status:"lost"}).stars,0);
  assert.equal(bunnyScore(initialGame(bunnyLevel(1))).stars,0);
  assert.equal(tracePath(game.level,game.tiles).outcome,"home");
+});
+
+
+test("Bunny last-budget connection wins, rapid turns cost one each and repeated ticks cannot change rewards",()=>{
+ let game=initialGame(bunnyLevel(1));
+ for(const index of [3,3,3,...BUNNY_PLANS[1].stars]) {
+  const before=game.moves;game=gameReducer(game,{type:"rotate",index});assert.equal(game.moves,before+1);
+ }
+ assert.equal(game.moves,game.level.moveLimit);assert.notEqual(game.status,"lost");
+ game=gameReducer(game,{type:"auto",runId:game.runId,moves:game.moves});
+ const running=game;assert.deepEqual(gameReducer(game,{type:"rotate",index:1}),running);
+ while(game.status==="running")game=gameReducer(game,{type:"tick",runId:game.runId});
+ assert.equal(game.status,"won");assert.equal(bunnyScore(game).stars,3);
+ assert.deepEqual(gameReducer(game,{type:"tick",runId:game.runId}),game);
+ assert.deepEqual(gameReducer(game,{type:"auto",runId:game.runId,moves:game.moves}),game);
 });

@@ -19,6 +19,16 @@ test("new Bunny campaign restores every editing/running/won board while preservi
   }
   assert.equal(game.status,"won");const write=persistBunnyAttempt(store,save,raw,game);assert(write.success,`win ${id}`);save=write.save;raw=write.raw;
   assert.equal(restoreBunnyGame(save)!.status,"won");assert.equal(save.completed,id);assert.equal(save.best[id],3);
+  if(id>5) {
+   let short=initialGame(bunnyLevel(id));
+   for(const index of BUNNY_PLANS[id].short)short=gameReducer(short,{type:"rotate",index});
+   short=gameReducer(short,{type:"auto",runId:short.runId,moves:short.moves});
+   while(short.status==="running")short=gameReducer(short,{type:"tick",runId:short.runId});
+   assert.equal(short.status,"won");
+   const lower=persistBunnyAttempt(store,save,raw,short);assert(lower.success);save=lower.save;raw=lower.raw;
+   assert.equal(save.best[id],3,"A one-star replay must preserve the earned three-star best");
+  }
+
  }
  assert.equal(Object.values(save.best).reduce((a,b)=>a+b,0),150);
  assert.equal(store.getItem("jelloo.progress.v1"),"legacy bytes");assert.equal(store.getItem("jelloo.campaign.v2"),"previous world bytes");
@@ -36,4 +46,22 @@ test("stale writers and lost states never award progress; retry creates a fresh 
  assert(!persistBunnyAttempt(store,save,raw,game).success);
  const retry=gameReducer(restoreBunnyGame(written.save)!,{type:"reset"});assert.equal(retry.moves,0);assert.equal(retry.status,"editing");
  const saved=persistBunnyAttempt(store,written.save,written.raw,retry);assert(saved.success);assert.equal(readBunnySave(store).status,"ready");
+});
+
+
+test("Bunny replay never lowers earned stars and unsupported storage never claims a saved result",()=>{
+ const {store,save,raw}=fresh();let game=initialGame(bunnyLevel(1));
+ for(const index of BUNNY_PLANS[1].stars)game=gameReducer(game,{type:"rotate",index});
+ game=gameReducer(game,{type:"auto",runId:game.runId,moves:game.moves});
+ while(game.status==="running")game=gameReducer(game,{type:"tick",runId:game.runId});
+ const won=persistBunnyAttempt(store,save,raw,game);assert(won.success);
+ const fail={getItem(){throw Error("denied")},setItem(){throw Error("denied")},removeItem(){throw Error("denied")}};
+ assert.equal(readBunnySave(fail).status,"storage_unavailable");assert(!initializeBunnySave(fail).success);
+ assert(!persistBunnyAttempt(fail,won.save,won.raw,game).success);
+ assert.equal(won.save.best[1],3);
+ const retry=gameReducer(game,{type:"reset"});
+ const saved=persistBunnyAttempt(store,won.save,won.raw,retry);assert(saved.success);
+ assert.equal(saved.save.best[1],3);assert.equal(saved.save.completed,1);
+ const blocked=initialGame(bunnyLevel(50));assert(!persistBunnyAttempt(store,saved.save,saved.raw,blocked).success);
+ assert.equal(store.getItem(BUNNY_SAVE_KEY),saved.raw);
 });
