@@ -43,7 +43,7 @@ test("third-party srcdoc cannot combine scripts with same-origin, popups or top-
 test("victory controls never share their dialog with a fixed 300px third-party ad", () => {
   const view = readFileSync("app/jelloo/GameView.tsx", "utf8");
   assert.doesNotMatch(view, /JellooAdsterraBanner/);
-  assert.match(view, /Next Level/);
+  assert.match(view, /Next Adventure/);
   assert.match(view, /Try again/);
   assert.doesNotMatch(readFileSync("app/jelloo/page.tsx", "utf8"), /JellooAdsterraBanner/,
     "The interactive Adventure page must not falsely label active gameplay as idle");

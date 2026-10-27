@@ -113,15 +113,15 @@ test("Integration Scenario C: Existing multiRevision: 1 save (Level 71 and Level
   assert.equal(decoded91.game.level.par, 2, "Rev 1 Level 91 puzzle must maintain par 2");
 });
 
-test("Integration Scenario D: Newly generated multiRevision: 2 saves and cycle test", () => {
+test("Integration Scenario D: Newly generated multiRevision: 3 saves and cycle test", () => {
   // New journey at Level 71
   let j = newJourney(42);
   j = { ...j, completed: 70 };
   j = journeyReducer(j, { type: "visit", id: 71 });
 
-  assert.equal(j.multiRevision, 2);
+  assert.equal(j.multiRevision, 3);
   assert.equal(j.game.level.id, 71);
-  assert.equal(j.game.level.par, 4, "Fresh Level 71 must have par 4 in revision 2");
+  assert.equal(j.game.level.par, 4, "Fresh Level 71 must have par 4 in revision 3");
 
   // Save -> Reload -> Rotate -> Undo -> Restart -> Save -> Reload
   const rotIdx = j.game.tiles.findIndex(t => !t.locked && ["straight", "corner"].includes(t.kind));
@@ -135,7 +135,7 @@ test("Integration Scenario D: Newly generated multiRevision: 2 saves and cycle t
   const encoded1 = encodeJourney(j);
   const reloaded1 = decodeJourney(encoded1);
   assert.ok(reloaded1);
-  assert.equal(reloaded1.multiRevision, 2);
+  assert.equal(reloaded1.multiRevision, 3);
   assert.equal(reloaded1.game.moves, 1);
   assert.equal(reloaded1.game.tiles[rotIdx].rotation, j.game.tiles[rotIdx].rotation);
 
@@ -148,7 +148,7 @@ test("Integration Scenario D: Newly generated multiRevision: 2 saves and cycle t
   const encoded2 = encodeJourney(j);
   const reloaded2 = decodeJourney(encoded2);
   assert.ok(reloaded2);
-  assert.equal(reloaded2.multiRevision, 2);
+  assert.equal(reloaded2.multiRevision, 3);
   assert.equal(reloaded2.game.moves, 0);
   assert.equal(reloaded2.game.level.par, 4);
 });

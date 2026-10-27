@@ -88,7 +88,7 @@ export function generatePuzzle(id: number, seed: number, searchBudget = 2400) {
   return {level,solution};
 }
 
-export function levelAt(id: number, seed: number, rules = 4, multiRevision = 2) {
+export function levelAt(id: number, seed: number, rules = 4, multiRevision = 3) {
   let level: Level;
   if (multiRevision >= 1 && rules >= 4 && isMultiJellyLevel(id)) {
     const count = multiJellyCountFor(id);

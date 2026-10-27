@@ -27,7 +27,7 @@ test("historical pre-Multi generator saves preserve boards, rotations and comple
   assert.deepEqual(restored.game.tiles.map(t=>t.rotation%4),raw.rotations);
   assert.deepEqual(decodeJourney(encodeJourney(restored)),restored);
   const next=journeyReducer({...restored,completed:id},{type:"visit",id:id+1});
-  assert.equal(next.multiRevision,1);
+  assert.equal(next.multiRevision,3);
  }
 });
 test("saved Jelly specifications reject corrupted fields and retain canonical valid data",()=>{

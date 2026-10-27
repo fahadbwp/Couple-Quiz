@@ -52,15 +52,15 @@ test("Task 3: MultiRevision backward compatibility and save preservation", () =>
   assert.equal(decodedRev1.multiRevision, 1);
   assert.equal(decodedRev1.game.level.id, 71);
 
-  // 2. New journey uses multiRevision 2
+  // 2. New journey uses multiRevision 3
   const newJ = newJourney(42);
-  assert.equal(newJ.multiRevision, 2);
+  assert.equal(newJ.multiRevision, 3);
 
-  // 3. New save encodes multiRevision 2 and roundtrips
+  // 3. New save encodes multiRevision 3 and roundtrips
   const encoded = encodeJourney(newJ);
   const decodedNew = decodeJourney(encoded);
   assert.ok(decodedNew);
-  assert.equal(decodedNew.multiRevision, 2);
+  assert.equal(decodedNew.multiRevision, 3);
 });
 
 test("Task 4: Endless Mode quality & 100 consecutive level solvability audit", () => {

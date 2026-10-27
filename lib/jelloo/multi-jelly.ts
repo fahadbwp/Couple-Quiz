@@ -384,13 +384,14 @@ export function simulateMultiJelly(level: Level, tiles: readonly Tile[]): MultiJ
  * Deterministic solver for Multi-Jelly levels.
  * Uses BFS over rotation moves to find minimal moves 'par' to victory.
  */
-export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveResult {
+export function solveMultiJelly(level: Level, budget = 25000, requireAllStars = false): MultiJellySolveResult {
   const rotatable = level.tiles
     .map((t, idx) => idx)
     .filter(i => ["straight", "corner", "tee"].includes(level.tiles[i].kind) && !level.tiles[i].locked);
 
+  const accepts = (trace: MultiJellyTrace) => trace.multiOutcome === "home" && (!requireAllStars || (level.collectibles ?? []).every(i => trace.jellies.some(j => j.path.includes(i))));
   const initialSim = simulateMultiJelly(level, level.tiles);
-  if (initialSim.multiOutcome === "home") {
+  if (accepts(initialSim)) {
     return {
       status: "solved", exhausted: false,
       solvable: true,
@@ -423,8 +424,9 @@ export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveRe
   let explored = 0;
   let bestSim = initialSim;
 
-  while (queue.length > 0) {
-    const { rotations, moves } = queue.shift()!;
+  let head = 0;
+  while (head < queue.length) {
+    const { rotations, moves } = queue[head++];
     explored++;
     if (explored > budget) break;
 
@@ -436,7 +438,7 @@ export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveRe
     });
 
     const sim = simulateMultiJelly(level, testTiles);
-    if (sim.multiOutcome === "home") {
+    if (accepts(sim)) {
       return {
         status: "solved", exhausted: false,
       solvable: true,
@@ -450,7 +452,7 @@ export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveRe
     // Enqueue single-rotation neighbors
     for (let i = 0; i < rotatable.length; i++) {
       const nextR = [...rotations];
-      nextR[i] = (nextR[i] + 1) % 4;
+      nextR[i] = (nextR[i] + 1) % (level.tiles[rotatable[i]].kind === "straight" ? 2 : 4);
       const key = nextR.join(",");
       if (!visited.has(key)) {
         visited.add(key);
@@ -468,10 +470,76 @@ export function solveMultiJelly(level: Level, budget = 25000): MultiJellySolveRe
   };
 }
 
-/**
- * Procedural Two-Jelly Puzzle Generator for Levels 71–80 and endless continuation.
+/** Revision 3: routed teams instead of repeating exposed straight corridors.
+ * Backbite mutations preserve a Hamiltonian grid path; partitions are disjoint.
+ * Six editable tiles bound exhaustive proof to at most 4^6 configurations.
+ * Legacy generators below remain available for historical save decoding.
  */
-export function generateTwoJellyPuzzle(id: number, seed: number, revision = 2) {
+function generateVariedTeamPuzzle(id: number, seed: number, count: 2 | 3) {
+  let state = (seed ^ Math.imul(id, 2246822519)) >>> 0;
+  const random = () => { state = (Math.imul(state,1664525)+1013904223) >>> 0; return state / 4294967296; };
+  let path = Array.from({length:25}, (_,i) => Math.floor(i/5)*5 + (Math.floor(i/5)%2 ? 4-i%5 : i%5));
+  for(let n=0;n<80;n++) {
+    if(random()<0.5) path.reverse();
+    const neighbors = ([0,1,2,3] as Direction[]).map(d=>neighbour(path[0],d,5)).filter((i):i is number=>i!==null && i!==path[1]);
+    const k = path.indexOf(neighbors[Math.floor(random()*neighbors.length)]);
+    if(k>1) path = [...path.slice(0,k).reverse(),...path.slice(k)];
+  }
+  const cut = count===2 ? 10+Math.floor(random()*6) : 7+Math.floor(random()*3);
+  const second = count===3 ? cut+7+Math.floor(random()*2) : 25;
+  const routes = count===2 ? [path.slice(0,cut),path.slice(cut)] : [path.slice(0,cut),path.slice(cut,second),path.slice(second)];
+  const characters: Character[] = count===3 ? ["bunny","panda","cat"] : id%2 ? ["cat","octopus"] : ["bunny","panda"];
+  const tiles: Tile[] = Array.from({length:25},()=>({kind:"blank",rotation:0}));
+  const dir = (a:number,b:number) => ([0,1,2,3] as Direction[]).find(d=>neighbour(a,d,5)===b)!;
+  for(const route of routes) {
+    tiles[route[0]]={kind:"start",rotation:0,port:dir(route[0],route[1]),locked:true};
+    tiles[route.at(-1)!]={kind:"home",rotation:0,port:dir(route.at(-1)!,route.at(-2)!),locked:true};
+    for(let i=1;i<route.length-1;i++) {
+      const a=dir(route[i],route[i-1]), b=dir(route[i],route[i+1]);
+      const kind=(a+2)%4===b ? "straight" : "corner";
+      const rotation=[0,1,2,3].find(r=>[a,b].every(d=>ports({kind,rotation:r}).includes(d)))!;
+      tiles[route[i]]={kind,rotation,locked:true};
+    }
+  }
+  // Spread editable decisions across every pal, then increase corner rotation cost.
+  const stage = Math.min(2,Math.floor(Math.max(0,id-(count===2?72:92))/3));
+  for(const route of routes) {
+    const cells=route.slice(1,-1);
+    for(let i=cells.length-1;i>0;i--) {const j=Math.floor(random()*(i+1)); [cells[i],cells[j]]=[cells[j],cells[i]];}
+    cells.sort((a,b)=>Number(tiles[b].kind==="corner")-Number(tiles[a].kind==="corner"));
+    for(const cell of cells.slice(0,6/count)) {
+      tiles[cell].locked=false;
+      const cost=tiles[cell].kind==="corner" ? 1+Math.floor(random()*(stage+1)) : 1;
+      tiles[cell].rotation=(tiles[cell].rotation+4-cost)%4;
+    }
+  }
+  const level: Level = {
+    id,size:5,title:count===2?`Twisting Duo #${id}`:`Orbiting Trio #${id}`,
+    hint:"Connect each pal to its matching home. The fixed paths are clues; plan your turns before moving.",
+    start:routes[0][0],home:routes[0].at(-1)!,tiles,world:worldForLevel(id).id,
+    jellies:routes.map((r,i)=>({character:characters[i],start:r[0],home:r.at(-1)!})),
+    collectibles:routes.map(r=>r[Math.floor(r.length/2)]),
+  };
+  // Existing linked-door rule: the first pal must reach the plate before the second door.
+  if(id%3===0) {
+    tiles[routes[0][1]].terrain="switch";
+    level.door={switch:routes[0][1],tile:routes[1][3]};
+  }
+  if(characters[1]==="octopus") tiles[routes[1][2]].terrain="water";
+  else tiles[routes[1][2]].terrain="cracked";
+  const proof=solveMultiJelly(level,5000);
+  if(proof.status!=="solved" || !Number.isFinite(proof.par)) throw new Error("Multi-Jelly revision 3 proof failed");
+  const starProof=solveMultiJelly(level,5000,true);
+  if(starProof.status!=="solved") throw new Error("Multi-Jelly collectible proof failed");
+  level.par=proof.par;
+  level.moveLimit=starProof.par+3;
+  level.difficulty=count===2?"Two Jellies":"Three Jellies";
+  return {level,proof};
+}
+
+/** Procedural Two-Jelly Puzzle Generator. */
+export function generateTwoJellyPuzzle(id: number, seed: number, revision = 3) {
+  if (revision >= 3 && id !== 71) return generateVariedTeamPuzzle(id, seed, 2);
   let value = (seed ^ Math.imul(id, 2654435761)) >>> 0;
   const random = () => {
     value = (Math.imul(value, 1664525) + 1013904223) >>> 0;
@@ -647,7 +715,8 @@ export function generateTwoJellyPuzzle(id: number, seed: number, revision = 2) {
 /**
  * Procedural Three-Jelly Puzzle Generator for Levels 91–100 and endless continuation.
  */
-export function generateThreeJellyPuzzle(id: number, seed: number, revision = 2) {
+export function generateThreeJellyPuzzle(id: number, seed: number, revision = 3) {
+  if (revision >= 3 && id !== 91) return generateVariedTeamPuzzle(id, seed, 3);
   let value = (seed ^ Math.imul(id, 3266489917)) >>> 0;
   const random = () => {
     value = (Math.imul(value, 1664525) + 1013904223) >>> 0;

@@ -289,9 +289,12 @@ export function generateDailyLevel(dateStr: string, version = DAILY_VERSION): Le
       ? [route[Math.floor(route.length / 2)]]
       : [route[Math.floor(route.length / 3)], route[Math.floor((route.length * 2) / 3)]];
 
+    // Repair collectible targets only: preserve dated routes and saved rotations.
+    level.collectibles = reachableDailyStars(level, route, level.collectibles);
+
     // Audit with solver
     const proof = solvePowerLevel(level);
-    if (!proof.solvable) continue;
+    if (!proof.solvable || !Number.isFinite(proof.starPar)) continue;
 
     level.par = proof.par;
     level.moveLimit = proof.starPar + (meta.tier === "easy" ? 4 : meta.tier === "medium" ? 3 : 2);
@@ -320,9 +323,11 @@ export function generateDailyLevel(dateStr: string, version = DAILY_VERSION): Le
     ? [fallbackSpec.route[Math.floor(fallbackSpec.route.length / 2)]]
     : [fallbackSpec.route[Math.floor(fallbackSpec.route.length / 3)], fallbackSpec.route[Math.floor((fallbackSpec.route.length * 2) / 3)]];
 
+  level.collectibles = reachableDailyStars(level, fallbackSpec.route, level.collectibles);
   const proof = solvePowerLevel(level);
+  if (!proof.solvable || !Number.isFinite(proof.starPar)) throw new Error("Daily all-star validation failed");
   level.par = proof.par;
-  level.moveLimit = (proof.starPar || 12) + (meta.tier === "easy" ? 4 : meta.tier === "medium" ? 3 : 2);
+  level.moveLimit = proof.starPar + (meta.tier === "easy" ? 4 : meta.tier === "medium" ? 3 : 2);
   level.difficulty = meta.tier === "easy" ? "Daily Easy" : meta.tier === "medium" ? "Daily Medium" : "Daily Advanced";
 
   return level;
@@ -432,4 +437,17 @@ export function decodeDailyStore(raw: string, today: string = currentUtcDateStri
 
 export function encodeDailyStore(store: DailyStore): string {
   return JSON.stringify(store);
+}
+
+// Keep valid historical star positions; move only unvisitable gap targets.
+function reachableDailyStars(level: Level, route: number[], stars: number[]): number[] {
+  const valid = route.slice(1, -1).filter(i => level.tiles[i].terrain !== "gap" && level.tiles[i].kind !== "blank");
+  const used = new Set(stars.filter(i => valid.includes(i)));
+  return stars.map(i => {
+    if (valid.includes(i)) return i;
+    const replacement = [...valid].sort((a,b) => Math.abs(route.indexOf(a)-route.indexOf(i))-Math.abs(route.indexOf(b)-route.indexOf(i))).find(n => !used.has(n));
+    if (replacement === undefined) throw new Error("Daily has no reachable collectible target");
+    used.add(replacement);
+    return replacement;
+  });
 }

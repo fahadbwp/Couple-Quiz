@@ -4,7 +4,7 @@ import { scoreRun } from "./scoring";
 
 export const SAVE_KEY = "jelloo.progress.v1";
 export type Journey = { game: GameState; seed: number; completed: number; motion: boolean; muted: boolean; rules: number; multiRevision?: number; best: Record<string,number> };
-export function newJourney(seed = 1): Journey { return {game:initialGame(levelAt(1,seed,4,2)),seed,completed:0,motion:true,muted:false,rules:4,multiRevision:2,best:{}}; }
+export function newJourney(seed = 1): Journey { return {game:initialGame(levelAt(1,seed,4,3)),seed,completed:0,motion:true,muted:false,rules:4,multiRevision:3,best:{}}; }
 export type JourneyAction = Action | {type:"restore";journey:Journey} | {type:"visit";id:number;prepared?:Level} | {type:"jump";id:number} | {type:"motion"} | {type:"mute"};
 export function journeyReducer(state: Journey, action: JourneyAction): Journey {
   if (action.type === "restore") return action.journey;
@@ -14,12 +14,12 @@ export function journeyReducer(state: Journey, action: JourneyAction): Journey {
     if (process.env.NODE_ENV === "production") return state;
     if (!Number.isSafeInteger(action.id) || action.id < 1) return state;
     const completed = Math.max(state.completed, action.id - 1);
-    const multiRevision = state.multiRevision === 0 ? 1 : (state.multiRevision ?? 2);
+    const multiRevision = 3;
     return {...state,completed,rules:4,multiRevision,game:initialGame(levelAt(action.id,state.seed,4,multiRevision),state.game.runId+1)};
   }
   if (action.type === "visit") {
     if (!Number.isSafeInteger(action.id) || action.id < 1 || action.id > state.completed+1 || action.id === state.game.level.id) return state;
-    const multiRevision = state.multiRevision === 0 ? 1 : (state.multiRevision ?? 2);
+    const multiRevision = 3;
     return {...state,rules:4,multiRevision,game:initialGame(action.prepared?.id === action.id ? action.prepared : levelAt(action.id,state.seed,4,multiRevision),state.game.runId+1)};
   }
   const game = gameReducer(state.game,action);
@@ -64,7 +64,7 @@ export function decodeJourney(raw: string): Journey | null {
     const best = s.best ?? {};
     if(typeof best !== "object" || best === null || Array.isArray(best) || Object.keys(best).length>300 || Object.keys(best).filter(id=>Number(id)>100).length>200 || !Object.entries(best).every(([id,stars])=> /^[1-9]\d*$/.test(id) && integer(Number(id),s.completed) && integer(stars,3) && Number(stars)>0)) return null;
     const multiRevision = s.multiRevision ?? (s.jellies === undefined ? 0 : 1);
-    if(multiRevision !== 0 && multiRevision !== 1 && multiRevision !== 2) return null;
+    if(multiRevision !== 0 && multiRevision !== 1 && multiRevision !== 2 && multiRevision !== 3) return null;
     const game = initialGame(levelAt(s.id,s.seed,rules,multiRevision));
     if(s.jellies !== undefined) {
       const expected = game.level.jellies;

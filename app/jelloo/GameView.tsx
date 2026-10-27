@@ -28,6 +28,10 @@ const directions=["up","right","down","left"];
 export default function GameView({verificationMode=false,powerMode=false,dailyMode=false,zenMode=false,streak,extra,journey,animate,preparing,generationError,saveMessage,reducedMotion,act,onBack,board,resultDialog,outOfMovesDialog,winHeading}:Props) {
   const {game,completed,muted,motion,best}=journey;
   const {level,tiles,status,trace,cursor,moves}=game;
+  const [shareOpen, setShareOpen] = useState(false);
+  useEffect(() => {
+    if(resultDialog.current?.open) winHeading.current?.focus();
+  }, [shareOpen, resultDialog, winHeading]);
   const [favourite, setFavourite] = useState<Character | null>(null);
   useEffect(() => {
     setFavourite(getFavouritePal());
@@ -51,6 +55,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
 
   function perform(action:JourneyAction){
     if(action.type==="reset"&&!powerMode&&!dailyMode&&!zenMode&&!verificationMode)trackEvent("adventure_level_retry",{game:"jelloo",mode:"adventure",level:level.id,outcome:"retry"},`retry:${journey.seed}:${level.id}:${game.runId}:${Date.now()}`);
+    if(action.type === "reset" || action.type === "visit") setShareOpen(false);
     act(action);
   }
   return <main className={`${styles.page} ${styles.compact}`} data-motion={animate} data-world={worldId} data-dream={activeCosmetics.dream}>
@@ -197,7 +202,7 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
                 ? "Out of moves! Restart to try again."
                 : status === "blocked"
                 ? (trace && (trace as MultiJellyTrace).multiOutcome === "swap" ? "Oops! Pals collided head-on!" : trace && (trace as MultiJellyTrace).multiOutcome === "collision" ? "Oops! Pals collided in the same cell!" : "Path blocked! Restart or undo to fix it.")
-                : isMulti ? `Connect all ${level.jellies!.length} pals to their matching homes. Avoid shared cells and head-on collisions.` : "Green paths are connected. Join them to home!")}
+                : isMulti ? `Connect all ${level.jellies!.length} pals to their matching homes. Paths may cross at different times. Avoid meeting on the same tile or moving head-on.` : "Green paths are connected. Join them to home!")}
         </div>
         {status === "lost" ? <div className={styles.lossPanel} role="alert"><h3>Out of moves!</h3><p>The path is not complete. Give it another go!</p><div className={styles.lossActions}><button className={styles.go} onClick={()=>perform({type:"reset"})}>Try again</button><Link href="/jelloo/map" className={styles.secondary}>Level Map</Link></div></div> : null}
         <div className={styles.controls}>
@@ -282,19 +287,26 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         <p>{completed} completed · {nextMilestone-completed} to milestone {nextMilestone}{best[level.id] ? ` · Best: ${best[level.id]}/3 ★` : ""}</p>
         <small>{saveMessage} Clearing browser data removes saves.</small><a href="/jelloo/art">Approved art room →</a>
       </details></> : <p className={styles.trialNote}>{level.hint} · {zenMode ? "Take your time—there is no move limit." : "Finish before moves run out. The last move can still win. ★★★ = all stars within the move target."} {saveMessage}</p>}
-      <dialog ref={resultDialog} className={styles.resultDialog} aria-labelledby="win-heading" onClose={()=>board.current?.focus({preventScroll:true})} onKeyDown={event=>{
+      <dialog ref={resultDialog} className={`${styles.resultDialog} ${styles.celebrationDialog}`} data-share={shareOpen} aria-labelledby="win-heading" onClose={()=>{setShareOpen(false);board.current?.focus({preventScroll:true});}} onKeyDown={event=>{
         if(event.key!=="Tab") return;
-        const controls=event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
+        const controls=event.currentTarget.querySelectorAll<HTMLElement>('button:not(:disabled), a[href]');
         const first=controls[0],last=controls[controls.length-1];
         if(event.shiftKey && (document.activeElement===first || document.activeElement===winHeading.current)) {event.preventDefault();last?.focus();}
         else if(!event.shiftKey && document.activeElement===last) {event.preventDefault();first?.focus();}
       }}>
         <button className={styles.closeResult} aria-label="Close result" onClick={()=>resultDialog.current?.close()}>×</button>
-        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{zenMode ? "🌸 Zen Puzzle Solved!" : dailyMode ? "🎉 Daily Puzzle Solved!" : "Yay, you made it home!"}</h3>
+        {!shareOpen ? <div className={styles.homecoming} aria-label="Your pals made it home">
+          <span className={styles.sparkle} aria-hidden="true">✦</span>
+          {(isMulti ? level.jellies!.map(j=>j.character) : [effective.displayCharacter ?? "bunny"]).map((character,i)=><div className={styles.celebrationPal} key={`${character}-${i}`} style={{"--delay":`${i*130}ms`} as CSSProperties}><CharacterSprite character={character} status="won" animate={animate && !reducedMotion}/></div>)}
+          <span className={styles.sparkle} aria-hidden="true">✧</span>
+        </div> : <button className={styles.shareBack} onClick={()=>setShareOpen(false)}>← Back to celebration</button>}
+        <h3 id="win-heading" ref={winHeading} tabIndex={-1}>{shareOpen ? "Share your little victory" : zenMode ? "A peaceful little victory" : dailyMode ? "Today’s adventure, complete!" : isMulti ? "Everyone’s home!" : "Home, sweet home!"}</h3>
+        {!shareOpen && <>
         <LegendaryCelebration active={status==="won"&&activeCosmetics.legendary} animate={animate&&!reducedMotion}/>
         <div className={styles.rating} role="img" aria-label={`${score.stars} out of 3 stars`}>{[1,2,3].map(n=><span key={n} data-earned={n<=score.stars} style={{"--delay":`${n*120}ms`} as CSSProperties} aria-hidden="true">★</span>)}</div>
-        <p>{moves} moves · {score.collected}/{score.total} golden stars</p><p>{zenMode ? "A peaceful moment. Take a deep breath." : score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
-        {status === "won" && !zenMode && !verificationMode ? (
+        <p className={styles.victoryMeta}>{powerMode ? `Trial ${level.id}` : dailyMode ? "Daily puzzle" : zenMode ? "Zen puzzle" : `Level ${level.id}`} complete · {moves} {moves === 1 ? "move" : "moves"}</p><p>{zenMode ? "A peaceful moment. Take a deep breath." : score.stars===3 ? "A perfect little adventure!" : !score.withinLimit ? `Try ${level.moveLimit} moves or fewer for more stars.` : "Keep every star on the route for three!"}</p>
+        </>}
+        {shareOpen && status === "won" && !zenMode && !verificationMode ? (
           <ShareCardView
             input={{
               mode: dailyMode ? "daily" : "adventure",
@@ -323,8 +335,8 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
         {verificationMode ? <p>No referral is awarded until server verification succeeds.</p> : null}
         {milestoneReward && !dailyMode && !zenMode && !verificationMode ? <div className={styles.milestoneNotice} role="status"><span className={styles.milestoneIcon}>🏆</span><div><strong>Milestone Unlocked!</strong><p>{milestoneReward}</p></div></div> : null}
         {!powerMode && !dailyMode && !zenMode && !verificationMode && pals.some(p=>p.unlock===level.id) ? <p className={styles.unlockNotice}>{pals.find(p=>p.unlock===level.id)!.name} is unlocked! Open “Meet your pals” to try their power.</p> : null}
-        <div className={styles.winActions}>
-          <button className={styles.secondary} disabled={preparing} onClick={()=>perform({type:"reset"})}>Try again</button>
+        {!shareOpen && <div className={`${styles.winActions} ${styles.celebrationActions}`}>
+          <button className={styles.secondary} disabled={preparing} onClick={()=>perform({type:"reset"})}>Replay</button>
           {!dailyMode && !zenMode && !powerMode && !verificationMode ? (
             <Link href="/jelloo/map" className={styles.secondary} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>Level Map</Link>
           ) : null}
@@ -333,9 +345,10 @@ export default function GameView({verificationMode=false,powerMode=false,dailyMo
           ) : dailyMode ? (
             <Link href="/jelloo/map" className={styles.go} style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>Level Map →</Link>
           ) : (
-            <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Level →"}</button>
+            <button className={styles.go} disabled={preparing} onClick={()=>perform({type:"visit",id:level.id+1})}>{preparing ? "Preparing…" : powerMode ? (level.id===3 ? "Back to trial 1 →" : "Next trial →") : verificationMode ? "Verify & continue →" : "Next Adventure →"}</button>
           )}
-        </div>
+          {!zenMode && !verificationMode && !powerMode ? <button className={styles.secondary} onClick={()=>setShareOpen(true)}>Share ↗</button> : null}
+        </div>}
         {generationError ? <p role="alert">{generationError}</p> : null}
       </dialog>
       {outOfMovesDialog ? (
