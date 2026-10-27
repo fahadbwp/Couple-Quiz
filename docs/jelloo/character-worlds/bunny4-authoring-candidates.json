@@ -1,0 +1,10142 @@
+[
+  {
+    "spec": {
+      "id": 1,
+      "size": 4,
+      "title": "Sugar Hop",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "route": [
+        0,
+        1,
+        2,
+        6,
+        10
+      ],
+      "gaps": [],
+      "collectibles": [
+        1,
+        6
+      ],
+      "scramble": {
+        "1": 3,
+        "2": 3,
+        "6": 1
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ]
+    },
+    "level": {
+      "id": 1,
+      "title": "Sugar Hop",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "size": 4,
+      "start": 0,
+      "home": 10,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        1,
+        6
+      ]
+    },
+    "par": 3,
+    "starPar": 3,
+    "short": [
+      1,
+      2,
+      6
+    ],
+    "stars": [
+      1,
+      2,
+      6
+    ],
+    "shortPath": [
+      0,
+      1,
+      2,
+      6,
+      10
+    ],
+    "starPath": [
+      0,
+      1,
+      2,
+      6,
+      10
+    ]
+  },
+  {
+    "spec": {
+      "id": 2,
+      "size": 4,
+      "title": "Peppermint Bend",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "route": [
+        12,
+        13,
+        9,
+        5,
+        6,
+        7
+      ],
+      "gaps": [],
+      "collectibles": [
+        13,
+        5
+      ],
+      "scramble": {
+        "5": 3,
+        "6": 2,
+        "9": 2,
+        "13": 1
+      },
+      "decoys": [
+        {
+          "index": 11,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ]
+    },
+    "level": {
+      "id": 2,
+      "title": "Peppermint Bend",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "size": 4,
+      "start": 12,
+      "home": 7,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        13,
+        5
+      ]
+    },
+    "par": 4,
+    "starPar": 4,
+    "short": [
+      5,
+      13,
+      13,
+      13
+    ],
+    "stars": [
+      5,
+      13,
+      13,
+      13
+    ],
+    "shortPath": [
+      12,
+      13,
+      9,
+      5,
+      6,
+      7
+    ],
+    "starPath": [
+      12,
+      13,
+      9,
+      5,
+      6,
+      7
+    ]
+  },
+  {
+    "spec": {
+      "id": 3,
+      "size": 4,
+      "title": "Lollipop Lane",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "route": [
+        3,
+        7,
+        6,
+        5,
+        9,
+        10,
+        14
+      ],
+      "gaps": [],
+      "collectibles": [
+        7,
+        5
+      ],
+      "scramble": {
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "9": 1,
+        "10": 1
+      },
+      "decoys": [
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ]
+    },
+    "level": {
+      "id": 3,
+      "title": "Lollipop Lane",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "size": 4,
+      "start": 3,
+      "home": 14,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        7,
+        5
+      ]
+    },
+    "par": 8,
+    "starPar": 8,
+    "short": [
+      5,
+      7,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10
+    ],
+    "stars": [
+      5,
+      7,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10
+    ],
+    "shortPath": [
+      3,
+      7,
+      6,
+      5,
+      9,
+      10,
+      14
+    ],
+    "starPath": [
+      3,
+      7,
+      6,
+      5,
+      9,
+      10,
+      14
+    ]
+  },
+  {
+    "spec": {
+      "id": 4,
+      "size": 4,
+      "title": "Marshmallow Crossing",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "route": [
+        0,
+        4,
+        5,
+        9,
+        10,
+        14,
+        15
+      ],
+      "gaps": [],
+      "collectibles": [
+        4,
+        9
+      ],
+      "scramble": {
+        "4": 2,
+        "5": 2,
+        "9": 3,
+        "10": 2,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ]
+    },
+    "level": {
+      "id": 4,
+      "title": "Marshmallow Crossing",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "size": 4,
+      "start": 0,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        4,
+        9
+      ]
+    },
+    "par": 10,
+    "starPar": 10,
+    "short": [
+      4,
+      4,
+      5,
+      5,
+      9,
+      10,
+      10,
+      14,
+      14,
+      14
+    ],
+    "stars": [
+      4,
+      4,
+      5,
+      5,
+      9,
+      10,
+      10,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      0,
+      4,
+      5,
+      9,
+      10,
+      14,
+      15
+    ],
+    "starPath": [
+      0,
+      4,
+      5,
+      9,
+      10,
+      14,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 5,
+      "size": 4,
+      "title": "Cotton Candy Chasm",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "route": [
+        0,
+        1,
+        5,
+        9,
+        13,
+        14
+      ],
+      "gaps": [
+        5
+      ],
+      "collectibles": [
+        1,
+        13
+      ],
+      "scramble": {
+        "1": 2,
+        "9": 3,
+        "13": 3
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ]
+    },
+    "level": {
+      "id": 5,
+      "title": "Cotton Candy Chasm",
+      "hint": "Connect the cream path and guide Bunny home.",
+      "size": 4,
+      "start": 0,
+      "home": 14,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        1,
+        13
+      ]
+    },
+    "par": 4,
+    "starPar": 4,
+    "short": [
+      1,
+      1,
+      9,
+      13
+    ],
+    "stars": [
+      1,
+      1,
+      9,
+      13
+    ],
+    "shortPath": [
+      0,
+      1,
+      9,
+      13,
+      14
+    ],
+    "starPath": [
+      0,
+      1,
+      9,
+      13,
+      14
+    ]
+  },
+  {
+    "spec": {
+      "id": 6,
+      "size": 4,
+      "title": "Caramel Twist",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        13,
+        14,
+        10,
+        6,
+        7,
+        3,
+        2,
+        1
+      ],
+      "gaps": [],
+      "collectibles": [
+        15,
+        11
+      ],
+      "scramble": {
+        "2": 3,
+        "3": 1,
+        "6": 1,
+        "7": 2,
+        "10": 2,
+        "11": 1,
+        "14": 2,
+        "15": 2
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 14,
+        "rejoinTile": 10,
+        "detourRoute": [
+          15,
+          11
+        ],
+        "collectible": 15,
+        "scramble": {
+          "2": 3,
+          "3": 1,
+          "6": 1,
+          "7": 2,
+          "10": 2,
+          "11": 1,
+          "14": 2,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 6,
+      "title": "Caramel Twist",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 13,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        15,
+        11
+      ]
+    },
+    "par": 10,
+    "starPar": 15,
+    "short": [
+      2,
+      3,
+      3,
+      3,
+      6,
+      6,
+      6,
+      7,
+      7,
+      14
+    ],
+    "stars": [
+      2,
+      3,
+      3,
+      3,
+      6,
+      6,
+      6,
+      7,
+      7,
+      10,
+      11,
+      11,
+      11,
+      15,
+      15
+    ],
+    "shortPath": [
+      13,
+      14,
+      10,
+      6,
+      7,
+      3,
+      2,
+      1
+    ],
+    "starPath": [
+      13,
+      14,
+      15,
+      11,
+      10,
+      6,
+      7,
+      3,
+      2,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 7,
+      "size": 4,
+      "title": "Jellybean Jive",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        11,
+        15
+      ],
+      "gaps": [],
+      "collectibles": [
+        6,
+        10
+      ],
+      "scramble": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 2,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "8": 2,
+        "9": 1,
+        "10": 2,
+        "11": 3
+      },
+      "decoys": [
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 11,
+        "detourRoute": [
+          6,
+          5,
+          4,
+          8,
+          9,
+          10
+        ],
+        "collectible": 6,
+        "scramble": {
+          "1": 2,
+          "2": 2,
+          "3": 1,
+          "4": 2,
+          "5": 3,
+          "6": 1,
+          "7": 1,
+          "8": 2,
+          "9": 1,
+          "10": 2,
+          "11": 3
+        }
+      }
+    },
+    "level": {
+      "id": 7,
+      "title": "Jellybean Jive",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 0,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        10
+      ]
+    },
+    "par": 5,
+    "starPar": 11,
+    "short": [
+      3,
+      3,
+      3,
+      7,
+      11
+    ],
+    "stars": [
+      2,
+      2,
+      4,
+      4,
+      5,
+      6,
+      6,
+      6,
+      8,
+      8,
+      9
+    ],
+    "shortPath": [
+      0,
+      1,
+      2,
+      3,
+      7,
+      11,
+      15
+    ],
+    "starPath": [
+      0,
+      1,
+      2,
+      6,
+      5,
+      4,
+      8,
+      9,
+      10,
+      11,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 8,
+      "size": 4,
+      "title": "Licorice Leap",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        5,
+        9,
+        8,
+        12,
+        13,
+        14,
+        15,
+        11
+      ],
+      "gaps": [],
+      "collectibles": [
+        4,
+        10
+      ],
+      "scramble": {
+        "0": 1,
+        "1": 3,
+        "2": 1,
+        "4": 1,
+        "6": 1,
+        "8": 3,
+        "9": 3,
+        "10": 2,
+        "12": 2,
+        "13": 2,
+        "14": 2,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 8,
+        "rejoinTile": 14,
+        "detourRoute": [
+          4,
+          0,
+          1,
+          2,
+          6,
+          10
+        ],
+        "collectible": 4,
+        "scramble": {
+          "0": 1,
+          "1": 3,
+          "2": 1,
+          "4": 1,
+          "6": 1,
+          "8": 3,
+          "9": 3,
+          "10": 2,
+          "12": 2,
+          "13": 2,
+          "14": 2,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 8,
+      "title": "Licorice Leap",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 5,
+      "home": 11,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        4,
+        10
+      ]
+    },
+    "par": 5,
+    "starPar": 13,
+    "short": [
+      8,
+      9,
+      12,
+      12,
+      15
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      2,
+      4,
+      6,
+      9,
+      14,
+      14,
+      15
+    ],
+    "shortPath": [
+      5,
+      9,
+      8,
+      12,
+      13,
+      14,
+      15,
+      11
+    ],
+    "starPath": [
+      5,
+      9,
+      8,
+      4,
+      0,
+      1,
+      2,
+      6,
+      10,
+      14,
+      15,
+      11
+    ]
+  },
+  {
+    "spec": {
+      "id": 9,
+      "size": 4,
+      "title": "Taffy Trail",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        9,
+        10,
+        11,
+        15,
+        14,
+        13,
+        12,
+        8
+      ],
+      "gaps": [],
+      "collectibles": [
+        6,
+        7
+      ],
+      "scramble": {
+        "6": 3,
+        "7": 2,
+        "10": 3,
+        "11": 2,
+        "12": 3,
+        "13": 3,
+        "14": 3,
+        "15": 1
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 11,
+        "detourRoute": [
+          6,
+          7
+        ],
+        "collectible": 6,
+        "scramble": {
+          "6": 3,
+          "7": 2,
+          "10": 3,
+          "11": 2,
+          "12": 3,
+          "13": 3,
+          "14": 3,
+          "15": 1
+        }
+      }
+    },
+    "level": {
+      "id": 9,
+      "title": "Taffy Trail",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 9,
+      "home": 8,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        7
+      ]
+    },
+    "par": 8,
+    "starPar": 9,
+    "short": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      15,
+      15
+    ],
+    "stars": [
+      6,
+      7,
+      7,
+      12,
+      13,
+      14,
+      15,
+      15,
+      15
+    ],
+    "shortPath": [
+      9,
+      10,
+      11,
+      15,
+      14,
+      13,
+      12,
+      8
+    ],
+    "starPath": [
+      9,
+      10,
+      6,
+      7,
+      11,
+      15,
+      14,
+      13,
+      12,
+      8
+    ]
+  },
+  {
+    "spec": {
+      "id": 10,
+      "size": 4,
+      "title": "Gumdrop Gate",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        4,
+        8,
+        12,
+        13,
+        14,
+        10,
+        11,
+        15
+      ],
+      "gaps": [
+        8
+      ],
+      "collectibles": [
+        9,
+        7
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 3,
+        "3": 2,
+        "5": 2,
+        "7": 1,
+        "9": 1,
+        "10": 3,
+        "11": 3,
+        "12": 2,
+        "13": 1,
+        "14": 2
+      },
+      "decoys": [
+        {
+          "index": 6,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 13,
+        "rejoinTile": 11,
+        "detourRoute": [
+          9,
+          5,
+          1,
+          2,
+          3,
+          7
+        ],
+        "collectible": 9,
+        "scramble": {
+          "1": 1,
+          "2": 3,
+          "3": 2,
+          "5": 2,
+          "7": 1,
+          "9": 1,
+          "10": 3,
+          "11": 3,
+          "12": 2,
+          "13": 1,
+          "14": 2
+        }
+      }
+    },
+    "level": {
+      "id": 10,
+      "title": "Gumdrop Gate",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 4,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        9,
+        7
+      ]
+    },
+    "par": 6,
+    "starPar": 13,
+    "short": [
+      10,
+      12,
+      12,
+      13,
+      14,
+      14
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      3,
+      3,
+      7,
+      9,
+      11,
+      12,
+      12,
+      13,
+      13
+    ],
+    "shortPath": [
+      4,
+      12,
+      13,
+      14,
+      10,
+      11,
+      15
+    ],
+    "starPath": [
+      4,
+      12,
+      13,
+      9,
+      5,
+      1,
+      2,
+      3,
+      7,
+      11,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 11,
+      "size": 4,
+      "title": "Butterscotch Breeze",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        0,
+        1,
+        5,
+        9,
+        10,
+        11,
+        15
+      ],
+      "gaps": [],
+      "collectibles": [
+        6,
+        7
+      ],
+      "scramble": {
+        "1": 1,
+        "5": 2,
+        "6": 1,
+        "7": 1,
+        "9": 1,
+        "10": 2,
+        "11": 2
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 8,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 11,
+        "detourRoute": [
+          6,
+          7
+        ],
+        "collectible": 6,
+        "scramble": {
+          "1": 1,
+          "5": 2,
+          "6": 1,
+          "7": 1,
+          "9": 1,
+          "10": 2,
+          "11": 2
+        }
+      }
+    },
+    "level": {
+      "id": 11,
+      "title": "Butterscotch Breeze",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 0,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        7
+      ]
+    },
+    "par": 7,
+    "starPar": 13,
+    "short": [
+      1,
+      1,
+      1,
+      9,
+      9,
+      9,
+      11
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      9,
+      9,
+      9,
+      10
+    ],
+    "shortPath": [
+      0,
+      1,
+      5,
+      9,
+      10,
+      11,
+      15
+    ],
+    "starPath": [
+      0,
+      1,
+      5,
+      9,
+      10,
+      6,
+      7,
+      11,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 12,
+      "size": 4,
+      "title": "Gummy Bear Fork",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        10,
+        14,
+        15,
+        11,
+        7,
+        6,
+        5,
+        1,
+        0
+      ],
+      "gaps": [],
+      "collectibles": [
+        3,
+        2
+      ],
+      "scramble": {
+        "1": 3,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "6": 1,
+        "7": 3,
+        "11": 3,
+        "14": 1,
+        "15": 2
+      },
+      "decoys": [
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 7,
+        "rejoinTile": 6,
+        "detourRoute": [
+          3,
+          2
+        ],
+        "collectible": 3,
+        "scramble": {
+          "1": 3,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "6": 1,
+          "7": 3,
+          "11": 3,
+          "14": 1,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 12,
+      "title": "Gummy Bear Fork",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 10,
+      "home": 0,
+      "tiles": [
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        3,
+        2
+      ]
+    },
+    "par": 11,
+    "starPar": 19,
+    "short": [
+      1,
+      5,
+      5,
+      5,
+      6,
+      11,
+      14,
+      14,
+      14,
+      15,
+      15
+    ],
+    "stars": [
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      5,
+      5,
+      5,
+      6,
+      6,
+      7,
+      11,
+      14,
+      14,
+      14,
+      15,
+      15
+    ],
+    "shortPath": [
+      10,
+      14,
+      15,
+      11,
+      7,
+      6,
+      5,
+      1,
+      0
+    ],
+    "starPath": [
+      10,
+      14,
+      15,
+      11,
+      7,
+      3,
+      2,
+      6,
+      5,
+      1,
+      0
+    ]
+  },
+  {
+    "spec": {
+      "id": 13,
+      "size": 4,
+      "title": "Bubblegum Bounce",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        9,
+        5,
+        6,
+        10,
+        14,
+        13,
+        12,
+        8,
+        4
+      ],
+      "gaps": [],
+      "collectibles": [
+        11,
+        15
+      ],
+      "scramble": {
+        "5": 1,
+        "6": 1,
+        "8": 1,
+        "10": 1,
+        "11": 3,
+        "12": 3,
+        "13": 2,
+        "14": 2,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 14,
+        "detourRoute": [
+          11,
+          15
+        ],
+        "collectible": 11,
+        "scramble": {
+          "5": 1,
+          "6": 1,
+          "8": 1,
+          "10": 1,
+          "11": 3,
+          "12": 3,
+          "13": 2,
+          "14": 2,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 13,
+      "title": "Bubblegum Bounce",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 9,
+      "home": 4,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        11,
+        15
+      ]
+    },
+    "par": 10,
+    "starPar": 12,
+    "short": [
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      8,
+      10,
+      12,
+      14
+    ],
+    "stars": [
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      8,
+      10,
+      10,
+      11,
+      12,
+      15
+    ],
+    "shortPath": [
+      9,
+      5,
+      6,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4
+    ],
+    "starPath": [
+      9,
+      5,
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      12,
+      8,
+      4
+    ]
+  },
+  {
+    "spec": {
+      "id": 14,
+      "size": 4,
+      "title": "Sugarplum Slalom",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        1,
+        5,
+        6,
+        7,
+        11,
+        10,
+        9
+      ],
+      "gaps": [],
+      "collectibles": [
+        2,
+        3
+      ],
+      "scramble": {
+        "2": 1,
+        "3": 3,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "10": 1,
+        "11": 2
+      },
+      "decoys": [
+        {
+          "index": 8,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 7,
+        "detourRoute": [
+          2,
+          3
+        ],
+        "collectible": 2,
+        "scramble": {
+          "2": 1,
+          "3": 3,
+          "5": 1,
+          "6": 2,
+          "7": 2,
+          "10": 1,
+          "11": 2
+        }
+      }
+    },
+    "level": {
+      "id": 14,
+      "title": "Sugarplum Slalom",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 1,
+      "home": 9,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        2,
+        3
+      ]
+    },
+    "par": 7,
+    "starPar": 11,
+    "short": [
+      5,
+      5,
+      5,
+      7,
+      10,
+      11,
+      11
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      3,
+      5,
+      5,
+      5,
+      6,
+      10,
+      11,
+      11
+    ],
+    "shortPath": [
+      1,
+      5,
+      6,
+      7,
+      11,
+      10,
+      9
+    ],
+    "starPath": [
+      1,
+      5,
+      6,
+      2,
+      3,
+      7,
+      11,
+      10,
+      9
+    ]
+  },
+  {
+    "spec": {
+      "id": 15,
+      "size": 4,
+      "title": "Macaron Maze",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        11,
+        7,
+        3,
+        2,
+        1,
+        0,
+        4,
+        5
+      ],
+      "gaps": [
+        7
+      ],
+      "collectibles": [
+        6,
+        8
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 1,
+        "4": 1,
+        "6": 1,
+        "8": 1,
+        "10": 2,
+        "12": 1,
+        "13": 2,
+        "14": 2
+      },
+      "decoys": [
+        {
+          "index": 9,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 4,
+        "detourRoute": [
+          6,
+          10,
+          14,
+          13,
+          12,
+          8
+        ],
+        "collectible": 6,
+        "scramble": {
+          "0": 2,
+          "1": 1,
+          "2": 2,
+          "3": 1,
+          "4": 1,
+          "6": 1,
+          "8": 1,
+          "10": 2,
+          "12": 1,
+          "13": 2,
+          "14": 2
+        }
+      }
+    },
+    "level": {
+      "id": 15,
+      "title": "Macaron Maze",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 11,
+      "home": 5,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        8
+      ]
+    },
+    "par": 8,
+    "starPar": 11,
+    "short": [
+      0,
+      0,
+      1,
+      3,
+      3,
+      3,
+      4,
+      4
+    ],
+    "stars": [
+      2,
+      3,
+      3,
+      3,
+      6,
+      8,
+      12,
+      12,
+      12,
+      14,
+      14
+    ],
+    "shortPath": [
+      11,
+      3,
+      2,
+      1,
+      0,
+      4,
+      5
+    ],
+    "starPath": [
+      11,
+      3,
+      2,
+      6,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4,
+      5
+    ]
+  },
+  {
+    "spec": {
+      "id": 16,
+      "size": 4,
+      "title": "Fudge Fall",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        9,
+        10,
+        6,
+        7,
+        3,
+        2,
+        1,
+        0
+      ],
+      "gaps": [],
+      "collectibles": [
+        14,
+        5
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 2,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "8": 1,
+        "10": 1,
+        "12": 2,
+        "13": 3,
+        "14": 2
+      },
+      "decoys": [
+        {
+          "index": 11,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 6,
+        "detourRoute": [
+          14,
+          13,
+          12,
+          8,
+          4,
+          5
+        ],
+        "collectible": 14,
+        "scramble": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "4": 2,
+          "5": 3,
+          "6": 2,
+          "7": 3,
+          "8": 1,
+          "10": 1,
+          "12": 2,
+          "13": 3,
+          "14": 2
+        }
+      }
+    },
+    "level": {
+      "id": 16,
+      "title": "Fudge Fall",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 9,
+      "home": 0,
+      "tiles": [
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        14,
+        5
+      ]
+    },
+    "par": 7,
+    "starPar": 17,
+    "short": [
+      1,
+      2,
+      3,
+      3,
+      3,
+      6,
+      7
+    ],
+    "stars": [
+      1,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      5,
+      7,
+      8,
+      10,
+      10,
+      12,
+      12,
+      13,
+      14,
+      14
+    ],
+    "shortPath": [
+      9,
+      10,
+      6,
+      7,
+      3,
+      2,
+      1,
+      0
+    ],
+    "starPath": [
+      9,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4,
+      5,
+      6,
+      7,
+      3,
+      2,
+      1,
+      0
+    ]
+  },
+  {
+    "spec": {
+      "id": 17,
+      "size": 4,
+      "title": "Nougat Nook",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        10,
+        9,
+        8,
+        12,
+        13,
+        14,
+        15,
+        11,
+        7
+      ],
+      "gaps": [],
+      "collectibles": [
+        5,
+        4
+      ],
+      "scramble": {
+        "0": 1,
+        "1": 3,
+        "2": 1,
+        "4": 1,
+        "5": 3,
+        "6": 3,
+        "8": 2,
+        "9": 1,
+        "11": 1,
+        "12": 3,
+        "13": 1,
+        "14": 1,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 9,
+        "rejoinTile": 8,
+        "detourRoute": [
+          5,
+          6,
+          2,
+          1,
+          0,
+          4
+        ],
+        "collectible": 5,
+        "scramble": {
+          "0": 1,
+          "1": 3,
+          "2": 1,
+          "4": 1,
+          "5": 3,
+          "6": 3,
+          "8": 2,
+          "9": 1,
+          "11": 1,
+          "12": 3,
+          "13": 1,
+          "14": 1,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 17,
+      "title": "Nougat Nook",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 10,
+      "home": 7,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        5,
+        4
+      ]
+    },
+    "par": 8,
+    "starPar": 15,
+    "short": [
+      8,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      2,
+      4,
+      5,
+      6,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "shortPath": [
+      10,
+      9,
+      8,
+      12,
+      13,
+      14,
+      15,
+      11,
+      7
+    ],
+    "starPath": [
+      10,
+      9,
+      5,
+      6,
+      2,
+      1,
+      0,
+      4,
+      8,
+      12,
+      13,
+      14,
+      15,
+      11,
+      7
+    ]
+  },
+  {
+    "spec": {
+      "id": 18,
+      "size": 4,
+      "title": "Toffee Traverse",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        14,
+        15,
+        11,
+        10,
+        6,
+        2,
+        1,
+        0
+      ],
+      "gaps": [],
+      "collectibles": [
+        7,
+        3
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 3,
+        "3": 1,
+        "6": 3,
+        "7": 3,
+        "10": 3,
+        "11": 2,
+        "15": 2
+      },
+      "decoys": [
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 2,
+        "detourRoute": [
+          7,
+          3
+        ],
+        "collectible": 7,
+        "scramble": {
+          "1": 1,
+          "2": 3,
+          "3": 1,
+          "6": 3,
+          "7": 3,
+          "10": 3,
+          "11": 2,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 18,
+      "title": "Toffee Traverse",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 14,
+      "home": 0,
+      "tiles": [
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        7,
+        3
+      ]
+    },
+    "par": 8,
+    "starPar": 12,
+    "short": [
+      1,
+      2,
+      6,
+      10,
+      11,
+      11,
+      15,
+      15
+    ],
+    "stars": [
+      1,
+      2,
+      3,
+      3,
+      3,
+      6,
+      7,
+      10,
+      11,
+      11,
+      15,
+      15
+    ],
+    "shortPath": [
+      14,
+      15,
+      11,
+      10,
+      6,
+      2,
+      1,
+      0
+    ],
+    "starPath": [
+      14,
+      15,
+      11,
+      10,
+      6,
+      7,
+      3,
+      2,
+      1,
+      0
+    ]
+  },
+  {
+    "spec": {
+      "id": 19,
+      "size": 4,
+      "title": "Bonbon Bends",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        5,
+        4,
+        0,
+        1,
+        2,
+        6,
+        7
+      ],
+      "gaps": [],
+      "collectibles": [
+        8,
+        10
+      ],
+      "scramble": {
+        "0": 1,
+        "1": 2,
+        "2": 3,
+        "4": 2,
+        "6": 1,
+        "8": 1,
+        "9": 3,
+        "10": 2,
+        "13": 1,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 4,
+        "rejoinTile": 6,
+        "detourRoute": [
+          8,
+          9,
+          13,
+          14,
+          10
+        ],
+        "collectible": 8,
+        "scramble": {
+          "0": 1,
+          "1": 2,
+          "2": 3,
+          "4": 2,
+          "6": 1,
+          "8": 1,
+          "9": 3,
+          "10": 2,
+          "13": 1,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 19,
+      "title": "Bonbon Bends",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 5,
+      "home": 7,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        8,
+        10
+      ]
+    },
+    "par": 7,
+    "starPar": 12,
+    "short": [
+      0,
+      0,
+      0,
+      2,
+      4,
+      6,
+      6
+    ],
+    "stars": [
+      4,
+      4,
+      8,
+      8,
+      8,
+      9,
+      13,
+      13,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      5,
+      4,
+      0,
+      1,
+      2,
+      6,
+      7
+    ],
+    "starPath": [
+      5,
+      4,
+      8,
+      9,
+      13,
+      14,
+      10,
+      6,
+      7
+    ]
+  },
+  {
+    "spec": {
+      "id": 20,
+      "size": 4,
+      "title": "Candy Cane Crest",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        10,
+        6,
+        2,
+        1,
+        5,
+        4,
+        8,
+        12
+      ],
+      "gaps": [
+        8
+      ],
+      "collectibles": [
+        7,
+        3
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3,
+        "5": 3,
+        "6": 3,
+        "7": 1
+      },
+      "decoys": [
+        {
+          "index": 9,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 11,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 2,
+        "detourRoute": [
+          7,
+          3
+        ],
+        "collectible": 7,
+        "scramble": {
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 1
+        }
+      }
+    },
+    "level": {
+      "id": 20,
+      "title": "Candy Cane Crest",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 10,
+      "home": 12,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        7,
+        3
+      ]
+    },
+    "par": 6,
+    "starPar": 12,
+    "short": [
+      1,
+      1,
+      1,
+      4,
+      5,
+      6
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      3,
+      3,
+      4,
+      5,
+      6,
+      7,
+      7,
+      7
+    ],
+    "shortPath": [
+      10,
+      6,
+      2,
+      1,
+      5,
+      4,
+      12
+    ],
+    "starPath": [
+      10,
+      6,
+      7,
+      3,
+      2,
+      1,
+      5,
+      4,
+      12
+    ]
+  },
+  {
+    "spec": {
+      "id": 21,
+      "size": 4,
+      "title": "Glazed Garden",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        6,
+        2,
+        1,
+        5,
+        9,
+        8,
+        12,
+        13,
+        14,
+        15
+      ],
+      "gaps": [],
+      "collectibles": [
+        3,
+        10
+      ],
+      "scramble": {
+        "1": 2,
+        "2": 1,
+        "3": 3,
+        "5": 3,
+        "7": 2,
+        "8": 1,
+        "9": 3,
+        "10": 1,
+        "11": 3,
+        "12": 1,
+        "13": 3,
+        "14": 3
+      },
+      "decoys": [
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 9,
+        "detourRoute": [
+          3,
+          7,
+          11,
+          10
+        ],
+        "collectible": 3,
+        "scramble": {
+          "1": 2,
+          "2": 1,
+          "3": 3,
+          "5": 3,
+          "7": 2,
+          "8": 1,
+          "9": 3,
+          "10": 1,
+          "11": 3,
+          "12": 1,
+          "13": 3,
+          "14": 3
+        }
+      }
+    },
+    "level": {
+      "id": 21,
+      "title": "Glazed Garden",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 6,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        3,
+        10
+      ]
+    },
+    "par": 11,
+    "starPar": 14,
+    "short": [
+      1,
+      1,
+      5,
+      8,
+      8,
+      8,
+      12,
+      12,
+      12,
+      13,
+      14
+    ],
+    "stars": [
+      2,
+      2,
+      3,
+      8,
+      8,
+      8,
+      9,
+      10,
+      11,
+      12,
+      12,
+      12,
+      13,
+      14
+    ],
+    "shortPath": [
+      6,
+      2,
+      1,
+      5,
+      9,
+      8,
+      12,
+      13,
+      14,
+      15
+    ],
+    "starPath": [
+      6,
+      2,
+      3,
+      7,
+      11,
+      10,
+      9,
+      8,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 22,
+      "size": 4,
+      "title": "Rock Candy Ridge",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        15,
+        11,
+        10,
+        9,
+        5,
+        4,
+        0,
+        1
+      ],
+      "gaps": [],
+      "collectibles": [
+        14,
+        8
+      ],
+      "scramble": {
+        "0": 3,
+        "4": 3,
+        "5": 1,
+        "8": 2,
+        "9": 3,
+        "10": 2,
+        "11": 2,
+        "12": 1,
+        "13": 2,
+        "14": 3
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 6,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 9,
+        "detourRoute": [
+          14,
+          13,
+          12,
+          8
+        ],
+        "collectible": 14,
+        "scramble": {
+          "0": 3,
+          "4": 3,
+          "5": 1,
+          "8": 2,
+          "9": 3,
+          "10": 2,
+          "11": 2,
+          "12": 1,
+          "13": 2,
+          "14": 3
+        }
+      }
+    },
+    "level": {
+      "id": 22,
+      "title": "Rock Candy Ridge",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 15,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        14,
+        8
+      ]
+    },
+    "par": 8,
+    "starPar": 14,
+    "short": [
+      0,
+      4,
+      5,
+      5,
+      5,
+      9,
+      11,
+      11
+    ],
+    "stars": [
+      0,
+      4,
+      5,
+      5,
+      5,
+      8,
+      8,
+      10,
+      11,
+      11,
+      12,
+      12,
+      12,
+      14
+    ],
+    "shortPath": [
+      15,
+      11,
+      10,
+      9,
+      5,
+      4,
+      0,
+      1
+    ],
+    "starPath": [
+      15,
+      11,
+      10,
+      14,
+      13,
+      12,
+      8,
+      9,
+      5,
+      4,
+      0,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 23,
+      "size": 4,
+      "title": "Wafer Way",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        4,
+        0,
+        1,
+        2,
+        6,
+        5,
+        9,
+        8,
+        12
+      ],
+      "gaps": [],
+      "collectibles": [
+        3,
+        13
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 1,
+        "2": 2,
+        "3": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 3,
+        "13": 1,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 9,
+        "detourRoute": [
+          3,
+          7,
+          11,
+          10,
+          14,
+          13
+        ],
+        "collectible": 3,
+        "scramble": {
+          "0": 2,
+          "1": 1,
+          "2": 2,
+          "3": 1,
+          "5": 2,
+          "6": 2,
+          "7": 2,
+          "8": 2,
+          "9": 2,
+          "10": 2,
+          "11": 3,
+          "13": 1,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 23,
+      "title": "Wafer Way",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 4,
+      "home": 12,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        3,
+        13
+      ]
+    },
+    "par": 13,
+    "starPar": 18,
+    "short": [
+      0,
+      0,
+      1,
+      2,
+      2,
+      5,
+      5,
+      6,
+      6,
+      8,
+      8,
+      9,
+      9
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      3,
+      3,
+      3,
+      8,
+      8,
+      9,
+      10,
+      10,
+      11,
+      13,
+      13,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      4,
+      0,
+      1,
+      2,
+      6,
+      5,
+      9,
+      8,
+      12
+    ],
+    "starPath": [
+      4,
+      0,
+      1,
+      2,
+      3,
+      7,
+      11,
+      10,
+      14,
+      13,
+      9,
+      8,
+      12
+    ]
+  },
+  {
+    "spec": {
+      "id": 24,
+      "size": 4,
+      "title": "Sherbet Shimmer",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        10,
+        14,
+        15,
+        11,
+        7,
+        6,
+        5,
+        4
+      ],
+      "gaps": [],
+      "collectibles": [
+        2,
+        1
+      ],
+      "scramble": {
+        "1": 2,
+        "2": 3,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "11": 3,
+        "14": 2,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 9,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 5,
+        "detourRoute": [
+          2,
+          1
+        ],
+        "collectible": 2,
+        "scramble": {
+          "1": 2,
+          "2": 3,
+          "5": 1,
+          "6": 1,
+          "7": 1,
+          "11": 3,
+          "14": 2,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 24,
+      "title": "Sherbet Shimmer",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 10,
+      "home": 4,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        2,
+        1
+      ]
+    },
+    "par": 9,
+    "starPar": 12,
+    "short": [
+      5,
+      6,
+      7,
+      7,
+      7,
+      11,
+      14,
+      14,
+      15
+    ],
+    "stars": [
+      1,
+      1,
+      2,
+      5,
+      5,
+      7,
+      7,
+      7,
+      11,
+      14,
+      14,
+      15
+    ],
+    "shortPath": [
+      10,
+      14,
+      15,
+      11,
+      7,
+      6,
+      5,
+      4
+    ],
+    "starPath": [
+      10,
+      14,
+      15,
+      11,
+      7,
+      6,
+      2,
+      1,
+      5,
+      4
+    ]
+  },
+  {
+    "spec": {
+      "id": 25,
+      "size": 4,
+      "title": "Praline Pass",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        3,
+        2,
+        6,
+        10,
+        14,
+        13,
+        12,
+        8,
+        9
+      ],
+      "gaps": [
+        10
+      ],
+      "collectibles": [
+        1,
+        5
+      ],
+      "scramble": {
+        "1": 3,
+        "2": 2,
+        "5": 3,
+        "6": 1,
+        "8": 3,
+        "12": 1,
+        "13": 2,
+        "14": 3
+      },
+      "decoys": [
+        {
+          "index": 11,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 7,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 6,
+        "detourRoute": [
+          1,
+          5
+        ],
+        "collectible": 1,
+        "scramble": {
+          "1": 3,
+          "2": 2,
+          "5": 3,
+          "6": 1,
+          "8": 3,
+          "12": 1,
+          "13": 2,
+          "14": 3
+        }
+      }
+    },
+    "level": {
+      "id": 25,
+      "title": "Praline Pass",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 3,
+      "home": 9,
+      "tiles": [
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        1,
+        5
+      ]
+    },
+    "par": 7,
+    "starPar": 9,
+    "short": [
+      2,
+      6,
+      8,
+      12,
+      12,
+      12,
+      14
+    ],
+    "stars": [
+      1,
+      5,
+      6,
+      6,
+      8,
+      12,
+      12,
+      12,
+      14
+    ],
+    "shortPath": [
+      3,
+      2,
+      6,
+      14,
+      13,
+      12,
+      8,
+      9
+    ],
+    "starPath": [
+      3,
+      2,
+      1,
+      5,
+      6,
+      14,
+      13,
+      12,
+      8,
+      9
+    ]
+  },
+  {
+    "spec": {
+      "id": 26,
+      "size": 4,
+      "title": "Marzipan Meadow",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        9,
+        10,
+        14,
+        15,
+        11,
+        7,
+        6,
+        2,
+        1
+      ],
+      "gaps": [],
+      "collectibles": [
+        13,
+        5
+      ],
+      "scramble": {
+        "2": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 3,
+        "10": 2,
+        "11": 3,
+        "12": 1,
+        "13": 1,
+        "14": 2,
+        "15": 1
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 14,
+        "rejoinTile": 6,
+        "detourRoute": [
+          13,
+          12,
+          8,
+          4,
+          5
+        ],
+        "collectible": 13,
+        "scramble": {
+          "2": 1,
+          "4": 2,
+          "5": 2,
+          "6": 2,
+          "7": 1,
+          "8": 3,
+          "10": 2,
+          "11": 3,
+          "12": 1,
+          "13": 1,
+          "14": 2,
+          "15": 1
+        }
+      }
+    },
+    "level": {
+      "id": 26,
+      "title": "Marzipan Meadow",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 9,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        13,
+        5
+      ]
+    },
+    "par": 7,
+    "starPar": 14,
+    "short": [
+      2,
+      2,
+      2,
+      6,
+      10,
+      10,
+      10
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      4,
+      4,
+      6,
+      8,
+      10,
+      10,
+      12,
+      12,
+      12,
+      13,
+      14
+    ],
+    "shortPath": [
+      9,
+      10,
+      6,
+      2,
+      1
+    ],
+    "starPath": [
+      9,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4,
+      5,
+      6,
+      2,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 27,
+      "size": 4,
+      "title": "Frosting Fissure",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        6,
+        10,
+        14,
+        13,
+        9,
+        8,
+        4,
+        0
+      ],
+      "gaps": [],
+      "collectibles": [
+        11,
+        15
+      ],
+      "scramble": {
+        "4": 3,
+        "8": 3,
+        "9": 3,
+        "10": 3,
+        "11": 1,
+        "13": 1,
+        "14": 3,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 7,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 5,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 14,
+        "detourRoute": [
+          11,
+          15
+        ],
+        "collectible": 11,
+        "scramble": {
+          "4": 3,
+          "8": 3,
+          "9": 3,
+          "10": 3,
+          "11": 1,
+          "13": 1,
+          "14": 3,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 27,
+      "title": "Frosting Fissure",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 6,
+      "home": 0,
+      "tiles": [
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        11,
+        15
+      ]
+    },
+    "par": 7,
+    "starPar": 11,
+    "short": [
+      4,
+      8,
+      9,
+      10,
+      13,
+      13,
+      13
+    ],
+    "stars": [
+      4,
+      8,
+      9,
+      11,
+      11,
+      11,
+      13,
+      13,
+      13,
+      14,
+      15
+    ],
+    "shortPath": [
+      6,
+      10,
+      14,
+      13,
+      9,
+      8,
+      4,
+      0
+    ],
+    "starPath": [
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      9,
+      8,
+      4,
+      0
+    ]
+  },
+  {
+    "spec": {
+      "id": 28,
+      "size": 4,
+      "title": "Sprinkle Spiral",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        9,
+        8,
+        4,
+        0,
+        1,
+        5,
+        6,
+        7,
+        11,
+        10
+      ],
+      "gaps": [],
+      "collectibles": [
+        2,
+        3
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 2,
+        "2": 3,
+        "3": 1,
+        "4": 2,
+        "5": 1,
+        "6": 1,
+        "7": 2,
+        "8": 2,
+        "11": 2
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 14,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 7,
+        "detourRoute": [
+          2,
+          3
+        ],
+        "collectible": 2,
+        "scramble": {
+          "0": 2,
+          "1": 2,
+          "2": 3,
+          "3": 1,
+          "4": 2,
+          "5": 1,
+          "6": 1,
+          "7": 2,
+          "8": 2,
+          "11": 2
+        }
+      }
+    },
+    "level": {
+      "id": 28,
+      "title": "Sprinkle Spiral",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 9,
+      "home": 10,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        2,
+        3
+      ]
+    },
+    "par": 13,
+    "starPar": 17,
+    "short": [
+      0,
+      0,
+      1,
+      1,
+      5,
+      5,
+      5,
+      6,
+      7,
+      8,
+      8,
+      11,
+      11
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      1,
+      2,
+      3,
+      3,
+      3,
+      5,
+      5,
+      5,
+      6,
+      6,
+      8,
+      8,
+      11,
+      11
+    ],
+    "shortPath": [
+      9,
+      8,
+      4,
+      0,
+      1,
+      5,
+      6,
+      7,
+      11,
+      10
+    ],
+    "starPath": [
+      9,
+      8,
+      4,
+      0,
+      1,
+      5,
+      6,
+      2,
+      3,
+      7,
+      11,
+      10
+    ]
+  },
+  {
+    "spec": {
+      "id": 29,
+      "size": 4,
+      "title": "Choco Chip Chase",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        8,
+        12,
+        13,
+        14,
+        10,
+        11,
+        7,
+        3,
+        2,
+        1
+      ],
+      "gaps": [],
+      "collectibles": [
+        9,
+        6
+      ],
+      "scramble": {
+        "2": 2,
+        "3": 3,
+        "5": 1,
+        "6": 2,
+        "7": 3,
+        "9": 1,
+        "10": 1,
+        "11": 2,
+        "12": 1,
+        "13": 1,
+        "14": 3
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 7,
+        "detourRoute": [
+          9,
+          5,
+          6
+        ],
+        "collectible": 9,
+        "scramble": {
+          "2": 2,
+          "3": 3,
+          "5": 1,
+          "6": 2,
+          "7": 3,
+          "9": 1,
+          "10": 1,
+          "11": 2,
+          "12": 1,
+          "13": 1,
+          "14": 3
+        }
+      }
+    },
+    "level": {
+      "id": 29,
+      "title": "Choco Chip Chase",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 8,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        9,
+        6
+      ]
+    },
+    "par": 11,
+    "starPar": 13,
+    "short": [
+      3,
+      7,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      12,
+      13,
+      14
+    ],
+    "stars": [
+      3,
+      5,
+      5,
+      5,
+      7,
+      9,
+      9,
+      9,
+      12,
+      12,
+      12,
+      13,
+      14
+    ],
+    "shortPath": [
+      8,
+      12,
+      13,
+      14,
+      10,
+      11,
+      7,
+      3,
+      2,
+      1
+    ],
+    "starPath": [
+      8,
+      12,
+      13,
+      14,
+      10,
+      9,
+      5,
+      6,
+      7,
+      3,
+      2,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 30,
+      "size": 4,
+      "title": "Custard Corner",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        1,
+        0,
+        4,
+        8,
+        9,
+        13,
+        14,
+        15,
+        11,
+        10
+      ],
+      "gaps": [
+        4
+      ],
+      "collectibles": [
+        5,
+        7
+      ],
+      "scramble": {
+        "0": 3,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "6": 3,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "11": 2,
+        "13": 3,
+        "14": 1,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 9,
+        "rejoinTile": 11,
+        "detourRoute": [
+          5,
+          6,
+          2,
+          3,
+          7
+        ],
+        "collectible": 5,
+        "scramble": {
+          "0": 3,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "6": 3,
+          "7": 2,
+          "8": 2,
+          "9": 2,
+          "11": 2,
+          "13": 3,
+          "14": 1,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 30,
+      "title": "Custard Corner",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 1,
+      "home": 10,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        5,
+        7
+      ]
+    },
+    "par": 8,
+    "starPar": 17,
+    "short": [
+      0,
+      8,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15
+    ],
+    "stars": [
+      0,
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      5,
+      5,
+      5,
+      6,
+      8,
+      8,
+      9,
+      9,
+      11,
+      11
+    ],
+    "shortPath": [
+      1,
+      0,
+      8,
+      9,
+      13,
+      14,
+      15,
+      11,
+      10
+    ],
+    "starPath": [
+      1,
+      0,
+      8,
+      9,
+      5,
+      6,
+      2,
+      3,
+      7,
+      11,
+      10
+    ]
+  },
+  {
+    "spec": {
+      "id": 31,
+      "size": 4,
+      "title": "Truffle Track",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        10,
+        11,
+        7,
+        3,
+        2,
+        6,
+        5,
+        4,
+        0
+      ],
+      "gaps": [],
+      "collectibles": [
+        9,
+        8
+      ],
+      "scramble": {
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 3,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "11": 3,
+        "12": 2,
+        "13": 2
+      },
+      "decoys": [
+        {
+          "index": 14,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 1,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 5,
+        "rejoinTile": 4,
+        "detourRoute": [
+          9,
+          13,
+          12,
+          8
+        ],
+        "collectible": 9,
+        "scramble": {
+          "2": 2,
+          "3": 2,
+          "4": 2,
+          "5": 3,
+          "6": 1,
+          "7": 1,
+          "8": 1,
+          "9": 1,
+          "11": 3,
+          "12": 2,
+          "13": 2
+        }
+      }
+    },
+    "level": {
+      "id": 31,
+      "title": "Truffle Track",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 10,
+      "home": 0,
+      "tiles": [
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        9,
+        8
+      ]
+    },
+    "par": 11,
+    "starPar": 15,
+    "short": [
+      2,
+      2,
+      3,
+      3,
+      4,
+      5,
+      6,
+      6,
+      6,
+      7,
+      11
+    ],
+    "stars": [
+      2,
+      2,
+      3,
+      3,
+      6,
+      6,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      12,
+      13,
+      13
+    ],
+    "shortPath": [
+      10,
+      11,
+      7,
+      3,
+      2,
+      6,
+      5,
+      4,
+      0
+    ],
+    "starPath": [
+      10,
+      11,
+      7,
+      3,
+      2,
+      6,
+      5,
+      9,
+      13,
+      12,
+      8,
+      4,
+      0
+    ]
+  },
+  {
+    "spec": {
+      "id": 32,
+      "size": 4,
+      "title": "Spun Sugar Spire",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        4,
+        0,
+        1,
+        2,
+        3,
+        7,
+        6,
+        5,
+        9,
+        10
+      ],
+      "gaps": [],
+      "collectibles": [
+        11,
+        8
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 3,
+        "11": 3,
+        "12": 3,
+        "13": 3,
+        "14": 3,
+        "15": 2
+      },
+      "decoys": [],
+      "detour": {
+        "branchTile": 7,
+        "rejoinTile": 9,
+        "detourRoute": [
+          11,
+          15,
+          14,
+          13,
+          12,
+          8
+        ],
+        "collectible": 11,
+        "scramble": {
+          "0": 2,
+          "1": 1,
+          "2": 3,
+          "3": 3,
+          "5": 2,
+          "6": 2,
+          "7": 2,
+          "8": 1,
+          "9": 3,
+          "11": 3,
+          "12": 3,
+          "13": 3,
+          "14": 3,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 32,
+      "title": "Spun Sugar Spire",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 4,
+      "home": 10,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        11,
+        8
+      ]
+    },
+    "par": 10,
+    "starPar": 15,
+    "short": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      5,
+      5,
+      7,
+      7,
+      9
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      8,
+      8,
+      8,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      15
+    ],
+    "shortPath": [
+      4,
+      0,
+      1,
+      2,
+      3,
+      7,
+      6,
+      5,
+      9,
+      10
+    ],
+    "starPath": [
+      4,
+      0,
+      1,
+      2,
+      3,
+      7,
+      11,
+      15,
+      14,
+      13,
+      12,
+      8,
+      9,
+      10
+    ]
+  },
+  {
+    "spec": {
+      "id": 33,
+      "size": 4,
+      "title": "Molasses Moat",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        4,
+        8,
+        12,
+        13,
+        9,
+        10,
+        6,
+        2,
+        1,
+        5
+      ],
+      "gaps": [],
+      "collectibles": [
+        7,
+        3
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "12": 1,
+        "13": 2
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 14,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 2,
+        "detourRoute": [
+          7,
+          3
+        ],
+        "collectible": 7,
+        "scramble": {
+          "1": 1,
+          "2": 3,
+          "3": 3,
+          "6": 2,
+          "7": 1,
+          "8": 1,
+          "9": 2,
+          "10": 2,
+          "12": 1,
+          "13": 2
+        }
+      }
+    },
+    "level": {
+      "id": 33,
+      "title": "Molasses Moat",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 4,
+      "home": 5,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        7,
+        3
+      ]
+    },
+    "par": 14,
+    "starPar": 20,
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      8,
+      9,
+      9,
+      10,
+      10,
+      12,
+      12,
+      12,
+      13,
+      13
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      3,
+      6,
+      6,
+      7,
+      7,
+      7,
+      8,
+      9,
+      9,
+      10,
+      10,
+      12,
+      12,
+      12,
+      13,
+      13
+    ],
+    "shortPath": [
+      4,
+      8,
+      12,
+      13,
+      9,
+      10,
+      6,
+      2,
+      1,
+      5
+    ],
+    "starPath": [
+      4,
+      8,
+      12,
+      13,
+      9,
+      10,
+      6,
+      7,
+      3,
+      2,
+      1,
+      5
+    ]
+  },
+  {
+    "spec": {
+      "id": 34,
+      "size": 4,
+      "title": "Fondant Forest",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        0,
+        1,
+        5,
+        4,
+        8,
+        9,
+        13,
+        14,
+        10,
+        6
+      ],
+      "gaps": [],
+      "collectibles": [
+        15,
+        11
+      ],
+      "scramble": {
+        "1": 3,
+        "4": 1,
+        "5": 1,
+        "8": 2,
+        "9": 3,
+        "10": 3,
+        "11": 3,
+        "13": 3,
+        "14": 3,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 7,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 14,
+        "rejoinTile": 10,
+        "detourRoute": [
+          15,
+          11
+        ],
+        "collectible": 15,
+        "scramble": {
+          "1": 3,
+          "4": 1,
+          "5": 1,
+          "8": 2,
+          "9": 3,
+          "10": 3,
+          "11": 3,
+          "13": 3,
+          "14": 3,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 34,
+      "title": "Fondant Forest",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 0,
+      "home": 6,
+      "tiles": [
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        15,
+        11
+      ]
+    },
+    "par": 12,
+    "starPar": 14,
+    "short": [
+      1,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      8,
+      8,
+      9,
+      10,
+      13
+    ],
+    "stars": [
+      1,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      8,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15
+    ],
+    "shortPath": [
+      0,
+      1,
+      5,
+      4,
+      8,
+      9,
+      13,
+      14,
+      10,
+      6
+    ],
+    "starPath": [
+      0,
+      1,
+      5,
+      4,
+      8,
+      9,
+      13,
+      14,
+      15,
+      11,
+      10,
+      6
+    ]
+  },
+  {
+    "spec": {
+      "id": 35,
+      "size": 4,
+      "title": "Peanut Brittle Path",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        4,
+        8,
+        12,
+        13,
+        14,
+        15,
+        11,
+        7,
+        3,
+        2
+      ],
+      "gaps": [
+        8
+      ],
+      "collectibles": [
+        10,
+        6
+      ],
+      "scramble": {
+        "3": 1,
+        "5": 1,
+        "6": 1,
+        "7": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 2,
+        "13": 3,
+        "14": 3,
+        "15": 2
+      },
+      "decoys": [
+        {
+          "index": 1,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 11,
+        "rejoinTile": 7,
+        "detourRoute": [
+          10,
+          9,
+          5,
+          6
+        ],
+        "collectible": 10,
+        "scramble": {
+          "3": 1,
+          "5": 1,
+          "6": 1,
+          "7": 2,
+          "9": 2,
+          "10": 2,
+          "11": 1,
+          "12": 2,
+          "13": 3,
+          "14": 3,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 35,
+      "title": "Peanut Brittle Path",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 4,
+      "home": 2,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        10,
+        6
+      ]
+    },
+    "par": 10,
+    "starPar": 19,
+    "short": [
+      3,
+      3,
+      3,
+      11,
+      12,
+      12,
+      13,
+      14,
+      15,
+      15
+    ],
+    "stars": [
+      3,
+      3,
+      3,
+      5,
+      5,
+      5,
+      6,
+      7,
+      7,
+      9,
+      9,
+      11,
+      11,
+      12,
+      12,
+      13,
+      14,
+      15,
+      15
+    ],
+    "shortPath": [
+      4,
+      12,
+      13,
+      14,
+      15,
+      11,
+      7,
+      3,
+      2
+    ],
+    "starPath": [
+      4,
+      12,
+      13,
+      14,
+      15,
+      11,
+      10,
+      9,
+      5,
+      6,
+      7,
+      3,
+      2
+    ]
+  },
+  {
+    "spec": {
+      "id": 36,
+      "size": 4,
+      "title": "Syrup Circuit",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        5,
+        4,
+        8,
+        12,
+        13,
+        14,
+        15,
+        11,
+        7,
+        3
+      ],
+      "gaps": [],
+      "collectibles": [
+        10,
+        6
+      ],
+      "scramble": {
+        "4": 1,
+        "6": 2,
+        "7": 3,
+        "8": 2,
+        "10": 1,
+        "11": 2,
+        "12": 2,
+        "13": 3,
+        "14": 1,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 9,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 11,
+        "rejoinTile": 7,
+        "detourRoute": [
+          10,
+          6
+        ],
+        "collectible": 10,
+        "scramble": {
+          "4": 1,
+          "6": 2,
+          "7": 3,
+          "8": 2,
+          "10": 1,
+          "11": 2,
+          "12": 2,
+          "13": 3,
+          "14": 1,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 36,
+      "title": "Syrup Circuit",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 5,
+      "home": 3,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        10,
+        6
+      ]
+    },
+    "par": 9,
+    "starPar": 15,
+    "short": [
+      4,
+      4,
+      4,
+      7,
+      12,
+      12,
+      13,
+      14,
+      15
+    ],
+    "stars": [
+      4,
+      4,
+      4,
+      6,
+      6,
+      7,
+      10,
+      10,
+      10,
+      11,
+      12,
+      12,
+      13,
+      14,
+      15
+    ],
+    "shortPath": [
+      5,
+      4,
+      8,
+      12,
+      13,
+      14,
+      15,
+      11,
+      7,
+      3
+    ],
+    "starPath": [
+      5,
+      4,
+      8,
+      12,
+      13,
+      14,
+      15,
+      11,
+      10,
+      6,
+      7,
+      3
+    ]
+  },
+  {
+    "spec": {
+      "id": 37,
+      "size": 4,
+      "title": "Honeycomb Hill",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        2,
+        3,
+        7,
+        6,
+        5,
+        4,
+        8,
+        12,
+        13,
+        14
+      ],
+      "gaps": [],
+      "collectibles": [
+        10,
+        9
+      ],
+      "scramble": {
+        "3": 2,
+        "4": 3,
+        "5": 2,
+        "6": 3,
+        "7": 2,
+        "8": 3,
+        "9": 1,
+        "10": 3,
+        "12": 1,
+        "13": 2
+      },
+      "decoys": [
+        {
+          "index": 11,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 5,
+        "detourRoute": [
+          10,
+          9
+        ],
+        "collectible": 10,
+        "scramble": {
+          "3": 2,
+          "4": 3,
+          "5": 2,
+          "6": 3,
+          "7": 2,
+          "8": 3,
+          "9": 1,
+          "10": 3,
+          "12": 1,
+          "13": 2
+        }
+      }
+    },
+    "level": {
+      "id": 37,
+      "title": "Honeycomb Hill",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 2,
+      "home": 14,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        10,
+        9
+      ]
+    },
+    "par": 10,
+    "starPar": 15,
+    "short": [
+      3,
+      3,
+      4,
+      6,
+      7,
+      7,
+      8,
+      12,
+      12,
+      12
+    ],
+    "stars": [
+      3,
+      3,
+      4,
+      5,
+      5,
+      7,
+      7,
+      8,
+      9,
+      9,
+      9,
+      10,
+      12,
+      12,
+      12
+    ],
+    "shortPath": [
+      2,
+      3,
+      7,
+      6,
+      5,
+      4,
+      8,
+      12,
+      13,
+      14
+    ],
+    "starPath": [
+      2,
+      3,
+      7,
+      6,
+      10,
+      9,
+      5,
+      4,
+      8,
+      12,
+      13,
+      14
+    ]
+  },
+  {
+    "spec": {
+      "id": 38,
+      "size": 4,
+      "title": "Marmalade Mountain",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        11,
+        7,
+        6,
+        10,
+        14,
+        13,
+        9,
+        5,
+        4
+      ],
+      "gaps": [],
+      "collectibles": [
+        3,
+        2
+      ],
+      "scramble": {
+        "2": 3,
+        "3": 1,
+        "5": 1,
+        "6": 3,
+        "7": 1,
+        "9": 2,
+        "10": 3,
+        "13": 3,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 7,
+        "rejoinTile": 6,
+        "detourRoute": [
+          3,
+          2
+        ],
+        "collectible": 3,
+        "scramble": {
+          "2": 3,
+          "3": 1,
+          "5": 1,
+          "6": 3,
+          "7": 1,
+          "9": 2,
+          "10": 3,
+          "13": 3,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 38,
+      "title": "Marmalade Mountain",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 11,
+      "home": 4,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        3,
+        2
+      ]
+    },
+    "par": 11,
+    "starPar": 14,
+    "short": [
+      5,
+      5,
+      5,
+      6,
+      7,
+      7,
+      10,
+      13,
+      14,
+      14,
+      14
+    ],
+    "stars": [
+      2,
+      3,
+      3,
+      3,
+      5,
+      5,
+      5,
+      6,
+      7,
+      10,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      11,
+      7,
+      6,
+      10,
+      14,
+      13,
+      9,
+      5,
+      4
+    ],
+    "starPath": [
+      11,
+      7,
+      3,
+      2,
+      6,
+      10,
+      14,
+      13,
+      9,
+      5,
+      4
+    ]
+  },
+  {
+    "spec": {
+      "id": 39,
+      "size": 4,
+      "title": "Icing Incline",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        3,
+        7,
+        11,
+        15,
+        14,
+        13,
+        9,
+        8,
+        4,
+        5
+      ],
+      "gaps": [],
+      "collectibles": [
+        6,
+        10
+      ],
+      "scramble": {
+        "4": 1,
+        "6": 1,
+        "7": 3,
+        "8": 1,
+        "9": 2,
+        "10": 3,
+        "11": 1,
+        "13": 1,
+        "14": 2,
+        "15": 1
+      },
+      "decoys": [
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 1,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 7,
+        "rejoinTile": 11,
+        "detourRoute": [
+          6,
+          10
+        ],
+        "collectible": 6,
+        "scramble": {
+          "4": 1,
+          "6": 1,
+          "7": 3,
+          "8": 1,
+          "9": 2,
+          "10": 3,
+          "11": 1,
+          "13": 1,
+          "14": 2,
+          "15": 1
+        }
+      }
+    },
+    "level": {
+      "id": 39,
+      "title": "Icing Incline",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 3,
+      "home": 5,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        10
+      ]
+    },
+    "par": 16,
+    "starPar": 21,
+    "short": [
+      4,
+      4,
+      4,
+      7,
+      8,
+      8,
+      8,
+      9,
+      9,
+      11,
+      13,
+      13,
+      13,
+      15,
+      15,
+      15
+    ],
+    "stars": [
+      4,
+      4,
+      4,
+      6,
+      6,
+      6,
+      7,
+      8,
+      8,
+      8,
+      9,
+      9,
+      10,
+      11,
+      11,
+      13,
+      13,
+      13,
+      15,
+      15,
+      15
+    ],
+    "shortPath": [
+      3,
+      7,
+      11,
+      15,
+      14,
+      13,
+      9,
+      8,
+      4,
+      5
+    ],
+    "starPath": [
+      3,
+      7,
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      9,
+      8,
+      4,
+      5
+    ]
+  },
+  {
+    "spec": {
+      "id": 40,
+      "size": 4,
+      "title": "Confectionery Cascade",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        14,
+        15,
+        11,
+        10,
+        6,
+        7,
+        3,
+        2,
+        1
+      ],
+      "gaps": [
+        2
+      ],
+      "collectibles": [
+        9,
+        5
+      ],
+      "scramble": {
+        "3": 2,
+        "4": 3,
+        "5": 3,
+        "6": 2,
+        "7": 1,
+        "8": 3,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 6,
+        "detourRoute": [
+          9,
+          8,
+          4,
+          5
+        ],
+        "collectible": 9,
+        "scramble": {
+          "3": 2,
+          "4": 3,
+          "5": 3,
+          "6": 2,
+          "7": 1,
+          "8": 3,
+          "9": 1,
+          "10": 2,
+          "11": 2,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 40,
+      "title": "Confectionery Cascade",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 14,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        9,
+        5
+      ]
+    },
+    "par": 11,
+    "starPar": 12,
+    "short": [
+      3,
+      3,
+      6,
+      7,
+      7,
+      7,
+      10,
+      10,
+      11,
+      11,
+      15
+    ],
+    "stars": [
+      3,
+      3,
+      4,
+      5,
+      7,
+      7,
+      7,
+      8,
+      9,
+      11,
+      11,
+      15
+    ],
+    "shortPath": [
+      14,
+      15,
+      11,
+      10,
+      6,
+      7,
+      3,
+      1
+    ],
+    "starPath": [
+      14,
+      15,
+      11,
+      10,
+      9,
+      8,
+      4,
+      5,
+      6,
+      7,
+      3,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 41,
+      "size": 4,
+      "title": "Candy Corn Cavern",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        8,
+        4,
+        5,
+        6,
+        10,
+        14,
+        15,
+        11,
+        7
+      ],
+      "gaps": [],
+      "collectibles": [
+        1,
+        2
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 1,
+        "4": 3,
+        "5": 1,
+        "6": 2,
+        "10": 1,
+        "11": 1,
+        "14": 1,
+        "15": 1
+      },
+      "decoys": [
+        {
+          "index": 13,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "detour": {
+        "branchTile": 5,
+        "rejoinTile": 6,
+        "detourRoute": [
+          1,
+          2
+        ],
+        "collectible": 1,
+        "scramble": {
+          "1": 1,
+          "2": 1,
+          "4": 3,
+          "5": 1,
+          "6": 2,
+          "10": 1,
+          "11": 1,
+          "14": 1,
+          "15": 1
+        }
+      }
+    },
+    "level": {
+      "id": 41,
+      "title": "Candy Corn Cavern",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 8,
+      "home": 7,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        1,
+        2
+      ]
+    },
+    "par": 11,
+    "starPar": 17,
+    "short": [
+      4,
+      5,
+      6,
+      10,
+      11,
+      14,
+      14,
+      14,
+      15,
+      15,
+      15
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      4,
+      5,
+      5,
+      10,
+      11,
+      14,
+      14,
+      14,
+      15,
+      15,
+      15
+    ],
+    "shortPath": [
+      8,
+      4,
+      5,
+      6,
+      10,
+      14,
+      15,
+      11,
+      7
+    ],
+    "starPath": [
+      8,
+      4,
+      5,
+      1,
+      2,
+      6,
+      10,
+      14,
+      15,
+      11,
+      7
+    ]
+  },
+  {
+    "spec": {
+      "id": 42,
+      "size": 4,
+      "title": "Sugar Crystal Spires",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        12,
+        13,
+        14,
+        10,
+        11,
+        7,
+        6,
+        5,
+        9,
+        8
+      ],
+      "gaps": [],
+      "collectibles": [
+        2,
+        1
+      ],
+      "scramble": {
+        "1": 3,
+        "2": 1,
+        "5": 3,
+        "6": 2,
+        "7": 3,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "13": 1,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 5,
+        "detourRoute": [
+          2,
+          1
+        ],
+        "collectible": 2,
+        "scramble": {
+          "1": 3,
+          "2": 1,
+          "5": 3,
+          "6": 2,
+          "7": 3,
+          "9": 1,
+          "10": 1,
+          "11": 1,
+          "13": 1,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 42,
+      "title": "Sugar Crystal Spires",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 12,
+      "home": 8,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        2,
+        1
+      ]
+    },
+    "par": 15,
+    "starPar": 21,
+    "short": [
+      5,
+      7,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10,
+      11,
+      11,
+      11,
+      13,
+      14,
+      14,
+      14
+    ],
+    "stars": [
+      1,
+      2,
+      2,
+      2,
+      5,
+      6,
+      6,
+      7,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10,
+      11,
+      11,
+      11,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      12,
+      13,
+      14,
+      10,
+      11,
+      7,
+      6,
+      5,
+      9,
+      8
+    ],
+    "starPath": [
+      12,
+      13,
+      14,
+      10,
+      11,
+      7,
+      6,
+      2,
+      1,
+      5,
+      9,
+      8
+    ]
+  },
+  {
+    "spec": {
+      "id": 43,
+      "size": 4,
+      "title": "Glaze Garden Crossing",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        7,
+        3,
+        2,
+        6,
+        5,
+        1,
+        0,
+        4,
+        8,
+        9
+      ],
+      "gaps": [],
+      "collectibles": [
+        10,
+        12
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 1,
+        "6": 1,
+        "8": 1,
+        "10": 2,
+        "11": 1,
+        "12": 2,
+        "13": 2,
+        "14": 1,
+        "15": 3
+      },
+      "decoys": [],
+      "detour": {
+        "branchTile": 6,
+        "rejoinTile": 8,
+        "detourRoute": [
+          10,
+          11,
+          15,
+          14,
+          13,
+          12
+        ],
+        "collectible": 10,
+        "scramble": {
+          "0": 2,
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 1,
+          "6": 1,
+          "8": 1,
+          "10": 2,
+          "11": 1,
+          "12": 2,
+          "13": 2,
+          "14": 1,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 43,
+      "title": "Glaze Garden Crossing",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 7,
+      "home": 9,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        10,
+        12
+      ]
+    },
+    "par": 11,
+    "starPar": 12,
+    "short": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      5,
+      5,
+      8,
+      8
+    ],
+    "stars": [
+      2,
+      3,
+      6,
+      10,
+      10,
+      11,
+      11,
+      11,
+      12,
+      12,
+      14,
+      15
+    ],
+    "shortPath": [
+      7,
+      3,
+      2,
+      6,
+      5,
+      1,
+      0,
+      4,
+      8,
+      9
+    ],
+    "starPath": [
+      7,
+      3,
+      2,
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      12,
+      8,
+      9
+    ]
+  },
+  {
+    "spec": {
+      "id": 44,
+      "size": 4,
+      "title": "Pastel Precipice",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        1,
+        2,
+        6,
+        10,
+        11,
+        15,
+        14,
+        13,
+        9,
+        8
+      ],
+      "gaps": [],
+      "collectibles": [
+        3,
+        7
+      ],
+      "scramble": {
+        "2": 3,
+        "3": 3,
+        "6": 3,
+        "7": 2,
+        "9": 3,
+        "10": 1,
+        "11": 3,
+        "13": 1,
+        "14": 1,
+        "15": 2
+      },
+      "decoys": [
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 2,
+        "rejoinTile": 6,
+        "detourRoute": [
+          3,
+          7
+        ],
+        "collectible": 3,
+        "scramble": {
+          "2": 3,
+          "3": 3,
+          "6": 3,
+          "7": 2,
+          "9": 3,
+          "10": 1,
+          "11": 3,
+          "13": 1,
+          "14": 1,
+          "15": 2
+        }
+      }
+    },
+    "level": {
+      "id": 44,
+      "title": "Pastel Precipice",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 1,
+      "home": 8,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        3,
+        7
+      ]
+    },
+    "par": 13,
+    "starPar": 16,
+    "short": [
+      2,
+      6,
+      9,
+      10,
+      10,
+      10,
+      11,
+      13,
+      13,
+      13,
+      14,
+      15,
+      15
+    ],
+    "stars": [
+      2,
+      3,
+      6,
+      7,
+      7,
+      9,
+      10,
+      10,
+      10,
+      11,
+      13,
+      13,
+      13,
+      14,
+      15,
+      15
+    ],
+    "shortPath": [
+      1,
+      2,
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      9,
+      8
+    ],
+    "starPath": [
+      1,
+      2,
+      3,
+      7,
+      6,
+      10,
+      11,
+      15,
+      14,
+      13,
+      9,
+      8
+    ]
+  },
+  {
+    "spec": {
+      "id": 45,
+      "size": 4,
+      "title": "Truffle Switchback",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        2,
+        3,
+        7,
+        11,
+        10,
+        6,
+        5,
+        4,
+        0,
+        1
+      ],
+      "gaps": [
+        7
+      ],
+      "collectibles": [
+        14,
+        8
+      ],
+      "scramble": {
+        "0": 2,
+        "3": 2,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "13": 3,
+        "14": 3
+      },
+      "decoys": [
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 4,
+        "detourRoute": [
+          14,
+          13,
+          9,
+          8
+        ],
+        "collectible": 14,
+        "scramble": {
+          "0": 2,
+          "3": 2,
+          "4": 1,
+          "5": 2,
+          "6": 2,
+          "8": 2,
+          "9": 2,
+          "10": 2,
+          "11": 2,
+          "13": 3,
+          "14": 3
+        }
+      }
+    },
+    "level": {
+      "id": 45,
+      "title": "Truffle Switchback",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 2,
+      "home": 1,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        14,
+        8
+      ]
+    },
+    "par": 11,
+    "starPar": 15,
+    "short": [
+      0,
+      0,
+      3,
+      3,
+      4,
+      4,
+      6,
+      6,
+      10,
+      11,
+      11
+    ],
+    "stars": [
+      0,
+      0,
+      3,
+      3,
+      4,
+      8,
+      8,
+      9,
+      9,
+      10,
+      10,
+      11,
+      11,
+      13,
+      14
+    ],
+    "shortPath": [
+      2,
+      3,
+      11,
+      10,
+      6,
+      5,
+      4,
+      0,
+      1
+    ],
+    "starPath": [
+      2,
+      3,
+      11,
+      10,
+      14,
+      13,
+      9,
+      8,
+      4,
+      0,
+      1
+    ]
+  },
+  {
+    "spec": {
+      "id": 46,
+      "size": 4,
+      "title": "Frosted Fortress",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        15,
+        11,
+        10,
+        14,
+        13,
+        12,
+        8,
+        4,
+        5,
+        6
+      ],
+      "gaps": [],
+      "collectibles": [
+        0,
+        1
+      ],
+      "scramble": {
+        "0": 2,
+        "1": 1,
+        "4": 3,
+        "5": 2,
+        "8": 3,
+        "10": 1,
+        "11": 1,
+        "12": 3,
+        "13": 1,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 7,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 4,
+        "rejoinTile": 5,
+        "detourRoute": [
+          0,
+          1
+        ],
+        "collectible": 0,
+        "scramble": {
+          "0": 2,
+          "1": 1,
+          "4": 3,
+          "5": 2,
+          "8": 3,
+          "10": 1,
+          "11": 1,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 46,
+      "title": "Frosted Fortress",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 15,
+      "home": 6,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        0,
+        1
+      ]
+    },
+    "par": 13,
+    "starPar": 20,
+    "short": [
+      4,
+      8,
+      10,
+      10,
+      10,
+      11,
+      11,
+      11,
+      12,
+      13,
+      14,
+      14,
+      14
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      4,
+      5,
+      5,
+      8,
+      10,
+      10,
+      10,
+      11,
+      11,
+      11,
+      12,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      15,
+      11,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4,
+      5,
+      6
+    ],
+    "starPath": [
+      15,
+      11,
+      10,
+      14,
+      13,
+      12,
+      8,
+      4,
+      0,
+      1,
+      5,
+      6
+    ]
+  },
+  {
+    "spec": {
+      "id": 47,
+      "size": 4,
+      "title": "Raspberry Labyrinth",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        7,
+        6,
+        5,
+        4,
+        8,
+        9,
+        10,
+        14,
+        15
+      ],
+      "gaps": [],
+      "collectibles": [
+        12,
+        13
+      ],
+      "scramble": {
+        "4": 2,
+        "5": 1,
+        "6": 3,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "12": 2,
+        "13": 1,
+        "14": 1
+      },
+      "decoys": [
+        {
+          "index": 2,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 3,
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "detour": {
+        "branchTile": 8,
+        "rejoinTile": 9,
+        "detourRoute": [
+          12,
+          13
+        ],
+        "collectible": 12,
+        "scramble": {
+          "4": 2,
+          "5": 1,
+          "6": 3,
+          "8": 1,
+          "9": 1,
+          "10": 1,
+          "12": 2,
+          "13": 1,
+          "14": 1
+        }
+      }
+    },
+    "level": {
+      "id": 47,
+      "title": "Raspberry Labyrinth",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 7,
+      "home": 15,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 3
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        12,
+        13
+      ]
+    },
+    "par": 13,
+    "starPar": 18,
+    "short": [
+      4,
+      4,
+      5,
+      6,
+      8,
+      8,
+      9,
+      10,
+      10,
+      10,
+      14,
+      14,
+      14
+    ],
+    "stars": [
+      4,
+      4,
+      5,
+      6,
+      8,
+      9,
+      9,
+      10,
+      10,
+      10,
+      12,
+      12,
+      13,
+      13,
+      13,
+      14,
+      14,
+      14
+    ],
+    "shortPath": [
+      7,
+      6,
+      5,
+      4,
+      8,
+      9,
+      10,
+      14,
+      15
+    ],
+    "starPath": [
+      7,
+      6,
+      5,
+      4,
+      8,
+      12,
+      13,
+      9,
+      10,
+      14,
+      15
+    ]
+  },
+  {
+    "spec": {
+      "id": 48,
+      "size": 4,
+      "title": "Sugar Vault",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        13,
+        14,
+        15,
+        11,
+        10,
+        9,
+        8,
+        4
+      ],
+      "gaps": [],
+      "collectibles": [
+        6,
+        5
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 3,
+        "5": 1,
+        "6": 3,
+        "8": 2,
+        "9": 3,
+        "10": 1,
+        "11": 1,
+        "14": 3,
+        "15": 1
+      },
+      "decoys": [
+        {
+          "index": 7,
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 9,
+        "detourRoute": [
+          6,
+          2,
+          1,
+          5
+        ],
+        "collectible": 6,
+        "scramble": {
+          "1": 1,
+          "2": 3,
+          "5": 1,
+          "6": 3,
+          "8": 2,
+          "9": 3,
+          "10": 1,
+          "11": 1,
+          "14": 3,
+          "15": 1
+        }
+      }
+    },
+    "level": {
+      "id": 48,
+      "title": "Sugar Vault",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 13,
+      "home": 4,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 3
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        6,
+        5
+      ]
+    },
+    "par": 11,
+    "starPar": 15,
+    "short": [
+      8,
+      8,
+      9,
+      10,
+      11,
+      11,
+      11,
+      14,
+      15,
+      15,
+      15
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      5,
+      6,
+      8,
+      8,
+      11,
+      11,
+      11,
+      14,
+      15,
+      15,
+      15
+    ],
+    "shortPath": [
+      13,
+      14,
+      15,
+      11,
+      10,
+      9,
+      8,
+      4
+    ],
+    "starPath": [
+      13,
+      14,
+      15,
+      11,
+      10,
+      6,
+      2,
+      1,
+      5,
+      9,
+      8,
+      4
+    ]
+  },
+  {
+    "spec": {
+      "id": 49,
+      "size": 4,
+      "title": "Pink Panache",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        3,
+        2,
+        1,
+        5,
+        6,
+        10,
+        14,
+        15,
+        11,
+        7
+      ],
+      "gaps": [],
+      "collectibles": [
+        9,
+        13
+      ],
+      "scramble": {
+        "1": 1,
+        "2": 1,
+        "5": 1,
+        "6": 2,
+        "9": 3,
+        "10": 1,
+        "11": 1,
+        "13": 1,
+        "14": 2,
+        "15": 3
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 0,
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "index": 4,
+          "kind": "corner",
+          "rotation": 3
+        }
+      ],
+      "detour": {
+        "branchTile": 10,
+        "rejoinTile": 14,
+        "detourRoute": [
+          9,
+          13
+        ],
+        "collectible": 9,
+        "scramble": {
+          "1": 1,
+          "2": 1,
+          "5": 1,
+          "6": 2,
+          "9": 3,
+          "10": 1,
+          "11": 1,
+          "13": 1,
+          "14": 2,
+          "15": 3
+        }
+      }
+    },
+    "level": {
+      "id": 49,
+      "title": "Pink Panache",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 3,
+      "home": 7,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 2
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "tee",
+          "rotation": 0
+        },
+        {
+          "kind": "straight",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        9,
+        13
+      ]
+    },
+    "par": 14,
+    "starPar": 15,
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      5,
+      5,
+      5,
+      6,
+      6,
+      10,
+      11,
+      14,
+      14,
+      15
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      5,
+      5,
+      5,
+      6,
+      6,
+      9,
+      11,
+      13,
+      13,
+      13,
+      15
+    ],
+    "shortPath": [
+      3,
+      2,
+      1,
+      5,
+      6,
+      10,
+      14,
+      15,
+      11,
+      7
+    ],
+    "starPath": [
+      3,
+      2,
+      1,
+      5,
+      6,
+      10,
+      9,
+      13,
+      14,
+      15,
+      11,
+      7
+    ]
+  },
+  {
+    "spec": {
+      "id": 50,
+      "size": 4,
+      "title": "Strawberry Cottage Finale",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "route": [
+        7,
+        3,
+        2,
+        1,
+        5,
+        6,
+        10,
+        9,
+        8
+      ],
+      "gaps": [
+        2
+      ],
+      "collectibles": [
+        0,
+        4
+      ],
+      "scramble": {
+        "0": 1,
+        "1": 3,
+        "3": 2,
+        "4": 1,
+        "5": 2,
+        "6": 1,
+        "9": 1,
+        "10": 1
+      },
+      "decoys": [
+        {
+          "index": 12,
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "index": 15,
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "index": 14,
+          "kind": "corner",
+          "rotation": 1
+        }
+      ],
+      "detour": {
+        "branchTile": 1,
+        "rejoinTile": 5,
+        "detourRoute": [
+          0,
+          4
+        ],
+        "collectible": 0,
+        "scramble": {
+          "0": 1,
+          "1": 3,
+          "3": 2,
+          "4": 1,
+          "5": 2,
+          "6": 1,
+          "9": 1,
+          "10": 1
+        }
+      }
+    },
+    "level": {
+      "id": 50,
+      "title": "Strawberry Cottage Finale",
+      "hint": "Choose the direct path, or take the golden-star trail.",
+      "size": 4,
+      "start": 7,
+      "home": 8,
+      "tiles": [
+        {
+          "kind": "corner",
+          "rotation": 2
+        },
+        {
+          "kind": "tee",
+          "rotation": 1
+        },
+        {
+          "kind": "blank",
+          "rotation": 0,
+          "terrain": "gap"
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "tee",
+          "rotation": 2
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "start",
+          "rotation": 0,
+          "port": 0
+        },
+        {
+          "kind": "home",
+          "rotation": 0,
+          "port": 1
+        },
+        {
+          "kind": "straight",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 0
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 3
+        },
+        {
+          "kind": "blank",
+          "rotation": 0
+        },
+        {
+          "kind": "corner",
+          "rotation": 1
+        },
+        {
+          "kind": "corner",
+          "rotation": 2
+        }
+      ],
+      "character": "bunny",
+      "powerVersion": 4,
+      "collectibles": [
+        0,
+        4
+      ]
+    },
+    "par": 11,
+    "starPar": 16,
+    "short": [
+      3,
+      3,
+      5,
+      5,
+      6,
+      6,
+      6,
+      9,
+      10,
+      10,
+      10
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      3,
+      3,
+      4,
+      4,
+      4,
+      6,
+      6,
+      6,
+      9,
+      10,
+      10,
+      10
+    ],
+    "shortPath": [
+      7,
+      3,
+      1,
+      5,
+      6,
+      10,
+      9,
+      8
+    ],
+    "starPath": [
+      7,
+      3,
+      1,
+      0,
+      4,
+      5,
+      6,
+      10,
+      9,
+      8
+    ]
+  }
+]
