@@ -1,0 +1,619 @@
+{
+  "date": "2026-10-28",
+  "origin": "http://127.0.0.1:3057",
+  "revision": "bunny-4x4-v1",
+  "method": "CUA real-browser tile clicks; automated certified sequences, not a human playtest",
+  "runs": [
+    {
+      "level": 1,
+      "route": "stars",
+      "moves": 3,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 2,
+      "route": "stars",
+      "moves": 4,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 3,
+      "route": "stars",
+      "moves": 8,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 4,
+      "route": "stars",
+      "moves": 10,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 5,
+      "route": "stars",
+      "moves": 4,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 6,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 7,
+      "route": "stars",
+      "moves": 11,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 8,
+      "route": "stars",
+      "moves": 13,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 9,
+      "route": "stars",
+      "moves": 9,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 10,
+      "route": "stars",
+      "moves": 13,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 11,
+      "route": "stars",
+      "moves": 13,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 12,
+      "route": "stars",
+      "moves": 19,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 13,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 14,
+      "route": "stars",
+      "moves": 11,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 15,
+      "route": "stars",
+      "moves": 11,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 16,
+      "route": "stars",
+      "moves": 17,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 17,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 18,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 19,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 20,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 21,
+      "route": "stars",
+      "moves": 14,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 22,
+      "route": "stars",
+      "moves": 14,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 23,
+      "route": "stars",
+      "moves": 18,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 24,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 25,
+      "route": "stars",
+      "moves": 9,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 26,
+      "route": "stars",
+      "moves": 14,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 27,
+      "route": "stars",
+      "moves": 11,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 28,
+      "route": "stars",
+      "moves": 17,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 29,
+      "route": "stars",
+      "moves": 13,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 30,
+      "route": "stars",
+      "moves": 17,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 31,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 32,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 33,
+      "route": "stars",
+      "moves": 20,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 34,
+      "route": "stars",
+      "moves": 14,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 35,
+      "route": "stars",
+      "moves": 19,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 36,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 37,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 38,
+      "route": "stars",
+      "moves": 14,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 39,
+      "route": "stars",
+      "moves": 21,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 40,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 41,
+      "route": "stars",
+      "moves": 17,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 42,
+      "route": "stars",
+      "moves": 21,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 43,
+      "route": "stars",
+      "moves": 12,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 44,
+      "route": "stars",
+      "moves": 16,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 45,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 46,
+      "route": "stars",
+      "moves": 20,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 47,
+      "route": "stars",
+      "moves": 18,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 48,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 49,
+      "route": "stars",
+      "moves": 15,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 50,
+      "route": "stars",
+      "moves": 16,
+      "result": "3/3;2/2 pickups;saved"
+    },
+    {
+      "level": 1,
+      "route": "short",
+      "moves": 3,
+      "result": "3/3;saved"
+    },
+    {
+      "level": 2,
+      "route": "short",
+      "moves": 4,
+      "result": "3/3;saved"
+    },
+    {
+      "level": 3,
+      "route": "short",
+      "moves": 8,
+      "result": "3/3;saved"
+    },
+    {
+      "level": 4,
+      "route": "short",
+      "moves": 10,
+      "result": "3/3;saved"
+    },
+    {
+      "level": 5,
+      "route": "short",
+      "moves": 4,
+      "result": "3/3;saved"
+    },
+    {
+      "level": 6,
+      "route": "short",
+      "moves": 10,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 7,
+      "route": "short",
+      "moves": 5,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 8,
+      "route": "short",
+      "moves": 5,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 9,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 10,
+      "route": "short",
+      "moves": 6,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 11,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 12,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 13,
+      "route": "short",
+      "moves": 10,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 14,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 15,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 16,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 17,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 18,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 19,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 20,
+      "route": "short",
+      "moves": 6,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 21,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 22,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 23,
+      "route": "short",
+      "moves": 13,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 24,
+      "route": "short",
+      "moves": 9,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 25,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 26,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 27,
+      "route": "short",
+      "moves": 7,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 28,
+      "route": "short",
+      "moves": 13,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 29,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 30,
+      "route": "short",
+      "moves": 8,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 31,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 32,
+      "route": "short",
+      "moves": 10,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 33,
+      "route": "short",
+      "moves": 14,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 34,
+      "route": "short",
+      "moves": 12,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 35,
+      "route": "short",
+      "moves": 10,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 36,
+      "route": "short",
+      "moves": 9,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 37,
+      "route": "short",
+      "moves": 10,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 38,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 39,
+      "route": "short",
+      "moves": 16,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 40,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 41,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 42,
+      "route": "short",
+      "moves": 15,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 43,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 44,
+      "route": "short",
+      "moves": 13,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 45,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 46,
+      "route": "short",
+      "moves": 13,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 47,
+      "route": "short",
+      "moves": 13,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 48,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 49,
+      "route": "short",
+      "moves": 14,
+      "result": "1/3;saved"
+    },
+    {
+      "level": 50,
+      "route": "short",
+      "moves": 11,
+      "result": "1/3;saved"
+    }
+  ],
+  "additional": [
+    "Level 23 real two-star route: 15 moves, one pickup, 2 rating stars",
+    "Level 1 unfinished refresh: rotation and 1/6 moves restored",
+    "Level 1 loss at 6/6; Escape/reopen; keyboard retry reset to zero",
+    "Level 1 last-move win at 6/6 survived refresh",
+    "Finale won state restored after refresh; map 50 completed and 150 stars",
+    "One-star replays retained map total 150 stars",
+    "Cross-tab writes blocked stale UI with explicit reload warning",
+    "Level 20 low-star fixture: 29/36; map and direct URL blocked",
+    "Back/Forward restored locked-level/map states"
+  ]
+}

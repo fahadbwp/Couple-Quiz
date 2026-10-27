@@ -1,0 +1,326 @@
+[
+  {
+    "kind": "map",
+    "viewport": 320,
+    "width": 305,
+    "route": "/jelloo/character-worlds/bunny",
+    "tileTargets": [],
+    "starSlots": [],
+    "scrollWidth": 305,
+    "levels": 50,
+    "smallestTarget": 57.833335876464844,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "puzzle",
+    "viewport": 320,
+    "width": 305,
+    "route": "/jelloo/character-worlds/bunny?level=6",
+    "tileTargets": [
+      {
+        "label": "Row 1, column 3, straight, connects up and down. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 1, column 4, corner, connects left and up. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 2, column 3, corner, connects down and left. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 2, column 4, corner, connects right and down. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 3, column 3, tee, connects left and up and down. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 3, column 4, corner, connects left and up. Rotate clockwise. Golden star",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 4, column 1, corner, connects right and down. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 4, column 3, tee, connects down and left and right. Rotate clockwise",
+        "width": 56.25,
+        "height": 56.25
+      },
+      {
+        "label": "Row 4, column 4, corner, connects right and down. Rotate clockwise. Golden star",
+        "width": 56.25,
+        "height": 56.25
+      }
+    ],
+    "starSlots": [
+      {
+        "width": 14.0625,
+        "cell": 57.583335876464844,
+        "overflow": "hidden"
+      },
+      {
+        "width": 14.0625,
+        "cell": 57.583335876464844,
+        "overflow": "hidden"
+      }
+    ],
+    "scrollWidth": 305,
+    "levels": 0,
+    "smallestTarget": null,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "map",
+    "viewport": 390,
+    "width": 375,
+    "route": "/jelloo/character-worlds/bunny",
+    "tileTargets": [],
+    "starSlots": [],
+    "scrollWidth": 375,
+    "levels": 50,
+    "smallestTarget": 58.66666793823242,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "puzzle",
+    "viewport": 390,
+    "width": 375,
+    "route": "/jelloo/character-worlds/bunny?level=6",
+    "tileTargets": [
+      {
+        "label": "Row 1, column 3, straight, connects up and down. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 1, column 4, corner, connects left and up. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 2, column 3, corner, connects down and left. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 2, column 4, corner, connects right and down. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 3, column 3, tee, connects left and up and down. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 3, column 4, corner, connects left and up. Rotate clockwise. Golden star",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 4, column 1, corner, connects right and down. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 4, column 3, tee, connects down and left and right. Rotate clockwise",
+        "width": 73.75,
+        "height": 73.75
+      },
+      {
+        "label": "Row 4, column 4, corner, connects right and down. Rotate clockwise. Golden star",
+        "width": 73.75,
+        "height": 73.75
+      }
+    ],
+    "starSlots": [
+      {
+        "width": 18.4375,
+        "cell": 75.08333587646484,
+        "overflow": "hidden"
+      },
+      {
+        "width": 18.4375,
+        "cell": 75.08333587646484,
+        "overflow": "hidden"
+      }
+    ],
+    "scrollWidth": 375,
+    "levels": 0,
+    "smallestTarget": null,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "map",
+    "viewport": 768,
+    "width": 753,
+    "route": "/jelloo/character-worlds/bunny",
+    "tileTargets": [],
+    "starSlots": [],
+    "scrollWidth": 753,
+    "levels": 50,
+    "smallestTarget": 127.0625,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "puzzle",
+    "viewport": 768,
+    "width": 753,
+    "route": "/jelloo/character-worlds/bunny?level=6",
+    "tileTargets": [
+      {
+        "label": "Row 1, column 3, straight, connects up and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 1, column 4, corner, connects left and up. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 2, column 3, corner, connects down and left. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 2, column 4, corner, connects right and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 3, column 3, tee, connects left and up and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 3, column 4, corner, connects left and up. Rotate clockwise. Golden star",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 1, corner, connects right and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 3, tee, connects down and left and right. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 4, corner, connects right and down. Rotate clockwise. Golden star",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      }
+    ],
+    "starSlots": [
+      {
+        "width": 31.83333396911621,
+        "cell": 128.6666717529297,
+        "overflow": "hidden"
+      },
+      {
+        "width": 31.83333396911621,
+        "cell": 128.6666717529297,
+        "overflow": "hidden"
+      }
+    ],
+    "scrollWidth": 753,
+    "levels": 0,
+    "smallestTarget": null,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "map",
+    "viewport": 1280,
+    "width": 1265,
+    "route": "/jelloo/character-worlds/bunny",
+    "tileTargets": [],
+    "starSlots": [],
+    "scrollWidth": 1265,
+    "levels": 50,
+    "smallestTarget": 86.45833587646484,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  },
+  {
+    "kind": "puzzle",
+    "viewport": 1280,
+    "width": 1265,
+    "route": "/jelloo/character-worlds/bunny?level=6",
+    "tileTargets": [
+      {
+        "label": "Row 1, column 3, straight, connects up and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 1, column 4, corner, connects left and up. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 2, column 3, corner, connects down and left. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 2, column 4, corner, connects right and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 3, column 3, tee, connects left and up and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 3, column 4, corner, connects left and up. Rotate clockwise. Golden star",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 1, corner, connects right and down. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 3, tee, connects down and left and right. Rotate clockwise",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      },
+      {
+        "label": "Row 4, column 4, corner, connects right and down. Rotate clockwise. Golden star",
+        "width": 127.33333587646484,
+        "height": 127.33333587646484
+      }
+    ],
+    "starSlots": [
+      {
+        "width": 31.83333396911621,
+        "cell": 128.6666717529297,
+        "overflow": "hidden"
+      },
+      {
+        "width": 31.83333396911621,
+        "cell": 128.6666717529297,
+        "overflow": "hidden"
+      }
+    ],
+    "scrollWidth": 1265,
+    "levels": 0,
+    "smallestTarget": null,
+    "legacy": "ISOLATED-LEGACY-SENTINEL"
+  }
+]

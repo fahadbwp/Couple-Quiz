@@ -1,7 +1,7 @@
 # Jelloo — Rectangular Foundation and Complete Bunny 1–50 Plan
 
 Date: 27 October 2026
-Status: PROPOSED — awaiting owner approval. This document authorizes no implementation by itself.
+Status: APPROVED by the owner on 28 October 2026. Local implementation and verification are recorded in foundation-bunny-1-50-results.md.
 Workspace: C:/Users/Fahad Saleem/Documents/jellypals
 Scope: rectangular foundations for future worlds, plus the complete fifty-level Bunny world. Local development only.
 

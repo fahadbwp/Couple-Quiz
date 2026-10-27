@@ -1,0 +1,21 @@
+✔ new Bunny campaign restores every editing/running/won board while preserving previous campaigns (1114.0357ms)
+✔ corrupt and unknown new-revision saves are held without overwrite or reset (10.039ms)
+✔ stale writers and lost states never award progress; retry creates a fresh attempt (4.3864ms)
+✔ Bunny replay never lowers earned stars and unsupported storage never claims a saved result (4.615ms)
+✔ Bunny revision contains all fifty 4x4 levels and both certified click journeys (212.4755ms)
+✔ Bunny power levels need exactly the approved single jump (32.8314ms)
+✔ all 1225 Bunny pairs reject repeated topology, core routes and high-overlap detours (5353.0507ms)
+✔ new campaign rewards are actual reached pickups and cannot award failed attempts (1.5576ms)
+✔ Bunny last-budget connection wins, rapid turns cost one each and repeated ticks cannot change rewards (0.6124ms)
+✔ rectangular foundation validates all five world sizes and every cell's boundaries (12.3052ms)
+✔ rectangular foundation keeps legacy squares and rejects partial or invalid dimensions (2.0784ms)
+✔ all rectangular world fixtures solve and replay with the real engine including cell 31 (584.708ms)
+✔ rectangular topology signatures exchange dimensions on rotation without false row strides (14.2678ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7178.8466

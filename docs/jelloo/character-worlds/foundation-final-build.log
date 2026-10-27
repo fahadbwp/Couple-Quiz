@@ -1,0 +1,68 @@
+
+> couple-quiz@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.28
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 18.8s
+   Linting and checking validity of types ...
+
+./app/quiz/play/[id]/page.tsx
+118:29  Warning: 'event' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/22) ...
+   Generating static pages (5/22) 
+   Generating static pages (10/22) 
+   Generating static pages (16/22) 
+ ✓ Generating static pages (22/22)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      595 B         107 kB
+├ ○ /_not-found                            999 B         104 kB
+├ ƒ /api/jelloo/referrals                  173 B         103 kB
+├ ƒ /api/og/quiz/[id]                      173 B         103 kB
+├ ƒ /api/quiz                              173 B         103 kB
+├ ƒ /api/quiz/[id]                         173 B         103 kB
+├ ƒ /api/quiz/[id]/attempt                 173 B         103 kB
+├ ƒ /api/quiz/[id]/player-result           173 B         103 kB
+├ ƒ /api/quiz/[id]/scoreboard              173 B         103 kB
+├ ○ /design-preview/question             11.8 kB         122 kB
+├ ○ /games                                 602 B         107 kB
+├ ƒ /internal/growth                     6.38 kB         113 kB
+├ ○ /jelloo                              3.02 kB         145 kB
+├ ○ /jelloo/art                          2.31 kB         105 kB
+├ ƒ /jelloo/character-worlds               174 B         142 kB
+├ ƒ /jelloo/character-worlds/bunny       4.66 kB         147 kB
+├ ○ /jelloo/cosmetics                    4.48 kB         129 kB
+├ ○ /jelloo/daily                          188 B         149 kB
+├ ○ /jelloo/invite                       4.29 kB         147 kB
+├ ○ /jelloo/map                          6.46 kB         128 kB
+├ ○ /jelloo/pals                         4.59 kB         147 kB
+├ ƒ /jelloo/qa                             879 B         150 kB
+├ ○ /jelloo/transfer                     7.67 kB         136 kB
+├ ○ /jelloo/zen                          4.67 kB         147 kB
+├ ○ /jelly-pals                            173 B         103 kB
+├ ○ /opengraph-image                       173 B         103 kB
+├ ○ /privacy                               164 B         106 kB
+├ ○ /quiz                                9.55 kB         112 kB
+├ ○ /quiz/create                         25.3 kB         140 kB
+├ ƒ /quiz/play/[id]                      7.32 kB         122 kB
+├ ƒ /quiz/result/[id]                    6.85 kB         120 kB
+├ ƒ /quiz/scoreboard/[id]                6.59 kB         120 kB
+├ ƒ /quiz/share/[id]                     7.32 kB         121 kB
+├ ○ /robots.txt                            173 B         103 kB
+└ ○ /sitemap.xml                           173 B         103 kB
++ First Load JS shared by all             103 kB
+  ├ chunks/1634-357cf7f24f51414b.js      46.5 kB
+  ├ chunks/b82d8adf-95ae217c3bac07f8.js  54.2 kB
+  └ other shared chunks (total)          2.11 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
