@@ -127,11 +127,11 @@ export function simulateMultiJelly(level: Level, tiles: readonly Tile[]): MultiJ
           // Look ahead with the same local terrain and power rules as movement.
           // Other Jellies' future switches/collisions are not predicted here.
           const reaches = (at:number, exit:Direction, seen:Set<number>, jumped:boolean, broken:Set<number>, switches:Set<number>):boolean => {
-            let next=neighbour(at,exit,level.size);
+            let next=neighbour(at,exit,level);
             if(next===null) return false;
             if(tiles[next]?.terrain==="gap"){
               if(jellies[i].character!=="bunny" || jumped) return false;
-              next=neighbour(next,exit,level.size);jumped=true;
+              next=neighbour(next,exit,level);jumped=true;
             }
             if(next===null || seen.has(next) || broken.has(next)) return false;
             const tile=tiles[next],entry=((exit+2)%4) as Direction,char=jellies[i].character;
@@ -163,7 +163,7 @@ export function simulateMultiJelly(level: Level, tiles: readonly Tile[]): MultiJ
       }
 
       const exitDir = exits[0];
-      let nxt = neighbour(cur, exitDir, level.size);
+      let nxt = neighbour(cur, exitDir, level);
       if (nxt === null) {
         anyFailed = true;
         failureOutcome = "edge";
@@ -178,7 +178,7 @@ export function simulateMultiJelly(level: Level, tiles: readonly Tile[]): MultiJ
           failureOutcome = "blocked";
           break;
         }
-        nxt = neighbour(nxt, exitDir, level.size);
+        nxt = neighbour(nxt, exitDir, level);
         if (nxt === null) {
           anyFailed = true;
           failureOutcome = "edge";

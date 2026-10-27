@@ -53,14 +53,14 @@ function search(level:Level,tiles:readonly Tile[],character:Character|null,rotat
         exits=exits.filter(d=>d===straight);
       }
       for(const exit of exits) {
-        let next=neighbour(at,exit,level.size),jumpUsed=power.jumpUsed;
+        let next=neighbour(at,exit,level),jumpUsed=power.jumpUsed;
         if(next===null) {
           if(path.length>=bestTrace.path.length && bestTrace.outcome!=="home") bestTrace={path,outcome:"edge",states};
           continue;
         }
         if(oriented[next].terrain==="gap") {
           if(character!=="bunny" || jumpUsed) continue;
-          next=neighbour(next,exit,level.size);jumpUsed=true;
+          next=neighbour(next,exit,level);jumpUsed=true;
         }
         if(next===null || path.includes(next)) continue;
         const broken=tile.terrain==="cracked" && character==="panda" ? [...power.broken,at] : power.broken;

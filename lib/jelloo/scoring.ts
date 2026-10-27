@@ -4,7 +4,7 @@ import { ports, neighbour, type Direction, type GameState, type Level } from "./
 // exhaustion is never accepted as proof of quality.
 export function analyzePuzzle(level: Level, budget = 50000) {
   let explored = 0, minMoves = Infinity, starMoves = Infinity, shortest = Infinity, fewestTurns = Infinity, solutions = 0;
-  const visit = (index: number, incoming: Direction | undefined, seen: number, moves: number, length: number, turns: number, collected: number, jumped=false) => {
+  const visit = (index: number, incoming: Direction | undefined, seen: ReadonlySet<number>, moves: number, length: number, turns: number, collected: number, jumped=false) => {
     if (++explored > budget) return;
     if (index === level.home) {
       if (incoming !== level.tiles[index].port) return;
@@ -22,16 +22,16 @@ export function analyzePuzzle(level: Level, budget = 50000) {
       for (const exit of connections.filter(d=>d!==incoming)) if (!options.has(exit)) options.set(exit,r);
     }
     for (const [exit,cost] of options) {
-      let next = neighbour(index,exit,level.size),usedJump=jumped;
+      let next = neighbour(index,exit,level),usedJump=jumped;
       if(next!==null && level.character && level.tiles[next].terrain==="gap") {
         if(level.character!=="bunny" || jumped) continue;
-        next=neighbour(next,exit,level.size);usedJump=true;
+        next=neighbour(next,exit,level);usedJump=true;
       }
-      if (next === null || (seen & (1<<next))) continue;
-      visit(next,(exit+2)%4 as Direction,seen|(1<<next),moves+cost,length+1,turns+(tile.kind === "corner" ? 1 : 0),collected+(level.collectibles?.includes(next) ? 1 : 0),usedJump);
+      if (next === null || seen.has(next)) continue;
+      visit(next,(exit+2)%4 as Direction,new Set([...seen,next]),moves+cost,length+1,turns+(tile.kind === "corner" ? 1 : 0),collected+(level.collectibles?.includes(next) ? 1 : 0),usedJump);
     }
   };
-  visit(level.start,undefined,1<<level.start,0,1,0,0);
+  visit(level.start,undefined,new Set([level.start]),0,1,0,0);
   return {minMoves,starMoves,shortest,fewestTurns,solutions,exhausted:explored>budget,explored};
 }
 

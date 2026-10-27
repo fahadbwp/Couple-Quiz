@@ -1,3 +1,4 @@
+import {gridNeighbour, type GridLike} from "./grid";
 import { walkPowerLevel } from "./power-solver";
 import { simulateMultiJelly, type MultiJellyTrace } from "./multi-jelly";
 import type { WorldId } from "./worlds";
@@ -7,7 +8,7 @@ export type Character = "bunny" | "panda" | "cat" | "octopus" | "fox";
 export type TerrainKind = "gap" | "cracked" | "wall" | "slow" | "water" | "switch" | "slippery";
 export type Tile = { kind: TileKind; rotation: number; port?: Direction; locked?:boolean; terrain?: TerrainKind };
 export type Level = {
-  id: number; title: string; hint: string; size: number;
+  id: number; title: string; hint: string; size: number; columns?:number; rows?:number;
   start: number; home: number; tiles: Tile[];
   collectibles?: number[]; moveLimit?: number; difficulty?: string;
   character?: Character; foxRoute?: "shortest" | "stars";
@@ -25,12 +26,8 @@ export function ports(tile: Tile): Direction[] {
   return base.map(d => ((d + tile.rotation) % 4 + 4) % 4 as Direction);
 }
 
-export function neighbour(index: number, direction: Direction, size: number): number | null {
-  const row = Math.floor(index / size), col = index % size;
-  if (direction === 0) return row > 0 ? index - size : null;
-  if (direction === 1) return col < size - 1 ? index + 1 : null;
-  if (direction === 2) return row < size - 1 ? index + size : null;
-  return col > 0 ? index - 1 : null;
+export function neighbour(index:number,direction:Direction,grid:GridLike):number|null {
+  return gridNeighbour(index,direction,grid);
 }
 
 export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
@@ -91,7 +88,7 @@ export function connectedPaths(level: Level, tiles: readonly Tile[]) {
   for(let step=0;step<connected.length;step++) {
     const at=connected[step];
     for(const direction of ports(tiles[at])) {
-      const next=neighbour(at,direction,level.size);
+      const next=neighbour(at,direction,level);
       if(next===null || next in parents || !ports(tiles[next]).includes((direction+2)%4 as Direction)) continue;
       parents[next]=at;connected.push(next);
     }
@@ -115,11 +112,11 @@ export function powerPaths(level: Level, tiles: readonly Tile[]) {
       return;
     }
     for(const direction of ports(tiles[at])) {
-      let next=neighbour(at,direction,level.size), usedJump=jumped;
+      let next=neighbour(at,direction,level), usedJump=jumped;
       if(next===null) continue;
       if(tiles[next].terrain==="gap") {
         if(level.character!=="bunny" || jumped) continue;
-        next=neighbour(next,direction,level.size);usedJump=true;
+        next=neighbour(next,direction,level);usedJump=true;
       }
       if(next===null || path.includes(next)) continue;
       const tile=tiles[next], entry=(direction+2)%4 as Direction;

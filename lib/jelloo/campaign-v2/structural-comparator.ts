@@ -1,3 +1,4 @@
+import {dimensions} from "../grid";
 import {ports, type Level} from "../engine";
 import {solvePowerLevel} from "../power-solver";
 
@@ -43,9 +44,9 @@ export function computeCanonicalSignature(level: Level, route?: number[]): strin
   if(route?.some(i=>!Number.isInteger(i)||i<0||i>=level.tiles.length)) throw new Error("Invalid route cell");
   const active=level.tiles.flatMap((t,i)=>t.kind!=="blank"||t.terrain ? [i] : []);
   return Array.from({length:8},(_,symmetry)=>{
-    const points=active.map(i=>transform(point(i,level.size),symmetry));
+    const points=active.map(i=>transform(point(i,dimensions(level).columns),symmetry));
     const minR=Math.min(...points.map(p=>p[0])), minC=Math.min(...points.map(p=>p[1]));
-    const at=(i:number)=>{const [r,c]=transform(point(i,level.size),symmetry);return [r-minR,c-minC];};
+    const at=(i:number)=>{const [r,c]=transform(point(i,dimensions(level).columns),symmetry);return [r-minR,c-minC];};
     const direction=(d:number)=>{
       const [r,c]=transform(([[ -1,0],[0,1],[1,0],[0,-1]] as Point[])[d],symmetry);
       return r<0?0:c>0?1:r>0?2:3;
@@ -55,7 +56,7 @@ export function computeCanonicalSignature(level: Level, route?: number[]): strin
       return {at:at(i),kind:t.kind,terrain:t.terrain??null,locked:!!t.locked,
         ports:t.locked||t.kind==="start"||t.kind==="home" ? ports(t).map(direction).sort() : null};
     }).sort((a,b)=>a.at[0]-b.at[0]||a.at[1]-b.at[1]);
-    return JSON.stringify({size:level.size,character:level.character??null,powerVersion:level.powerVersion??null,foxRoute:level.foxRoute??null,cells,start:at(level.start),home:at(level.home),
+    return JSON.stringify({...((level.columns===undefined&&level.rows===undefined)?{size:level.size}:{dimensions:symmetry%2?[dimensions(level).rows,dimensions(level).columns]:[dimensions(level).columns,dimensions(level).rows]}),character:level.character??null,powerVersion:level.powerVersion??null,foxRoute:level.foxRoute??null,cells,start:at(level.start),home:at(level.home),
       stars:(level.collectibles??[]).map(at).sort((a,b)=>a[0]-b[0]||a[1]-b[1]),
       gate:level.gate?{tile:at(level.gate.tile),trigger:at(level.gate.trigger)}:null,
       door:level.door?{tile:at(level.door.tile),switch:at(level.door.switch)}:null,
