@@ -1,0 +1,10 @@
+{
+  "revision": "bunny-4x4-v1",
+  "approvedBaseline": "e6f38e8f037f72348ff766580706dcdc1054c5ce",
+  "files": {
+    "lib/jelloo/campaign-v2/bunny-specs.ts": "91a83f24198ab070ccf49061ec34445cdbf52851df76f19d93884cdd722a2483",
+    "public/jelloo/worlds/garden-pink-v2.png": "88ca67b97459114429ba05d92367db6c32d6f128dee78484a968af40ed54d1fd",
+    "public/jelloo/worlds/garden-cottage-v1.png": "0372b4ba58fd1b2e7ae0d5240bb871897d09c582f79a5f947cf7dc52028e2ee9",
+    "public/jelly-pals/bunny-blink-reference-v1.png": "304112eef8583c71245612b45e39a42eaa38f9f221e66abb44c8fee0d002425a"
+  }
+}

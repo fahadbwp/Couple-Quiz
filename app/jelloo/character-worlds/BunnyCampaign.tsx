@@ -6,13 +6,14 @@ import {CHARACTER_WORLDS,getEarnedStarsForWorld,LOCAL_STAR_GATES} from "@/lib/je
 import {previewAccess} from "@/lib/jelloo/campaign-v2/preview-session";
 import {readBunnySave,initializeBunnySave,restoreBunnyGame,persistBunnyAttempt,BUNNY_SAVE_KEY,type BunnySave} from "@/lib/jelloo/campaign-v2/bunny-save";
 import type {BunnyLevel} from "@/lib/jelloo/campaign-v2/bunny-provider";
+import {BUNNY_PATH,PREVIOUS_WORLD_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
 import type {GameState} from "@/lib/jelloo/engine";
 import CharacterSprite from "../CharacterSprite";
 import {CandyPuzzle} from "./CharacterWorlds";
 import css from "./worlds.module.css";
 type Snapshot = {save: BunnySave; raw: string};
-const basePath="/jelloo/character-worlds/bunny";
-const href = (id: number) => `${basePath}?level=${id}`;
+const basePath=BUNNY_PATH;
+const href = (id: number) => worldLevelHref(id);
 export default function BunnyCampaign({levels}: {levels: BunnyLevel[]}) {
   const router = useRouter(), query = useSearchParams();
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
@@ -101,8 +102,7 @@ export default function BunnyCampaign({levels}: {levels: BunnyLevel[]}) {
         </section>
         <section className={css.nextWorld}><span aria-hidden="true">🎋</span><div><h2>Next stop: Bamboo Jungle</h2><p>Finish Level 50 and earn 120 Candy Land stars to qualify for Panda’s world.</p><strong>{stars >= 120 && snapshot.save.completed >= 50 ? "Qualified · Coming in a later batch" : "Coming in a later batch · 50 new levels"}</strong></div></section>
       </>}
-    <p className={css.note}><Link href="/jelloo/character-worlds">Previous adventure and saved stars →</Link></p>
+    <p className={css.note}><Link href={PREVIOUS_WORLD_PATH}>Previous adventure and saved stars →</Link></p>
     <footer className={css.footer}>Saved in this browser · New Bunny Adventure · 4×4<br/>Worlds 2–5 are still in development.</footer>
   </div></main>;
 }
-

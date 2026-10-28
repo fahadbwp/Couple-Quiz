@@ -7,6 +7,7 @@ import {initializeCampaignV2, readCampaignV2Save, type CharacterWorldsSave} from
 import {previewAccess, persistPreviewWin} from "@/lib/jelloo/campaign-v2/preview-session";
 import type {ResolvedWorld1Level} from "@/lib/jelloo/campaign-v2/world1-provider";
 import {gameReducer, initialGame, ports, tracePath, type Action, type GameState} from "@/lib/jelloo/engine";
+import {BUNNY_PATH,PREVIOUS_WORLD_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
 import {dimensions} from "@/lib/jelloo/grid";
 import {bunnyScore} from "@/lib/jelloo/campaign-v2/bunny-provider";
 import {collectedStars, scoreRun} from "@/lib/jelloo/scoring";
@@ -14,7 +15,7 @@ import CharacterSprite from "../CharacterSprite";
 import css from "./worlds.module.css";
 
 type Snapshot = {save: CharacterWorldsSave; raw: string};
-const href = (id: number) => `/jelloo/character-worlds?level=${id}`;
+const href = (id: number) => worldLevelHref(id,true);
 export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]}) {
   const router = useRouter(), query = useSearchParams();
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
@@ -53,7 +54,7 @@ export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]
   const stars = snapshot ? getEarnedStarsForWorld(CHARACTER_WORLDS[0], snapshot.save.best) : 0;
   return <main className={css.page}><div className={css.shell}>
     <header className={css.header}><Link href="/jelloo">← Jelloo</Link><b>Jelloo<span> worlds.</span></b><span className={css.preview}>LOCAL PREVIEW</span></header>
-    <p className={css.note}><Link href="/jelloo/character-worlds/bunny">New 4×4 Bunny adventure →</Link> · Previous progress stays safe.</p>
+    <p className={css.note}><Link href={BUNNY_PATH}>New 4×4 Bunny adventure →</Link> · Previous progress stays safe.</p>
     {error ? <section role="alert" className={css.notice}><h1>Progress needs attention</h1><p>{error}</p><button onClick={() => location.reload()}>Reload saved progress</button></section> : !loaded ? <p role="status">Opening your adventure…</p> : !snapshot ? <section className={css.welcome}>
       <div className={css.portrait}><CharacterSprite character="bunny" animate={!reduced}/></div>
       <p className={css.eyebrow}>A NEW LITTLE ADVENTURE</p><h1>A sweeter path home.</h1>
@@ -67,8 +68,8 @@ export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]
           if (result.success) setSnapshot({save: result.save, raw: result.raw}); else setError(result.error);
           return result.success;
         } catch {setError("Your result could not be saved. Existing progress has been preserved; reload before continuing."); return false;}
-      }} next={() => router.push(id < 50 ? href(id + 1) : "/jelloo/character-worlds")}/>
-      : <section className={css.notice}><h1>This path is still locked</h1><p>{access && !access.accessible ? access.details : "Choose a level from 1 to 50."}</p><Link href="/jelloo/character-worlds">Return to Candy Land map →</Link></section>
+      }} basePath={PREVIOUS_WORLD_PATH} next={() => router.push(id < 50 ? href(id + 1) : PREVIOUS_WORLD_PATH)}/>
+      : <section className={css.notice}><h1>This path is still locked</h1><p>{access && !access.accessible ? access.details : "Choose a level from 1 to 50."}</p><Link href={PREVIOUS_WORLD_PATH}>Return to Candy Land map →</Link></section>
       : <>
         <section className={css.hero}><div><p className={css.eyebrow}>WORLD 01 · BUNNY’S ADVENTURE</p><h1>Pink Candy Land</h1><p>Follow the frosting paths.<br/>A strawberry-sweet home is waiting.</p>
           <div className={css.stats}><span><b>{Math.min(snapshot.save.completed, 50)}</b> / 50 levels</span><span><b>★ {stars}</b> / 150 stars</span></div>

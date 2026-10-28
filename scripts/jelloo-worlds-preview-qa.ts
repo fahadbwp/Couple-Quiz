@@ -20,7 +20,7 @@ async function main() {
       const width=[320,390,768,1280].includes(Number(url.searchParams.get("width")))?Number(url.searchParams.get("width")):390;
       const completed=[0,9,19,39,49,50].includes(Number(url.searchParams.get("completed")))?Number(url.searchParams.get("completed")):0;
       const modern=url.searchParams.get("bunny")==="1";
-      const campaignPath="/jelloo/character-worlds"+(modern?"/bunny":"");
+      const campaignPath="/jelloo/character-worlds"+(modern?"":"/previous");
       const saveKey=modern?BUNNY_SAVE_KEY:CAMPAIGN_V2_SAVE_KEY;
       const stars=url.searchParams.get("stars")==="low"?1:3;
       const now="2026-10-27T12:00:00.000Z";

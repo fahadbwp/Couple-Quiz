@@ -5,13 +5,15 @@ Workspace: C:/Users/Fahad Saleem/Documents/jellypals
 Branch: codex/character-worlds-phase3
 Decision: GO for local owner playtesting. No production release is authorized or performed.
 
+Update: see bunny-final-entry-acceptance.md for the final canonical-entry correction and 400-test result. The accepted puzzles/artwork remain unchanged. Current entry is /jelloo/character-worlds; /bunny is an alias; archived progress is at /jelloo/character-worlds/previous.
+
 ## Delivered
 
 - [CODE] Compatible columns/rows geometry for 4x4, 5x4, 6x4, 7x4 and 8x4. Legacy square size callers retain their behavior. Engine, power solver, Multi-Jelly traversal, analysis and structural transforms use the appropriate dimensions. Cell 31 is covered without a 32-bit visited-mask alias.
 - [SOLVER/ENGINE] Fifty static 4x4 Bunny levels, revision bunny-4x4-v1. Two collectibles each; campaign-only score = one completion star + actual pickups. Failed runs award zero. All-star par +3 budget, one quarter-turn per move, no hidden refund.
 - [SOLVER/ENGINE] Both direct and all-star routes certified with auto-start checked after every individual click. Levels 1-5 are teaching exceptions; 6-50 have a real optional longer detour. Ten single-jump levels are impossible without Bunny. No unknown/exhausted proof accepted.
 - [SOLVER] 1,225 pair comparisons: zero duplicate topologies or sampled same-core/high-overlap routes at the unchanged 0.85 threshold. This is not an exhaustive guarantee about every possible equal-cost solution.
-- [CODE/TEST] Separate new save key jelloo.campaign.bunny4.v1 and explicit new-journey start. Previous v2 and legacy v1 bytes are never overwritten. Previous campaign remains readable/replayable at /jelloo/character-worlds. Original source specifications and legacy tutorials are unchanged.
+- [CODE/TEST] Separate new save key jelloo.campaign.bunny4.v1 and explicit new-journey start. Previous v2 and legacy v1 bytes are never overwritten. Previous campaign remains readable/replayable at /jelloo/character-worlds/previous. Original source specifications and legacy tutorials are unchanged.
 - [CODE/TEST/BROWSER] Strict validated editing/running/win/loss restoration, move/rotation consistency, content identity, safe corrupt-data handling, best-result retention and cross-tab stale-write protection. Browser writes serialize under Web Locks; unsupported browsers receive an explicit safe-saving error.
 - [CODE/BROWSER] Approved glossy pink board, blush scenery, source Bunny artwork, top-right stars, auto-start, result mascot and native win/loss dialogs retained. No Go, Undo or Restart added to active play. Result Replay/Try Again remains.
 - [CODE] Existing local star gates remain 10=15, 20=36, 30=60, 40=84, 50=110. Panda qualification remains completion of 50 plus 120 stars; Panda content is not built/unlocked here.
@@ -100,7 +102,7 @@ Local history preserved:
 4. d6f3b09 - Saved-attempt UI and complete player flow.
 5. Final documentation/evidence commit follows these milestones.
 
-Reproduce: npm ci (only if dependencies missing), npm test, npm run typecheck, npm run lint, npm run build. Local preview: set JELLOO_QA_PORT=3055 and run npx tsx scripts/jelloo-worlds-preview-qa.ts. New journey: /jelloo/character-worlds/bunny. Previous journey: /jelloo/character-worlds. Offline certification: npx tsx scripts/jelloo-certify-bunny4.ts. The authoring script emits candidate evidence; it does not automatically replace frozen application content.
+Reproduce: npm ci (only if dependencies missing), npm test, npm run typecheck, npm run lint, npm run build. Local preview: set JELLOO_QA_PORT=3055 and run npx tsx scripts/jelloo-worlds-preview-qa.ts. New journey: /jelloo/character-worlds. Previous journey: /jelloo/character-worlds/previous. Offline certification: npx tsx scripts/jelloo-certify-bunny4.ts. The authoring script emits candidate evidence; it does not automatically replace frozen application content.
 
 ## Boundaries and remaining limits
 
