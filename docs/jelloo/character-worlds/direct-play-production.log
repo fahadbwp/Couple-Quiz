@@ -1,0 +1,9 @@
+PASS /jelloo/character-worlds?view=levels HTTP 404
+PASS /jelloo/character-worlds?view=worlds HTTP 404
+PASS /jelloo/character-worlds/bunny HTTP 404
+PASS /jelloo/character-worlds/previous HTTP 404
+PASS /_worlds-qa HTTP 404
+PASS /games HTTP 200
+PASS production Games link remains /jelloo/map; no local preview anchor
+PASS /quiz HTTP 200
+PASS /jelloo HTTP 200

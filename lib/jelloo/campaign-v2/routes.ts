@@ -8,3 +8,10 @@ export function worldLevelHref(id:number,previous=false) {
 export function bunnyAliasDestination(level:unknown) {
  return typeof level==="string"&&/^[1-9]\d*$/.test(level)&&Number(level)<=50?worldLevelHref(Number(level)):BUNNY_PATH;
 }
+
+export const BUNNY_LEVELS_PATH=`${BUNNY_PATH}?view=levels`;
+export const BUNNY_WORLDS_PATH=`${BUNNY_PATH}?view=worlds`;
+export function usesBunnyShell(path:string){return (path===BUNNY_PATH||path.startsWith(`${BUNNY_PATH}/`))&&!path.startsWith(PREVIOUS_WORLD_PATH)}
+
+/** Current local preview; production stays on the released campaign until separately approved. */
+export function jellooEntryHref(mode:string|undefined){return mode==="development"?BUNNY_PATH:"/jelloo/map"}

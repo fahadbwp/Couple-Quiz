@@ -1,4 +1,4 @@
-import { PlatformHeader } from "@/components/platform/Platform";
+import JellooHeader from "./JellooHeader";
 export default function JellooLayout({
   children,
 }: {
@@ -6,7 +6,7 @@ export default function JellooLayout({
 }) {
   return (
     <>
-      <PlatformHeader compact />
+      <JellooHeader />
       {children}
     </>
   );

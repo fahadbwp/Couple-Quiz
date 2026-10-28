@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {jellooEntryHref} from "@/lib/jelloo/campaign-v2/routes";
 import { FriendsArt } from "@/components/quiz-home/Illustrations";
 import { GAMES, type Game } from "@/lib/platform/games";
 import styles from "./platform.module.css";
@@ -46,7 +47,7 @@ export function PlatformHeader({
         <Link
           target={preserveSession ? "_blank" : undefined}
           rel={preserveSession ? "noopener" : undefined}
-          href="/jelloo/map"
+          href={jellooEntryHref(process.env.NODE_ENV)}
         >
           Jelloo
         </Link>
@@ -112,7 +113,7 @@ export function GameGrid() {
   return (
     <div className={styles.grid}>
       {GAMES.map((g) => (
-        <GameCard key={g.id} game={g} />
+        <GameCard key={g.id} game={g.id === "jelloo" ? {...g,playUrl:jellooEntryHref(process.env.NODE_ENV)} : g} />
       ))}
     </div>
   );
@@ -138,7 +139,7 @@ export function PlatformFooter() {
           Friendship Quiz
         </Link>
         <Link
-          href="/jelloo/map"
+          href={jellooEntryHref(process.env.NODE_ENV)}
         >
           Jelloo
         </Link>
