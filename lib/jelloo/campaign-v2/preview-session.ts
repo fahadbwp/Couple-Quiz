@@ -5,7 +5,8 @@ import {scoreRun} from "../scoring";
 import {resolveWorld1Level} from "./world1-provider";
 
 // This availability override belongs only to the development preview. Public metadata stays planned.
-export const previewAvailability = (id: CharacterWorldId) => id === "candy_land" ? "available" as const : "planned" as const;
+export const previewAvailability = (id: CharacterWorldId) =>
+  id === "candy_land" ? ("available" as const) : ("planned" as const);
 export function previewAccess(id: number, save: CharacterWorldsSave) {
   return evaluateLevelAccess(id, save.completed, save.best, previewAvailability);
 }

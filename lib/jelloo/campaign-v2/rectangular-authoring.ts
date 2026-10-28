@@ -1,5 +1,6 @@
 import {dimensions} from "../grid";
-import type { TileKind, Direction, Tile, Level } from "../engine";
+import type { TileKind, Direction, Tile, Level, Character } from "../engine";
+import type { CharacterWorldId } from "../campaign";
 import { ports } from "../engine";
 
 export function directionTo(from: number, to: number, size: number): Direction {
@@ -38,6 +39,10 @@ export interface AuthoredLevelSpec {
   scramble?: Record<number, number>;
   decoys?: AuthoredDecoy[];
   detour?: AuthoredDetour;
+  character?: Character;
+  characterWorldId?: CharacterWorldId;
+  cracked?: number[];
+  gate?: { tile: number; trigger: number };
 }
 
 export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
@@ -67,6 +72,7 @@ export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
   for (const g of gaps) {
     tiles[g] = { kind: "blank", rotation: 0, terrain: "gap" };
   }
+
 
   // Place path tiles
   for (let i = 1; i < route.length - 1; i++) {
@@ -162,6 +168,11 @@ export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
     configureTee(rejoinTile, rejoinEntryMain, rejoinEntryDetour, rejoinExit);
   }
 
+  // Place cracked tiles
+  for (const c of spec.cracked ?? []) {
+    tiles[c] = { ...tiles[c], terrain: "cracked" };
+  }
+
   // Place decoys
   for (const decoy of spec.decoys ?? []) {
     if (tiles[decoy.index].kind === "blank" && tiles[decoy.index].terrain !== "gap") {
@@ -179,8 +190,10 @@ export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
     start,
     home,
     tiles,
-    character: "bunny",
+    character: spec.character ?? "bunny",
+    characterWorldId: spec.characterWorldId,
     powerVersion: 4,
+    gate: spec.gate,
     collectibles,
   };
 }

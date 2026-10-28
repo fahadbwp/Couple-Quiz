@@ -80,3 +80,10 @@
 @media(prefers-reduced-motion:reduce){.star[data-collected=true]{opacity:.15}}
 
 .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+/* Bamboo Pagoda home indicator and puzzle features for Panda Bamboo Jungle */
+.pagoda{position:absolute;left:10%;top:-10%;width:80%;height:95%;pointer-events:none;z-index:2;filter:drop-shadow(0 3px 2px #2d5a2744)}
+.pagoda::before{content:"";position:absolute;left:5%;top:10%;width:90%;height:38%;background:linear-gradient(135deg,#347434,#224c22);clip-path:polygon(50% 0%, 100% 70%, 88% 100%, 12% 100%, 0% 70%);border-radius:3px}
+.pagoda::after{content:"";position:absolute;left:20%;top:42%;width:60%;height:50%;background:linear-gradient(180deg,#e8d7b8,#d2b98b);border:2px solid #553311;border-radius:4px}
+.cell[data-cracked=true]{background:radial-gradient(ellipse at 30% 20%,#fbf4dc,#e6cca2 65%,#c99a68);box-shadow:inset 0 3px 3px #fff8,0 4px 0 #8b5a2b}
+.cracked{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#85471d;pointer-events:none;z-index:3;text-shadow:0 1px 1px #ffe8b1}
+.gate{position:absolute;top:2px;left:2px;font-size:16px;line-height:1;pointer-events:none;z-index:4;filter:drop-shadow(0 2px 2px #1b433266)}

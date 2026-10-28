@@ -2,11 +2,11 @@
 import Link from "next/link";
 import {useRouter, useSearchParams} from "next/navigation";
 import {useCallback, useEffect, useRef, useState} from "react";
-import {CHARACTER_WORLDS, getEarnedStarsForWorld, LOCAL_STAR_GATES} from "@/lib/jelloo/campaign";
+import {CHARACTER_WORLDS, getEarnedStarsForWorld, LOCAL_STAR_GATES, type CharacterWorldId} from "@/lib/jelloo/campaign";
 import {initializeCampaignV2, readCampaignV2Save, type CharacterWorldsSave} from "@/lib/jelloo/campaign-save";
 import {previewAccess, persistPreviewWin} from "@/lib/jelloo/campaign-v2/preview-session";
 import type {ResolvedWorld1Level} from "@/lib/jelloo/campaign-v2/world1-provider";
-import {gameReducer, initialGame, ports, tracePath, type Action, type GameState} from "@/lib/jelloo/engine";
+import {gameReducer, initialGame, ports, tracePath, type Action, type Character, type GameState} from "@/lib/jelloo/engine";
 import {BUNNY_PATH,PREVIOUS_WORLD_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
 import {dimensions} from "@/lib/jelloo/grid";
 import {bunnyScore} from "@/lib/jelloo/campaign-v2/bunny-provider";
@@ -94,7 +94,7 @@ export default function CharacterWorlds({levels}: {levels: ResolvedWorld1Level[]
   </div></main>;
 }
 
-export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/jelloo/character-worlds", restore, persistAttempt, modern=false, compact=false}: {level: Omit<ResolvedWorld1Level,"generatorVersion"> & {generatorVersion:string}; snapshot: Snapshot; reduced: boolean; onWin: (game: GameState) => boolean; next: () => void; basePath?:string;restore?:GameState;persistAttempt?:(game:GameState)=>Promise<boolean>;modern?:boolean;compact?:boolean}) {
+export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/jelloo/character-worlds", restore, persistAttempt, modern=false, compact=false}: {level: Omit<ResolvedWorld1Level,"generatorVersion"|"characterWorldId"> & {generatorVersion?:string;character?:Character;characterWorldId?:CharacterWorldId;gate?:{tile:number;trigger:number}}; snapshot: Snapshot; reduced: boolean; onWin: (game: GameState) => boolean; next: () => void; basePath?:string;restore?:GameState;persistAttempt?:(game:GameState)=>Promise<boolean>;modern?:boolean;compact?:boolean}) {
   const [game, setGame] = useState(() => restore ?? initialGame(level));
   const live = useRef(game), heading = useRef<HTMLHeadingElement>(null);
   const resultDialog = useRef<HTMLDialogElement>(null);
@@ -143,22 +143,25 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
   const grid=dimensions(level);
   const pos = trace?.path[cursor] ?? level.start, collected = collectedStars(game);
   const canEdit = status === "editing" || status === "blocked";
-  const nextAccess = level.id < 50 ? previewAccess(level.id + 1, snapshot.save) : null;
+  const maxLevel = (CHARACTER_WORLDS.find(item => item.id === level.characterWorldId)?.mascot ?? level.character ?? "bunny") === "panda" ? 100 : 50;
+  const nextAccess = level.id < maxLevel ? previewAccess(level.id + 1, snapshot.save) : null;
   const world = CHARACTER_WORLDS.find(item => item.id === level.characterWorldId);
   const activeCharacter = world?.mascot ?? level.character ?? "bunny";
   return <>
-    {!compact&&<nav className={css.gameNav}><Link href={basePath}>← Candy Land map</Link><span>🐰 Bunny · Level {level.id} / 50</span></nav>}
-    <section className={css.puzzle}><div className={css.puzzleHeading}><div><p className={css.eyebrow}>PINK CANDY LAND</p><h1>{level.title}</h1></div><div className={css.moves}><b>{game.moves} / {level.moveLimit}</b><span>moves</span></div></div>
+    {!compact&&<nav className={css.gameNav}><Link href={basePath}>{activeCharacter === "panda" ? "← Bamboo Jungle map" : "← Candy Land map"}</Link><span>{activeCharacter === "panda" ? "🐼 Panda" : "🐰 Bunny"} · Level {level.id} / {maxLevel}</span></nav>}
+    <section className={css.puzzle}><div className={css.puzzleHeading}><div><p className={css.eyebrow}>{activeCharacter === "panda" ? "BAMBOO JUNGLE" : "PINK CANDY LAND"}</p><h1>{level.title}</h1></div><div className={css.moves}><b>{game.moves} / {level.moveLimit}</b><span>moves</span></div></div>
       <p hidden={compact} className={css.hint}>{level.hint}</p>
       <div className={css.garden}><div className={css.board} style={{gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`,maxWidth:compact?"min(560px, max(220px, calc(100svh - 350px)))":undefined}} role="group" aria-label={`Level ${level.id} puzzle, ${grid.rows} rows by ${grid.columns} columns`}>
         {tiles.map((tile, index) => {
           const editable = ["straight", "corner", "tee"].includes(tile.kind) && !tile.locked;
           const path = tile.kind === "straight" ? "M0 50H100" : tile.kind === "corner" ? "M50 0V36Q50 50 64 50H100" : tile.kind === "tee" ? "M0 50H100M50 50V0" : "M50 50V0";
           const art = tile.kind !== "blank" && <svg viewBox="0 0 100 100" aria-hidden="true" style={{transform: `rotate(${(editable || tile.locked ? tile.rotation : tile.port ?? 0) * 90}deg)`}}><path className={css.roadRim} d={path}/><path className={css.roadEdge} d={path}/><path d={path}/></svg>;
-          return <div key={index} className={css.cell} data-gap={tile.terrain === "gap"} data-visited={trace?.path.slice(0, cursor + 1).includes(index)}>
+          return <div key={index} className={css.cell} data-gap={tile.terrain === "gap"} data-cracked={tile.terrain === "cracked"} data-visited={trace?.path.slice(0, cursor + 1).includes(index)}>
             {editable ? <button disabled={!canEdit} onClick={() => act({type: "rotate", index})} aria-label={`Row ${Math.floor(index / grid.columns) + 1}, column ${index % grid.columns + 1}, ${tile.kind}, connects ${ports(tile).map(d => ["up", "right", "down", "left"][d]).join(" and ")}. Rotate clockwise${level.collectibles?.includes(index) ? ". Golden star" : ""}`}>{art}</button> : art}
-            {tile.terrain !== "gap" && tile.kind !== "home" && tile.kind !== "start" && <span className={css.tileDecor} aria-hidden="true">{index % 3 === 0 ? <svg viewBox="0 0 40 40"><ellipse cx="12" cy="23" rx="6" ry="12" fill="#72ba32" transform="rotate(-35 12 23)"/><ellipse cx="22" cy="16" rx="6" ry="12" fill="#a2d742" transform="rotate(15 22 16)"/><ellipse cx="27" cy="25" rx="6" ry="11" fill="#5da02c" transform="rotate(45 27 25)"/><path d="M18 32L23 11" stroke="#d7ef77" strokeWidth="1.5"/></svg> : <svg viewBox="0 0 40 40"><g fill="#fff9ed" stroke="#f4d3cc" strokeWidth=".6"><ellipse cx="20" cy="11" rx="6" ry="8"/><ellipse cx="29" cy="18" rx="8" ry="6"/><ellipse cx="25" cy="28" rx="6" ry="8" transform="rotate(-30 25 28)"/><ellipse cx="14" cy="28" rx="6" ry="8" transform="rotate(30 14 28)"/><ellipse cx="10" cy="18" rx="8" ry="6"/></g><circle cx="20" cy="20" r="5.5" fill="#ffc64c"/><circle cx="19" cy="18" r="2" fill="#ffe89d"/></svg>}</span>}
+            {tile.terrain !== "gap" && tile.terrain !== "cracked" && tile.kind !== "home" && tile.kind !== "start" && <span className={css.tileDecor} aria-hidden="true">{index % 3 === 0 ? <svg viewBox="0 0 40 40"><ellipse cx="12" cy="23" rx="6" ry="12" fill="#72ba32" transform="rotate(-35 12 23)"/><ellipse cx="22" cy="16" rx="6" ry="12" fill="#a2d742" transform="rotate(15 22 16)"/><ellipse cx="27" cy="25" rx="6" ry="11" fill="#5da02c" transform="rotate(45 27 25)"/><path d="M18 32L23 11" stroke="#d7ef77" strokeWidth="1.5"/></svg> : <svg viewBox="0 0 40 40"><g fill="#fff9ed" stroke="#f4d3cc" strokeWidth=".6"><ellipse cx="20" cy="11" rx="6" ry="8"/><ellipse cx="29" cy="18" rx="8" ry="6"/><ellipse cx="25" cy="28" rx="6" ry="8" transform="rotate(-30 25 28)"/><ellipse cx="14" cy="28" rx="6" ry="8" transform="rotate(30 14 28)"/><ellipse cx="10" cy="18" rx="8" ry="6"/></g><circle cx="20" cy="20" r="5.5" fill="#ffc64c"/><circle cx="19" cy="18" r="2" fill="#ffe89d"/></svg>}</span>}
             {tile.terrain === "gap" && <span className={css.gap}>GAP</span>}
+            {tile.terrain === "cracked" && <span className={css.cracked} aria-label="Cracked tile">⚡</span>}
+            {level.gate?.tile === index && <span className={css.gate} aria-label="Bamboo gate">🎋</span>}
             {level.collectibles?.includes(index) && <span className={css.star} data-collected={collected.includes(index)} role="img" aria-label={collected.includes(index) ? "Star collected" : "Golden star collectible"}>
               <svg viewBox="0 0 72 80" aria-hidden="true">
                 <defs><linearGradient id={`gold-${index}`} x1=".2" y1="0" x2=".8" y2="1"><stop stopColor="#fff8bf"/><stop offset=".32" stopColor="#ffe55a"/><stop offset=".67" stopColor="#ffbf25"/><stop offset="1" stopColor="#f38a0b"/></linearGradient><radialGradient id={`aura-${index}`}><stop stopColor="#fff6a9" stopOpacity=".85"/><stop offset="1" stopColor="#ffdc66" stopOpacity="0"/></radialGradient></defs>
@@ -176,12 +179,12 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
             </span>}
             {tile.locked && tile.kind !== "start" && tile.kind !== "home" && <span className={css.lock} aria-label="Fixed tile">●</span>}
             {tile.kind === "start" && <span className={css.marker}>START</span>}
-            {tile.kind === "home" && <><span className={css.cottage} role="img" aria-label="Strawberry Cottage"></span><span className={css.marker}>HOME</span></>}
+            {tile.kind === "home" && <><span className={activeCharacter === "panda" ? css.pagoda : css.cottage} role="img" aria-label={activeCharacter === "panda" ? "Bamboo Pagoda" : "Strawberry Cottage"}></span><span className={css.marker}>HOME</span></>}
           </div>;
         })}
-        <div className={css.traveller} data-motion={!reduced} style={{left: `${(pos % grid.columns + .5) / grid.columns * 100}%`, top: `${(Math.floor(pos / grid.columns) + .5) / grid.rows * 100}%`, width: `${78 / grid.columns}%`}}><CharacterSprite character="bunny" status={status} animate={!reduced} powerActive={status === "running" && cursor > 0 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) > 1 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) !== grid.columns}/></div>
+        <div className={css.traveller} data-motion={!reduced} style={{left: `${(pos % grid.columns + .5) / grid.columns * 100}%`, top: `${(Math.floor(pos / grid.columns) + .5) / grid.rows * 100}%`, width: `${78 / grid.columns}%`}}><CharacterSprite character={activeCharacter} status={status} animate={!reduced} powerActive={status === "running" && cursor > 0 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) > 1 && Math.abs((trace?.path[cursor] ?? 0) - (trace?.path[cursor - 1] ?? 0)) !== grid.columns}/></div>
       </div></div>
-      <p role="status" className={compact?css.srOnly:css.feedback}>{status === "blocked" ? "A little gap in the path! Rotate a tile and try again." : status === "running" ? "Hop, hop… almost home!" : status === "lost" ? "Out of moves. A fresh start is waiting." : status === "won" ? "Home sweet home!" : "Connect the path — Bunny hops home automatically! Each turn uses one move."}</p>
+      <p role="status" className={compact?css.srOnly:css.feedback}>{status === "blocked" ? "A little gap in the path! Rotate a tile and try again." : status === "running" ? (activeCharacter === "panda" ? "Crunch, crunch… almost home!" : "Hop, hop… almost home!") : status === "lost" ? "Out of moves. A fresh start is waiting." : status === "won" ? "Home sweet home!" : (activeCharacter === "panda" ? "Connect the path — Panda strolls home automatically! Each turn uses one move." : "Connect the path — Bunny hops home automatically! Each turn uses one move.")}</p>
       {(status === "won" || status === "lost") && resultDismissed && <button className={css.primary} onClick={() => setResultDismissed(false)}>Show result</button>}
       <dialog ref={resultDialog} className={css.resultModal} aria-labelledby="result-title" aria-describedby="result-description" onCancel={() => setResultDismissed(true)}>
         <div className={css.result}>
@@ -191,10 +194,10 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
           <h2 ref={heading} tabIndex={-1} id="result-title">{status === "won" ? "Sweet! You made it home." : "Out of moves? Try a fresh path."}</h2>
           {status === "won" ? <><p className={css.resultStars} aria-label={`${score.stars} out of 3 stars`}>{"★".repeat(score.stars)}{"☆".repeat(3 - score.stars)}</p><p id="result-description">{game.moves} moves · {score.collected}/{score.total} golden stars collected</p>{resultSaved && !compact && <p>Your best result has been saved.</p>}</> : <p id="result-description">Almost there! Your pal is ready to try again.<br/>{game.moves} / {level.moveLimit} moves used.</p>}
           <div className={css.modalActions}>
-            {status === "won" && (nextAccess?.accessible || compact && level.id===50) ? <button className={css.primary} onClick={next}>{compact&&level.id===50?"Worlds":"Next Level →"}</button> : <button className={css.primary} onClick={() => act({type: "reset"})}>Try again</button>}
+            {status === "won" && (nextAccess?.accessible || (compact && (level.id === 50 || level.id === 100))) ? <button className={css.primary} onClick={next}>{(compact && (level.id === 50 || level.id === 100)) ? "Worlds" : "Next Level →"}</button> : <button className={css.primary} onClick={() => act({type: "reset"})}>Try again</button>}
             <div className={css.controls}>{status === "won" && nextAccess?.accessible && <button onClick={() => act({type: "reset"})}>Replay</button>}<Link href={basePath}>Level map</Link></div>
           </div>
-          {status === "won" && !compact && !nextAccess?.accessible && <p>{level.id === 50 ? "Candy Land complete! Panda’s world is coming in the next batch." : "The next star gate needs more stars. Replay earlier levels from the map."}</p>}
+          {status === "won" && !compact && !nextAccess?.accessible && <p>{level.id === 50 ? "Candy Land complete! Panda’s world is coming in the next batch." : level.id === 100 ? "Bamboo Jungle complete! Replay to collect every star." : "The next star gate needs more stars. Replay earlier levels from the map."}</p>}
         </div>
       </dialog>
       <p hidden={compact} className={css.note}>{modern ? "Your puzzle and stars are saved. You can continue after a refresh." : "Completed levels and stars are saved. Refreshing an unfinished puzzle restarts that board."}</p>

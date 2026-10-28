@@ -3,7 +3,7 @@ import {useEffect,useRef} from "react";
 import Link from "next/link";
 import {CHARACTER_WORLDS,LOCAL_STAR_GATES} from "@/lib/jelloo/campaign";
 import {previewAccess} from "@/lib/jelloo/campaign-v2/preview-session";
-import {BUNNY_LEVELS_PATH,BUNNY_WORLDS_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
+import {BUNNY_LEVELS_PATH,BUNNY_WORLDS_PATH,PANDA_LEVELS_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
 import type {BunnySave} from "@/lib/jelloo/campaign-v2/bunny-save";
 import CharacterSprite from "../CharacterSprite";
 import s from "./scene.module.css";
@@ -43,8 +43,8 @@ export function BunnyWorldAtlas({save,stars}:{save:BunnySave;stars:number}) {
  const qualified=save.completed===50&&stars>=120;
  return <section className={s.atlas} aria-label="Worlds"><h1 className={s.atlasTitle}>Worlds</h1><div className={s.islands}>
   <svg viewBox="0 0 400 1500" className={s.worldPath} preserveAspectRatio="none" aria-hidden="true"><path d="M120 120C340 200 50 350 270 440S80 670 160 760S350 900 240 1070S120 1220 270 1380" stroke="#bb77ab" strokeWidth="4" strokeDasharray="2 12" strokeLinecap="round" fill="none"/></svg>
-  {CHARACTER_WORLDS.map((world,i)=>{const contents=<><IslandGround number={i}/><span className={s.islandPal}><CharacterSprite character={world.mascot}/></span><span className={s.islandLabel}>{world.name}</span><span className={s.worldRange}>{world.startLevel}–{world.endLevel}</span>{i===0?<span className={s.islandProgress}>★ {stars}/150</span>:<span className={s.worldLock}><SceneIcon name="lock"/><span>{i===1&&!qualified?`${Math.min(save.completed,50)}/50 · ${Math.min(stars,120)}/120 ★`:"Soon"}</span></span>}</>;
-   return i===0?<Link key={world.id} href={BUNNY_LEVELS_PATH} className={s.island} data-world={i} aria-label="Pink Candy Land, Levels 1 to 50">{contents}</Link>:<div key={world.id} className={s.island} data-world={i} data-locked="true" aria-label={`${world.name}, locked, ${i===1&&!qualified?"complete 50 Bunny levels and earn 120 stars; content coming later":"coming later"}`} role="group">{contents}</div>;
+  {CHARACTER_WORLDS.map((world,i)=>{const contents=<><IslandGround number={i}/><span className={s.islandPal}><CharacterSprite character={world.mascot}/></span><span className={s.islandLabel}>{world.name}</span><span className={s.worldRange}>{world.startLevel}–{world.endLevel}</span>{i===0?<span className={s.islandProgress}>★ {stars}/150</span>:i===1&&qualified?<span className={s.islandProgress}>Enter</span>:<span className={s.worldLock}><SceneIcon name="lock"/><span>{i===1&&!qualified?`${Math.min(save.completed,50)}/50 · ${Math.min(stars,120)}/120 ★`:"Soon"}</span></span>}</>;
+   return i===0?<Link key={world.id} href={BUNNY_LEVELS_PATH} className={s.island} data-world={i} aria-label="Pink Candy Land, Levels 1 to 50">{contents}</Link>:i===1&&qualified?<Link key={world.id} href={PANDA_LEVELS_PATH} className={s.island} data-world={i} aria-label="Bamboo Jungle, Levels 51 to 100">{contents}</Link>:<div key={world.id} className={s.island} data-world={i} data-locked="true" aria-label={`${world.name}, locked, ${i===1&&!qualified?"complete 50 Bunny levels and earn 120 stars to unlock":"coming later"}`} role="group">{contents}</div>;
   })}
  </div></section>;
 }

@@ -11,7 +11,7 @@ export type Level = {
   id: number; title: string; hint: string; size: number; columns?:number; rows?:number;
   start: number; home: number; tiles: Tile[];
   collectibles?: number[]; moveLimit?: number; difficulty?: string;
-  character?: Character; foxRoute?: "shortest" | "stars";
+  character?: Character; characterWorldId?: string; foxRoute?: "shortest" | "stars";
   powerVersion?:4; gate?:{tile:number;trigger:number}; door?:{tile:number;switch:number}; fork?:{tile:number;exits:Direction[]}; choices?:Record<string,Direction>; intro?:boolean; par?:number;
   world?: WorldId; dailyDate?: string;
   jellies?: { character: Character; start: number; home: number; color?: string }[];
@@ -32,7 +32,7 @@ export function neighbour(index:number,direction:Direction,grid:GridLike):number
 
 export function tracePath(level: Level, tiles: readonly Tile[]): Trace {
   if (level.jellies && level.jellies.length > 1) return simulateMultiJelly(level, tiles);
-  if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) return walkPowerLevel(level,tiles);
+  if(level.powerVersion===4 || level.door || level.gate || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) return walkPowerLevel(level,tiles);
   if (level.character) return powerPaths(level,tiles).trace;
   if(tiles.some(t=>t.kind === "tee")) {
     const {parents,connected}=connectedPaths(level,tiles);
@@ -73,7 +73,7 @@ export function connectedPaths(level: Level, tiles: readonly Tile[]) {
     });
     return { connected, parents };
   }
-  if(level.powerVersion===4 || level.door || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) {
+  if(level.powerVersion===4 || level.door || level.gate || tiles.some(t=>t.terrain==="switch" || t.terrain==="slippery")) {
     const trace=walkPowerLevel(level,tiles),parents:Record<number,number>={};
     trace.path.forEach((at,i)=>{parents[at]=i ? trace.path[i-1] : -1;});
     return {connected:trace.path,parents};
