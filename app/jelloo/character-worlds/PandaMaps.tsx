@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { CHARACTER_WORLDS, LOCAL_STAR_GATES, toLocalLevel } from "@/lib/jelloo/campaign";
 import { evaluatePandaAccess, type PandaSave } from "@/lib/jelloo/campaign-v2/panda-save";
-import { BUNNY_LEVELS_PATH, PANDA_LEVELS_PATH, PANDA_WORLDS_PATH, pandaLevelHref } from "@/lib/jelloo/campaign-v2/routes";
+import { BUNNY_LEVELS_PATH, PANDA_LEVELS_PATH, PANDA_WORLDS_PATH, CAT_LEVELS_PATH, pandaLevelHref } from "@/lib/jelloo/campaign-v2/routes";
 import CharacterSprite from "../CharacterSprite";
 import { SceneIcon } from "./BunnyMaps";
 import s from "./scene.module.css";
@@ -189,6 +189,7 @@ function IslandGround({ number }: { number: number }) {
 }
 
 export function PandaWorldAtlas({
+  save,
   stars,
   bunnyStars = 120,
 }: {
@@ -225,10 +226,12 @@ export function PandaWorldAtlas({
                 <span className={s.islandProgress}>★ {bunnyStars}/150</span>
               ) : i === 1 ? (
                 <span className={s.islandProgress}>★ {stars}/150</span>
+              ) : i === 2 && save && save.completed >= 100 && stars >= 120 ? (
+                <span className={s.islandProgress}>Enter</span>
               ) : (
                 <span className={s.worldLock}>
                   <SceneIcon name="lock" />
-                  <span>Soon</span>
+                  <span>{i === 2 ? `${Math.min(save ? save.completed : 0, 100)}/100 · ${Math.min(stars, 120)}/120 ★` : "Soon"}</span>
                 </span>
               )}
             </>
@@ -250,6 +253,16 @@ export function PandaWorldAtlas({
               className={s.island}
               data-world={i}
               aria-label="Bamboo Jungle, Levels 51 to 100"
+            >
+              {contents}
+            </Link>
+          ) : i === 2 && save && save.completed >= 100 && stars >= 120 ? (
+            <Link
+              key={world.id}
+              href={CAT_LEVELS_PATH}
+              className={s.island}
+              data-world={i}
+              aria-label="Cozy Rooftops, Levels 101 to 150"
             >
               {contents}
             </Link>

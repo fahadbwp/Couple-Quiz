@@ -1,0 +1,5104 @@
+import type { AuthoredLevelSpec } from "./rectangular-authoring";
+
+export const CAT_SPECS: AuthoredLevelSpec[] = [
+  {
+    "id": 101,
+    "title": "Sunlit Parapet",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      0,
+      6,
+      7,
+      1,
+      2,
+      8,
+      9
+    ],
+    "collectibles": [
+      7,
+      8
+    ],
+    "scramble": {
+      "1": 1,
+      "2": 1,
+      "6": 2,
+      "7": 3,
+      "8": 2
+    },
+    "decoys": [
+      {
+        "index": 21,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 10,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "walls": [
+      6
+    ]
+  },
+  {
+    "id": 102,
+    "title": "Terracotta Ridge",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      4,
+      3,
+      2,
+      8,
+      9,
+      15,
+      14,
+      13,
+      19
+    ],
+    "collectibles": [
+      2,
+      13
+    ],
+    "scramble": {
+      "2": 1,
+      "3": 2,
+      "8": 3,
+      "9": 1,
+      "13": 2,
+      "14": 2,
+      "15": 2
+    },
+    "decoys": [
+      {
+        "index": 0,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 23,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops"
+  },
+  {
+    "id": 103,
+    "title": "Gutter Alley",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      4,
+      5,
+      11,
+      17,
+      16,
+      10,
+      9,
+      15
+    ],
+    "collectibles": [
+      11,
+      9
+    ],
+    "scramble": {
+      "5": 2,
+      "9": 2,
+      "10": 2,
+      "11": 1,
+      "16": 1,
+      "17": 2
+    },
+    "decoys": [
+      {
+        "index": 21,
+        "kind": "corner",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops"
+  },
+  {
+    "id": 104,
+    "title": "Chimney Vista",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      17,
+      16,
+      15,
+      9,
+      10,
+      11,
+      5,
+      4,
+      3,
+      2
+    ],
+    "collectibles": [
+      15,
+      3
+    ],
+    "scramble": {
+      "3": 3,
+      "4": 1,
+      "5": 3,
+      "9": 3,
+      "10": 3,
+      "11": 2,
+      "15": 1,
+      "16": 2
+    },
+    "decoys": [
+      {
+        "index": 0,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops"
+  },
+  {
+    "id": 105,
+    "title": "Warm Shingles",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      3,
+      2,
+      8,
+      14,
+      13,
+      12,
+      18,
+      19
+    ],
+    "collectibles": [
+      1,
+      6
+    ],
+    "scramble": {
+      "1": 1,
+      "2": 3,
+      "6": 2,
+      "7": 3,
+      "8": 3,
+      "12": 2,
+      "13": 1,
+      "14": 2,
+      "18": 2
+    },
+    "decoys": [
+      {
+        "index": 0,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 17,
+        "kind": "straight",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 2,
+      "detourRoute": [
+        1,
+        7,
+        6
+      ],
+      "rejoinTile": 12,
+      "collectible": 6
+    },
+    "walls": [
+      2
+    ]
+  },
+  {
+    "id": 106,
+    "title": "Clay Tile Trail",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      0,
+      6,
+      12,
+      18,
+      19,
+      20,
+      21,
+      15
+    ],
+    "collectibles": [
+      7,
+      13
+    ],
+    "scramble": {
+      "6": 2,
+      "7": 1,
+      "12": 2,
+      "13": 3,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 2
+    },
+    "decoys": [
+      {
+        "index": 2,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 6,
+      "detourRoute": [
+        7,
+        13
+      ],
+      "rejoinTile": 19,
+      "collectible": 13
+    }
+  },
+  {
+    "id": 107,
+    "title": "Flowerpot Perch",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      23,
+      22,
+      16,
+      10,
+      9,
+      8,
+      14,
+      13,
+      12
+    ],
+    "collectibles": [
+      15,
+      20
+    ],
+    "scramble": {
+      "8": 2,
+      "9": 3,
+      "10": 3,
+      "13": 3,
+      "14": 3,
+      "15": 2,
+      "16": 1,
+      "20": 1,
+      "21": 3,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 0,
+        "kind": "straight",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 9,
+      "detourRoute": [
+        15,
+        21,
+        20
+      ],
+      "rejoinTile": 14,
+      "collectible": 20
+    }
+  },
+  {
+    "id": 108,
+    "title": "Courtyard Overlook",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      12,
+      6,
+      7,
+      1,
+      2,
+      3,
+      4,
+      5,
+      11
+    ],
+    "collectibles": [
+      8,
+      10
+    ],
+    "scramble": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 1,
+      "6": 2,
+      "7": 2,
+      "8": 1,
+      "9": 3,
+      "10": 1
+    },
+    "decoys": [
+      {
+        "index": 14,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 2,
+      "detourRoute": [
+        8,
+        9,
+        10
+      ],
+      "rejoinTile": 4,
+      "collectible": 10
+    }
+  },
+  {
+    "id": 109,
+    "title": "Morning Sunbeam",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      11,
+      10,
+      4,
+      3,
+      2,
+      1,
+      0,
+      6,
+      7
+    ],
+    "collectibles": [
+      9,
+      8
+    ],
+    "scramble": {
+      "0": 3,
+      "1": 3,
+      "2": 1,
+      "3": 3,
+      "4": 2,
+      "6": 3,
+      "8": 2,
+      "9": 3,
+      "10": 1
+    },
+    "decoys": [
+      {
+        "index": 16,
+        "kind": "corner",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 10,
+      "detourRoute": [
+        9,
+        8
+      ],
+      "rejoinTile": 2,
+      "collectible": 8
+    }
+  },
+  {
+    "id": 110,
+    "title": "Rooftop Promenade",
+    "hint": "Step along the warm terracotta parapet.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      5,
+      11,
+      10,
+      4,
+      3,
+      2,
+      8,
+      14,
+      20
+    ],
+    "collectibles": [
+      9,
+      15
+    ],
+    "scramble": {
+      "2": 2,
+      "3": 3,
+      "4": 1,
+      "8": 2,
+      "9": 2,
+      "10": 1,
+      "11": 2,
+      "14": 3,
+      "15": 3
+    },
+    "decoys": [
+      {
+        "index": 16,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 3,
+      "detourRoute": [
+        9,
+        15
+      ],
+      "rejoinTile": 14,
+      "collectible": 15
+    },
+    "walls": [
+      11
+    ]
+  },
+  {
+    "id": 111,
+    "title": "Slanted Gable",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      2,
+      3,
+      9,
+      15,
+      16,
+      22,
+      23,
+      17,
+      11,
+      10,
+      4
+    ],
+    "collectibles": [
+      8,
+      21
+    ],
+    "scramble": {
+      "3": 2,
+      "8": 1,
+      "9": 1,
+      "10": 3,
+      "11": 2,
+      "14": 2,
+      "15": 1,
+      "16": 3,
+      "17": 3,
+      "20": 1,
+      "21": 3,
+      "22": 2,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 12,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 5,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 9,
+      "detourRoute": [
+        8,
+        14,
+        20,
+        21
+      ],
+      "rejoinTile": 22,
+      "collectible": 21
+    },
+    "slows": [
+      10
+    ]
+  },
+  {
+    "id": 112,
+    "title": "Terrace Maze",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      0,
+      6,
+      12,
+      13,
+      14,
+      15,
+      16,
+      10,
+      4
+    ],
+    "collectibles": [
+      20,
+      22
+    ],
+    "scramble": {
+      "6": 1,
+      "10": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 1,
+      "20": 1,
+      "21": 3,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 9,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 8,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 14,
+      "detourRoute": [
+        20,
+        21,
+        22
+      ],
+      "rejoinTile": 16,
+      "collectible": 22
+    }
+  },
+  {
+    "id": 113,
+    "title": "Windvane Crossing",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      0,
+      1,
+      7,
+      6,
+      12,
+      18,
+      19,
+      13,
+      14,
+      8,
+      9,
+      3
+    ],
+    "collectibles": [
+      20,
+      15
+    ],
+    "scramble": {
+      "1": 3,
+      "6": 3,
+      "7": 2,
+      "8": 3,
+      "9": 3,
+      "12": 3,
+      "13": 2,
+      "14": 1,
+      "15": 2,
+      "18": 1,
+      "19": 3,
+      "20": 2,
+      "21": 2
+    },
+    "decoys": [
+      {
+        "index": 5,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 14,
+      "detourRoute": [
+        20,
+        21,
+        15
+      ],
+      "rejoinTile": 9,
+      "collectible": 15
+    },
+    "slows": [
+      9
+    ]
+  },
+  {
+    "id": 114,
+    "title": "Attic Eaves",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      12,
+      13,
+      14,
+      8,
+      9,
+      10,
+      16,
+      15,
+      21,
+      22
+    ],
+    "collectibles": [
+      2,
+      4
+    ],
+    "scramble": {
+      "2": 1,
+      "3": 3,
+      "4": 1,
+      "8": 2,
+      "9": 1,
+      "10": 1,
+      "13": 3,
+      "14": 3,
+      "15": 3,
+      "16": 3,
+      "21": 1
+    },
+    "decoys": [
+      {
+        "index": 5,
+        "kind": "corner",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 8,
+      "detourRoute": [
+        2,
+        3,
+        4
+      ],
+      "rejoinTile": 10,
+      "collectible": 4
+    },
+    "slows": [
+      21
+    ]
+  },
+  {
+    "id": 115,
+    "title": "Dormer Dash",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      0,
+      1,
+      7,
+      13,
+      14,
+      8,
+      2,
+      3,
+      9,
+      10,
+      16
+    ],
+    "collectibles": [
+      4,
+      11
+    ],
+    "scramble": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 2,
+      "5": 1,
+      "7": 3,
+      "8": 2,
+      "9": 2,
+      "10": 1,
+      "11": 2,
+      "13": 3,
+      "14": 2
+    },
+    "decoys": [
+      {
+        "index": 12,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 3,
+      "detourRoute": [
+        4,
+        5,
+        11
+      ],
+      "rejoinTile": 10,
+      "collectible": 11
+    },
+    "walls": [
+      1
+    ],
+    "slows": [
+      10
+    ]
+  },
+  {
+    "id": 116,
+    "title": "Piazza Rooftops",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      6,
+      12,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      17,
+      16
+    ],
+    "collectibles": [
+      13,
+      14
+    ],
+    "scramble": {
+      "12": 1,
+      "13": 3,
+      "14": 2,
+      "17": 1,
+      "18": 2,
+      "19": 1,
+      "20": 2,
+      "21": 1,
+      "22": 1,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 10,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 12,
+      "detourRoute": [
+        13,
+        14
+      ],
+      "rejoinTile": 20,
+      "collectible": 14
+    },
+    "slows": [
+      17
+    ]
+  },
+  {
+    "id": 117,
+    "title": "Sunset Ledge",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      20,
+      19,
+      13,
+      14,
+      15,
+      21,
+      22,
+      23,
+      17,
+      16,
+      10,
+      9
+    ],
+    "collectibles": [
+      11,
+      4
+    ],
+    "scramble": {
+      "4": 2,
+      "5": 1,
+      "10": 2,
+      "11": 1,
+      "13": 3,
+      "14": 3,
+      "15": 1,
+      "16": 3,
+      "17": 3,
+      "19": 2,
+      "21": 2,
+      "22": 2,
+      "23": 3
+    },
+    "decoys": [
+      {
+        "index": 6,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 8,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 17,
+      "detourRoute": [
+        11,
+        5,
+        4
+      ],
+      "rejoinTile": 10,
+      "collectible": 4
+    },
+    "slows": [
+      10
+    ]
+  },
+  {
+    "id": 118,
+    "title": "Bell Tower Shadow",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      6,
+      0,
+      1,
+      7,
+      13,
+      14,
+      20,
+      21,
+      22,
+      23,
+      17,
+      16
+    ],
+    "collectibles": [
+      8,
+      15
+    ],
+    "scramble": {
+      "0": 1,
+      "1": 2,
+      "7": 3,
+      "8": 3,
+      "9": 1,
+      "13": 3,
+      "14": 3,
+      "15": 2,
+      "17": 1,
+      "20": 1,
+      "21": 2,
+      "22": 1,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 19,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 7,
+      "detourRoute": [
+        8,
+        9,
+        15
+      ],
+      "rejoinTile": 21,
+      "collectible": 15
+    }
+  },
+  {
+    "id": 119,
+    "title": "Tile Layer Maze",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      23,
+      22,
+      21,
+      15,
+      14,
+      8,
+      9,
+      3,
+      2
+    ],
+    "collectibles": [
+      20,
+      7
+    ],
+    "scramble": {
+      "3": 2,
+      "7": 2,
+      "8": 2,
+      "9": 3,
+      "13": 1,
+      "14": 1,
+      "15": 3,
+      "19": 2,
+      "20": 2,
+      "21": 2,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 4,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 21,
+      "detourRoute": [
+        20,
+        19,
+        13,
+        7
+      ],
+      "rejoinTile": 8,
+      "collectible": 7
+    }
+  },
+  {
+    "id": 120,
+    "title": "Terracotta Walk",
+    "hint": "Navigate the winding tiles across the terrace.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      17,
+      11,
+      10,
+      16,
+      15,
+      21,
+      20,
+      14,
+      8,
+      7,
+      13
+    ],
+    "collectibles": [
+      19,
+      6
+    ],
+    "scramble": {
+      "6": 3,
+      "7": 1,
+      "8": 3,
+      "10": 1,
+      "11": 3,
+      "12": 2,
+      "14": 3,
+      "15": 1,
+      "16": 1,
+      "18": 1,
+      "19": 3,
+      "20": 3,
+      "21": 3
+    },
+    "decoys": [
+      {
+        "index": 22,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 20,
+      "detourRoute": [
+        19,
+        18,
+        12,
+        6
+      ],
+      "rejoinTile": 7,
+      "collectible": 6
+    },
+    "walls": [
+      11
+    ],
+    "slows": [
+      7
+    ]
+  },
+  {
+    "id": 121,
+    "title": "Balcony Traverse",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      6,
+      0,
+      1,
+      2,
+      3,
+      9,
+      8,
+      7,
+      13,
+      12
+    ],
+    "collectibles": [
+      15,
+      14
+    ],
+    "scramble": {
+      "0": 2,
+      "1": 3,
+      "2": 1,
+      "3": 1,
+      "7": 3,
+      "8": 3,
+      "9": 3,
+      "13": 2,
+      "14": 2,
+      "15": 2
+    },
+    "decoys": [
+      {
+        "index": 22,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 10,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 9,
+      "detourRoute": [
+        15,
+        14
+      ],
+      "rejoinTile": 13,
+      "collectible": 14
+    }
+  },
+  {
+    "id": 122,
+    "title": "Mossy Ridge",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      23,
+      22,
+      21,
+      15,
+      16,
+      17,
+      11,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    "collectibles": [
+      10,
+      8
+    ],
+    "scramble": {
+      "1": 2,
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 2,
+      "8": 3,
+      "9": 1,
+      "10": 1,
+      "11": 2,
+      "15": 3,
+      "16": 1,
+      "17": 2,
+      "21": 1,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 19,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 14,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 16,
+      "detourRoute": [
+        10,
+        9,
+        8
+      ],
+      "rejoinTile": 2,
+      "collectible": 8
+    },
+    "slows": [
+      1
+    ]
+  },
+  {
+    "id": 123,
+    "title": "Skylight Pathway",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      21,
+      15,
+      9,
+      3,
+      2,
+      8,
+      14,
+      20,
+      19,
+      18,
+      12,
+      6
+    ],
+    "collectibles": [
+      1,
+      13
+    ],
+    "scramble": {
+      "1": 3,
+      "2": 2,
+      "3": 1,
+      "7": 1,
+      "8": 2,
+      "9": 3,
+      "12": 3,
+      "13": 1,
+      "14": 3,
+      "15": 3,
+      "18": 3,
+      "19": 1,
+      "20": 2,
+      "21": 2
+    },
+    "decoys": [
+      {
+        "index": 5,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 4,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 2,
+      "detourRoute": [
+        1,
+        7,
+        13
+      ],
+      "rejoinTile": 14,
+      "collectible": 13
+    },
+    "slows": [
+      12
+    ]
+  },
+  {
+    "id": 124,
+    "title": "Copper Downspout",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      20,
+      21,
+      22,
+      23,
+      17,
+      16,
+      10,
+      9,
+      3,
+      4
+    ],
+    "collectibles": [
+      15,
+      8
+    ],
+    "scramble": {
+      "3": 3,
+      "8": 1,
+      "9": 1,
+      "10": 3,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 1,
+      "21": 2,
+      "22": 3,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 18,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 12,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 6,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 16,
+      "detourRoute": [
+        15,
+        14,
+        8
+      ],
+      "rejoinTile": 9,
+      "collectible": 8
+    },
+    "slows": [
+      3
+    ]
+  },
+  {
+    "id": 125,
+    "title": "Rooftop Garden",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      3,
+      9,
+      15,
+      14,
+      13,
+      7,
+      1,
+      0,
+      6,
+      12
+    ],
+    "collectibles": [
+      21,
+      19
+    ],
+    "scramble": {
+      "0": 1,
+      "1": 1,
+      "6": 1,
+      "7": 3,
+      "9": 1,
+      "13": 3,
+      "14": 2,
+      "15": 3,
+      "19": 3,
+      "20": 1,
+      "21": 3
+    },
+    "decoys": [
+      {
+        "index": 5,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 17,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 15,
+      "detourRoute": [
+        21,
+        20,
+        19
+      ],
+      "rejoinTile": 13,
+      "collectible": 19
+    },
+    "walls": [
+      9
+    ],
+    "slows": [
+      6
+    ]
+  },
+  {
+    "id": 126,
+    "title": "Vine Pergola",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      23,
+      17,
+      16,
+      10,
+      4,
+      3,
+      2,
+      8,
+      14,
+      20
+    ],
+    "collectibles": [
+      11,
+      5
+    ],
+    "scramble": {
+      "2": 2,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "8": 2,
+      "10": 2,
+      "11": 3,
+      "14": 3,
+      "16": 3,
+      "17": 2
+    },
+    "decoys": [
+      {
+        "index": 21,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 6,
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "index": 15,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 22,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 17,
+      "detourRoute": [
+        11,
+        5
+      ],
+      "rejoinTile": 4,
+      "collectible": 5
+    },
+    "slows": [
+      14
+    ]
+  },
+  {
+    "id": 127,
+    "title": "Gable Labyrinth",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      17,
+      23,
+      22,
+      21,
+      20,
+      19,
+      13,
+      7,
+      8,
+      14
+    ],
+    "collectibles": [
+      16,
+      9
+    ],
+    "scramble": {
+      "7": 3,
+      "8": 2,
+      "9": 1,
+      "13": 1,
+      "15": 1,
+      "16": 3,
+      "19": 3,
+      "20": 1,
+      "21": 3,
+      "22": 1,
+      "23": 2
+    },
+    "decoys": [
+      {
+        "index": 1,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 12,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 2,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 22,
+      "detourRoute": [
+        16,
+        15,
+        9
+      ],
+      "rejoinTile": 8,
+      "collectible": 9
+    },
+    "slows": [
+      8
+    ]
+  },
+  {
+    "id": 128,
+    "title": "Perched Parapet",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      5,
+      4,
+      10,
+      9,
+      8,
+      14,
+      15,
+      21,
+      20,
+      19,
+      18
+    ],
+    "collectibles": [
+      11,
+      22
+    ],
+    "scramble": {
+      "4": 2,
+      "8": 3,
+      "9": 2,
+      "10": 2,
+      "11": 3,
+      "14": 3,
+      "15": 2,
+      "17": 3,
+      "19": 2,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 2
+    },
+    "decoys": [
+      {
+        "index": 3,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 1,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 0,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 10,
+      "detourRoute": [
+        11,
+        17,
+        23,
+        22
+      ],
+      "rejoinTile": 21,
+      "collectible": 22
+    },
+    "slows": [
+      19
+    ]
+  },
+  {
+    "id": 129,
+    "title": "Evening Breeze",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      12,
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      10,
+      4,
+      5,
+      11,
+      17
+    ],
+    "collectibles": [
+      8,
+      3
+    ],
+    "scramble": {
+      "3": 3,
+      "4": 2,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 1,
+      "10": 2,
+      "11": 2,
+      "13": 3,
+      "14": 2,
+      "15": 3,
+      "16": 1
+    },
+    "decoys": [
+      {
+        "index": 2,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 18,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 20,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 7,
+      "detourRoute": [
+        8,
+        9,
+        3
+      ],
+      "rejoinTile": 4,
+      "collectible": 3
+    }
+  },
+  {
+    "id": 130,
+    "title": "Lantern Trail",
+    "hint": "Balance gracefully across flowerpot perches and roof ridges.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      11,
+      17,
+      16,
+      15,
+      14,
+      13,
+      7,
+      1,
+      0,
+      6,
+      12,
+      18,
+      19
+    ],
+    "collectibles": [
+      8,
+      2
+    ],
+    "scramble": {
+      "0": 2,
+      "1": 1,
+      "2": 1,
+      "6": 2,
+      "7": 2,
+      "8": 2,
+      "12": 3,
+      "13": 3,
+      "14": 2,
+      "15": 3,
+      "16": 2,
+      "17": 3,
+      "18": 3
+    },
+    "decoys": [
+      {
+        "index": 10,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 20,
+        "kind": "straight",
+        "rotation": 2
+      },
+      {
+        "index": 9,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 22,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 14,
+      "detourRoute": [
+        8,
+        2
+      ],
+      "rejoinTile": 1,
+      "collectible": 2
+    },
+    "walls": [
+      17
+    ],
+    "slows": [
+      18
+    ]
+  },
+  {
+    "id": 131,
+    "title": "Twilight Chimneys",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      2,
+      1,
+      0,
+      6,
+      12,
+      13,
+      19,
+      20,
+      14,
+      15,
+      21,
+      22,
+      23,
+      17
+    ],
+    "collectibles": [
+      9,
+      16
+    ],
+    "scramble": {
+      "0": 1,
+      "1": 1,
+      "6": 2,
+      "9": 1,
+      "10": 1,
+      "12": 2,
+      "13": 2,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "19": 3,
+      "20": 1,
+      "21": 2,
+      "22": 1,
+      "23": 3
+    },
+    "decoys": [
+      {
+        "index": 3,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 18,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 8,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 15,
+      "detourRoute": [
+        9,
+        10,
+        16
+      ],
+      "rejoinTile": 22,
+      "collectible": 16
+    }
+  },
+  {
+    "id": 132,
+    "title": "Parapet Labyrinth",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      19,
+      20,
+      14,
+      13,
+      12,
+      6,
+      7,
+      8,
+      2,
+      3,
+      9,
+      10
+    ],
+    "collectibles": [
+      0,
+      1
+    ],
+    "scramble": {
+      "0": 1,
+      "1": 3,
+      "2": 2,
+      "3": 1,
+      "6": 1,
+      "7": 1,
+      "8": 3,
+      "9": 3,
+      "12": 2,
+      "13": 2,
+      "14": 3,
+      "20": 1
+    },
+    "decoys": [
+      {
+        "index": 16,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 11,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 6,
+      "detourRoute": [
+        0,
+        1
+      ],
+      "rejoinTile": 2,
+      "collectible": 1
+    }
+  },
+  {
+    "id": 133,
+    "title": "Terrace Web",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      11,
+      17,
+      23,
+      22,
+      21,
+      15,
+      14,
+      13,
+      19,
+      18,
+      12,
+      6,
+      0,
+      1
+    ],
+    "collectibles": [
+      16,
+      8
+    ],
+    "scramble": {
+      "0": 1,
+      "6": 3,
+      "8": 2,
+      "9": 3,
+      "10": 1,
+      "12": 3,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 2,
+      "17": 2,
+      "18": 1,
+      "19": 2,
+      "21": 1,
+      "22": 2,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 4,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 22,
+      "detourRoute": [
+        16,
+        10,
+        9,
+        8
+      ],
+      "rejoinTile": 14,
+      "collectible": 8
+    },
+    "slows": [
+      0
+    ]
+  },
+  {
+    "id": 134,
+    "title": "Midnight Tiles",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      17,
+      16,
+      10,
+      9,
+      15,
+      14,
+      13,
+      12
+    ],
+    "collectibles": [
+      11,
+      3
+    ],
+    "scramble": {
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "9": 3,
+      "10": 1,
+      "11": 1,
+      "13": 1,
+      "14": 2,
+      "15": 1,
+      "16": 2,
+      "17": 1,
+      "20": 1,
+      "21": 3,
+      "22": 1,
+      "23": 2
+    },
+    "decoys": [
+      {
+        "index": 6,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 1,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 2,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 17,
+      "detourRoute": [
+        11,
+        5,
+        4,
+        3
+      ],
+      "rejoinTile": 9,
+      "collectible": 3
+    },
+    "slows": [
+      13
+    ]
+  },
+  {
+    "id": 135,
+    "title": "Moonlit Gables",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      19,
+      13,
+      12,
+      6,
+      0,
+      1,
+      2,
+      3,
+      9,
+      10,
+      11,
+      17,
+      16,
+      15
+    ],
+    "collectibles": [
+      4,
+      5
+    ],
+    "scramble": {
+      "0": 3,
+      "1": 2,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 3,
+      "6": 3,
+      "9": 3,
+      "10": 1,
+      "11": 2,
+      "12": 1,
+      "13": 3,
+      "16": 3,
+      "17": 2
+    },
+    "decoys": [
+      {
+        "index": 20,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 21,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 3,
+      "detourRoute": [
+        4,
+        5
+      ],
+      "rejoinTile": 11,
+      "collectible": 5
+    },
+    "walls": [
+      13
+    ]
+  },
+  {
+    "id": 136,
+    "title": "Rooftop Citadel",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      23,
+      22,
+      16,
+      10,
+      9,
+      8,
+      7,
+      13,
+      12,
+      6,
+      0,
+      1
+    ],
+    "collectibles": [
+      21,
+      19
+    ],
+    "scramble": {
+      "0": 1,
+      "6": 1,
+      "7": 2,
+      "8": 2,
+      "9": 1,
+      "10": 2,
+      "12": 1,
+      "13": 1,
+      "16": 2,
+      "19": 2,
+      "20": 3,
+      "21": 2,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 11,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 2,
+        "kind": "straight",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 22,
+      "detourRoute": [
+        21,
+        20,
+        19
+      ],
+      "rejoinTile": 13,
+      "collectible": 19
+    },
+    "slows": [
+      0
+    ]
+  },
+  {
+    "id": 137,
+    "title": "Starry Shingles",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      18,
+      19,
+      20,
+      14,
+      13,
+      7,
+      1,
+      2,
+      8,
+      9,
+      3
+    ],
+    "collectibles": [
+      12,
+      0
+    ],
+    "scramble": {
+      "0": 2,
+      "1": 1,
+      "2": 3,
+      "6": 1,
+      "7": 1,
+      "8": 3,
+      "9": 2,
+      "12": 1,
+      "13": 2,
+      "14": 1,
+      "19": 2,
+      "20": 1
+    },
+    "decoys": [
+      {
+        "index": 5,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 17,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 13,
+      "detourRoute": [
+        12,
+        6,
+        0
+      ],
+      "rejoinTile": 1,
+      "collectible": 0
+    }
+  },
+  {
+    "id": 138,
+    "title": "Starlight Ledge",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      23,
+      17,
+      11,
+      5,
+      4,
+      3,
+      9,
+      8,
+      14,
+      20
+    ],
+    "collectibles": [
+      10,
+      15
+    ],
+    "scramble": {
+      "3": 1,
+      "4": 3,
+      "5": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "14": 2,
+      "15": 3,
+      "16": 3,
+      "17": 1,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 18,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 21,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 7,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 4,
+      "detourRoute": [
+        10,
+        16,
+        15
+      ],
+      "rejoinTile": 9,
+      "collectible": 15
+    },
+    "slows": [
+      14
+    ]
+  },
+  {
+    "id": 139,
+    "title": "Chimney Sweep Path",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      11,
+      5,
+      4,
+      3,
+      9,
+      15,
+      21,
+      20,
+      19,
+      18,
+      12,
+      13,
+      14
+    ],
+    "collectibles": [
+      2,
+      7
+    ],
+    "scramble": {
+      "2": 1,
+      "3": 3,
+      "4": 2,
+      "5": 1,
+      "7": 1,
+      "8": 1,
+      "9": 2,
+      "12": 1,
+      "13": 1,
+      "15": 1,
+      "18": 2,
+      "19": 3,
+      "20": 2,
+      "21": 3
+    },
+    "decoys": [
+      {
+        "index": 22,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 16,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 3,
+      "detourRoute": [
+        2,
+        8,
+        7
+      ],
+      "rejoinTile": 13,
+      "collectible": 7
+    },
+    "slows": [
+      13
+    ]
+  },
+  {
+    "id": 140,
+    "title": "Sunset Crest",
+    "hint": "Find the high ledge route through twilight shadows.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      21,
+      20,
+      19,
+      18,
+      12,
+      13,
+      14,
+      15,
+      16,
+      10
+    ],
+    "collectibles": [
+      6,
+      9
+    ],
+    "scramble": {
+      "6": 3,
+      "7": 2,
+      "8": 2,
+      "9": 3,
+      "12": 3,
+      "13": 1,
+      "14": 1,
+      "15": 2,
+      "16": 2,
+      "18": 1,
+      "19": 1,
+      "20": 2,
+      "21": 2
+    },
+    "decoys": [
+      {
+        "index": 11,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 3,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 17,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 12,
+      "detourRoute": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "rejoinTile": 15,
+      "collectible": 9
+    },
+    "walls": [
+      21
+    ]
+  },
+  {
+    "id": 141,
+    "title": "Villa Heights",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      1,
+      0,
+      6,
+      7,
+      8,
+      14,
+      15,
+      16,
+      10,
+      9,
+      3,
+      4,
+      5,
+      11,
+      17
+    ],
+    "collectibles": [
+      12,
+      20
+    ],
+    "scramble": {
+      "0": 2,
+      "3": 2,
+      "4": 1,
+      "5": 3,
+      "6": 1,
+      "7": 1,
+      "8": 2,
+      "9": 3,
+      "10": 2,
+      "11": 1,
+      "12": 1,
+      "13": 3,
+      "14": 2,
+      "15": 2,
+      "16": 3,
+      "19": 1,
+      "20": 1
+    },
+    "decoys": [
+      {
+        "index": 18,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 23,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 6,
+      "detourRoute": [
+        12,
+        13,
+        19,
+        20
+      ],
+      "rejoinTile": 14,
+      "collectible": 20
+    },
+    "slows": [
+      11
+    ]
+  },
+  {
+    "id": 142,
+    "title": "Grand Terracotta",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      2,
+      1,
+      7,
+      6,
+      12,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      17,
+      16
+    ],
+    "collectibles": [
+      8,
+      14
+    ],
+    "scramble": {
+      "1": 2,
+      "6": 2,
+      "7": 3,
+      "8": 2,
+      "9": 2,
+      "12": 3,
+      "14": 2,
+      "15": 1,
+      "17": 1,
+      "18": 3,
+      "19": 1,
+      "20": 2,
+      "21": 1,
+      "22": 2,
+      "23": 2
+    },
+    "decoys": [
+      {
+        "index": 3,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 10,
+        "kind": "corner",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 7,
+      "detourRoute": [
+        8,
+        9,
+        15,
+        14
+      ],
+      "rejoinTile": 20,
+      "collectible": 14
+    }
+  },
+  {
+    "id": 143,
+    "title": "Citadel Ridge",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      5,
+      11,
+      17,
+      16,
+      15,
+      14,
+      13,
+      12,
+      6,
+      7,
+      8,
+      2,
+      3,
+      9,
+      10
+    ],
+    "collectibles": [
+      23,
+      20
+    ],
+    "scramble": {
+      "2": 2,
+      "3": 3,
+      "6": 1,
+      "7": 3,
+      "8": 2,
+      "9": 2,
+      "11": 1,
+      "12": 3,
+      "13": 1,
+      "14": 3,
+      "15": 1,
+      "16": 3,
+      "17": 2,
+      "20": 1,
+      "21": 3,
+      "22": 3,
+      "23": 3
+    },
+    "decoys": [
+      {
+        "index": 1,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 19,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 0,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 4,
+        "kind": "straight",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 17,
+      "detourRoute": [
+        23,
+        22,
+        21,
+        20
+      ],
+      "rejoinTile": 14,
+      "collectible": 20
+    }
+  },
+  {
+    "id": 144,
+    "title": "Crown of Rooftops",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      16,
+      15,
+      9,
+      8,
+      2,
+      1,
+      7,
+      13,
+      19,
+      20,
+      21
+    ],
+    "collectibles": [
+      10,
+      3
+    ],
+    "scramble": {
+      "1": 1,
+      "2": 3,
+      "3": 1,
+      "4": 2,
+      "7": 2,
+      "8": 1,
+      "9": 2,
+      "10": 1,
+      "13": 1,
+      "15": 2,
+      "16": 3,
+      "19": 3,
+      "20": 1
+    },
+    "decoys": [
+      {
+        "index": 11,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 6,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 9,
+      "detourRoute": [
+        10,
+        4,
+        3
+      ],
+      "rejoinTile": 2,
+      "collectible": 3
+    },
+    "slows": [
+      20
+    ]
+  },
+  {
+    "id": 145,
+    "title": "Palazzo Overlook",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      11,
+      10,
+      9,
+      15,
+      21,
+      20,
+      19,
+      18,
+      12,
+      13,
+      14,
+      8,
+      2,
+      1,
+      0
+    ],
+    "collectibles": [
+      6,
+      7
+    ],
+    "scramble": {
+      "1": 2,
+      "2": 2,
+      "6": 3,
+      "7": 1,
+      "8": 2,
+      "9": 2,
+      "10": 2,
+      "12": 3,
+      "13": 1,
+      "14": 3,
+      "15": 2,
+      "18": 2,
+      "19": 2,
+      "20": 3,
+      "21": 1
+    },
+    "decoys": [
+      {
+        "index": 4,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 22,
+        "kind": "corner",
+        "rotation": 2
+      },
+      {
+        "index": 5,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 12,
+      "detourRoute": [
+        6,
+        7
+      ],
+      "rejoinTile": 1,
+      "collectible": 7
+    },
+    "walls": [
+      10
+    ],
+    "slows": [
+      1
+    ]
+  },
+  {
+    "id": 146,
+    "title": "Summit Parapet",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      23,
+      17,
+      11,
+      10,
+      16,
+      15,
+      14,
+      20,
+      19,
+      18,
+      12,
+      13,
+      7
+    ],
+    "collectibles": [
+      5,
+      9
+    ],
+    "scramble": {
+      "3": 1,
+      "4": 3,
+      "5": 3,
+      "9": 1,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 3,
+      "14": 2,
+      "15": 1,
+      "16": 1,
+      "17": 3,
+      "18": 2,
+      "19": 2,
+      "20": 2,
+      "23": 2
+    },
+    "decoys": [
+      {
+        "index": 21,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 2,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 8,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 1,
+        "kind": "straight",
+        "rotation": 0
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 11,
+      "detourRoute": [
+        5,
+        4,
+        3,
+        9
+      ],
+      "rejoinTile": 15,
+      "collectible": 9
+    }
+  },
+  {
+    "id": 147,
+    "title": "Master Roofer",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      3,
+      2,
+      1,
+      0,
+      6,
+      7,
+      13,
+      14,
+      15,
+      16,
+      10,
+      9
+    ],
+    "collectibles": [
+      19,
+      22
+    ],
+    "scramble": {
+      "0": 1,
+      "1": 3,
+      "2": 3,
+      "6": 2,
+      "7": 3,
+      "10": 3,
+      "13": 2,
+      "14": 2,
+      "15": 1,
+      "16": 3,
+      "19": 1,
+      "20": 3,
+      "21": 3,
+      "22": 1
+    },
+    "decoys": [
+      {
+        "index": 4,
+        "kind": "corner",
+        "rotation": 0
+      },
+      {
+        "index": 5,
+        "kind": "corner",
+        "rotation": 3
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 13,
+      "detourRoute": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "rejoinTile": 16,
+      "collectible": 22
+    }
+  },
+  {
+    "id": 148,
+    "title": "Golden Sunset Villa",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      17,
+      11,
+      5,
+      4,
+      10,
+      9,
+      8,
+      14,
+      13,
+      12,
+      18,
+      19,
+      20
+    ],
+    "collectibles": [
+      2,
+      6
+    ],
+    "scramble": {
+      "0": 3,
+      "1": 1,
+      "2": 1,
+      "4": 3,
+      "5": 3,
+      "6": 2,
+      "8": 3,
+      "9": 3,
+      "10": 3,
+      "11": 3,
+      "12": 3,
+      "13": 1,
+      "14": 2,
+      "18": 3,
+      "19": 1
+    },
+    "decoys": [
+      {
+        "index": 3,
+        "kind": "straight",
+        "rotation": 3
+      },
+      {
+        "index": 15,
+        "kind": "corner",
+        "rotation": 3
+      },
+      {
+        "index": 23,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 21,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 8,
+      "detourRoute": [
+        2,
+        1,
+        0,
+        6
+      ],
+      "rejoinTile": 12,
+      "collectible": 6
+    },
+    "slows": [
+      19
+    ]
+  },
+  {
+    "id": 149,
+    "title": "Palatial Tiles",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      22,
+      23,
+      17,
+      11,
+      5,
+      4,
+      10,
+      9,
+      8,
+      7,
+      13,
+      14,
+      15,
+      16
+    ],
+    "collectibles": [
+      3,
+      2
+    ],
+    "scramble": {
+      "2": 3,
+      "3": 1,
+      "4": 2,
+      "5": 1,
+      "7": 1,
+      "8": 1,
+      "9": 2,
+      "10": 1,
+      "11": 2,
+      "13": 3,
+      "14": 2,
+      "15": 1,
+      "17": 1,
+      "23": 1
+    },
+    "decoys": [
+      {
+        "index": 19,
+        "kind": "corner",
+        "rotation": 1
+      },
+      {
+        "index": 1,
+        "kind": "straight",
+        "rotation": 0
+      },
+      {
+        "index": 18,
+        "kind": "straight",
+        "rotation": 2
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 4,
+      "detourRoute": [
+        3,
+        2
+      ],
+      "rejoinTile": 8,
+      "collectible": 2
+    }
+  },
+  {
+    "id": 150,
+    "title": "Rooftop Villa Finale",
+    "hint": "Ascend to the grand Rooftop Villa across intricate gables.",
+    "size": 6,
+    "columns": 6,
+    "rows": 4,
+    "route": [
+      3,
+      9,
+      10,
+      4,
+      5,
+      11,
+      17,
+      23,
+      22,
+      21,
+      20,
+      19,
+      18,
+      12,
+      6
+    ],
+    "collectibles": [
+      16,
+      15
+    ],
+    "scramble": {
+      "4": 3,
+      "5": 3,
+      "9": 2,
+      "10": 2,
+      "11": 3,
+      "12": 3,
+      "15": 3,
+      "16": 2,
+      "17": 1,
+      "18": 1,
+      "19": 3,
+      "20": 2,
+      "21": 1,
+      "22": 2,
+      "23": 3
+    },
+    "decoys": [
+      {
+        "index": 13,
+        "kind": "straight",
+        "rotation": 1
+      },
+      {
+        "index": 8,
+        "kind": "corner",
+        "rotation": 1
+      }
+    ],
+    "character": "cat",
+    "characterWorldId": "cozy_rooftops",
+    "detour": {
+      "branchTile": 10,
+      "detourRoute": [
+        16,
+        15
+      ],
+      "rejoinTile": 21,
+      "collectible": 15
+    },
+    "walls": [
+      9
+    ],
+    "slows": [
+      12
+    ]
+  }
+];
+
+export const CAT_PLANS: Record<number, { short: number[]; stars: number[]; par: number; starPar: number }> = {
+  "101": {
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      6,
+      6,
+      7,
+      8,
+      8
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      6,
+      6,
+      7,
+      8,
+      8
+    ],
+    "par": 11,
+    "starPar": 11
+  },
+  "102": {
+    "short": [
+      2,
+      2,
+      2,
+      8,
+      9,
+      9,
+      9,
+      13,
+      13,
+      15,
+      15
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      8,
+      9,
+      9,
+      9,
+      13,
+      13,
+      15,
+      15
+    ],
+    "par": 11,
+    "starPar": 11
+  },
+  "103": {
+    "short": [
+      5,
+      5,
+      9,
+      9,
+      10,
+      10,
+      11,
+      16,
+      16,
+      16,
+      17,
+      17
+    ],
+    "stars": [
+      5,
+      5,
+      9,
+      9,
+      10,
+      10,
+      11,
+      16,
+      16,
+      16,
+      17,
+      17
+    ],
+    "par": 12,
+    "starPar": 12
+  },
+  "104": {
+    "short": [
+      3,
+      4,
+      5,
+      9,
+      10,
+      11,
+      11,
+      15,
+      15,
+      15
+    ],
+    "stars": [
+      3,
+      4,
+      5,
+      9,
+      10,
+      11,
+      11,
+      15,
+      15,
+      15
+    ],
+    "par": 10,
+    "starPar": 10
+  },
+  "105": {
+    "short": [
+      8,
+      12,
+      12,
+      13,
+      14,
+      14,
+      18,
+      18
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      18,
+      18
+    ],
+    "par": 8,
+    "starPar": 12
+  },
+  "106": {
+    "short": [
+      18,
+      18,
+      18,
+      19,
+      20,
+      21,
+      21
+    ],
+    "stars": [
+      6,
+      7,
+      7,
+      7,
+      13,
+      20,
+      21,
+      21
+    ],
+    "par": 7,
+    "starPar": 8
+  },
+  "107": {
+    "short": [
+      8,
+      8,
+      9,
+      10,
+      13,
+      14,
+      16,
+      22,
+      22,
+      22
+    ],
+    "stars": [
+      10,
+      13,
+      15,
+      16,
+      20,
+      20,
+      20,
+      21,
+      21,
+      21,
+      22,
+      22,
+      22
+    ],
+    "par": 10,
+    "starPar": 13
+  },
+  "108": {
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      4,
+      5,
+      5,
+      5,
+      6,
+      6,
+      7,
+      7
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      5,
+      5,
+      5,
+      6,
+      6,
+      7,
+      7,
+      8,
+      8,
+      8,
+      9,
+      10,
+      10,
+      10
+    ],
+    "par": 12,
+    "starPar": 17
+  },
+  "109": {
+    "short": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      4,
+      6
+    ],
+    "stars": [
+      0,
+      1,
+      6,
+      8,
+      8,
+      8,
+      9,
+      10
+    ],
+    "par": 7,
+    "starPar": 8
+  },
+  "110": {
+    "short": [
+      2,
+      2,
+      3,
+      4,
+      4,
+      4,
+      10,
+      10,
+      10,
+      11,
+      11,
+      14
+    ],
+    "stars": [
+      4,
+      4,
+      4,
+      9,
+      10,
+      10,
+      10,
+      11,
+      11,
+      14,
+      15,
+      15,
+      15
+    ],
+    "par": 12,
+    "starPar": 13
+  },
+  "111": {
+    "short": [
+      3,
+      3
+    ],
+    "stars": [
+      8,
+      8,
+      8,
+      10,
+      11,
+      11,
+      14,
+      17,
+      20,
+      20,
+      20,
+      21,
+      23,
+      23,
+      23,
+      3,
+      3
+    ],
+    "par": 2,
+    "starPar": 17
+  },
+  "112": {
+    "short": [
+      6,
+      12,
+      12
+    ],
+    "stars": [
+      6,
+      14,
+      14,
+      16,
+      20,
+      20,
+      20,
+      21,
+      22,
+      22,
+      22,
+      12,
+      12
+    ],
+    "par": 3,
+    "starPar": 13
+  },
+  "113": {
+    "short": [
+      1,
+      6,
+      7,
+      7,
+      8,
+      9,
+      12,
+      13,
+      13,
+      18,
+      18,
+      18,
+      19
+    ],
+    "stars": [
+      1,
+      7,
+      7,
+      7,
+      8,
+      8,
+      9,
+      14,
+      15,
+      20,
+      20,
+      20,
+      21,
+      21,
+      21
+    ],
+    "par": 13,
+    "starPar": 15
+  },
+  "114": {
+    "short": [
+      8,
+      8,
+      9,
+      10,
+      10,
+      13,
+      14,
+      15,
+      16,
+      21,
+      21,
+      21
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      3,
+      4,
+      4,
+      4,
+      10,
+      13,
+      14,
+      15,
+      16,
+      21,
+      21,
+      21
+    ],
+    "par": 12,
+    "starPar": 15
+  },
+  "115": {
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      7,
+      9,
+      9,
+      13,
+      14,
+      14
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      4,
+      5,
+      5,
+      5,
+      7,
+      10,
+      10,
+      11,
+      11,
+      11,
+      13,
+      14,
+      14
+    ],
+    "par": 14,
+    "starPar": 19
+  },
+  "116": {
+    "short": [
+      12,
+      17,
+      17,
+      17,
+      18,
+      18,
+      19,
+      21,
+      22,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      12,
+      12,
+      13,
+      14,
+      14,
+      14,
+      17,
+      17,
+      17,
+      20,
+      20,
+      21,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 12,
+    "starPar": 16
+  },
+  "117": {
+    "short": [
+      10,
+      13,
+      14,
+      15,
+      15,
+      15,
+      16,
+      19,
+      19,
+      21,
+      21,
+      23
+    ],
+    "stars": [
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      10,
+      10,
+      11,
+      13,
+      14,
+      15,
+      15,
+      15,
+      17,
+      19,
+      19,
+      21,
+      21,
+      23
+    ],
+    "par": 12,
+    "starPar": 20
+  },
+  "118": {
+    "short": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      7,
+      13,
+      14,
+      17,
+      17,
+      17,
+      20,
+      20,
+      20,
+      22,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      8,
+      9,
+      9,
+      9,
+      15,
+      17,
+      17,
+      17,
+      21,
+      21,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 18,
+    "starPar": 19
+  },
+  "119": {
+    "short": [
+      3,
+      3,
+      8,
+      9,
+      14,
+      14,
+      14,
+      15,
+      21,
+      21,
+      22
+    ],
+    "stars": [
+      3,
+      3,
+      7,
+      7,
+      7,
+      9,
+      13,
+      19,
+      19,
+      19,
+      20,
+      22
+    ],
+    "par": 11,
+    "starPar": 12
+  },
+  "120": {
+    "short": [
+      7,
+      7,
+      8,
+      10,
+      10,
+      10,
+      11,
+      14,
+      15,
+      15,
+      15,
+      16,
+      16,
+      16,
+      20,
+      21
+    ],
+    "stars": [
+      6,
+      6,
+      6,
+      10,
+      10,
+      10,
+      11,
+      12,
+      15,
+      15,
+      15,
+      16,
+      16,
+      16,
+      18,
+      18,
+      18,
+      19,
+      20,
+      21
+    ],
+    "par": 16,
+    "starPar": 20
+  },
+  "121": {
+    "short": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      3,
+      3,
+      7,
+      8,
+      9,
+      13
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      3,
+      3,
+      9,
+      14,
+      15,
+      15,
+      15
+    ],
+    "par": 11,
+    "starPar": 12
+  },
+  "122": {
+    "short": [
+      2,
+      4,
+      5,
+      5,
+      15,
+      16,
+      17,
+      17,
+      21,
+      21,
+      21,
+      22
+    ],
+    "stars": [
+      8,
+      8,
+      8,
+      9,
+      10,
+      10,
+      10,
+      15,
+      16,
+      16,
+      21,
+      21,
+      21,
+      22
+    ],
+    "par": 12,
+    "starPar": 14
+  },
+  "123": {
+    "short": [
+      2,
+      3,
+      3,
+      3,
+      9,
+      12,
+      14,
+      15,
+      18,
+      19,
+      20,
+      20,
+      21,
+      21
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      3,
+      3,
+      3,
+      7,
+      9,
+      12,
+      13,
+      13,
+      13,
+      15,
+      18,
+      19,
+      20,
+      20,
+      21,
+      21
+    ],
+    "par": 14,
+    "starPar": 19
+  },
+  "124": {
+    "short": [
+      3,
+      10,
+      16,
+      16,
+      17,
+      17,
+      17,
+      22,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      3,
+      8,
+      8,
+      8,
+      9,
+      9,
+      14,
+      14,
+      14,
+      15,
+      17,
+      17,
+      17,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 11,
+    "starPar": 17
+  },
+  "125": {
+    "short": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      6,
+      7,
+      9,
+      15
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      6,
+      7,
+      9,
+      13,
+      19,
+      19,
+      19,
+      20,
+      21,
+      21,
+      21,
+      15
+    ],
+    "par": 10,
+    "starPar": 18
+  },
+  "126": {
+    "short": [
+      2,
+      2,
+      3,
+      4,
+      14,
+      16,
+      17
+    ],
+    "stars": [
+      2,
+      2,
+      3,
+      4,
+      5,
+      5,
+      5,
+      11,
+      14
+    ],
+    "par": 7,
+    "starPar": 9
+  },
+  "127": {
+    "short": [
+      7,
+      8,
+      8,
+      13,
+      19,
+      20,
+      21,
+      22,
+      23,
+      23
+    ],
+    "stars": [
+      8,
+      9,
+      9,
+      9,
+      15,
+      15,
+      15,
+      16,
+      16,
+      16,
+      23,
+      23
+    ],
+    "par": 10,
+    "starPar": 12
+  },
+  "128": {
+    "short": [
+      4,
+      4,
+      8,
+      10,
+      14,
+      15,
+      15,
+      20,
+      21,
+      21
+    ],
+    "stars": [
+      4,
+      4,
+      10,
+      10,
+      11,
+      11,
+      11,
+      17,
+      20,
+      21,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 10,
+    "starPar": 14
+  },
+  "129": {
+    "short": [
+      4,
+      5,
+      6,
+      7,
+      13,
+      15,
+      16,
+      16,
+      16
+    ],
+    "stars": [
+      3,
+      3,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      9,
+      9
+    ],
+    "par": 9,
+    "starPar": 10
+  },
+  "130": {
+    "short": [
+      0,
+      0,
+      12,
+      13,
+      15,
+      17,
+      18
+    ],
+    "stars": [
+      0,
+      0,
+      1,
+      2,
+      2,
+      2,
+      8,
+      12,
+      14,
+      14,
+      15,
+      17,
+      18
+    ],
+    "par": 7,
+    "starPar": 13
+  },
+  "131": {
+    "short": [
+      0,
+      0,
+      0,
+      1,
+      12,
+      12,
+      13,
+      13,
+      14,
+      14,
+      14,
+      15,
+      15,
+      19,
+      20,
+      20,
+      20,
+      21,
+      21,
+      22,
+      23
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      9,
+      9,
+      9,
+      10,
+      10,
+      10,
+      12,
+      12,
+      13,
+      13,
+      14,
+      14,
+      14,
+      16,
+      19,
+      20,
+      20,
+      20,
+      23
+    ],
+    "par": 21,
+    "starPar": 23
+  },
+  "132": {
+    "short": [
+      2,
+      3,
+      3,
+      3,
+      7,
+      8,
+      9,
+      12,
+      12,
+      14,
+      20,
+      20,
+      20
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      3,
+      3,
+      3,
+      6,
+      9,
+      12,
+      12,
+      14,
+      20,
+      20,
+      20
+    ],
+    "par": 13,
+    "starPar": 15
+  },
+  "133": {
+    "short": [
+      0,
+      0,
+      0,
+      6,
+      12,
+      13,
+      13,
+      15,
+      15,
+      18,
+      18,
+      18,
+      19,
+      19,
+      21,
+      21,
+      21,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      6,
+      8,
+      8,
+      8,
+      9,
+      10,
+      10,
+      10,
+      12,
+      13,
+      13,
+      14,
+      16,
+      18,
+      18,
+      18,
+      19,
+      19,
+      22,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 20,
+    "starPar": 26
+  },
+  "134": {
+    "short": [
+      9,
+      10,
+      10,
+      10,
+      13,
+      15,
+      15,
+      15,
+      16,
+      16,
+      17,
+      17,
+      20,
+      21,
+      22,
+      23,
+      23
+    ],
+    "stars": [
+      3,
+      3,
+      3,
+      4,
+      5,
+      5,
+      5,
+      9,
+      11,
+      13,
+      15,
+      15,
+      15,
+      17,
+      20,
+      21,
+      22,
+      23,
+      23
+    ],
+    "par": 17,
+    "starPar": 19
+  },
+  "135": {
+    "short": [
+      0,
+      2,
+      6,
+      9,
+      10,
+      11,
+      12,
+      12,
+      12,
+      13,
+      16,
+      17,
+      17
+    ],
+    "stars": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      5,
+      5,
+      6,
+      12,
+      12,
+      12,
+      13,
+      16,
+      17,
+      17
+    ],
+    "par": 13,
+    "starPar": 15
+  },
+  "136": {
+    "short": [
+      0,
+      0,
+      0,
+      6,
+      7,
+      7,
+      9,
+      10,
+      10,
+      12,
+      12,
+      12
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      6,
+      12,
+      12,
+      12,
+      13,
+      13,
+      19,
+      19,
+      19,
+      20,
+      21,
+      22
+    ],
+    "par": 12,
+    "starPar": 15
+  },
+  "137": {
+    "short": [
+      1,
+      1,
+      2,
+      7,
+      8,
+      9,
+      9,
+      13,
+      13,
+      14,
+      14,
+      14,
+      20,
+      20,
+      20
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      6,
+      8,
+      9,
+      9,
+      12,
+      12,
+      12,
+      14,
+      14,
+      14,
+      20,
+      20,
+      20
+    ],
+    "par": 15,
+    "starPar": 18
+  },
+  "138": {
+    "short": [
+      3,
+      3,
+      3,
+      4,
+      5,
+      5,
+      5,
+      8,
+      8,
+      8,
+      11,
+      17,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      5,
+      5,
+      5,
+      8,
+      8,
+      8,
+      9,
+      9,
+      10,
+      11,
+      15,
+      15,
+      15,
+      16,
+      16,
+      16,
+      17,
+      23,
+      23,
+      23
+    ],
+    "par": 15,
+    "starPar": 20
+  },
+  "139": {
+    "short": [
+      5,
+      5,
+      5,
+      12,
+      12,
+      12,
+      13,
+      15,
+      18,
+      18,
+      19,
+      21
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      3,
+      5,
+      5,
+      5,
+      7,
+      7,
+      7,
+      8,
+      8,
+      8
+    ],
+    "par": 12,
+    "starPar": 13
+  },
+  "140": {
+    "short": [
+      12,
+      13,
+      14,
+      16,
+      16,
+      18,
+      18,
+      18,
+      19
+    ],
+    "stars": [
+      6,
+      6,
+      6,
+      7,
+      8,
+      9,
+      9,
+      9,
+      12,
+      15,
+      15,
+      16,
+      16,
+      18,
+      18,
+      18,
+      19
+    ],
+    "par": 9,
+    "starPar": 17
+  },
+  "141": {
+    "short": [
+      0,
+      0,
+      3,
+      3,
+      4,
+      5,
+      6,
+      6,
+      7,
+      8,
+      8,
+      9,
+      10,
+      10,
+      11,
+      14,
+      16
+    ],
+    "stars": [
+      0,
+      0,
+      3,
+      3,
+      4,
+      5,
+      6,
+      8,
+      11,
+      12,
+      12,
+      12,
+      13,
+      13,
+      13,
+      19,
+      19,
+      19,
+      20,
+      20,
+      20
+    ],
+    "par": 17,
+    "starPar": 21
+  },
+  "142": {
+    "short": [
+      1,
+      1,
+      6,
+      6,
+      12,
+      17,
+      17,
+      17,
+      18,
+      19,
+      21,
+      23,
+      23
+    ],
+    "stars": [
+      1,
+      1,
+      7,
+      8,
+      9,
+      9,
+      9,
+      14,
+      14,
+      14,
+      15,
+      15,
+      15,
+      17,
+      17,
+      17,
+      20,
+      20,
+      21,
+      23,
+      23
+    ],
+    "par": 13,
+    "starPar": 21
+  },
+  "143": {
+    "short": [
+      2,
+      2,
+      3,
+      6,
+      6,
+      6,
+      7,
+      8,
+      8,
+      9,
+      9,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      17
+    ],
+    "stars": [
+      2,
+      2,
+      3,
+      6,
+      6,
+      6,
+      7,
+      8,
+      8,
+      9,
+      9,
+      11,
+      12,
+      13,
+      14,
+      20,
+      20,
+      20,
+      21,
+      22,
+      23,
+      23,
+      23
+    ],
+    "par": 19,
+    "starPar": 23
+  },
+  "144": {
+    "short": [
+      1,
+      1,
+      1,
+      2,
+      8,
+      8,
+      8,
+      9,
+      9,
+      13,
+      15,
+      15,
+      16,
+      19,
+      20
+    ],
+    "stars": [
+      1,
+      1,
+      1,
+      2,
+      3,
+      4,
+      4,
+      4,
+      9,
+      10,
+      10,
+      10,
+      13,
+      15,
+      15,
+      16,
+      19,
+      20
+    ],
+    "par": 15,
+    "starPar": 18
+  },
+  "145": {
+    "short": [
+      2,
+      2,
+      9,
+      9,
+      12,
+      13,
+      14,
+      18,
+      18,
+      20,
+      21,
+      21,
+      21
+    ],
+    "stars": [
+      1,
+      1,
+      6,
+      6,
+      6,
+      7,
+      7,
+      7,
+      9,
+      9,
+      12,
+      18,
+      18,
+      20,
+      21,
+      21,
+      21
+    ],
+    "par": 13,
+    "starPar": 17
+  },
+  "146": {
+    "short": [
+      10,
+      10,
+      11,
+      13,
+      13,
+      14,
+      14,
+      14,
+      16,
+      16,
+      16,
+      17,
+      20,
+      20,
+      20,
+      23,
+      23
+    ],
+    "stars": [
+      3,
+      3,
+      3,
+      4,
+      5,
+      5,
+      5,
+      9,
+      13,
+      13,
+      14,
+      14,
+      14,
+      17,
+      20,
+      20,
+      20,
+      23,
+      23
+    ],
+    "par": 17,
+    "starPar": 19
+  },
+  "147": {
+    "short": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      6,
+      6,
+      7,
+      10,
+      13,
+      15,
+      16
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      6,
+      6,
+      7,
+      10,
+      16,
+      19,
+      19,
+      19,
+      20,
+      21,
+      22,
+      22,
+      22
+    ],
+    "par": 12,
+    "starPar": 18
+  },
+  "148": {
+    "short": [
+      4,
+      5,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      14,
+      18,
+      19
+    ],
+    "stars": [
+      0,
+      0,
+      0,
+      1,
+      2,
+      2,
+      2,
+      4,
+      5,
+      6,
+      9,
+      10,
+      11,
+      12,
+      18,
+      19
+    ],
+    "par": 12,
+    "starPar": 16
+  },
+  "149": {
+    "short": [
+      4,
+      5,
+      5,
+      5,
+      7,
+      7,
+      7,
+      8,
+      10,
+      10,
+      10,
+      13,
+      15,
+      17,
+      23,
+      23,
+      23
+    ],
+    "stars": [
+      2,
+      2,
+      2,
+      3,
+      5,
+      5,
+      5,
+      7,
+      7,
+      7,
+      8,
+      8,
+      13,
+      15,
+      17,
+      23,
+      23,
+      23
+    ],
+    "par": 17,
+    "starPar": 18
+  },
+  "150": {
+    "short": [
+      4,
+      5,
+      9,
+      9,
+      10,
+      10,
+      11,
+      12,
+      17,
+      18,
+      18,
+      18,
+      19,
+      21,
+      23
+    ],
+    "stars": [
+      9,
+      9,
+      10,
+      12,
+      15,
+      15,
+      15,
+      16,
+      16,
+      16,
+      18,
+      18,
+      18,
+      19,
+      21,
+      21
+    ],
+    "par": 15,
+    "starPar": 16
+  }
+};

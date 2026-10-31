@@ -43,6 +43,9 @@ export interface AuthoredLevelSpec {
   characterWorldId?: CharacterWorldId;
   cracked?: number[];
   gate?: { tile: number; trigger: number };
+  walls?: number[];
+  slows?: number[];
+  slow?: number[];
 }
 
 export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
@@ -171,6 +174,16 @@ export function buildAuthoredLevel(spec: AuthoredLevelSpec): Level {
   // Place cracked tiles
   for (const c of spec.cracked ?? []) {
     tiles[c] = { ...tiles[c], terrain: "cracked" };
+  }
+
+  // Place wall tiles
+  for (const w of spec.walls ?? []) {
+    tiles[w] = { ...tiles[w], terrain: "wall" };
+  }
+
+  // Place slow tiles
+  for (const s of (spec.slows ?? spec.slow ?? [])) {
+    tiles[s] = { ...tiles[s], terrain: "slow" };
   }
 
   // Place decoys

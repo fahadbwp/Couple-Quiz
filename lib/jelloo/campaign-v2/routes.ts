@@ -22,6 +22,18 @@ export function pandaLevelHref(id:number){
 export function pandaAliasDestination(level:unknown){
  return typeof level==="string"&&/^[1-9]\d*$/.test(level)&&Number(level)>=51&&Number(level)<=100?pandaLevelHref(Number(level)):PANDA_PATH;
 }
+
+export const CAT_PATH=`${BUNNY_PATH}/cat`;
+export const CAT_LEVELS_PATH=`${CAT_PATH}?view=levels`;
+export const CAT_WORLDS_PATH=`${CAT_PATH}?view=worlds`;
+export function catLevelHref(id:number){
+ if(!Number.isInteger(id)||id<101||id>150)throw new Error("Invalid Cat world level");
+ return `${CAT_PATH}?level=${id}`;
+}
+export function catAliasDestination(level:unknown){
+ return typeof level==="string"&&/^[1-9]\d*$/.test(level)&&Number(level)>=101&&Number(level)<=150?catLevelHref(Number(level)):CAT_PATH;
+}
+
 export function usesBunnyShell(path:string){return (path===BUNNY_PATH||path.startsWith(`${BUNNY_PATH}/`))&&!path.startsWith(PREVIOUS_WORLD_PATH)}
 
 /** Current local preview; production stays on the released campaign until separately approved. */

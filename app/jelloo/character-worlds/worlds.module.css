@@ -87,3 +87,12 @@
 .cell[data-cracked=true]{background:radial-gradient(ellipse at 30% 20%,#fbf4dc,#e6cca2 65%,#c99a68);box-shadow:inset 0 3px 3px #fff8,0 4px 0 #8b5a2b}
 .cracked{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#85471d;pointer-events:none;z-index:3;text-shadow:0 1px 1px #ffe8b1}
 .gate{position:absolute;top:2px;left:2px;font-size:16px;line-height:1;pointer-events:none;z-index:4;filter:drop-shadow(0 2px 2px #1b433266)}
+
+/* Rooftop Villa home indicator and puzzle features for Cat Cozy Rooftops */
+.villa{position:absolute;left:10%;top:-10%;width:80%;height:95%;pointer-events:none;z-index:2;filter:drop-shadow(0 3px 2px #7f4f2444)}
+.villa::before{content:"";position:absolute;left:5%;top:8%;width:90%;height:40%;background:linear-gradient(135deg,#e76f51,#c85a3c);clip-path:polygon(50% 0%, 100% 85%, 0% 85%);border-radius:3px}
+.villa::after{content:"";position:absolute;left:18%;top:44%;width:64%;height:50%;background:linear-gradient(180deg,#fefae0,#faedcd);border:2px solid #8c532b;border-radius:5px}
+.cell[data-wall=true]{background:radial-gradient(ellipse at 30% 20%,#f0cbb1,#dd9b70 65%,#a85d34);box-shadow:inset 0 3px 3px #fff8,0 4px 0 #703314}
+.wall{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#8f3d1b;pointer-events:none;z-index:3;text-shadow:0 1px 1px #ffd8be}
+.cell[data-slow=true]{background:radial-gradient(ellipse at 30% 20%,#e8dfd8,#c8baa9 65%,#9c8974);box-shadow:inset 0 3px 3px #fff8,0 4px 0 #594c3d}
+.slow{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#5a4a38;pointer-events:none;z-index:3;text-shadow:0 1px 1px #fff0db}
