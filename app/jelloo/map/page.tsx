@@ -1,12 +1,19 @@
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import { allBunnyLevels } from "@/lib/jelloo/campaign-v2/bunny-provider";
+import BunnyCampaign from "../character-worlds/BunnyCampaign";
 
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Adventure Map — Jelloo",
-  description: "Character Worlds adventure map.",
-  robots: "noindex",
+  title: "Game Map — Jelloo",
+  description: "Jelloo Game Map: explore all character worlds.",
+  robots: { index: false, follow: false },
 };
 
 export default function MapPage() {
-  redirect("/jelloo/character-worlds?view=levels");
+  return (
+    <Suspense fallback={<p>Opening Game Map…</p>}>
+      <BunnyCampaign levels={allBunnyLevels()} defaultView="worlds" />
+    </Suspense>
+  );
 }

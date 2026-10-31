@@ -15,7 +15,7 @@ import css from "./worlds.module.css";
 import scene from "./scene.module.css";
 type Snapshot = {save: BunnySave; raw: string};
 const href = (id: number) => worldLevelHref(id);
-export default function BunnyCampaign({levels}: {levels: BunnyLevel[]}) {
+export default function BunnyCampaign({levels, defaultView}: {levels: BunnyLevel[]; defaultView?: "play" | "levels" | "worlds"}) {
   const router = useRouter(), query = useSearchParams();
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const snapshotRef=useRef<Snapshot|null>(null);
@@ -62,7 +62,7 @@ export default function BunnyCampaign({levels}: {levels: BunnyLevel[]}) {
     };
     addEventListener("storage", changed); return () => removeEventListener("storage", changed);
   }, []);
-  const requested=query.get("level"), selectedView=query.get("view");
+  const requested=query.get("level"), selectedView=query.get("view") ?? defaultView ?? null;
   const resume=snapshot?bunnyResume(snapshot.save):null;
   const {view,level:id,canonicalize:openingLevel}=bunnyScreen(resume,requested,selectedView);
   const level=levels.find(item=>item.id===id);
@@ -81,7 +81,7 @@ export default function BunnyCampaign({levels}: {levels: BunnyLevel[]}) {
       <Link href={BUNNY_PATH} className={scene.brand}>Jelloo<span>✦</span></Link>
       <nav aria-label="Adventure navigation">
         <Link href={BUNNY_LEVELS_PATH} aria-current={view==="levels"?"page":undefined} className={scene.iconButton} aria-label="Levels"><SceneIcon name="levels"/></Link>
-        <Link href={BUNNY_WORLDS_PATH} aria-current={view==="worlds"?"page":undefined} className={scene.iconButton} aria-label="Worlds"><SceneIcon name="worlds"/></Link>
+        <Link href={BUNNY_WORLDS_PATH} aria-current={view==="worlds"?"page":undefined} className={scene.iconButton} aria-label="Game Map"><SceneIcon name="worlds"/></Link>
       </nav>
     </header>
     {error?<section role="alert" className={css.notice}><h1>Progress needs attention</h1><p>{error}</p><button onClick={()=>location.reload()}>Reload</button></section>

@@ -180,7 +180,7 @@ export default function PandaCampaign({ levels }: { levels: PandaLevel[] }) {
             href={PANDA_WORLDS_PATH}
             aria-current={view === "worlds" ? "page" : undefined}
             className={scene.iconButton}
-            aria-label="Worlds"
+            aria-label="Game Map"
           >
             <SceneIcon name="worlds" />
           </Link>

@@ -205,8 +205,8 @@ export function CatWorldAtlas({
   pandaStars?: number;
 }) {
   return (
-    <section className={s.atlas} aria-label="Worlds">
-      <h1 className={s.atlasTitle}>Worlds</h1>
+    <section className={s.atlas} aria-label="Game Map">
+      <h1 className={s.atlasTitle}>Game Map</h1>
       <div className={s.islands}>
         <svg viewBox="0 0 400 1500" className={s.worldPath} preserveAspectRatio="none" aria-hidden="true">
           <path

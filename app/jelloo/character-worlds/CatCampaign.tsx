@@ -187,7 +187,7 @@ export default function CatCampaign({ levels }: { levels: CatLevel[] }) {
             href={CAT_WORLDS_PATH}
             aria-current={view === "worlds" ? "page" : undefined}
             className={scene.iconButton}
-            aria-label="Worlds"
+            aria-label="Game Map"
           >
             <SceneIcon name="worlds" />
           </Link>

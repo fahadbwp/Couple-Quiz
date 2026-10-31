@@ -10,11 +10,11 @@ export function bunnyAliasDestination(level:unknown) {
 }
 
 export const BUNNY_LEVELS_PATH=`${BUNNY_PATH}?view=levels`;
-export const BUNNY_WORLDS_PATH=`${BUNNY_PATH}?view=worlds`;
+export const BUNNY_WORLDS_PATH="/jelloo/map";
 
 export const PANDA_PATH=`${BUNNY_PATH}/panda`;
 export const PANDA_LEVELS_PATH=`${PANDA_PATH}?view=levels`;
-export const PANDA_WORLDS_PATH=`${PANDA_PATH}?view=worlds`;
+export const PANDA_WORLDS_PATH="/jelloo/map";
 export function pandaLevelHref(id:number){
  if(!Number.isInteger(id)||id<51||id>100)throw new Error("Invalid Panda world level");
  return `${PANDA_PATH}?level=${id}`;
@@ -25,7 +25,7 @@ export function pandaAliasDestination(level:unknown){
 
 export const CAT_PATH=`${BUNNY_PATH}/cat`;
 export const CAT_LEVELS_PATH=`${CAT_PATH}?view=levels`;
-export const CAT_WORLDS_PATH=`${CAT_PATH}?view=worlds`;
+export const CAT_WORLDS_PATH="/jelloo/map";
 export function catLevelHref(id:number){
  if(!Number.isInteger(id)||id<101||id>150)throw new Error("Invalid Cat world level");
  return `${CAT_PATH}?level=${id}`;
