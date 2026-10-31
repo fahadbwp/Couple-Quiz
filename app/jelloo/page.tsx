@@ -12,6 +12,36 @@ export const metadata = pageMetadata(
 export default function JellooPage() {
   return (
     <>
+      <div style={{
+        background: "linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7028e4 100%)",
+        padding: "0.85rem 1.25rem",
+        color: "white",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "1rem",
+        flexWrap: "wrap",
+        textAlign: "center",
+      }}>
+        <span style={{ fontWeight: 700, fontSize: "0.95rem" }}>
+          ✨ Discover the new Character Worlds (Bunny, Panda &amp; Cat · 150 Levels)!
+        </span>
+        <Link
+          href="/jelloo/character-worlds"
+          style={{
+            background: "white",
+            color: "#d94f70",
+            fontWeight: 800,
+            padding: "0.45rem 1rem",
+            borderRadius: "999px",
+            textDecoration: "none",
+            fontSize: "0.85rem",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+          }}
+        >
+          Play New Worlds →
+        </Link>
+      </div>
       <JellooGame />
       <section className={styles.main} aria-labelledby="about-jelloo">
         <h2 id="about-jelloo" className={styles.sectionTitle}>A little path home</h2>

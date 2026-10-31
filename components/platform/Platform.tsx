@@ -47,7 +47,7 @@ export function PlatformHeader({
         <Link
           target={preserveSession ? "_blank" : undefined}
           rel={preserveSession ? "noopener" : undefined}
-          href={jellooEntryHref(process.env.NODE_ENV)}
+          href="/jelloo/character-worlds"
         >
           Jelloo
         </Link>
@@ -139,7 +139,7 @@ export function PlatformFooter() {
           Friendship Quiz
         </Link>
         <Link
-          href={jellooEntryHref(process.env.NODE_ENV)}
+          href="/jelloo/character-worlds"
         >
           Jelloo
         </Link>

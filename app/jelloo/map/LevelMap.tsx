@@ -79,6 +79,49 @@ export default function LevelMap() {
           </Link>
         </header>
 
+        <div style={{
+          background: "linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7028e4 100%)",
+          borderRadius: "16px",
+          padding: "1.25rem 1.5rem",
+          margin: "1rem 0 1.5rem",
+          color: "white",
+          boxShadow: "0 10px 25px rgba(255, 117, 140, 0.35)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}>
+          <div>
+            <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "1px", fontWeight: 800, background: "rgba(255,255,255,0.25)", padding: "2px 8px", borderRadius: "99px" }}>
+              ✨ NEW CAMPAIGN LIVE
+            </span>
+            <h3 style={{ fontSize: "1.35rem", fontWeight: 800, margin: "0.4rem 0 0.2rem", color: "#ffffff" }}>
+              Character Worlds (Bunny, Panda & Cat)
+            </h3>
+            <p style={{ margin: 0, opacity: 0.95, fontSize: "0.9rem", color: "#ffffff" }}>
+              150 all-new puzzles across Pink Candy Land, Bamboo Jungle &amp; Cozy Rooftops!
+            </p>
+          </div>
+          <Link
+            href="/jelloo/character-worlds"
+            style={{
+              background: "#ffffff",
+              color: "#d94f70",
+              fontWeight: 800,
+              padding: "0.75rem 1.4rem",
+              borderRadius: "999px",
+              textDecoration: "none",
+              fontSize: "0.95rem",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              display: "inline-block",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Play New Worlds →
+          </Link>
+        </div>
+
         <div className={styles.titleRow}>
           <div>
             <h2 className={styles.title}>🗺️ Adventure Map</h2>
