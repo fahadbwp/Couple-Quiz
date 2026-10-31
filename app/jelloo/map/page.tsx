@@ -1,12 +1,12 @@
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import LevelMap from "./LevelMap";
 
 export const metadata: Metadata = {
   title: "Adventure Map — Jelloo",
-  description: "All 100 Jelloo Adventure levels. See your progress, replay completed levels and pick up where you left off.",
+  description: "Character Worlds adventure map.",
   robots: "noindex",
 };
 
 export default function MapPage() {
-  return <LevelMap />;
+  redirect("/jelloo/character-worlds?view=levels");
 }

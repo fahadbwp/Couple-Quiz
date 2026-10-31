@@ -9,7 +9,7 @@ import { worldForLevel } from "../lib/jelloo/worlds";
 test("Task 1: Platform and library primary Jelloo action routes to Level Map", () => {
   const jellooGame = GAMES.find(g => g.id === "jelloo");
   assert.ok(jellooGame, "Jelloo game must be defined in platform GAMES library");
-  assert.equal(jellooGame.playUrl, "/jelloo/map", "Primary Jelloo entry must route to /jelloo/map");
+  assert.equal(jellooGame.playUrl, "/jelloo/character-worlds", "Primary Jelloo entry must route to /jelloo/character-worlds");
   assert.equal(jellooGame.action, "Play Jelloo");
 
   const quizGame = GAMES.find(g => g.id === "friendship-quiz");

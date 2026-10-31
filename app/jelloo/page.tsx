@@ -1,59 +1,11 @@
-import JellooGame from "./JellooGame";
-import { pageMetadata, sitePolicy, jsonLd } from "@/lib/platform/site";
-import { GAMES, gameSchema } from "@/lib/platform/games";
-import Link from "next/link";
-import styles from "@/components/platform/platform.module.css";
+import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 
-export const metadata = pageMetadata(
-  "Jelloo — Free Online Path Puzzle Game",
-  "Rotate path tiles, guide your Jelly home and unlock new character powers in Jelloo. Play the free puzzle adventure, Daily Puzzle or relaxing Zen Mode.",
-  "/jelloo",
-);
+export const metadata: Metadata = {
+  title: "Jelloo — Free Online Path Puzzle Game",
+  description: "Rotate path tiles, guide your Jelly home and unlock new character powers in Jelloo Character Worlds.",
+};
+
 export default function JellooPage() {
-  return (
-    <>
-      <div style={{
-        background: "linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #7028e4 100%)",
-        padding: "0.85rem 1.25rem",
-        color: "white",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "1rem",
-        flexWrap: "wrap",
-        textAlign: "center",
-      }}>
-        <span style={{ fontWeight: 700, fontSize: "0.95rem" }}>
-          ✨ Discover the new Character Worlds (Bunny, Panda &amp; Cat · 150 Levels)!
-        </span>
-        <Link
-          href="/jelloo/character-worlds"
-          style={{
-            background: "white",
-            color: "#d94f70",
-            fontWeight: 800,
-            padding: "0.45rem 1rem",
-            borderRadius: "999px",
-            textDecoration: "none",
-            fontSize: "0.85rem",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-          }}
-        >
-          Play New Worlds →
-        </Link>
-      </div>
-      <JellooGame />
-      <section className={styles.main} aria-labelledby="about-jelloo">
-        <h2 id="about-jelloo" className={styles.sectionTitle}>A little path home</h2>
-        <p>Jelloo is a free online path puzzle game. Rotate tiles to connect a route from your Jelly to its home. Each quarter-turn uses one move. Collect golden stars along the way and finish before your moves run out.</p>
-        <p>Start with Bunny and discover new pals and worlds as your adventure grows. Your progress stays in this browser. For a different pace, try the <Link href="/jelloo/daily">Daily Puzzle</Link> or relax without a move limit in <Link href="/jelloo/zen">Zen Mode</Link>.</p>
-      </section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: jsonLd(gameSchema(GAMES[0], sitePolicy().origin)),
-        }}
-      />
-    </>
-  );
+  redirect("/jelloo/character-worlds");
 }

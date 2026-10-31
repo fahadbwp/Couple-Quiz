@@ -19,7 +19,7 @@ export const GAMES = [
     description:
       "Rotate the paths, guide your Jelly home, and discover new pals with their own puzzle powers.",
     category: "Puzzle Adventure",
-    playUrl: "/jelloo/map",
+    playUrl: "/jelloo/character-worlds",
     artwork: {
       kind: "bunny-sprite",
       reference: "/jelly-pals/bunny-blink-reference-v1.png",
