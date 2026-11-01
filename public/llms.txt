@@ -1,0 +1,36 @@
+# PlayNudge — Free Online Browser Games Platform
+
+> PlayNudge (https://playnudge.netlify.app) is a free web games platform designed for instant play on mobile, tablet, and desktop without app downloads, accounts, or subscriptions.
+
+## Available Games
+
+### 1. Jelloo — Character Worlds Path Puzzle Adventure
+- **Overview**: A relaxing yet strategic tile-rotation path puzzle adventure featuring 150 handcrafted levels across 3 character worlds.
+- **Objective**: Rotate path tiles (straight, corner, tee) to connect an unbroken route from your Jelly mascot to its home before running out of moves.
+- **Scoring**: Earn up to 3 golden stars per level by taking strategic detour routes to gather collectibles.
+- **Character Worlds & Mechanics**:
+  - **World 1: Pink Candy Land (Levels 1–50, 4×4 board)**: Star character Bunny navigates strawberry cottages and frosting paths. Power: Bunny can leap across 1 gap per run.
+  - **World 2: Bamboo Jungle (Levels 51–100, 5×4 board)**: Star character Panda explores bamboo pagodas. Power: Panda crushes cracked stone tiles to reveal hidden shortcuts. Unlock requirement: Bunny Level 50 complete + 120 Bunny stars.
+  - **World 3: Cozy Rooftops (Levels 101–150, 6×4 board)**: Star character Cat prowls terracotta roofs and chimneys. Power: Cat walks along stone wall parapets (impassable to others) and sprints across slow gravel tiles without speed penalty (210ms vs 840ms). Unlock requirement: Panda Level 100 complete + 120 Panda stars.
+- **Controls & Input**: Tap or click any unlocked tile to rotate 90 degrees clockwise. Automatic start when an unbroken route connects to home.
+- **Primary Game URLs**:
+  - Game Map: https://playnudge.netlify.app/jelloo/map
+  - Direct Play: https://playnudge.netlify.app/jelloo/character-worlds
+  - Cat World: https://playnudge.netlify.app/jelloo/character-worlds/cat
+  - Panda World: https://playnudge.netlify.app/jelloo/character-worlds/panda
+
+### 2. Friendship Quiz — 10-Question BFF Challenge
+- **Overview**: A viral friendship quiz game where creators answer 10 questions about their habits, preferences, and personality, then share a custom challenge link with friends on WhatsApp.
+- **Features**:
+  - 10 curated questions with photographic visual option cards.
+  - Secret 4-to-6 digit creator PIN protecting private scoreboards and answer keys.
+  - Live ranking leaderboard showing friend scores, completion times, and match percentage.
+  - Zero signup required for friends: friends simply enter their nickname and answer.
+- **Primary Quiz URLs**:
+  - Quiz Landing: https://playnudge.netlify.app/quiz
+  - Quiz Creator: https://playnudge.netlify.app/quiz/create
+
+## Privacy, Security & Platform Architecture
+- **No Downloads**: Runs entirely inside modern browser runtimes (Chrome, Safari, Firefox, Edge).
+- **Client-Side Progress**: Game progress, stars, and unlock gates persist safely in browser `localStorage` protected with Web Locks API.
+- **Privacy Boundary**: Private player quiz results and creator management links are strictly `noindex` and never exposed in public search catalogs.

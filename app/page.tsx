@@ -67,12 +67,30 @@ export default function Home() {
         dangerouslySetInnerHTML={{
           __html: jsonLd({
             "@context": "https://schema.org",
-            "@type": "WebSite",
-            "@id": `${origin}/#website`,
-            name: "PlayNudge",
-            url: origin,
-            inLanguage: "en",
-            description: "Free browser puzzle and friendship games.",
+            "@graph": [
+              {
+                "@type": "WebSite",
+                "@id": `${origin}/#website`,
+                name: "PlayNudge",
+                url: origin,
+                inLanguage: "en",
+                description: "Free browser puzzle and friendship games.",
+                publisher: {
+                  "@type": "Organization",
+                  "@id": `${origin}/#organization`,
+                  name: "PlayNudge",
+                  url: origin,
+                  logo: `${origin}/playnudge.svg`,
+                },
+              },
+              {
+                "@type": "Organization",
+                "@id": `${origin}/#organization`,
+                name: "PlayNudge",
+                url: origin,
+                logo: `${origin}/playnudge.svg`,
+              },
+            ],
           }),
         }}
       />

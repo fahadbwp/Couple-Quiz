@@ -220,9 +220,7 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
                 Level map →
               </Link>
             ) : (
-              <button className={css.primary} onClick={() => act({type: "reset"})}>
-                Try again
-              </button>
+              <button className={css.primary} onClick={() => act({type: "reset"})}>Try again</button>
             )}
             <div className={css.controls}>
               {status === "won" && <button onClick={() => act({type: "reset"})}>Replay</button>}

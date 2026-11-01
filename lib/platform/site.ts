@@ -84,6 +84,7 @@ export const PUBLIC_PATHS = [
   "/quiz",
   "/quiz/create",
   "/jelloo",
+  "/jelloo/map",
 ] as const;
 
 export function jsonLd(data: unknown): string {
