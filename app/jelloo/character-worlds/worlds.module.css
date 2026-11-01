@@ -96,3 +96,100 @@
 .wall{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#8f3d1b;pointer-events:none;z-index:3;text-shadow:0 1px 1px #ffd8be}
 .cell[data-slow=true]{background:radial-gradient(ellipse at 30% 20%,#e8dfd8,#c8baa9 65%,#9c8974);box-shadow:inset 0 3px 3px #fff8,0 4px 0 #594c3d}
 .slow{position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:#5a4a38;pointer-events:none;z-index:3;text-shadow:0 1px 1px #fff0db}
+
+
+/* ========================================================
+   PANDA BAMBOO JUNGLE THEME
+   ======================================================== */
+.puzzle[data-character="panda"] {
+  background: #fbfef9;
+  border-color: #cde7c0;
+  box-shadow: 0 10px 30px #204c1314;
+}
+.puzzle[data-character="panda"] .eyebrow {
+  color: #357723;
+}
+.puzzle[data-character="panda"] .moves {
+  background: #e9f7de;
+  border: 1px solid #c8e8b6;
+  color: #275218;
+}
+.puzzle[data-character="panda"] .moves b {
+  color: #1e4511;
+}
+.puzzle[data-character="panda"] .hint {
+  color: #3b6b29;
+}
+
+/* Bamboo Garden Scenery */
+.garden[data-character="panda"] {
+  background: #d8edd0 url('/jelloo/worlds/garden-bamboo-v1.png') center/cover;
+  box-shadow: inset 0 0 0 1px #ffffffaa, 0 8px 24px #264e1d24;
+}
+
+/* Bamboo Stalk Board Frame */
+.board[data-character="panda"] {
+  background: linear-gradient(135deg, #4d8f33, #336e1f);
+  border: 7px solid #7ecc53;
+  border-radius: 27px;
+  box-shadow: inset 0 3px 3px #d8ffbcaa, 0 3px 0 #6dbb42, 0 9px 0 #214b14, 0 15px 17px #1c3b1244;
+}
+
+/* Fresh Mint-Jade Bamboo Jelly Tiles */
+.board[data-character="panda"] .cell {
+  background: radial-gradient(ellipse at 24% 12%, #f2fceb 0%, #cbf2ba 38%, #a4e18e 78%, #88d470 100%);
+  border: 1px solid #c8f5b4;
+  box-shadow: inset 0 3px 2px #fffd, inset -2px -5px 4px #4c963655, 0 4px 0 #3b7b28, 0 6px 3px #1f4d1344;
+}
+.board[data-character="panda"] .cell::after {
+  background: linear-gradient(90deg, #ffff, #ffffff66);
+}
+.board[data-character="panda"] .cell:has(button:enabled:hover) {
+  transform: translateY(-1px);
+  box-shadow: inset 0 3px 2px #fffd, 0 5px 0 #3b7b28, 0 7px 5px #1f4d1333;
+}
+.board[data-character="panda"] .cell:has(button:enabled:active) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 2px #fff9, 0 2px 0 #3b7b28;
+}
+.board[data-character="panda"] .cell[data-visited="true"] {
+  background: radial-gradient(ellipse at 24% 12%, #fffde8, #d4f7bc 55%, #aee394);
+  animation: sweetLanding 340ms ease-out;
+}
+.board[data-character="panda"] .cell[data-gap="true"] {
+  background: linear-gradient(#395e2f, #4d7a40);
+  border-color: #436e38;
+  box-shadow: inset 0 4px 9px #16361066;
+}
+
+/* Golden Sunshine Path through Bamboo */
+.board[data-character="panda"] .cell path {
+  stroke: #fff4b8;
+  stroke-width: 25;
+}
+.board[data-character="panda"] .cell path.roadRim {
+  stroke: #48862b;
+  stroke-width: 34;
+}
+.board[data-character="panda"] .cell path.roadEdge {
+  stroke: #f3be3a;
+  stroke-width: 29;
+}
+.board[data-character="panda"] .cell>svg,
+.board[data-character="panda"] .cell button svg {
+  filter: drop-shadow(0 2px 0 #285418);
+}
+.board[data-character="panda"] .marker {
+  background: #397327;
+  color: #f2fbe8;
+  border: 1px solid #5aa143;
+}
+
+@media(max-width:480px) {
+  .board[data-character="panda"] {
+    box-shadow: inset 0 2px 2px #d8ffbcaa, 0 6px 0 #214b14, 0 12px 16px #1c3b1230;
+  }
+  .board[data-character="panda"] .cell {
+    box-shadow: inset 0 2px 1px #fffd, inset -1px -2px 3px #4c963655, 0 3px 0 #3b7b28, 0 4px 2px #1f4d1330;
+  }
+}

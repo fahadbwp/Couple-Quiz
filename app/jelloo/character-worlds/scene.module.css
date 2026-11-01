@@ -7,3 +7,54 @@
 .island[data-world="1"],.island[data-world="3"]{margin-left:auto;margin-right:3%}.island[data-world="2"],.island[data-world="4"]{margin-left:3%;margin-right:auto}
 
 .scene button.node:disabled{opacity:1}.node:disabled .nodeFace{color:#715269}.scene [hidden]{display:none!important}
+
+
+/* ========================================================
+   PANDA BAMBOO JUNGLE SCENE & HUD
+   ======================================================== */
+.scene[data-world="panda"] {
+  background: radial-gradient(ellipse at 20% 20%, #eefbe8, transparent 50%), linear-gradient(#effaeb, #e1f4d9);
+}
+.scene[data-world="panda"] .hud {
+  background: #f4faf1e8;
+  border-bottom: 1px solid #cae3bd60;
+}
+.scene[data-world="panda"] .brand {
+  color: #2b6a1c;
+}
+.scene[data-world="panda"] .levelBadge {
+  color: #265518;
+}
+.scene[data-world="panda"] .levelBadge>span:first-child {
+  color: #699f57;
+}
+.scene[data-world="panda"] .iconButton {
+  color: #2b6a1c;
+  background: linear-gradient(#fff, #e4f5dc);
+  border: 1px solid #bfdfb2;
+  box-shadow: 0 3px #9fc790;
+}
+.scene[data-world="panda"] .iconButton[aria-current=page] {
+  background: linear-gradient(#89d667, #53a32f);
+  color: #123408;
+}
+.scene[data-world="panda"] .worldTitle {
+  color: #265518;
+}
+.scene[data-world="panda"] .path {
+  filter: drop-shadow(0 3px 0 #7cb964);
+}
+.scene[data-world="panda"] .nodeFace {
+  background: linear-gradient(145deg, #f7fdf4, #d3f3c3 55%, #9ddc85);
+  border: 3px solid #fffd;
+  box-shadow: 0 6px 0 #6ba852, 0 9px 8px #264e1d26, inset 0 -3px #8ecc74;
+  color: #235215;
+}
+.scene[data-world="panda"] .node[data-current=true] .nodeFace {
+  background: linear-gradient(#6cc142, #479624);
+  box-shadow: 0 0 0 5px #eefde4, 0 6px 0 #2c6814;
+  color: white;
+}
+.scene[data-world="panda"] .node[data-current=true] b {
+  text-shadow: 0 1px #1d480d;
+}

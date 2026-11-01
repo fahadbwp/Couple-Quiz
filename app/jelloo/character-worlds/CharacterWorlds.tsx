@@ -5,6 +5,8 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import {CHARACTER_WORLDS, getEarnedStarsForWorld, LOCAL_STAR_GATES, type CharacterWorldId} from "@/lib/jelloo/campaign";
 import {initializeCampaignV2, readCampaignV2Save, type CharacterWorldsSave} from "@/lib/jelloo/campaign-save";
 import {previewAccess, persistPreviewWin} from "@/lib/jelloo/campaign-v2/preview-session";
+import {evaluatePandaAccess} from "@/lib/jelloo/campaign-v2/panda-save";
+import {evaluateCatAccess} from "@/lib/jelloo/campaign-v2/cat-save";
 import type {ResolvedWorld1Level} from "@/lib/jelloo/campaign-v2/world1-provider";
 import {gameReducer, initialGame, ports, tracePath, type Action, type Character, type GameState} from "@/lib/jelloo/engine";
 import {BUNNY_PATH,PREVIOUS_WORLD_PATH,worldLevelHref} from "@/lib/jelloo/campaign-v2/routes";
@@ -145,14 +147,26 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
   const canEdit = status === "editing" || status === "blocked";
   const rawMascot = CHARACTER_WORLDS.find(item => item.id === level.characterWorldId)?.mascot ?? level.character ?? "bunny";
   const maxLevel = rawMascot === "cat" ? 150 : rawMascot === "panda" ? 100 : 50;
-  const nextAccess = level.id < maxLevel ? previewAccess(level.id + 1, snapshot.save) : null;
   const world = CHARACTER_WORLDS.find(item => item.id === level.characterWorldId);
   const activeCharacter = world?.mascot ?? level.character ?? "bunny";
+
+  const effectiveCompleted = status === "won" ? Math.max(snapshot.save.completed, level.id) : snapshot.save.completed;
+  const effectiveBest = status === "won"
+    ? { ...snapshot.save.best, [String(level.id)]: Math.max(snapshot.save.best[String(level.id)] ?? 0, score.stars) }
+    : snapshot.save.best;
+
+  const nextAccess = level.id < maxLevel
+    ? activeCharacter === "cat"
+      ? evaluateCatAccess(level.id + 1, effectiveCompleted, effectiveBest, typeof window !== "undefined" ? window.localStorage : undefined)
+      : activeCharacter === "panda"
+        ? evaluatePandaAccess(level.id + 1, effectiveCompleted, effectiveBest, typeof window !== "undefined" ? window.localStorage : undefined)
+        : previewAccess(level.id + 1, { ...snapshot.save, completed: effectiveCompleted, best: effectiveBest })
+    : null;
   return <>
     {!compact&&<nav className={css.gameNav}><Link href={basePath}>{activeCharacter === "cat" ? "← Cozy Rooftops map" : activeCharacter === "panda" ? "← Bamboo Jungle map" : "← Candy Land map"}</Link><span>{activeCharacter === "cat" ? "🐱 Cat" : activeCharacter === "panda" ? "🐼 Panda" : "🐰 Bunny"} · Level {level.id} / {maxLevel}</span></nav>}
-    <section className={css.puzzle}><div className={css.puzzleHeading}><div><p className={css.eyebrow}>{activeCharacter === "cat" ? "COZY ROOFTOPS" : activeCharacter === "panda" ? "BAMBOO JUNGLE" : "PINK CANDY LAND"}</p><h1>{level.title}</h1></div><div className={css.moves}><b>{game.moves} / {level.moveLimit}</b><span>moves</span></div></div>
+    <section className={css.puzzle} data-character={activeCharacter}><div className={css.puzzleHeading}><div><p className={css.eyebrow}>{activeCharacter === "cat" ? "COZY ROOFTOPS" : activeCharacter === "panda" ? "BAMBOO JUNGLE" : "PINK CANDY LAND"}</p><h1>{level.title}</h1></div><div className={css.moves}><b>{game.moves} / {level.moveLimit}</b><span>moves</span></div></div>
       <p hidden={compact} className={css.hint}>{level.hint}</p>
-      <div className={css.garden}><div className={css.board} style={{gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`,maxWidth:compact?"min(560px, max(220px, calc(100svh - 350px)))":undefined}} role="group" aria-label={`Level ${level.id} puzzle, ${grid.rows} rows by ${grid.columns} columns`}>
+      <div className={css.garden} data-character={activeCharacter}><div className={css.board} data-character={activeCharacter} style={{gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`,maxWidth:compact?"min(560px, max(220px, calc(100svh - 350px)))":undefined}} role="group" aria-label={`Level ${level.id} puzzle, ${grid.rows} rows by ${grid.columns} columns`}>
         {tiles.map((tile, index) => {
           const editable = ["straight", "corner", "tee"].includes(tile.kind) && !tile.locked;
           const path = tile.kind === "straight" ? "M0 50H100" : tile.kind === "corner" ? "M50 0V36Q50 50 64 50H100" : tile.kind === "tee" ? "M0 50H100M50 50V0" : "M50 50V0";
@@ -197,8 +211,23 @@ export function CandyPuzzle({level, snapshot, reduced, onWin, next, basePath="/j
           <h2 ref={heading} tabIndex={-1} id="result-title">{status === "won" ? "Sweet! You made it home." : "Out of moves? Try a fresh path."}</h2>
           {status === "won" ? <><p className={css.resultStars} aria-label={`${score.stars} out of 3 stars`}>{"★".repeat(score.stars)}{"☆".repeat(3 - score.stars)}</p><p id="result-description">{game.moves} moves · {score.collected}/{score.total} golden stars collected</p>{resultSaved && !compact && <p>Your best result has been saved.</p>}</> : <p id="result-description">Almost there! Your pal is ready to try again.<br/>{game.moves} / {level.moveLimit} moves used.</p>}
           <div className={css.modalActions}>
-            {status === "won" && (nextAccess?.accessible || (compact && (level.id === 50 || level.id === 100 || level.id === 150))) ? <button className={css.primary} onClick={next}>{(compact && (level.id === 50 || level.id === 100 || level.id === 150)) ? "Worlds" : "Next Level →"}</button> : <button className={css.primary} onClick={() => act({type: "reset"})}>Try again</button>}
-            <div className={css.controls}>{status === "won" && nextAccess?.accessible && <button onClick={() => act({type: "reset"})}>Replay</button>}<Link href={basePath}>Level map</Link></div>
+            {status === "won" && (nextAccess?.accessible || level.id === maxLevel || (compact && (level.id === 50 || level.id === 100 || level.id === 150))) ? (
+              <button className={css.primary} onClick={next}>
+                {level.id === maxLevel ? "Worlds →" : "Next Level →"}
+              </button>
+            ) : status === "won" ? (
+              <Link className={css.primary} href={basePath}>
+                Level map →
+              </Link>
+            ) : (
+              <button className={css.primary} onClick={() => act({type: "reset"})}>
+                Try again
+              </button>
+            )}
+            <div className={css.controls}>
+              {status === "won" && <button onClick={() => act({type: "reset"})}>Replay</button>}
+              <Link href={basePath}>Level map</Link>
+            </div>
           </div>
           {status === "won" && !compact && !nextAccess?.accessible && <p>{level.id === 50 ? "Candy Land complete! Panda’s world is coming in the next batch." : level.id === 100 ? "Bamboo Jungle complete! Replay to collect every star." : level.id === 150 ? "Cozy Rooftops complete! Replay to collect every star." : "The next star gate needs more stars. Replay earlier levels from the map."}</p>}
         </div>
