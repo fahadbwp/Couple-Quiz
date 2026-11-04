@@ -6,6 +6,7 @@ export const PLACEMENTS = {
   "games-after-list": { game: "platform", phase: "idle" },
   "quiz-after-result": { game: "quiz", phase: "result" },
   "jelloo-after-result": { game: "jelloo", phase: "result" },
+  "daily-after-result": { game: "daily-path", phase: "result" },
 } as const;
 
 export type AdPlacement = keyof typeof PLACEMENTS;

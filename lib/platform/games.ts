@@ -1,11 +1,14 @@
 export type Game = {
-  id: "jelloo" | "friendship-quiz";
+  id: "jelloo" | "friendship-quiz" | "daily-path";
   name: string;
+  title?: string;
+  tagline?: string;
+  badge?: string;
   description: string;
   category: string;
   playUrl: string;
   artwork: {
-    kind: "bunny-sprite" | "friends-illustration";
+    kind: "bunny-sprite" | "friends-illustration" | "daily-path-compass";
     reference: string;
   };
   status: "available";
@@ -13,6 +16,28 @@ export type Game = {
   features: readonly string[];
 };
 export const GAMES = [
+  {
+    id: "daily-path",
+    name: "Daily Path",
+    title: "Daily Path",
+    tagline: "Minimalist Daily Path Logic Puzzle",
+    description:
+      "Connect the compass to the goal with tactile rotating tiles. A fresh, deterministic logic puzzle every day with Wordle-style share cards.",
+    category: "Daily Logic Puzzle",
+    playUrl: "/daily",
+    badge: "Today's Challenge",
+    artwork: {
+      kind: "daily-path-compass",
+      reference: "components/daily-path/DailyPathArt.tsx#DailyPathArt",
+    },
+    status: "available",
+    action: "Play Today's Challenge",
+    features: [
+      "Daily at midnight UTC",
+      "Wordle-style share",
+      "Tactile tile rotation",
+    ],
+  },
   {
     id: "jelloo",
     name: "Jelloo",

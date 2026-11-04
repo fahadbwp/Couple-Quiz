@@ -8,7 +8,7 @@ import { GAMES, gameSchema } from "@/lib/platform/games";
 import { pageMetadata, sitePolicy, jsonLd } from "@/lib/platform/site";
 export const metadata = pageMetadata(
   "Free Browser Games — Play Online",
-  "Explore PlayNudge's free browser games: Jelloo Puzzle Adventure and Friendship Quiz. Pick a game and start playing on mobile or desktop.",
+  "Explore PlayNudge's free browser games: Daily Path Logic Puzzle, Jelloo Adventure, and Friendship Quiz. Pick a game and start playing on mobile or desktop.",
   "/games",
 );
 export default function Games() {
@@ -23,7 +23,8 @@ export default function Games() {
           <p className={styles.eyebrow}>The games library</p>
           <h1>What will you play today?</h1>
           <p>
-            Unwind with a path puzzle or challenge your friends. Both games are
+            Tackle today&apos;s path connection challenge, unwind with Jelloo, or
+            challenge your friends. Three original flagship games, completely
             free to play in your browser.
           </p>
         </div>

@@ -8,7 +8,7 @@ import {
 import { pageMetadata, sitePolicy, jsonLd } from "@/lib/platform/site";
 export const metadata = pageMetadata(
   "Free Online Games — Play Puzzle & Friend Games",
-  "Play Jelloo's path puzzles or make a Friendship Quiz to share. Discover free browser games on PlayNudge, with no app download needed.",
+  "Play Daily Path's logic challenges, Jelloo's path puzzles, or make a Friendship Quiz to share. Discover free browser games on PlayNudge, with no app download needed.",
   "/",
 );
 export default function Home() {
@@ -28,15 +28,16 @@ export default function Home() {
             <span>Find your little escape.</span>
           </h1>
           <p>
-            A puzzle to unwind with. A quiz to bring friends together. Pick your
-            kind of fun and play right in your browser.
+            A daily logic puzzle to challenge your mind. An adventure to unwind
+            with. A quiz to bring friends together. Pick your kind of fun and
+            play right in your browser.
           </p>
           <Link className={styles.button} href="/games">
             Explore games <span aria-hidden="true">↗</span>
           </Link>
         </section>
         <section aria-label="Featured games">
-          <p className={styles.sectionTitle}>Two ways to make your day</p>
+          <p className={styles.sectionTitle}>Three ways to make your day</p>
           <GameGrid />
         </section>
         <section className={styles.explore}>
@@ -55,9 +56,10 @@ export default function Home() {
             A little play goes a long way.
           </h2>
           <p>
-            PlayNudge is a home for free browser games. Find your way through
-            Jelloo’s puzzles, or turn everyday things about you into a
-            Friendship Quiz. Play on your phone, tablet or computer.
+            PlayNudge is a home for free browser games. Solve today&apos;s Daily Path
+            puzzle, find your way through Jelloo’s adventures, or turn everyday
+            things about you into a Friendship Quiz. Three original, handcrafted
+            web games designed for your phone, tablet or computer.
           </p>
         </section>
       </main>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {jellooEntryHref} from "@/lib/jelloo/campaign-v2/routes";
 import { FriendsArt } from "@/components/quiz-home/Illustrations";
+import { DailyPathArt } from "@/components/daily-path/DailyPathArt";
 import { GAMES, type Game } from "@/lib/platform/games";
 import styles from "./platform.module.css";
 export function PlatformHeader({
@@ -47,6 +48,13 @@ export function PlatformHeader({
         <Link
           target={preserveSession ? "_blank" : undefined}
           rel={preserveSession ? "noopener" : undefined}
+          href="/daily"
+        >
+          Daily Path
+        </Link>
+        <Link
+          target={preserveSession ? "_blank" : undefined}
+          rel={preserveSession ? "noopener" : undefined}
           href="/jelloo/character-worlds"
         >
           Jelloo
@@ -65,7 +73,13 @@ export function PlatformHeader({
 export function GameArt({ game }: { game: Game }) {
   return (
     <div
-      className={`${styles.art} ${game.id === "jelloo" ? styles.meadow : styles.friends}`}
+      className={`${styles.art} ${
+        game.id === "jelloo"
+          ? styles.meadow
+          : game.id === "daily-path"
+          ? styles.daily
+          : styles.friends
+      }`}
       aria-hidden="true"
     >
       {game.artwork.kind === "bunny-sprite" ? (
@@ -77,12 +91,16 @@ export function GameArt({ game }: { game: Game }) {
           />
           <span className={styles.spark}>✦</span>
         </>
+      ) : game.artwork.kind === "daily-path-compass" ? (
+        <DailyPathArt />
       ) : (
         <FriendsArt />
       )}
       <span className={styles.artLabel}>
         {game.id === "jelloo"
           ? "A little path home"
+          : game.id === "daily-path"
+          ? "Connect the compass"
           : "Made for your group chat"}
       </span>
     </div>
@@ -93,6 +111,7 @@ export function GameCard({ game }: { game: Game }) {
     <article className={styles.card} data-game={game.id}>
       <GameArt game={game} />
       <div className={styles.cardBody}>
+        {game.badge && <span className={styles.badge}>{game.badge}</span>}
         <p className={styles.eyebrow}>{game.category}</p>
         <h2>{game.name}</h2>
         <p>{game.description}</p>
@@ -132,6 +151,11 @@ export function PlatformFooter() {
           href="/games"
         >
           All Games
+        </Link>
+        <Link
+          href="/daily"
+        >
+          Daily Path
         </Link>
         <Link
           href="/quiz"

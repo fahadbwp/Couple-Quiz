@@ -137,7 +137,7 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 26px;
 }
 .card {
@@ -148,6 +148,26 @@
   box-shadow: 0 7px 0 #e9e4f0;
   display: flex;
   flex-direction: column;
+  transition: transform 0.16s, box-shadow 0.16s;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  width: fit-content;
 }
 .art {
   height: 245px;
@@ -164,6 +184,13 @@
   background: #eee6fb;
 }
 .friends svg {
+  width: 280px;
+  height: 210px;
+}
+.daily {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0f2fe 100%);
+}
+.daily svg {
   width: 280px;
   height: 210px;
 }

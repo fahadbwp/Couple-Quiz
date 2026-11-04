@@ -17,9 +17,9 @@ import {
 } from "../lib/quiz/sharing";
 import sitemap from "../app/sitemap";
 import robots from "../app/robots";
-test("platform registry has two unique available games with existing routes and approved art", () => {
-  assert.equal(GAMES.length, 2);
-  assert.equal(new Set(GAMES.map((g) => g.id)).size, 2);
+test("platform registry has three unique available games with existing routes and approved art", () => {
+  assert.equal(GAMES.length, 3);
+  assert.equal(new Set(GAMES.map((g) => g.id)).size, 3);
   for (const game of GAMES) {
     assert.equal(game.status, "available");
     assert.ok(existsSync(`app${game.playUrl}/page.tsx`));

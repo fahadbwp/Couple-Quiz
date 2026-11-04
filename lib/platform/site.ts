@@ -65,7 +65,7 @@ export function pageMetadata(
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: "PlayNudge — Jelloo and Friendship Quiz",
+          alt: "PlayNudge — Daily Path, Jelloo, and Friendship Quiz",
         },
       ],
     },
@@ -85,6 +85,8 @@ export const PUBLIC_PATHS = [
   "/quiz/create",
   "/jelloo",
   "/jelloo/map",
+  "/daily",
+  "/daily/archive",
 ] as const;
 
 export function jsonLd(data: unknown): string {

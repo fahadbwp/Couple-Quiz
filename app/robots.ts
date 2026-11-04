@@ -16,6 +16,8 @@ export default function robots(): MetadataRoute.Robots {
               "/jelloo/character-worlds",
               "/quiz",
               "/quiz/create",
+              "/daily",
+              "/daily/archive",
               "/api/og/quiz/",
               "/api/og/quiz",
               "/llms.txt",
@@ -38,6 +40,8 @@ export default function robots(): MetadataRoute.Robots {
               "/jelloo/character-worlds",
               "/quiz",
               "/quiz/create",
+              "/daily",
+              "/daily/archive",
               "/llms.txt",
             ],
             disallow: [
